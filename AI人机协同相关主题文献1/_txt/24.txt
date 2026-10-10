@@ -1,0 +1,2909 @@
+de Véricourt, Francis; Gurkan, Huseyin
+
+
+
+Working Paper
+Is your machine better than you? You may never know
+
+
+
+ESMT Working Paper, No. 22-02 (R1)
+
+
+Provided in Cooperation with:
+ESMT European School of Management and Technology, Berlin
+
+
+
+
+Suggested Citation: de Véricourt, Francis; Gurkan, Huseyin (2022) : Is your machine better than you?
+You may never know, ESMT Working Paper, No. 22-02 (R1), European School of Management and
+Technology (ESMT), Berlin,
+https://nbn-resolving.de/urn:nbn:de:101:1-2022121508081072470731
+
+
+
+
+This Version is available at:
+https://hdl.handle.net/10419/267687
+
+Standard-Nutzungsbedingungen:                                          Terms of use:
+
+Die Dokumente auf EconStor dürfen zu eigenen wissenschaftlichen        Documents in EconStor may be saved and copied for your personal
+Zwecken und zum Privatgebrauch gespeichert und kopiert werden.         and scholarly purposes.
+
+Sie dürfen die Dokumente nicht für öffentliche oder kommerzielle       You are not to copy documents for public or commercial purposes, to
+Zwecke vervielfältigen, öffentlich ausstellen, öffentlich zugänglich   exhibit the documents publicly, to make them publicly available on the
+machen, vertreiben oder anderweitig nutzen.                            internet, or to distribute or otherwise use the documents in public.
+
+Sofern die Verfasser die Dokumente unter Open-Content-Lizenzen         If the documents have been made available under an Open Content
+(insbesondere CC-Lizenzen) zur Verfügung gestellt haben sollten,       Licence (especially Creative Commons Licences), you may exercise
+gelten abweichend von diesen Nutzungsbedingungen die in der dort       further usage rights as specified in the indicated licence.
+genannten Lizenz gewährten Nutzungsrechte.
+ISSN 1866-3494
+
+
+
+                                                                                                                    Dec 8, 2022
+
+
+
+
+ESMT Working Paper 22-02 (R1)
+
+
+
+Is your machine better than you? You may
+never know.
+Francis de Véricourt, ESMT European School of Management and Technology
+Huseyin Gurkan, ESMT European School of Management and Technology
+
+
+
+
+Copyright 2022 by ESMT European School of Management and Technology GmbH, Berlin, Germany, www.esmt.org.
+All rights reserved. This document may be distributed for free – electronically or in print – in the same formats as it is available
+on the website of the ESMT (www.esmt.org) for non-commercial purposes. It is not allowed to produce any derivates of it without
+the written permission of ESMT.
+Find more ESMT working papers at ESMT faculty publications, SSRN, RePEc, and EconStor.
+Is Your Machine Better Than You? You May Never Know.
+                                  Francis de Véricourt, Huseyin Gurkan*
+                             ESMT Berlin, {francis.devericourt, huseyin.gurkan}@esmt.org
+
+
+    Artificial intelligence systems are increasingly demonstrating their capacity to make better predictions than
+    human experts. Yet, recent studies suggest that professionals sometimes doubt the quality of these systems
+    and overrule machine-based prescriptions. This paper explores the extent to which a decision maker (DM)
+    supervising a machine to make high-stake decisions can properly assess whether the machine produces better
+    recommendations. To that end, we study a set-up in which a machine performs repeated decision tasks
+    (e.g., whether to perform a biopsy) under the DM’s supervision. Because stakes are high, the DM primarily
+    focuses on making the best choice for the task at hand. Nonetheless, as the DM observes the correctness
+    of the machine’s prescriptions across tasks, she updates her belief about the machine. However, the DM
+    is subject to a so-called verification bias such that the DM verifies the machine’s correctness and updates
+    her belief accordingly only if she ultimately decides to act on the task. In this set-up, we characterize the
+    evolution of the DM’s belief and overruling decisions over time. We identify situations under which the
+    DM hesitates forever whether the machine is better, i.e., she never fully ignores but regularly overrules it.
+    Moreover, the DM sometimes wrongly believes with positive probability that the machine is better. We
+    fully characterize the conditions under which these learning failures occur and explore how mistrusting the
+    machine affects them. These findings provide a novel explanation for human-machine complementarity and
+    suggest guidelines on the decision to fully adopt or reject a machine.
+
+    Key words : machine accuracy, decision making, human-in-the-loop, algorithm aversion, dynamic learning
+
+
+
+
+1. Introduction
+The adoption of machine learning (ML) algorithms is revolutionizing the delivery of products
+and services (McKendrick 2021), especially in domains that require human expertise, such as the
+medical and judiciary sectors. Indeed, artificial intelligence tools have demonstrated a capabil-
+ity to produce higher quality predictions than human judgment for many decision tasks (Grady
+2019, Reardon 2019). The deployment of these tools in practice, however, has been limited (Wiens
+et al. 2019) and challenged by the tendency of decision makers to override—sometimes wrongly—
+algorithmic prescriptions. For instance, Sun et al. (2021) find in warehouse operations that employ-
+ees significantly deviated from the recommendations of an algorithm. Lebovitz et al. (2022) also
+
+* The authors are grateful to Santiago R. Balseiro, Denis Gromb, Jean Pauphilet and the seminar attendees at Yale
+University, Dartmouth College, HEC Paris, The Catholic University of Portugal, ML Approaches for Finance and
+Management conference at Humboldt University of Berlin, Bilkent University and the European Decision Science
+seminar for their valuable comments.
+
+                                                          1
+2                                                                    de Véricourt and Gurkan: better or worse
+
+
+report how a team of radiologists in a large US-based hospital abandoned different ML algorithms
+after using them for several months.
+    This tendency to override algorithms is typically attributed to an intrinsic mistrust of machine-
+based predictions, often referred to as an algorithm aversion (Dietvorst et al. 2015, Gaube et al.
+2021). This bias, however, may not be the sole reason for inappropriately and systematically over-
+riding an algorithm. Indeed, the very context in which a human decision maker (DM) works can
+also prevent the DM from learning whether a machine produces better prescriptions.
+    In this paper, we explore the conditions under which making high-stake decisions hampers the
+DM’s ability to properly learn whether a machine is superior to human expertise. Importantly,
+we characterize the nature of the inappropriate overriding decisions that these learning failures
+give rise to, without relying on any mistrust bias. To that end, we analyze a set-up, in which a
+DM performs repeated decision tasks using the prescriptions of a machine. Each task consists in
+deciding whether or not to take a specific action. This corresponds, for instance, to deciding on a
+biopsy in a medical context. To make this choice, the machine produces a recommendation that
+the DM may overrule based on her own expertise. Crucially, the DM is uncertain about whether
+the machine makes better or worse decisions than she does, but as the DM verifies the correctness
+of the different machine’s prescriptions, she forms a belief about the machine’s true accuracy.
+    Our focus is thus on the DM’s learning behavior once the algorithm has been deployed, that is,
+after it has been properly trained and evaluated on representative data sets (see Kubat 2017) and
+possibly shown better-than-human accuracy levels. These datasets, however, never fully capture
+the ground truth, and the issue of empirical generalizability remains (see, e.g., Lebovitz et al. 2021).
+Hence, an expert may continue to observe and adjust her belief about the machine after adopting
+it. Yet, because the machine is deployed and makes prescriptions with real consequences, learning
+can be impaired in ways that do not exist during the training phase of the algorithm.
+    In particular, we consider situations in which the DM observes the correctness of the machine’s
+prediction and updates her belief accordingly only if the action is actually taken (e.g., when a
+biopsy is performed). In other words, the DM is subject to the so-called verification bias (see,
+e.g., Pepe 2003, p. 169), such that the accuracy parameters of a diagnostic test are learned only
+when a test result is verified by follow-up work (e.g., a biopsy reveals the presence or absence of
+the disease). This limitation can also stem from a form of salience bias or inattentional blindness
+(Taylor and Thompson 1982, Bordalo et al. 2012 and Tiefenbeck et al. 2018), which are especially
+prevalent for high-stakes decisions (see Lee et al. 2018). In this context, the DM focuses her limited
+attention on making the decisions at hand but is triggered to reassess the machine’s quality by
+the salient observation of a verified success or failure. (See Camacho et al. 2011 for an example of
+similar salient effects in the context of new drug prescriptions.)
+de Véricourt and Gurkan: better or worse                                                                     3
+
+    Further, the DM only decides what is best for the task at hand and thus never acts for the
+purpose of verifying the machine’s accuracy. In this sense, the DM’s decisions are exploration-free.
+This restriction may be for legal or ethical concerns, which are often warranted when the stakes
+are high as in the medical and judiciary sectors (Bastani, Bayati and Khosravi 2021).
+    In this paper, we mainly examine the case where the machine and the DM are substitutes in that
+the DM’s accuracy is either better or worse than the machine’s. We focus on substitution for two
+reasons. First, our goal is to study inappropriate overriding decisions without relying on algorithm
+aversion, the studies of which assume substitution (Dietvorst et al. 2015, Sun et al. 2021). Second,
+and more importantly, we seek to determine if a complementarity between the DM and the machine
+might emerge from the DM’s inability to learn the nature of the machine. Assuming substitution
+enables us to disentangle this learning effect from an intrinsic complementarity between the DM
+and the machine. Nonetheless, we also explore situations where the machine and DM complement
+one another (see Section 8).
+    Our approach thus consists in analytically studying the evolution of the DM’s belief and overrul-
+ing decisions over time. This enables identification of situations in which the DM properly learns
+whether the machine makes better predictions than she does. The asymptotic behavior of the DM’s
+belief further characterizes the different ways in which the DM fails to learn the true nature of the
+machine.
+    Following this approach, we find that the DM always properly learns whether the machine is
+better or worse in the absence of human-machine interactions, i.e., when the machine’s prescriptions
+never influence the DM’s decisions. Indeed, in this case, the DM verifies the machine independently
+of its prediction.1 Hence, inappropriate overriding decisions may occur only if the machine has
+some influence on the DM’s choices.
+    When this influence is maximal, i.e., the machine’s prescriptions fully determine the DM’s
+choices, we find that the DM’s ability to learn depends on her prior about the task. Specifically,
+the DM properly learns that the machine is better (resp., worse), if the prior probability that an
+action is required for the task at hand is above (resp., below) a certain threshold. Hence, the DM
+can end up believing that the machine makes worse predictions than she does, even though the
+machine is actually better. This occurs when the action is not too frequently required for the tasks.
+Conversely, the DM learns that the machine is better even though it is actually worse when the
+action is frequently required.
+    In these two benchmarks, the DM’s belief about the machine has no effect on her choices. This
+contrasts with our main set-up, in which the DM’s decision to act, and hence her ability to learn,
+1
+ To be more precise, the verification event in the no-interaction benchmark is due to the DM’s own judgment, and
+the event that the machine prescribes to act is independent of the DM’s judgment conditional on the task’s type.
+4                                                                   de Véricourt and Gurkan: better or worse
+
+
+are endogenously determined by her current belief about the machine’s quality. Specifically, in
+this setting, the DM overrules the machine when the DM’s judgment contradicts the machine’s
+prescription and the DM sufficiently believes that the machine is worse.
+    When this is the case, we again find that the prior about the task determines when the DM fails
+to learn. However, the DM’s overriding decisions fundamentally change the nature of mislearning.
+Indeed, when the machine is actually better than the DM and the prior about the task is low, the
+DM’s belief always oscillates over time. In other words, the DM permanently remains unsure about
+whether the machine is better or not and constantly alternates between following and overriding
+its prescriptions. Further, and perhaps more interestingly, the DM sometimes treats the machine
+as if its prediction complements her own judgment, while in fact, the two are full substitutes. In
+contrast, when the machine is worse and the prior about the task is high, the belief converges
+to a Bernoulli random variable: the DM properly learns that the machine is worse with a given
+probability but wrongly learns that it is better with the remaining probability. In other words, the
+DM randomly ends up incorrectly believing that the machine is better.
+    Taken together, these results identify two different forms of mislearning—persistent hesitation
+and random inference—that can occur when a DM works with a machine to make high-stakes
+decisions. These findings also highlight the key role that the DM’s prior about the task plays in
+her ability to learn the true nature of the machine. Additionally they uncover a novel rationale—
+the uncertainty about the machine’s true performance—for why human experts may co-produce
+their decisions with a machine. These mislearning behaviors do not depend on the DM’s initial
+belief about the machine and thus hold even when the DM sufficiently believed in the machine’s
+performance to deploy it in the first place.
+    These results further suggest guidelines on the decision to fully adopt or reject a machine after it
+has been deployed. The question is whether the machine should make all the decisions henceforth
+or be abandoned for good at some point after working with it. Our results indicate that the longer
+the DM believes the machine is worse, the more likely she is correct in her assessment and hence
+should abandon the machine. The same is not true, however, if the DM increasingly believes that
+the machine is better. In this case, our findings suggest to rely on multiple DMs. If a consensus
+exists among the team that the machine is better, then the larger the team is, the more likely it is
+that the machine should be adopted. (See Section 6.)
+    Importantly, the mislearning behaviors we characterize in this paper do not stem from an intrinsic
+algorithm aversion but rather from certain contexts in which DMs make high-stakes decisions,
+as captured with the verification bias and the exploration-free condition. Yet, a DM who faces
+situations such as these may also be subject to mistrust biases against the machine, which can
+interact with our findings.
+de Véricourt and Gurkan: better or worse                                                             5
+
+  Indeed, mistrusting the machine affects the DM’s ability to learn in at least two ways. First, the
+DM may downplay the machine’s prescription when deciding to act (consistently with the decision-
+making literature, see, e.g., Soll and Mannes 2011), which alters the DM’s ability to observe the
+correctness of the machine’s predictions. Second, and in line with the algorithm aversion reported
+by Dietvorst et al. (2015), the DM’s belief in the machine may disproportionately drop upon
+observing a machine’s prediction error. We explore how these effects interact with our results (see
+Section 7) and find that our results hold in the former case but not in the later. When mistrust
+introduces a negativity bias in the DM’s learning process, the DM does not always properly learn
+that the machine is better if the prior is sufficiently high, as in the main set-up. Instead, the DM
+can wrongly learn with a positive probability that the machine is worse. In this sense, algorithm
+aversion sometimes interacts with our setting to randomize the DM’s ability to learn.
+  Finally, our results are robust to a partial relaxation of the verification bias, which is legitimate,
+for instance, when the bias stems from the DM’s limited attention. In this context, the DM also
+learns from unverified cases. Our results continue to hold as long as unverified cases are sufficiently
+less salient than verified ones, for which the true state of the world is revealed.
+  After reviewing the literature in Section 2, we present the model in Section 3. In Section 4,
+we analyze the no-interaction and no-overriding benchmarks and then focus on the main set-up
+in Section 5. We highlight the implications of our findings in Section 6 and study the effects of
+mistrust biases on our findings in Section 7. Further, we explore the settings where the machine
+and the DM complement one another in Section 8, and the verification bias is partially relaxed in
+Section 9. Finally, we discuss future research directions in the conclusion.
+
+2. Literature Review
+Our study is related to the recent and growing literature on the interaction between human decision-
+makers and data-driven algorithms. This research explores the extent to which co-production of
+decisions by a machine and a DM may improve performance. For instance, Boyaci et al. (2020)
+demonstrate in a rational inattention framework that human-machine interaction improves the
+overall accuracy of decisions, but sometimes at the cost of higher cognitive effort (see Boyaci et al.
+2020 for additional references on formal models of machine-human interactions). Machine learning
+algorithms have also been proposed to provide interpretable cues to help decision makers improve
+their decisions (see Bastani, Bastani and Sinchaisri 2021, for instance). This stream of research
+further explores how to use human judgment to train or improve an algorithm (Van Donselaar
+et al. 2010, Ibrahim et al. 2021, Cowgill 2019).
+  We contribute to this literature by providing a novel rationale for why a DM may treat the
+machine’s prescriptions as a complement to her judgment. In fact, this stream of research typically
+6                                                                  de Véricourt and Gurkan: better or worse
+
+
+assumes that the machine’s accuracy is known and complements the DM’s judgement. In contrast,
+the DM and the machine are substitutes, and the machine’s accuracy is unknown in our setting.
+    In this sense, our study is closely related to the literature on overriding decisions and, more
+generally, trust in algorithmic prescriptions. In particular, Lebovitz et al. (2021) document over
+several months, how a team of radiologists lost trust in the quality of a machine learning algorithm
+that helped analyze medical images. Dietvorst et al. (2015) also found in an experimental set-up
+that their participants overrode a machine’s prescriptions, even after seeing that the machine’s
+algorithm performed better than the human did on average. This tendency to wrongly override
+machine-based prescriptions is further supported by empirical evidence in the field. For instance,
+Sun et al. (2021) observed that packing workers at the warehouses of the Alibaba Group regularly
+deviated from algorithmic prescriptions, which reduced operational efficiency. Several approaches
+have been explored to reduce deviations such as these, either with field experiments (Sun et al.
+2021) or in the lab (Dietvorst et al. 2018).
+    In contrast to this stream of papers, our study proposes an alternative explanation for inap-
+propriately overriding decisions such as these, which mostly stems from the context in which the
+decisions are made. Specifically, we trace these errors to four fundamentals (exploration-free, verifi-
+cation bias, informativeness and substitution), which capture some essential features of high-stakes
+decision making using machine-based predictions.
+    Recent studies also suggest that humans follow the principles of Bayesian inference when observ-
+ing the correctness of machine-based decisions. For instance, Wang et al. (2018) and Guo et al.
+(2020) analyze in an experimental set-up how observers dynamically update their trust in the
+machine as they observe the failures and successes of its predictions (without overriding the
+machine, as in the benchmark of Section 4.2). These studies find that assuming Bayesian observers
+can explain the empirical level of human trust in the machine over time. The key difference with
+our set-up, however, is that the DM is not subject to verification bias and thus always observes
+the correctness of the machine’s prediction in their settings.
+    Verification bias is a form of selection bias that was first introduced by Ransohoff and Feinstein
+(1978) to describe situations where the accuracy of a diagnostic test is learned only with the verified
+cases, i.e., when follow-up actions are taken to confirm a test result. This bias towards verified
+cases permeates the medical field (e.g., Hujoel et al. 2021, Whiting et al. 2013, Petscavage et al.
+2011, Bates et al. 1993, and Greenes and Begg 1985) and has been found in studies evaluating
+ML algorithms for medical applications (see, e.g., Tschandl et al. 2019). Most of this research has
+focused on developing estimators of accuracy based on the maximum likelihood to correct the bias.
+de Véricourt and Gurkan: better or worse                                                                           7
+
+The conditions required to avoid this bias in the frequentist literature, however, do not hold in our
+set-up.2
+    Learning with selective observations as in verification bias can also stem from a form of salience
+bias or inattentional blindness (Taylor and Thompson 1982, Bordalo et al. 2012 and Tiefenbeck
+et al. 2018). The behavioral science literature has studied biases such as these, (see, e.g., Kahneman
+1973, Chapter 7, for the effects of focused attention on information filtering), which are due to
+the DM’s limited cognitive capacity (Simon 1955). In this sense, our study also contributes to the
+growing stream of operations and economics literature, which deviates from standard Bayesian
+learning to account for limited cognitive capacity (see, e.g., Allon et al. 2021, Boyaci et al. 2020 and
+the references therein). In particular, our set-up is consistent with the notion of selective Bayesian
+updating (see the seminal work of Schwartzstein 2014), in that the DM only selects the actual
+success or failure of the machine to update her belief about the machine’s type.
+    Finally, our work is related to the vast literature on learning problems, which have been exten-
+sively studied in management science and operations management. For instance, studies have
+considered price experimentation to learn demand curves by focusing on the tradeoffs between
+learning and earning, and design heuristic policies achieving good regret performance (Besbes and
+Zeevi 2009, Boyacı and Özer 2010, Cheung et al. 2017, Keskin and Birge 2019). In this stream of
+papers, the DM experiments (explores) with different prices in the beginning of the time horizon
+to earn (exploit) more in the remaining periods. Because of this ability to explore, the DM can,
+in principle, properly uncover the true demand curve in the limit. The objective of these papers is
+then to learn sufficiently fast so as to maximize profit. In contrast, we consider situations where
+exploring is not possible. Thus, the DM optimizes within each period and mislearning may emerge
+in our set-up.
+    In this sense, our approach resembles Harrison et al. (2012) which analyzes myopic pricing
+policies (see Section 4 in particular). In their set-up, demand functions are the focus of learning,
+whereas we consider unknown accuracy parameters. Therefore, the type of incomplete learning
+that may occur differs radically in each setting. In particular, incomplete learning takes the form of
+confounding beliefs in Harrison et al. (2012), such that the myopic policy charges an uninformative
+price, which prevents Bayesian updating from producing a different posterior. As a result, the DM
+becomes stuck in the same belief over time. In contrast, mislearning can take the form of belief
+oscillation in our set-up, which cannot occur in Harrison et al. (2012) per Proposition 2.
+
+2
+ For instance, our main set-up does not satisfy the missing-at-random assumption used by Begg and Greenes (1983)
+or the restrictions imposed on the data generating process proposed by Zhou (1993). In addition, our no-overriding
+benchmark corresponds to so-called extreme verification bias (Pepe 2003, p. 180), for which the estimation of accuracy
+parameters is impossible (Broemeling 2011).
+8                                                                   de Véricourt and Gurkan: better or worse
+
+
+    Learning problems such as these are also extensively studied in economics (see for instance
+Smith and Sørensen 2000, Acemoglu et al. 2011, and references therein), with a particular focus
+on equilibrium learning dynamics shaped by multiple strategic agents. In this stream of research,
+Herrera and Hörner (2013) analyzes a set-up with short-lived myopic investors, in which only
+investing decisions are observable. Although this may resemble our set-up, their payoff, signal and
+learning structures differ, which yields a different type of mislearning. In particular, the belief
+converges to an interior point in their set-up (see Propositions 1 and 4 in Herrera and Hörner
+2013), while it may not converge in ours.
+
+3. Model Description
+We consider a decision maker (DM) who faces a series of independent decision tasks over a discrete
+time infinite horizon. A machine further assists the DM by producing a recommendation about
+which decision to take for each task. The DM, however, does not know if the machine’s accuracy is
+superior to her own judgment. As the accuracy of the machine’s predictions is revealed over time,
+the DM forms a belief about whether or not she should override the machine’s prediction. Next, we
+introduce the single decision task problem that the DM performs in each period. We then consider
+the whole time horizon.
+
+3.1. Single Decision Task
+
+A task consists in deciding whether or not a specific action (e.g., a biopsy) is required. We denote
+as Θ ∈ {A, NA} the type of task such that the action is required if Θ = A and is not required if
+Θ = NA. The DM does not know the task’s type but has a prior belief p ≜ P(Θ = A) that she should
+act.
+    To perform this task, the DM applies her expertise and elicits imperfect signal S H ∈ {+, −}, such
+that S H = + (resp., S H = −) indicates that Θ = A (resp., Θ = NA). We denote the sensitivity (true
+positive rate) and specificity (true negative rate) of the signal by αH and β H , respectively. The
+DM is further assisted by a machine learning algorithm, which makes an independent prediction
+about type Θ. This prediction corresponds to a second signal, S M ∈ {+, −}, with sensitivity and
+specificity equal to (αM , β M ).
+    Importantly, the DM is uncertain about whether the machine’s accuracy is better than her own.
+Specifically, we denote the machine’s type as Γ ∈ {B, W}. When Γ = B (resp., Γ = W), signal S M
+is better (resp., worse) than signal S H , and the sensitivity and specificity of the signal are equal
+to (αB , β B ) (resp., (αW , β W )). The machine is better (resp., worse) in the sense that the DM never
+(resp., always) overrules the machine when its type is perfectly known. This corresponds to the
+notion of substitution, which we introduce and formalize later in this section (see equations 4 and
+de Véricourt and Gurkan: better or worse                                                                                  9
+
+5). To exclude degenerated cases, we further focus our analysis on situations where αB > αW and
+β B > β W .3 This is only for the sake of clarity, as all of our results extend to the more general case.
+                             
+   Probability b ≜ P Γ = B denotes then the DM’s belief that the machine outperforms her ability
+to decide. In effect, these two types of machine induce two different probability measures PB {·}
+and PW {·} on the sample space of the machine’s signals, such that PΓ (S M = +, Θ = A) = αΓ p and
+PΓ (S M = −, Θ = NA) = β Γ p̄ for Γ ∈ {B, W} (with x̄ = 1 − x for x ∈ [0, 1]).
+        Based on realizations sH and sM of signals S H and S M , respectively, and her belief b about the
+machine, the DM updates her prior p that an action is required using Bayes’ rule. The corresponding
+posterior probability is thus P(Θ = A | S H = sH , S M = sM , b) (with a slight abuse of notation).4
+        The DM then decides to act if and only if the posterior is above a positive threshold r, i.e.,
+P(Θ = A | S H = sH , S M = sM , b) ≥ r; the DM does not act otherwise. This decision rule is optimal, for
+instance, when the DM seeks to maximize the expected value associated with correctly identifying
+the task’s type. In this case, threshold r accounts for the false positive and false negative costs
+associated with the decision.5
+
+        Informativeness: In the following, we assume that the signals produced by both the DM and
+the machine are informative, in the sense that each signal provides sufficient information for the
+DM to decide. Formally, this corresponds to:
+
+                                P(Θ = A | S H = +) ≥ r and P(Θ = A | S H = −) < r ,                                      (1)
+
+                              PB (Θ = A | S M = +) ≥ r and PB (Θ = A | S M = −) < r,                                     (2)
+
+                              PW (Θ = A | S M = +) ≥ r and PW (Θ = A | S M = −) < r.                                     (3)
+
+In other words, the sole realization of either S H or S M , whether the machine is of type B or W, fully
+determines whether or not the posterior is larger than threshold r, i.e., the DM takes the action.
+These conditions further imply that considering both signals S H and S M together is redundant
+when their realizations are aligned, i.e., when sH = sM . One signal is then sufficient for the DM to
+decide since the DM acts if S H = S M = + and does not act if S H = S M = −. If the realizations are
+misaligned with sH ̸= sM , however, the DM and the machine may override one another. In this case,
+we consider situations where the machine and the DM are full substitutes in the following sense.
+
+3
+  This assumption guarantees that the DM’s belief in a better machine decreases (resp., increases) upon observing an
+incorrect (resp., correct) machine prediction. In contrast, assuming αW > αB (resp., β W > β B ) implies that the DM’s
+belief that the machine is better actually increases after observing a false negative (resp., false positive) error.
+4
+ In particular, we have P(Θ = A | S H = sH , S M = sM , 1) = PB (Θ = A | S H = sH , S M = sM ) and P(Θ = A | S H = sH , S M =
+    M
+s , 0) = PW (Θ = A | S H = sH , S M = sM ).
+5
+    See, Alizamir et al. (2013) for instance, for a micro foundation of threshold r.
+10                                                                    de Véricourt and Gurkan: better or worse
+
+
+     Substitution: We assume that a type B machine always overrides the DM’s judgment, while
+the DM always overrides the prescription of a type W machine. Formally, this corresponds to:
+
+                   PB (Θ = A | S H = +, S M = −) < r and PB (Θ = A | S H = −, S M = +) ≥ r                 (4)
+
+                  PW (Θ = A | S H = +, S M = −) ≥ r and PW (Θ = A | S H = −, S M = +) < r                  (5)
+
+Thus, if the signals of the DM and a type B machine contradict one another, signal S M alone
+determines whether or not the posterior probability is larger than the threshold (per equation (4)).
+Along with the Informativeness property, this means that a type B machine always determines
+whether the DM should act, independently of the DM’s judgment. In contrast, the DM decides alone
+and can ignore the prescription of a type W machine (per equation (5)). Hence, if the machine’s
+type is fully known, the DM and the machine never collaborate to make a decision. In this sense,
+the DM and the machine are substitutes for the task.
+     In essence, Informativeness and Substitution are conditions on the DM’s posterior probability
+about the task’s type, which in turn depends on the signals’ sensitivities and specificities, as well
+as prior p and threshold r.
+
+
+3.2. Repeated Tasks and Learning
+
+We now consider the situation where the DM faces a series of decision tasks over a discrete time
+infinite horizon. Task types Θt , t ∈ N, are independent and identically distributed with probability
+p. (In the following, we use subscript t to denote the parameters associated with the task of period
+t.) At the beginning of period t > 0, the DM’s belief about the machine’s type is given by bt−1 ,
+where b0 is the prior belief at the beginning of the time horizon. The DM then obtains signals
+StH , StM and decides whether to act.
+
+     Exploration-Free: In making this choice, the DM considers only the task at hand. More
+formally, the DM acts if P(Θt = A | StH , StM , bt−1 ) ≥ r and does nothing otherwise. In particular, the
+DM does not act for the sole purpose of uncovering the true task’s type and thus learning the
+machine’s. Instead, the DM decides what she thinks is best for the current task and is thus myopic
+with respect to learning the machine’s type.
+     At the end of the period, the DM updates her belief bt−1 to posterior bt according to Bayes’ rule,
+if the DM observes type Θt .
+
+     Verification Bias: The DM, however, observes the task’s type and updates her belief accord-
+ingly if and only if an action is taken. Because decisions are exploration-free, the verification bias
+de Véricourt and Gurkan: better or worse                                                                    11
+
+implies that the DM updates her belief if and only if P(Θt = A | StH , StM , bt−1 ) ≥ r, in which case we
+assume that the DM follows Bayes’ rule. Thus, we have
+            
+            bt−1
+                                                  if P(Θt = A | StH = sH , StM = sM , bt−1 ) < r
+                                                −1
+       bt =                                                                                                  (6)
+                                              
+                  b̄t−1 PW (StM = sM | Θt = θ)
+             1+
+                                                  if P(Θt = A | StH = sH , StM = sM , bt−1 ) ≥ r ,
+                  bt−1 PB (StM = sM | Θt = θ)
+
+where θ ∈ {A, NA} is the observed value of Θt .
+  Equation (6) highlights two mechanisms by which the DM’s belief about the machine’s type is
+endogenously determined over time. The first corresponds to the Bayesian updating of prior bt−1
+when the DM observes type Θt . The second corresponds to the DM’s ability to verify type Θt in
+the first place, that is, whether posterior belief P(Θt = A | StH , StM , bt−1 ) is sufficiently large. This,
+in turn, depends on belief bt−1 . Equation (6) further implies that when the DM acts, she increases
+(resp., decreases) her belief that the machine is better if the machine’s prescription turns out to
+be correct (resp., wrong).
+  This learning mechanism also corresponds to a selective Bayesian updating set-up (Schwartzstein
+2014) in which a DM focuses her limited attention on making diagnostic decisions, instead of
+evaluating the machine that assists her. The salient observation of an actual success or failure of
+the machine, however, redirects the DM’s attention to reassess her belief about the machine’s type.
+This mechanism resembles the two-stage learning process of Allon et al. (2021), in which agents
+allocate their attention to different tasks (screening and belief updating in their setting) in each
+stage. (We relax this limitation on the DM’s attention in Section 9.)
+  When the DM acts, the DM updates belief bt in part based on signal StM . The machine’s type,
+however, determines the probability distribution, PB {·} or PW {·}, of this signal. Hence, belief (bt )t∈N
+can follow two different stochastic processes depending on machine type Γ. The asymptotic behavior
+of belief bt thus captures the DM’s ability to learn whether the machine makes better predictions.
+                                                                                                      a.s.
+Indeed, the DM properly learns the machine’s type if her belief converges over time to 1 (bt −−→ 1)
+                                                               a.s.
+when the machine is better (Γ = B) and converges to 0 (bt −−→ 0) when the machine is worse (Γ = W).
+             a.s.
+(Notation −−→ indicates almost-sure convergence.) In contrast, the DM mislearns the machine’s
+                    a.s.
+type when bt −−→ 0 (resp., 1) and Γ = B (resp., Γ = W). Learning may even be inconclusive when
+belief bt converges to an interior point in (0, 1) or oscillates. More formally, a stochastic process
+Yt is said to be oscillating and recurrent if recurrent interval I exists such that for any τ > 0,
+P(Yt ∈ I for some t > τ | Yτ ∈ I ) = 1 (see Definition 8.1 in Gut 2009 for instance).
+  Our objective, therefore, is to study the asymptotic behavior of bt and characterize the resulting
+learning behavior of the DM.
+12                                                                      de Véricourt and Gurkan: better or worse
+
+
+4. Benchmarks
+We first study two settings, in which the DM does not account for her belief about the machine
+when deciding to act. In the first no-interaction setting, the DM always ignores the machine’s
+prescription and bases her choice solely on her own judgment StH . In this sense, the DM and the
+machine do not interact when deciding on tasks. In the second no-overriding setting, the machine
+fully determines the DM’s choice so that the DM never overrides its prediction StM . Importantly,
+belief bt−1 does not determine whether an action is taken in both benchmarks and thus whether
+a machine’s prediction is verified ex post. As a result, the second mechanism by which belief bt−1
+influences posterior bt in equation (6) is mute. This belief affects learning through only the first
+mechanism, i.e., the application of Bayes’ rule when the DM acts.
+     More specifically, the DM acts if and only if StH = +, regardless of the machine’s signal StM in
+the no-interaction benchmark, and if and only if StM = +, regardless of her own judgment StH in
+the no-overriding benchmark. The condition for acting, P(Θt = A | StH , StM , bt−1 ) ≥ r, thus reduces to
+P(Θt = A | StH ) ≥ r in the first benchmark and to P(Θt = A | StM , bt−1 ) ≥ r in the second one, which
+are, respectively, equivalent to StH = + and to StM = + for any bt−1 due to Informativeness (1)-(3).
+In both benchmarks, equation (6) then becomes
+                            
+                            bt−1
+                                                                     if Stσ = −
+                                                           −1
+                       bt =                                                                                  (7)
+                              
+                                   b̄t−1 PW (StM | Θt = θ)
+                             1+
+                                                                     if Stσ = +.
+                                   bt−1 PB (StM | Θt = θ)
+
+where σ = H and σ = M in the no-interaction and no-overriding benchmark, respectively. In par-
+ticular, the realization of Stσ is independent of belief bt−1 , which is in contrast to the condition in
+equation (6).
+     To study the asymptotic behavior of bt , we consider instead the log-likelihood ratio Lt of the
+probability that Γ = B in period t. Formally, Lt is a monotone continuous transformation of bt
+                        
+                    bt
+given by Lt ≜ log 1−b  t
+                           , such that
+                                            Lt = Lt−1 + Rt ,
+
+where (Rt )t∈N are i.i.d. random jumps. In particular, the log-likelihood ratio is increasing in the
+DM’s belief, and the asymptotic behavior of Lt fully determines the asymptotic behavior of bt .
+                      a.s.          a.s.                       a.s.                         a.s.
+Indeed, we have bt −−→ 1 (and bt −−→ 0) if and only if Lt −−→ +∞ (and resp. Lt −−→ −∞) per the
+continuous mapping theorem.
+     Log-likelihood ratio Lt is a random walk governed by jumps (Rt )t∈N , which capture the magnitude
+and direction of the belief’s updates. These random jumps take three possible values: a positive
+(resp., negative) value when the DM observes that the machine’s prediction is correct (resp.,
+wrong), i.e., StM = + and Θt = A (resp., Θt = NA), or zero when the task’s type is not observed, i.e.,
+de Véricourt and Gurkan: better or worse                                                                          13
+
+when StH = − in the no-interaction benchmark and StM = − in the no-overriding benchmark. The
+asymptotic behavior of Lt is then fully determined by the sign of the mean EΓ [Rt ]. If EΓ [Rt ] > 0
+(resp., < 0), then log-likelihood ratio Lt increases in expectation and converges almost surely to
++∞ (resp., −∞),6 while Lt does not converge when EΓ [Rt ] = 0.
+
+4.1. No-Interaction Benchmark
+
+First, we characterize the DM’s ability to learn the machine’s type in the absence of DM-machine
+interactions, i.e., when the DM’s decisions always ignore the machine’s prescriptions. Specifically,
+when equation (7) holds with σ = H, we have
+
+Theorem 1 (Learning with No-Interaction). When the machine is better Γ = B (is worse
+                a.s.                   a.s.
+Γ = W), bt −−→ 1 (and resp., bt −−→ 0).
+
+To prove this result, we first establish that EΓ [Rt ] > 0 (resp., < 0) if Γ = B (resp., Γ = W) and then
+apply the continuous mapping theorem. (All proofs are in the appendix.)
+     Theorem 1 states that the DM correctly learns the machine’s type when she decides to act solely
+based on her own judgment. In particular, verification bias does not prevent learning in the limit.
+This is because the DM’s sampling of the machine’s correct and wrong predictions is not biased
+in this case. Indeed, the DM acts and thus verifies the machine when {StH = +}, regardless of the
+realization of StM and hence, the probability to verify is independent of the machine’s prescription
+(conditional on the task’s type). This, in effect, relaxes the exploration-free condition by randomly
+enabling learning (with probability P(StH = +)), even when the machine’s prescription would have
+induced the DM not to act (i.e., when P(Θt = A | StH = +, StM = −, bt−1 ) < r) in equation (6).
+     Overall, the theorem reveals that inappropriate overriding decisions may occur only when the
+machine biases the DM’s decisions since full learning occurs in the absence of DM-machine inter-
+actions. Next, we explore the case where the machine fully biases these decisions and hence the
+sampling of observations.
+
+4.2. No-Overriding Benchmark
+
+In our next result, we characterize the DM’s ability to learn the machine’s type when the DM’s
+choices are fully determined by the machine’s prescriptions. In this case, the bias of the machine
+on the DM’s decision is extreme. Specifically, we consider the DM’s asymptotic learning behavior
+when equation (7) holds with σ = M. We then have
+
+Theorem 2 (Learning with No-Overriding). Unique thresholds pB and pW exist such that
+pB < pW and,
+6
+    The divergence of Lt is due to the strong law large numbers; see Gut (Theorem 8.3 in p. 68 2009) for more details.
+14                                                                   de Véricourt and Gurkan: better or worse
+
+
+                                                a.s.                a.s.
+     • when the machine is better (Γ = B), bt −−→ 0 if p < pB , bt −−→ 1 if p > pB ; and bt is recurrent
+and oscillates if p = pB ,
+                                                 a.s.               a.s.
+     • when the machine is worse (Γ = W), bt −−→ 0 if p < pW , bt −−→ 1 if p > pW ; and bt is recurrent
+and oscillates if p = pW .              W                                   W
+                               β̄ B log β̄β̄ B                       β̄ W log β̄β̄ B
+Further, we have pB ≜          W               and pW ≜
+                                                 B
+                                                                     W              .
+                                                                                       B
+                                β̄
+                      β̄ B log β̄ B + αB log ααW            β̄ W log β̄β̄ B + αW log ααW
+     In essence, Theorem 2 states that the DM’s ability to learn depends on her prior about the task
+as well as the machine’s type. The DM learns that the machine is worse (resp., better) when her
+prior is below (resp., above) pΓ for type Γ ∈ {B, W}. Importantly, this means that the DM may
+not properly learn whether the machine is better than her. Indeed, when prior p is low (p < pB ),
+                                                  a.s.
+the DM learns that the machine is worse (bt −−→ 0), while the machine is actually better (Γ = B).
+                                                                                               a.s.
+Similarly, when prior p is high (p > pW ), the DM learns that the machine is better (bt −−→ 1), while
+the machine is actually worse (Γ = W).
+     Theorem 2 stems from the fact that, in this benchmark, the DM acts and observes the machine’s
+correctness only if the machine’s signal is positive. In other words, the DM’s observations are
+sampled solely from true and false positive predictions and never from true or false negative ones.
+Indeed, recall first that the DM’s belief increases (resp., decreases) when the DM observes a correct
+(resp., incorrect) machine recommendation. Because the DM is able to observe this only when
+the machine’s signal is positive, the DM increases her belief if and only if the machine correctly
+prescribes to act (StM = + and Θt = A) and decreases her belief if and only if the machine wrongly
+prescribes to act (StM = + and Θt = NA). But whether the task truly requires an action (i.e., Θt = A)
+is determined by prior p. Hence, the DM increases her belief more frequently when the task is
+more likely to require an action, i.e., prior p takes higher values. The DM’s belief will converge to
+one (resp., to zero) when prior p is sufficiently high (resp. low) such that the number of observed
+correct predictions is relatively higher than the number of incorrect ones.
+     This effect of prior p is absent from the no-interaction benchmark because the DM also observes
+the correctness of the machine’s predictions when the machine recommends not to act (i.e., when
+StM = − and Θt = A, or StM = − and Θt = NA ).
+     Note finally that magnitudes of these changes in beliefs do not depend on prior p but are
+determined by the accuracy parameters of the machine. Threshold pΓ thus corresponds to the
+break-even value of prior p such that the expected increase in belief compensates for the expected
+decrease when the machine is of type Γ. When p > pΓ , the expected increase dominates the expected
+decrease and the belief converges to one. When p < pΓ , the opposite is true, and the belief converges
+to zero.
+de Véricourt and Gurkan: better or worse                                                            15
+
+5. Main Set-up: Accounting for the DM’s Belief about the Machine
+In our main set-up, and in contrast to the previous benchmarks, the DM’s belief about the machine
+influences the DM’s decision to act, and hence her ability to verify the machine’s predictions. As
+a result, learning is endogenously determined by the DM’s current belief about the machine. This
+fundamentally changes the nature of mislearning.
+  More specifically, recall that due to Informativeness, the DM always decides according to her
+signal when it is consistent with the machine’s signal with StH = StM . When these signals differ
+with StH ̸= StM , the DM may override the machine when her current belief bt−1 that the machine
+is better is sufficiently low. Hence, belief bt−1 influences posterior bt via the two mechanisms cap-
+tured by equation (6). The following result determines when such overriding decisions occur. (The
+result follows from Substitution (4)-(5) and the continuity of the posterior probabilities in bt−1 ; see
+Appendix B.)
+
+Lemma 1. Unique thresholds b− ∈ (0, 1) and b+ ∈ (0, 1) exist such that
+
+                             P(Θt = A | StH = +, StM = −, bt−1 ) ≥ r ⇔ bt−1 ≤ b− ,                  (8)
+
+                             P(Θt = A | StH = −, StM = +, bt−1 ) ≤ r ⇔ bt−1 ≤ b+ .                  (9)
+
+  Lemma 1 states that when the DM’s judgment contradicts the machine’s prescription, i.e., StH ̸=
+StM , the DM overrides the machine if and only if her belief in a better machine is sufficiently low,
+i.e., below a threshold. However, the DM can override the machine in two different ways, depending
+on whether the machine prescribes to act or not. This yields two different thresholds b− and b+ ,
+which correspond to an overriding decision for a negative and positive machine signal, respectively.
+  These thresholds actually correspond to the value of belief b that makes the DM indifferent
+between acting and not acting when StH = −, StM = + and StH = +, StM = −, respectively. Note
+also that the ranking between b− and b+ depends on the problem’s parameters, and we define
+the minimum and maximum of these two thresholds as bH ≜ min(b− , b+ ) and bM ≜ max(b− , b+ ),
+respectively (where bH and bM can be equal).
+  Thus, when belief bt−1 is sufficiently large with bt−1 > bM , the DM has sufficient confidence in
+the machine to always follow its prescriptions; this corresponds to the no-overriding benchmark.
+However, when the belief is sufficiently low with bt−1 < bH , the DM always overrides the machine
+and decides solely based on her judgment, which corresponds to the no-interaction benchmark.
+Overall, these two cases are consistent with Substitution, which stipulates that the machine is
+either better or worse than the DM.
+  Interestingly, Lemma 1 further reveals that the DM may treat the machine’s prescription as
+complementing—instead of substituting—her expertise. This occurs when the DM is sufficiently
+16                                                                de Véricourt and Gurkan: better or worse
+
+
+unsure about the machine’s type with bt−1 ∈ (bH , bM ). In this case, the DM and the machine comple-
+ment one another in two possible ways, depending on whether threshold b− is larger or smaller than
+threshold b+ . If b+ < b− : the DM overrules the machine when its signal is negative but follows the
+machine’s prescription when it is positive. In other words, the DM assumes that she makes better
+positive but worse negative decisions than the machine. In this sense, the DM and the machine
+collaborate on the task. As a result, the DM acts if and only if either the DM or the machine find
+evidence to do so (StH = + or StM = +). If b− < b+ , however, the DM overrules a positive machine’s
+signal but follows a negative machine’s signal and thus acts if and only if the DM and the machine
+agree that an action is required (StH = + and StM = +).
+     Overall, Lemma 1 indicates that the DM’s ability to learn the true type of task depends on
+her current belief about the machine. This means, in particular, that the random jumps of the
+corresponding log-likelihood ratio also depend on the current ratio. Formally, we have
+
+
+                                       Lt = Lt−1 + RtHM (Lt−1 )
+
+when the DM can override the machine. In contrast to the no-overriding benchmark, the random
+jumps RtHM are no longer i.i.d., as their distributions now depend on the magnitude of Lt−1 . Thus,
+the sign of the expected jump, which determines the asymptotic behavior of belief bt , is path-
+dependent. Next, we explore how this dependency affects the ability of the DM to learn the true
+machine type.
+
+5.1. Learning When the Machine is Better
+
+We first study the DM’s ability to properly learn the machine’s type when the machine is in fact
+better. Our next result characterizes the situations in which mislearning occurs in this case.
+
+Theorem 3. When the machine is better, i.e. Γ = B, if p ≤ pB , then bt oscillates and is recurrent;
+               a.s.
+otherwise bt −−→ 1.
+
+     Thus the DM’s ability to learn the machine’s type continues to depend on whether her prior
+about the task is sufficiently high. In fact, the threshold characterizing when proper learning occurs
+is the exact same as the one without overriding (defined in Theorem 2). Specifically, the DM learns
+                                        a.s.
+that the machine is indeed better (bt −−→ 1) if and only if prior p is sufficiently high with p > pB .
+Figure 1b illustrates this case and exhibits asymptotic behavior.
+     The DM’s ability to override the machine, however, fundamentally changes the nature of mis-
+learning. Indeed, when prior p is such that p ≤ pB , the DM wrongly learns that the machine is worse
+in the no-overriding benchmark. In the main set-up, however, the belief oscillates as illustrated in
+Figure 1a. Additionally, because the belief is also recurrent, the DM constantly switches among
+de Véricourt and Gurkan: better or worse                                                            17
+
+overruling the machine (bt < bH ), collaborating with it (bt ∈ (bH , bM )) or letting the machine decide
+(bt > bM ), as stated by the following corollary.
+
+Corollary 1. When the machine is better, i.e., Γ = B and p ≤ pB , intervals (0, bH ], (bH , bM ) and
+[bM , 1) are recurrent for belief bt .
+
+  Hence, when the DM sufficiently believes that the machine is better, she never overrules it and
+we retrieve the dynamics of the no-overriding benchmark. That is, when bt > bM , learning is entirely
+driven by whether or not a machine’s prescription to act is correct. Additionally, because prior p is
+low, the frequency of these correct predictions is also low, so the belief is decreasing in expectation.
+  In contrast, when the DM sufficiently believes that the machine is worse with bt < bH , she always
+overrides the machine. In this case, the DM sometimes observes the machine’s accuracy even when
+it prescribes not to act. This occurs when the DM’s signal is positive and overrules a machine’s
+negative signal. In this case, learning is driven by the true machine type, and because the machine
+is actually better, the belief increases in expectation.
+  Overall, the result holds because the DM’s belief in the machine’s type negatively reinforces
+her sampling bias: When the belief biases the sample of observations, the resulting updated belief
+tends to debias the sampling—and vice versa. As a result, belief bt is pushed back downward when
+it reaches high values (bt > bM ) and is pushed upward when it takes low values (bt < bH ). Hence, the
+DM never fully learns that the machine is better, but due to overriding, never mislearns that it is
+worse either. In this sense, the DM always remains in perpetual uncertainty about whether or not
+to disregard the machine.
+  Interestingly, this long-run uncertainty induces the DM to sometimes treat the machine’s pre-
+scription as a complement to her judgment. This happens when the belief reaches bt ∈ (bH , bM ),
+which is a recurrent event. In this case, the DM and the machine co-produce the decision per
+Lemma 1 (and the explanations that follow). Because the machine and DM are actually substi-
+tutes, the emergence of this complementarity is driven only by the DM’s inability to learn the true
+machine type.
+
+5.2. Learning When the Machine is Worse
+
+Per Theorems 2 and 3, the DM properly learns that the machine is good when prior p takes high
+values (i.e., p > pB ), whether the DM can override the machine or not. In this case, overriding
+essentially prevents the DM from wrongly learning that the machine is worse, which creates a
+perpetual state of uncertainty. In contrast, when the machine is indeed worse and the DM can
+overrule it, the DM may learn its true type for any prior p. This, however, occurs only randomly
+when prior p takes low values, as stated by the following result.
+18                                                                             de Véricourt and Gurkan: better or worse
+
+
+Figure 1     The DM’s belief bt when the machine is better, Γ = B
+
+        1                                                           1                                                        M
+
+       0.9                                                         0.9
+                                                               M
+       0.8                                                         0.8
+
+       0.7                                                         0.7
+
+       0.6                                                     H   0.6
+
+       0.5                                                         0.5
+
+       0.4                                                         0.4
+
+       0.3                                                         0.3
+
+       0.2                                                         0.2
+
+       0.1                                                         0.1
+                                                                                                                             H
+        0                                                           0
+              500   1000    1500   2000   2500   3000   3500             500   1000    1500      2000   2500   3000   3500
+
+
+
+                           (a) p ≤ pB                                                 (b) p > pB
+Note. αH = β H = 0.95, αB = β B = 0.99, αW = β W = 0.85, pB = 0.15 and r = 0.07, (a) p = 0.05, bH = 0.57, bM = 0.81, (b)
+p = 0.2, bH = 0.01, bM = 0.96.
+
+                                                                                          a.s.                          a.s.
+Theorem 4. When the machine is worse, i.e., Γ = W, if p ≤ pW , then bt −−→ 0; otherwise, bt −−→ X
+where X is a Bernoulli random variable.
+
+     Theorem 4 indicates that the DM’s ability to learn hinges again on prior p. As in the no-overriding
+                                                                                         a.s.
+benchmark, the DM can properly learn that the machine is worse (b −−→ 0) if prior p takes low
+values (p < pW , where threshold pW is, again, the same as that in the no-overriding benchmark).
+Figure 2a illustrates this point, and depicts a sample path of bt .
+     When the prior is high (p > pW ), however, the belief converges to a Bernoulli random variable.
+That is, the sample paths of belief bt converge to zero with a certain probability and to one with
+the complement probability. In particular, the belief never oscillates nor converges to an interior
+point in the limit. Thus, the DM’s ability to properly learn the machine’s type is random in this
+case. In particular, the DM may sometimes wrongly learn that the machine is better, while it is
+actually worse. Figure 2b illustrates this point and depicts examples of the two possible sample
+paths for bt , one (dashed line) converging to one and the other (solid line) to zero.
+     Similar to the better machine case, learning is driven by prior p as in the no-overriding benchmark
+when the belief is high (bt > bM ), and by the true type of the machine when the belief is low (bt < bH ).
+In the latter case, the belief decreases in expectation since the machine is worse.
+     Thus, for low prior p < pW , the belief moves downward in expectation when it takes sufficiently
+high or low values and hence converges to zero in the long run. The DM then properly learns that
+the machine is worse.
+     For high prior p > pW , however, the belief increases in expectation when the belief is already
+high and decreases when it is already low. In the long-run, the belief is thus pushed close to either
+de Véricourt and Gurkan: better or worse                                                                                                            19
+
+Figure 2    The DM’s belief bt when the machine is worse, Γ = W
+
+                                                                              1
+       1
+                                                                             0.9
+     0.9
+
+     0.8
+                                                                             0.8
+                                                                         M
+
+                                                                             0.7                                                                 M
+     0.7
+
+     0.6                                                                     0.6
+
+     0.5                                                                     0.5
+
+     0.4                                                                     0.4                                                                 H
+
+     0.3                                                                     0.3
+                                                                         H
+     0.2
+                                                                             0.2
+     0.1
+                                                                             0.1
+       0
+           100   200   300    400   500   600   700   800   900   1000        0
+                                                                                   100   200   300    400   500   600   700   800   900   1000
+
+
+                             (a) p ≤ pW
+                                                                                                     (b) p > pW
+Note. αH = β H = 0.95, αB = β B = 0.99, αW = β W = 0.9, pW = 0.72 and r = 0.8, (a) p = 0.71, bH = 0.23, bM = 0.76, (b)
+p = 0.75, bH = 0.38, bM = 0.68.
+
+
+one or zero. This is because, in contrast to the case where the machine is better, the DM’s belief
+positively reinforces the sampling bias: When the belief biases (resp., does not bias) the sample,
+the resulting updated belief tends to perpetuate the bias (resp., remain unbiased). Whether the
+belief reaches high or low values is then determined by realizations of the different signals and the
+task types and is thus random. Note that when the belief takes intermediary values (bt ∈ (bH , bM ))
+it can either decrease or increase in expectation depending on the problem parameters. However,
+this region is transient since the belief is pushed away from the region when the belief is more
+extreme (bt ∈
+            / (bH , bM )).
+
+6. Implications
+6.1. Learning and Mislearning
+
+Taken together, these results provide theoretical limits on our ability to learn whether a machine
+makes better decisions than an expert. Interestingly, this inability to learn sometimes induces the
+DM to treat the machine’s prescription as a complement to her own judgment, even though the
+two are actually substitutes. For instance, the DM may believe that her predictions have better
+sensitivity but worse specificity than those of the machine, while in fact, the machine is better in
+terms of both accuracy metrics. In this sense, the DM’s uncertainty about the machine provides a
+novel rationale for why experts and machines may collaborate in practice.
+  Our results further identify the uncertainty surrounding the decision task as the key factor for
+mislearning. In fact, the DM fails to learn when she is most certain a priori about whether an
+action is required for a task (i.e., when prior p takes more extreme values with p ≤ pB or p > pW ).
+20                                                                  de Véricourt and Gurkan: better or worse
+
+
+Conversely, the DM always properly learns the machine’s type when she is most uncertain about
+whether or not to act (i.e., prior p takes moderate values), as stated by the next corollary of
+Theorems 3 and 4.
+
+Corollary 2. The DM always correctly learns the type of the machine if and only if p ∈ (pB , pW ].
+
+
+6.2. Learning with Anticipation
+
+In our set-up, as in the literature, the DM updates her belief using the past history of the observed
+accuracy of the machine’s predictions. Nonetheless, our results characterize the asymptotic behavior
+of this learning process and, as such, provide guidelines for DMs who anticipate the future behavior
+of their own belief. In particular, the nature of a learning failure is indicative of the machine’s type
+in our results. The DM may thus leverage this information to determine whether the machine is
+better.
+     Indeed, the DM’s belief may oscillate only when the machine is better (see Figure 1a), and
+always converges when it is worse (see Figure 2). Thus, the longer the DM remains uncertain (in
+the sense of Theorem 3), the more likely the machine is actually better. Similarly, the DM’s belief
+can converge to zero only if the machine is worse. Indeed, the belief either oscillates or converges
+to one when the machine is better. Hence, the longer the DM believes that the machine is worse,
+the more likely she is correct in her assessment.
+     Assessing if the DM is correct when she increasingly believes that the machine is better appears
+to be more challenging. Indeed, the DM’s belief can converge to one whether the machine is better
+(see Figure 1b) or worse (see Figure 2b). To circumvent this issue, one approach consists in relying
+on more than one decision maker. To see how, consider several identical decision makers who
+independently handle a series of tasks that are randomly drawn from the same sample and use
+the same machine. If this machine is better, all DMs should have the same limiting behavior: they
+either all remain uncertain or all learn that the machine is indeed better (per Theorem 3). However,
+if the machine is worse, the convergence to either zero or one is random (per Theorem 4). Thus, if
+a single DM in the team believes over time that the machine is worse, then the machine is indeed
+likely to be worse—even if the rest of the team believes it to be better. In contrast, if there is
+consensus in the team that the machine is better, then the larger the team is, the more likely it is
+that the machine is better.
+     In short, long-term uncertainty or a unanimous belief among large teams that the machine is
+better is indicative of a better machine. In contrast, persistently overruling the machine is indicative
+of a worse one.
+de Véricourt and Gurkan: better or worse                                                       21
+
+6.3. Adoption or Rejection
+
+Our study also sheds lights on the decision to fully adopt or reject the machine. Indeed, after
+observing and at times overriding the machine’s prescriptions, the DM’s belief may reach extreme
+levels. In these cases, the DM decides either to let the machine make all the decisions (as in
+Section 4.2), or to abandon the machine altogether, depending on whether the belief is sufficiently
+high or low, respectively. Once a machine is abandoned, however, the DM cannot learn about it
+anymore.
+  If the DM decides to fully adopt the machine—but continues to observe its performance—our
+results indicate that the DM will become increasingly confident about her adoption decision over
+time when prior p about the task is high (p > pB for a better machine, and p > pW , for a worse one
+per Theorems 3-4). This occurs even when the machine is actually worse and should be abandoned.
+  In contrast, when the prior about the task is low (p < pB or p < pW , depending on the true
+machine type), the DM increasingly doubts her adoption decision over time. This is because the
+DM’s belief in a better machine decreases in expectation over time and always approaches 0 in the
+limit in this case (per Theorems 3-4). This happens even when the machine is actually better and
+should be adopted.
+  Recall, finally, that when the machine is better and the prior about the task is low, the DM’s
+belief in the main set-up oscillates and is recurrent in (0,1) (per Theorem 3 and Corollary 1).
+Therefore, the DM’s belief eventually reaches any low level with probability one. In other words,
+the DM always ends up abandoning the machine in the long run, even though the machine is
+actually better.
+
+7. Mistrust Biases against the Machine
+A key feature of the mislearning behavior in Theorems 3-4 is that they do not stem form an
+inherent mistrust against the machine. Instead, they stem from four fundamentals (verification
+bias, exploration-free decisions, informativeness and substitution), which characterize the set-up
+in which the DM works with the machine. Nonetheless, the DM may also be subject to mistrust
+biases against the machine in situations where these fundamentals are at play. In this section, we
+explore to which extent biases such as these interact with our four fundamentals to affect the DM’s
+learning behavior.
+  In our main set-up, mistrusting the machine affects the DM’s ability to learn in at least two
+ways. First, the DM may downplay the machine’s prescription when deciding to act, which alters
+the DM’s ability to observe the correctness of the machine’s predictions. Second, and in line with
+the algorithm aversion reported by Dietvorst et al. (2015), the DM’s belief in the machine may
+disproportionately drop upon observing the failure of a machine’s prediction. In the following, we
+inspect these different biases in turn.
+22                                                                           de Véricourt and Gurkan: better or worse
+
+
+7.1. Mistrusting the Machine When Deciding
+
+The DM’s mistrust in the machine may affect the way she weights the machine’s prescription
+when deciding to act. This is consistent with the decision-making literature, which finds that
+individuals tend to discount information coming from external sources and overweight their own
+opinions (see for instance, Soll and Mannes 2011). To account for this possibility, we follow Stone
+(1961), who proposes a non-Bayesian approach to represent the aggregation of different opinions.
+This approach is commonly used to model mistrust bias (Özer and Zheng 2018), in particular when
+a human makes decisions based on the input of a data-driven algorithm (Ahsen et al. 2019, Boyaci
+et al. 2020). Specifically, the DM’s updated belief that an action is required given the DM’s and
+machine’s signals is a linear combination between the updated belief of the human and that of the
+machine. More formally, the DM’s posterior belief about the task is defined as
+
+                 P̃λ (sH , sM , bt−1 ) ≜ λP(Θt = A | S H = sH ) + (1 − λ)P(Θt = A | S M = sM , bt−1 )            (10)
+
+where λ ∈ (0, 1) represents the DM’s mistrust bias against the machine’s signal. The higher the
+value of λ is, the more the DM mistrusts the machine. Belief P̃λ (S H , S M , bt−1 ) corresponds then
+to the posterior probability P(Θ = A | S H , S M , bt−1 ) derived from Bayes’ rule in the main set-up. In
+particular, the DM decides to act if and only if P̃λ (sH , sM , bt−1 ) ≥ r.
+     In this set-up, the DM always overrules a better machine (never overrules a worse machine) if
+the bias is too high (resp., too low). In these extreme situations, the DM and the machine no longer
+substitute one another. We thus restrict our analysis to moderate values of mistrust parameter λ,
+as formalized by the following lemma, where P̃Bλ (sH , sM ) ≜ P̃λ (sH , sM , 1) and P̃W   H   M          H   M
+                                                                                      λ (s , s ) ≜ P̃λ (s , s , 0)
+
+represent the DM’s beliefs about the task’s type when the machine’s type is known.
+
+Lemma 2. Two thresholds λmin and λmax exist such that if λ ∈ (λmin , λmax ), then
+
+                           P̃Bλ (StH = +, StM = −) < r and P̃Bλ (StH = −, StM = +) ≥ r ,                         (11)
+
+                          P̃W   H       M                W   H       M
+                            λ (St = +, St = −) ≥ r and P̃λ (St = −, St = +) < r .                                (12)
+
+In the following, we focus on λ ∈ (λmin , λmax ) to ensure that Substitution persists in the presence
+of mistrust bias. The next theorem shows that under these conditions, the structure of our main
+results continue to hold.
+
+Theorem 5. Assume λ ∈ (λmin , λmax ).
+                                                                                            a.s.
+     • When Γ = B, if p ≤ pB , then bt oscillates and is recurrent; otherwise, bt −−→ 1.
+                                             a.s.                     a.s.
+     • When Γ = W, if p ≤ pW , then bt −−→ 0; otherwise, bt −−→ X where X is a Bernoulli random
+variable.
+de Véricourt and Gurkan: better or worse                                                                      23
+
+  Thus, the DM’s learning behavior characterized in Theorems 3-4 does not change overall if the
+DM is biased against the machine’s prescription when making a decision. Note also that Corollary 1
+continues to hold in this case but with thresholds b− and b+ depending on λ (see Lemma 5 in the
+appendix).
+
+7.2. Mistrusting the Machine When Updating Belief
+
+The DM’s mistrust against the machine can also affect the way the DM updates her belief about the
+machine. Dietvorst et al. (2015), for instance, experimentally show that individuals are more likely
+to ignore algorithm-based predictions after observing these algorithms err. More generally, the
+observation of negative outcomes, such as a prediction failure, more strongly impact the formation
+of an individual impression than do positive ones—a phenomenon referred to as negativity bias in
+the literature (Baumeister et al. 2001).
+  To account for this bias, we follow the literature (see for instance Coutts 2019, Möbius et al. 2022)
+and allow updated belief bt to drop significantly upon observing an incorrect machine prediction.
+Specifically, the DM updates her belief following Bayes’ rule when the machine is correct but
+magnifies the decrease in belief when the machine is wrong. More formally, we have
+       
+        bt−1                                               if P(Θt = A | StH = sH , StM = sM , bt−1 ) < r
+                                                         −1
+       
+                                                      
+                                             ϕ(sM , θ)
+  bt =
+                      W M
+               b̄t−1  P (S t = sM
+                                  | Θ t = θ)
+        1 + bt−1 PB (StM = sM | Θt = θ)
+       
+                                                         if P(Θt = A | StH = sH , StM = sM , bt−1 ) ≥ r ,
+
+
+where function ϕ(sM , θ) = µ > 1 if the machine is incorrect (i.e., for sM = + and θ = NA or sM = − and
+θ = A) and ϕ(sM , θ) = 1 otherwise. Because ratio PW (StM | Θt )/PB (StM | Θt ) > 1 when the machine is
+incorrect, the higher the value of mistrust parameter µ is, the lower belief bt becomes. In particular,
+the main set-up corresponds to µ = 1, which coincides with Bayes’ rule.
+  The next result characterizes the asymptotic behavior of the DM’s belief in the presence of this
+negativity bias.
+
+Theorem 6 (Learning with Negativity Bias). Unique thresholds µB , µW , µH exist such that
+  • when the machine is better (Γ = B),
+                                             a.s.
+     — if µ ≥ µB and µ > µH , then bt −−→ 0.
+                                      a.s.
+     — if µB > µ > µH , then bt −−→ X where X is a Bernoulli random variable.
+     — if µH ≥ µ ≥ µB , then bt is recurrent and oscillates.
+                                             a.s.
+     — if µB > µ and µH ≥ µ, then bt −−→ 1.
+  • when the machine is worse (Γ = W),
+                               a.s.
+     — if µ ≥ µW , then bt −−→ 0.
+                               a.s.
+     — if µW > µ, then bt −−→ X where X is a Bernoulli random variable.
+24                                                                               de Véricourt and Gurkan: better or worse
+
+
+Further, we have
+                           B                      B                           B                               B
+                           α                        α                                α                              β
+             pαB log       αW
+                                      pαW log       αW
+                                                                   pαH αB log        αW
+                                                                                               + p̄β̄ H β B log     βW
+         B                        W                          H
+       µ ≜                 W, µ ≜                 W  and µ ≜                                                  W > 1.
+                           β̄                       β̄                               ᾱW                            β̄
+             p̄β̄ B log    β̄ B
+                                      p̄β̄ W log    β̄ B
+                                                                   pαH ᾱB log       ᾱB
+                                                                                               + p̄β̄ H β̄ B log    β̄ B
+
+
+     Note that thresholds µB and µW actually play the same role as pB and pW in Theorems 3 and 4,
+respectively. Indeed, thresholds pBµ and pW                      Γ       Γ
+                                          µ exist such that µ > µ ⇔ p < pµ , for Γ = {B, W}. In
+
+particular, the structure of the results when the machine is worse (see Theorem 4) does not change
+in the presence of negativity bias. In this case, mistrust parameter µ affects the learning only
+through the value of threshold µW and, hence, pW
+                                               µ.
+
+     When the machine is better, however, the presence of mistrust changes the structure of the
+results. In particular, under moderate mistrust such that µB > µ > µH , the DM learns that the
+machine is better only with some probability (second point in Theorem 4). This is in contrast to the
+main set-up without mistrust, in which the DM always learns that the machine is better if p > pB .
+In fact, the DM’s belief can converge to a Bernoulli random variable in our main set-up only when
+the machine is worse. If the mistrust in the machine is too strong with µ > max(µH , µB ) (first point
+of the theorem), however, the DM always wrongly learns that the machine is worse. Otherwise, the
+bias does not alter the learning behavior. In fact, Theorem 6 reduces to Theorems 3-4 when µ = 1.
+In this case, we have µH > µ = 1 and the belief either converges to one or oscillates depending on
+whether µB ≤ µ = 1 or not, which is equivalent to pB ≥ p.
+     Overall, mistrust in the form of a negativity bias interacts with our fundamentals in a meaningful
+way only when the level of mistrust is moderate and the machine is actually better. In this case,
+whether the DM learns the true nature of the machine becomes random—while the DM always
+properly learns that the machine is better when she is not biased against the machine.
+
+8. Complementarity
+Thus far, we have focused on settings in which the machine and the DM are substitutes. Nonethe-
+less, our framework also applies to the case of complementarity, which can take different forms.
+In this section, we explore the learning behavior of a DM who uncovers how a machine may
+complement her own judgment.
+     In our set-up, only two possible ways actually exist by which the machine and the DM comple-
+ment one another. Indeed, a machine that complements the DM is superior in only one of the two
+dimensions of a judgment—positive or negative signals—and inferior in the other. Thus, the first
+form of complementarity corresponds to a DM who always overrides the machine when her judg-
+ment indicates that an action is required but always follows the machine’s prescription if she finds
+de Véricourt and Gurkan: better or worse                                                             25
+
+that she should not act. The converse holds for the second form: the DM overrides the machine
+when her judgment indicates not to act, but always follows the machine otherwise.
+  We denote these two machine types as C+ and C−, respectively, and their sensitivity and specificity
+are αΓ and β Γ for Γ ∈ {C+, C−}. In this section, we study the DM’s learning behavior in the same
+settings as our base model, except for the substitution (4)-(5), which we replace by the following
+complementarity conditions.
+
+   Complementarity:
+
+                  PC (Θ = A | S H = +, S M = −) < r and PC (Θ = A | S H = −, S M = +) < r
+                     +                                    +
+                                                                                                  (13)
+
+                  PC (Θ = A | S H = +, S M = −) ≥ r and PC (Θ = A | S H = −, S M = +) ≥ r
+                     −                                    −
+                                                                                                  (14)
+
+where PC {·} and PC {·} denote the probability measures induced by the two types of the machine.
+          +              −
+
+
+
+
+  The DM does not know the machine’s type a priori. However, she forms a belief over time about
+which type of complementarity she is facing. With a slight abuse of notation, we refer to bt as the
+DM’s prior belief that Γ = C+. The next result then characterizes the DM’s ability to learn how
+the machine complements her judgment.
+
+Theorem 7. We have,
+                                a.s.
+  • when Γ = C+, then bt −−→ 1,
+                                                                   a.s.                        a.s.
+  • when Γ = C−, a unique threshold pC exists such that bt −−→ 1 if p ≤ pC ; otherwise bt −−→ X
+where X is a Bernoulli random variable. (Threshold pC is defined in (95) in Appendix D.)
+
+Thus, the DM always properly learns the machine’s type when the actual form of complementarity
+is C+. In contrast, the DM can mislearn how the machine complements her judgment when the
+true type is C− and the prior about the task is high (i.e., p > pC ). In this case, learning is random
+and the DM wrongly learns with positive probability that the machine is of type C+.
+  This result is akin to Theorem 4 when the machine and DM are substitutes. In contrast to The-
+orem 3, however, the DM’s belief never oscillates and always converges to either zero or one. Thus,
+in the limit, the DM is always certain of the form of complementarity that the machine provides.
+In particular, the DM never behaves as if the machine and DM were substitutes. Again, this is
+in contrast to our main set-up, in which the DM’s decisions sometimes exhibit complementarity,
+while in fact, the DM and the machine are substitutes (see Corollary 1).
+  Note finally that conditions (13)-(14) correspond to a complementarity between the machine’s
+and the DM’s signals. Other forms of complementarity, however, exist. In particular, the DM may
+seek to uncover for which decision tasks the machine is better and for which ones the DM is. In the
+context of biopsies, for instance, this corresponds to understanding for what kinds of patients the
+26                                                                            de Véricourt and Gurkan: better or worse
+
+
+machine does better and for what kinds of patients it does worse. A possible approach to study this
+case is to consider our main set-up but with more than one type of decision task. Denote this type
+as T, with threshold rT and prior pT for T ∈ {T1 , T2 , . . . }. These different types may correspond to
+different kinds of patients, for instance. The DM then forms different beliefs bTt over time so that
+the findings of Section 5 independently apply to each task’s type T ∈ {T1 , T2 , . . . }. With multiple
+task types, these findings characterize when the DM wrongly learns the decision tasks for which
+the machine’s predictions are superior, and the ones for which her own judgment is better.
+
+9. Partial Relaxation of the Verification Bias
+In this section, we explore the robustness of our results when the verification bias is partially
+relaxed, which is legitimate when the bias stems from the DM’s limited attention. In this context,
+the DM also learns from unverified cases and updates her belief based on the machine’s (and her
+own) signal when she does not act. Because of salience effects and inattentional blindness, however,
+the DM assigns relatively less weight to this unverified information compared to information based
+on a verified case, for which the true state is revealed.
+     Formally, we consider inattentional blindness parameter ε ∈ [0, 1], such that the DM’s belief bt−1
+is updated to bt , as follows
+                     W M                       ε −1
+                                   M     H    H
+              b̄ t−1   P  (S t = s  , S t = s  )
+         1+                                                 if P(Θt = A | StH = sH , StM = sM , bt−1 ) < r
+        
+        
+               bt−1 PB (StM = sM , StH = sH )
+    bt =                                     −1                                                                 (15)
+              b̄t−1 PW (StM = sM | Θt = θ)
+         1+
+        
+                                                            if P(Θt = A | St = s , St = s , bt−1 ) ≥ r.
+                                                                              H     H     M    M
+               bt−1 PB (StM = sM | Θt = θ)
+Here, ε represents how less salient unverified information is compared to verified information.7
+The higher the value of ε is, the more sensitive the DM is to the informativeness of the machine’s
+signal for an unverified case compared to a verified one. The verification bias is fully relaxed and
+proper learning occurs when ε = 1 per Proposition 1 in Appendix E.8 By contrast, our main set-up
+corresponds to ε = 0. The next theorem shows that our results continue to hold when ε is positive
+but sufficiently low.
+
+Theorem 8. Unique thresholds εB and εW exist such that
+     • when the machine is better (Γ = B), if ε ≤ εB and p < pB , then bt oscillates and is recurrent;
+                a.s.
+otherwise, bt −−→ 1.
+                                                                                   a.s.
+     • when the machine is worse (Γ = W), if ε < εW and p > pW , then bt −−→ X where X is a Bernoulli
+                                     a.s.
+random variable; otherwise, bt −−→ 0.
+7
+ To see this, consider a set-up with two different absolute weights for the verified and unverified cases, say ωv and
+ωu , respectively. This set-up is equivalent to the one in Section 9 by taking ε = ωu /ωv .
+8
+ This proposition is consistent with the frequentist consistency of Bayesian updating (see, e.g., Diaconis and Freedman
+1986), which implies perfect learning when the verification bias is fully relaxed with ε = 1.
+de Véricourt and Gurkan: better or worse                                                             27
+
+Thresholds εB and εW are, respectively, defined in (98) and (99) in Appendix E, and pB and pW are
+in Theorem 2.
+
+  Theorem 8 corresponds to Theorems 3-4 with the additional condition that ε is less than εΓ for
+Γ ∈ {B, W}, respectively. In particular, when the unverified cases are sufficiently less salient than
+the verified ones with ε < min(εB , εW ), our main results always hold.
+
+10. Conclusion
+This paper proposes a framework in which a machine performs repeated decision tasks under the
+supervision of a DM. In this set-up, we fully characterize the evolution of the DM’s belief about
+the machine and overruling decisions over time. We find that mislearning can take two radically
+different forms: a constant change of mind (oscillation of the DM’s belief per Theorem 3) and a
+chance of being persuaded that the machine has the wrong accuracy levels (convergence of the
+belief to a Bernoulli variable per Theorem 4). This contrasts with the convergence of the DM’s
+belief to an interior point in (0, 1), which is often found in the dynamic learning literature (see e.g.,
+confounding beliefs in Harrison et al. 2012). This analysis also provides a novel explanation for the
+joint production of decisions by machines and experts and suggests several guidelines for adopting
+or abandoning a machine.
+  The different forms of mislearning we uncover in this paper stem from the interaction between
+the DM’s belief in the machine and her decision to act, which in turn determines her sampling
+of correct and incorrect machine predictions. The belief and resulting sampling bias interact in a
+negative feed-back loop when the machine is better, while the feed-back loop is positive when the
+machine is worse.
+  These learning failures do not arise from an intrinsic mistrust bias against machine-based pre-
+dictions, such as algorithmic aversion. Rather, they stem from the problem of learning about a
+machine while actually using its predictions to make high-stake decisions. We capture the key fea-
+tures of this problem with four fundamentals: informativeness, substitution, verification bias and
+exploration-free decisions.
+  Of these four, the last two conditions are crucial for our findings. Indeed, the DM always prop-
+erly learns the true nature of the machine when the verification bias is sufficiently relaxed (per
+Theorem 8). Similarly, our no-interaction benchmark corresponds to a partial relaxation of the
+exploration-free condition, which also induces proper learning (see Theorem 1). In contrast, we
+find that the DM sometimes randomly fails to learn the machine’s accuracy when its predictions
+complement the DM’s judgment (see Theorem 7). We further expect mislearning to occur even
+when some of the signals are not informative, although the problem can become degenerate in this
+case (when none of the signals are informative, for instance).
+28                                                                      de Véricourt and Gurkan: better or worse
+
+
+     We also restrict our analysis to two possible machine types, mostly for simplicity but our frame-
+work can be extended to account for more, possibly continuous types. Our results should not change
+overall as long as the previous fundamentals hold. Indeed, the DM’s belief that the machine out-
+performs her expertise is what fundamentally matters when deciding to override the machine. This,
+in essence, divides the different possible machine types into two distinct partitions depending on
+whether or not the type is better than the DM. In this sense, we retrieve a setup with two—albeit
+more convoluted—machine types.
+     Even though we assume them away, a DM may nonetheless be subject to mistrust biases against
+the machine in our set-up. Our results indicate that these biases can interact with our results in a
+significant way. In particular, the presence of mistrust bias akin to algorithm aversion sometimes
+randomizes the DM’s ability to properly learn the true nature of the machine. These results also
+provide novel hypotheses that future experimental research can test.
+     We focus on mistrust biases in this paper, but our framework can potentially accommodate other
+types of biases such as overconfidence and loss aversion (Benjamin 2019). Further, our framework
+can potentially account for situations in which the DM does not perfectly know her own accuracy,
+or has a misspecified representation of the machine (Fudenberg et al. 2017). Alternatively, the
+machine may provide partial explanations for the machine’s prescription, which may help the DM
+to learn the true machine accuracy (see, e.g., Puranam and Tsetlin 2021, for a way to model
+explainability).
+     Note finally that our framework may also be applied to situations where an expert supervises
+another expert instead of a machine. Doing so, however, requires assuming that experts learn the
+level of expertise solely by observing the ex post accuracy of someone’s judgments. While this
+precise setting may exist, experts such as radiologists typically provide a rationale or causal expla-
+nation to justify their prescriptions. These explanations are also indicative of someone’s knowledge
+and expertise. In other words, a human expert can more directly, and a priori, assess the quality of
+someone’s judgment in a way that is difficult with an ML algorithm (see, e.g., Cukier et al. 2021
+for more on the difference between machine-based predictions and human cognition). In this sense,
+our framework is better suited for and offers a fruitful approach to exploring the issue of learning
+whether human expertise should overrule machine-based prescriptions.
+
+References
+Acemoglu, D., Dahleh, M. A., Lobel, I. and Ozdaglar, A. (2011), ‘Bayesian learning in social networks’, The
+       Review of Economic Studies 78(4), 1201–1236.
+
+Ahsen, M. E., Ayvaci, M. U. S. and Raghunathan, S. (2019), ‘When algorithmic predictions use human-
+       generated data: A bias-aware classification algorithm for breast cancer diagnosis’, Information Systems
+       Research 30(1), 97–116.
+de Véricourt and Gurkan: better or worse                                                                 29
+
+Alizamir, S., de Véricourt, F. and Sun, P. (2013), ‘Diagnostic accuracy under congestion’, Management Sci.
+      59(1), 157–171.
+
+Allon, G., Drakopoulos, K. and Manshadi, V. (2021), ‘Information inundation on platforms and implications’,
+      Operations Research .
+
+Bastani, H., Bastani, O. and Sinchaisri, W. P. (2021), ‘Learning best practices: Can machine learning improve
+      human decision-making?’.
+
+Bastani, H., Bayati, M. and Khosravi, K. (2021), ‘Mostly exploration-free algorithms for contextual bandits’,
+      Management Sci. 67(3), 1329–1349.
+
+Bates, A. S., Margolis, P. A. and Evans, A. T. (1993), ‘Verification bias in pediatric studies evaluating
+      diagnostic tests’, The Journal of pediatrics 122(4), 585–590.
+
+Baumeister, R. F., Bratslavsky, E., Finkenauer, C. and Vohs, K. D. (2001), ‘Bad is stronger than good’,
+      Review of general psychology 5(4), 323–370.
+
+Begg, C. B. and Greenes, R. A. (1983), ‘Assessment of diagnostic tests when disease verification is subject
+      to selection bias’, Biometrics pp. 207–215.
+
+Benjamin, D. J. (2019), ‘Errors in probabilistic reasoning and judgment biases’, Handbook of Behavioral
+      Economics: Applications and Foundations 1 2, 69–186.
+
+Besbes, O. and Zeevi, A. (2009), ‘Dynamic pricing without knowing the demand function: Risk bounds and
+      near-optimal algorithms’, Operations Research 57(6), 1407–1420.
+
+Bordalo, P., Gennaioli, N. and Shleifer, A. (2012), ‘Salience theory of choice under risk’, The Quarterly
+      journal of economics 127(3), 1243–1285.
+
+Boyaci, T., Canyakmaz, C. and de Véricourt, F. (2020), ‘Human and machine: The impact of machine input
+      on decision-making under cognitive limitations’.
+
+Boyacı, T. and Özer, Ö. (2010), ‘Information acquisition for capacity planning via pricing and advance
+      selling: When to stop and act?’, Operations Research 58(5), 1328–1349.
+
+Broemeling, L. D. (2011), ‘Bayesian estimation of combined accuracy for tests with verification bias’, Diag-
+      nostics 1(1), 53–76.
+
+Camacho, N., Donkers, B. and Stremersch, S. (2011), ‘Predictably non-bayesian: Quantifying salience effects
+      in physician learning about drug quality’, Marketing Science 30(2), 305–320.
+
+Cheung, W. C., Simchi-Levi, D. and Wang, H. (2017), ‘Dynamic pricing and demand learning with limited
+      price experimentation’, Operations Research 65(6), 1722–1731.
+
+Chung, K. L. and Zhong, K. (2001), A course in probability theory, Academic press.
+
+Coutts, A. (2019), ‘Good news and bad news are still news: Experimental evidence on belief updating’,
+      Experimental Economics 22(2), 369–395.
+30                                                                        de Véricourt and Gurkan: better or worse
+
+
+Cowgill, B. (2019), ‘Bias and productivity in humans and machines’, Columbia Business School Research
+     Paper Forthcoming .
+
+Csiszár, I. (1975), ‘I-divergence geometry of probability distributions and minimization problems’, The annals
+     of probability pp. 146–158.
+
+Cukier, K., Mayer-Schönberger, V. and de Véricourt, F. (2021), Framers: Human advantage in an age of
+     technology and turmoil, Penguin.
+
+Diaconis, P. and Freedman, D. (1986), ‘On the consistency of bayes estimates’, The Annals of Statistics
+     pp. 1–26.
+
+Dietvorst, B. J., Simmons, J. P. and Massey, C. (2015), ‘Algorithm aversion: People erroneously avoid
+     algorithms after seeing them err.’, Journal of Experimental Psychology: General 144(1), 114.
+
+Dietvorst, B. J., Simmons, J. P. and Massey, C. (2018), ‘Overcoming algorithm aversion: People will use
+     imperfect algorithms if they can (even slightly) modify them’, Management Sci. 64(3), 1155–1170.
+
+Fudenberg, D., Romanyuk, G. and Strack, P. (2017), ‘Active learning with a misspecified prior’, Theoretical
+     Economics 12(3), 1155–1189.
+
+Gaube, S., Suresh, H., Raue, M., Merritt, A., Berkowitz, S. J., Lermer, E., Coughlin, J. F., Guttag, J. V.,
+     Colak, E. and Ghassemi, M. (2021), ‘Do as ai say: susceptibility in deployment of clinical decision-aids’,
+     NPJ digital medicine 4(1), 1–8.
+
+Grady, D. (2019), ‘Ai took a test to detect lung cancer. it got an a’, The New York Times 20.
+
+Greenes, R. A. and Begg, C. B. (1985), ‘Assessment of diagnostic technologies. methodology for unbiased
+     estimation from samples of selectively verified patients.’, Investigative radiology 20(7), 751–756.
+
+Guo, Y., Zhang, C. and Yang, X. J. (2020), Modeling trust dynamics in human-robot teaming: A bayesian
+     inference approach, in ‘Extended Abstracts of the 2020 CHI Conference on Human Factors in Com-
+     puting Systems’, pp. 1–7.
+
+Gut, A. (2009), Stopped random walks, Springer.
+
+Harrison, J. M., Keskin, N. B. and Zeevi, A. (2012), ‘Bayesian dynamic pricing policies: Learning and earning
+     under a binary prior distribution’, Management Sci. 58(3), 570–586.
+
+Herrera, H. and Hörner, J. (2013), ‘Biased social learning’, Games and Economic Behavior 80, 131–146.
+
+Hujoel, I. A., Jansson-Knodell, C. L., Hujoel, P. P., Hujoel, M. L., Murray, J. A., Rubio-Tapia, A. et al. (2021),
+     ‘Estimating the impact of verification bias on celiac disease testing’, Journal of clinical gastroenterology
+     55(4), 327.
+
+Ibrahim, R., Kim, S.-H. and Tong, J. (2021), ‘Eliciting human judgment for prediction algorithms’, Man-
+     agement Sci. 67(4), 2314–2325.
+
+Kahneman, D. (1973), Attention and effort, Vol. 1063, Citeseer.
+de Véricourt and Gurkan: better or worse                                                                      31
+
+Kemperman, J. (1974), ‘The oscillating random walk’, Stochastic Processes and their applications 2(1), 1–29.
+
+Keskin, N. B. and Birge, J. R. (2019), ‘Dynamic selling mechanisms for product differentiation and learning’,
+      Operations research 67(4), 1069–1089.
+
+Kubat, M. (2017), An introduction to machine learning, Vol. 2, Springer.
+
+Lebovitz, S., Levina, N. and Lifshitz-Assaf, H. (2021), ‘Is ai ground truth really “true”? the dangers of training
+      and evaluating ai tools based on experts’ know-what’, Management Information Systems Quarterly .
+
+Lebovitz, S., Lifshitz-Assaf, H. and Levina, N. (2022), ‘To engage or not to engage with ai for critical
+      judgments: How professionals deal with opacity when using ai for medical diagnosis’, Organization
+      Science .
+
+Lee, H. C. B., Ba, S., Li, X. and Stallaert, J. (2018), ‘Salience bias in crowdsourcing contests’, Information
+      Systems Research 29(2), 401–418.
+
+MacKay, D. J., Mac Kay, D. J. et al. (2003), Information theory, inference and learning algorithms, Cam-
+      bridge university press.
+
+McKendrick, J. (2021), ‘Ai adoption skyrocketed over the last 18 months’, https://hbr.org/2021/09/
+      ai-adoption-skyrocketed-over-the-last-18-months [Online; accessed 18-February-2022].
+
+Möbius, M. M., Niederle, M., Niehaus, P. and Rosenblat, T. S. (2022), ‘Managing self-confidence: Theory
+      and experimental evidence’, Management Science p. Forthcoming.
+
+Özer, Ö. and Zheng, Y. (2018), ‘Trust and trustworthiness’, The Handbook of Behavioral Operations pp. 489–
+      523.
+
+Pepe, M. S. (2003), The statistical evaluation of medical tests for classification and prediction, Oxford Uni-
+      versity Press, USA.
+
+Petscavage, J. M., Richardson, M. L. and Carr, R. B. (2011), ‘Verification bias: an underrecognized source
+      of error in assessing the efficacy of medical imaging’, Academic Radiology 18(3), 343–346.
+
+Puranam, P. and Tsetlin, I. (2021), ‘Explainability as an optimal stopping problem: Implications for human-ai
+      interaction’.
+
+Ransohoff, D. F. and Feinstein, A. R. (1978), ‘Problems of spectrum and bias in evaluating the efficacy of
+      diagnostic tests’, New England Journal of Medicine 299(17), 926–930.
+
+Reardon, S. (2019), ‘Rise of robot radiologists’, Nature 576(7787), S54–S54.
+
+Schwartzstein, J. (2014), ‘Selective attention and learning’, Journal of the European Economic Association
+      12(6), 1423–1452.
+
+Simon, H. A. (1955), ‘A behavioral model of rational choice’, The quarterly journal of economics 69(1), 99–
+      118.
+
+Smith, L. and Sørensen, P. (2000), ‘Pathological outcomes of observational learning’, Econometrica
+      68(2), 371–398.
+32                                                                     de Véricourt and Gurkan: better or worse
+
+
+Soll, J. B. and Mannes, A. E. (2011), ‘Judgmental aggregation strategies depend on whether the self is
+     involved’, International Journal of Forecasting 27(1), 81–102.
+
+Stone, M. (1961), ‘The opinion pool’, The Annals of Mathematical Statistics pp. 1339–1342.
+
+Sun, J., Zhang, D. J., Hu, H. and Van Mieghem, J. A. (2021), ‘Predicting human discretion to adjust
+     algorithmic prescription: A large-scale field experiment in warehouse operations’, Management Sci.
+     68(2), 846–865.
+
+Taylor, S. E. and Thompson, S. C. (1982), ‘Stalking the elusive” vividness” effect.’, Psychological review
+     89(2), 155.
+
+Tiefenbeck, V., Goette, L., Degen, K., Tasic, V., Fleisch, E., Lalive, R. and Staake, T. (2018), ‘Overcoming
+     salience bias: How real-time feedback fosters resource conservation’, Management science 64(3), 1458–
+     1476.
+
+Tschandl, P., Codella, N., Akay, B. N., Argenziano, G., Braun, R. P., Cabo, H., Gutman, D., Halpern, A.,
+     Helba, B., Hofmann-Wellenhof, R. et al. (2019), ‘Comparison of the accuracy of human readers versus
+     machine-learning algorithms for pigmented skin lesion classification: an open, web-based, international,
+     diagnostic study’, The lancet oncology 20(7), 938–947.
+
+Van Donselaar, K. H., Gaur, V., Van Woensel, T., Broekmeulen, R. A. and Fransoo, J. C. (2010), ‘Ordering
+     behavior in retail stores and implications for automated replenishment’, Management Sci. 56(5), 766–
+     784.
+
+Vatutin, V. A. and Wachtel, V. (2009), ‘Local probabilities for random walks conditioned to stay positive’,
+     Probability Theory and Related Fields 143(1), 177–217.
+
+Wang, C., Zhang, C. and Yang, X. J. (2018), Automation reliability and trust: A bayesian inference approach,
+     in ‘Proceedings of the Human Factors and Ergonomics Society Annual Meeting’, Vol. 62, SAGE Pub-
+     lications Sage CA: Los Angeles, CA, pp. 202–206.
+
+Whiting, P. F., Rutjes, A. W., Westwood, M. E., Mallett, S., Group, Q.-. S. et al. (2013), ‘A systematic
+     review classifies sources of bias and variation in diagnostic test accuracy studies’, Journal of clinical
+     epidemiology 66(10), 1093–1104.
+
+Wiens, J., Saria, S., Sendak, M., Ghassemi, M., Liu, V. X., Doshi-Velez, F., Jung, K., Heller, K., Kale, D.,
+     Saeed, M. et al. (2019), ‘Do no harm: a roadmap for responsible machine learning for health care’,
+     Nature medicine 25(9), 1337–1340.
+
+Zhou, X.-h. (1993), ‘Maximum likelihood estimators of sensitivity and specificity corrected for verification
+     bias’, Communications in Statistics-Theory and Methods, 22(11), 3177–3198.
+de Véricourt and Gurkan: better or worse                                                                  33
+
+Appendix A: No-Interaction and No-Overriding Benchmarks
+We prove Theorems 1-2 by first deriving a recursive expression (in terms of bt−1 ) for belief bt using
+Bayes’ rule. Then, we focus on the log-likelihood ratio process Lt defined by Lt = log(bt /(1 − bt )).
+Observe that when Lt → ∞ (and/or Lt → −∞) almost surely, then it immediately follows that
+bt → 1 (and resp., bt → 0) due to the continuous mapping theorem since Lt is a continuous monotone
+transformation of bt .
+  Proof of Theorem 1.         In the no-interaction benchmark, the DM acts only if StH = +, so it follows
+that                                                         −1
+                                                      b̄t−1
+                                             bt = 1 +       ζ                                            (16)
+                                                      bt−1
+where
+     "                                                                                    1 H
+       ᾱW 1{SM =−}  αW 1{SM =+} 1{Θt =A}  β W 1{SM =−}  β̄ W 1{StM =+} 1{Θt =NA}  {St =+}
+                                     #        "                                 #
+                 t              t                        t
+ ζ≜                                                                                                  (17)
+        ᾱB             αB                      βB              β̄ B                      
+
+  Here, 1{·} is the indicator variable. Using the definition of Lt , we obtain Lt = Lt−1 + Rt , where
+                                                B                                   B
+                                                 α                                    ᾱ
+                Rt ≜1{StH =+,StM =+,Θt =A} log          + 1{StH =+,StM =−,Θt =A} log
+                                                 α W
+                                                                                      ᾱW
+                                                    B                                   B     (18)
+                                                     β̄                                   β
+                     + 1{StH =+,StM =+,Θt =NA} log         + 1{StH =+,StM =−,Θt =NA} log      .
+                                                     β̄ W                                 βW
+
+Therefore, Lt is a random walk with i.i.d. random jumps Rt . When the machine’s type is Γ ∈ {B, W},
+the mean of the random jump is
+                           B             B                      B             B 
+                            α               α                          β̄              β
+     EΓ [Rt ] = pαH αΓ log      + ᾱ Γ
+                                       log        + p̄ β̄ H
+                                                             β̄ Γ
+                                                                  log       + β Γ
+                                                                                  log        .           (19)
+                            αW              αW                         β̄ W            βW
+
+The mean EΓ [Rt ] is positive (negative) when Γ = B (and resp., Γ = W). This is because, the
+terms inside the square brackets are the Kullback-Leibler (KL) divergence (Csiszár 1975) when
+Γ = B, i.e., DKL (PB (· | Θ = A) || PW (· | Θ = A)) inside the first square brackets and DKL (PB (· | Θ =
+NA) || PW (· | Θ = NA)) inside the first square brackets. Similarly, −DKL (PW (· | Θ = A) || PB (· | Θ = A))
+is inside the first square brackets and −DKL (PW (· | Θ = NA) || PB (· | Θ = NA)) is inside the second
+square brackets when Γ = W. Gibbs’ inequality (see Section 2.6 in MacKay et al. 2003) implies
+that KL divergence is always positive when the distributions are not the same, which implies the
+result.                                                                                                Q.E.D.
+  Proof of Theorem 2.         In the no-overriding benchmark, the DM acts only if StM = +, so it follows
+that
+                                          1 M               1 M
+                                 bt−1 αB {St =+,Θt =A} β̄ B {St =+,Θt =NA}
+       bt =        1 M               1 M                      1 M               1 M            .     (20)
+            bt−1 αB {St =+,Θt =A} β̄ B {St =+,Θt =NA} + b̄t−1 αW {St =+,Θt =A} β̄ W {St =+,Θt =NA}
+34                                                                              de Véricourt and Gurkan: better or worse
+
+
+Using the definition of Lt , we obtain Lt = Lt−1 + Rt , where
+                                                B                        B
+                                                α                          β̄
+                      Rt ≜ 1{StM =+,Θt =A} log      + 1  M
+                                                       {St =+,Θt =NA} log       .                                   (21)
+                                                αW                         β̄ W
+Therefore, Lt is a random walk with i.i.d. random jumps Rt .
+     When the machine’s type is Γ ∈ {B, W}, then the mean of the random jump is
+                                               B               B
+                               Γ         Γ      α          Γ     β̄
+                             E [Rt ] = pα log    W
+                                                     + p̄β̄ log       .                                             (22)
+                                               α                 β̄ W
+If p < pΓ , it follows that the mean EΓ [Rt ] and, hence, the drift of the random walk Lt is negative so
+Lt → −∞ (see Gut 2009, Theorem 9.1). The reverse condition (with strict inequality) implies the
+divergence to ∞. If the mean EΓ [Rt ] equals 0 (p = pΓ ), then Lt is a martingale; hence, bt oscillates
+(see Theorem 8.3.4 in Chung and Zhong 2001).
+     Finally, pB and pW are such that pB < pW because αB /β̄ B > αW /β̄ W , which is implied by Substitu-
+tion (4)-(5).                                                                                                     Q.E.D.
+
+Appendix B: Main Set-up
+     Proof of Lemma 1.       This lemma follows from the fact that posterior probabilities are continuous
+and monotone in bt−1 and the boundary values 1 and 0 are on different sides of r due to Substitution
+(4)-(5). In particular, the posterior probabilities are
+                                                               αH (bt−1 ᾱB + b̄t−1 ᾱW )p
+            P(Θt = A | StH = +, StM = −, bt−1 ) =                                                             ,
+                                                 αH (bt−1 ᾱB + b̄t−1 ᾱW )p + β̄ H (bt−1 β B + b̄t−1 β W )p̄
+                                                               ᾱH (bt−1 αB + b̄t−1 αW )p
+            P(Θt = A | StH = −, StM = +, bt−1 ) = H                                                           .
+                                                 ᾱ (bt−1 αB + b̄t−1 αW )p + β H (bt−1 β̄ B + b̄t−1 β̄ W )p̄
+By solving the following equations for bt−1 ,
+
+              P(Θt = A | StH = +, StM = −, bt−1 ) = r and P(Θt = A | StH = −, StM = +, bt−1 ) = r                   (23)
+
+we obtain the thresholds
+                                                                                H
+                                   r̄pαH
+                                   r p̄β̄ H
+                                                  ᾱW − β W              β̄ W − r̄p   ᾱ
+                                                                                  r p̄β H
+                                                                                            αW
+                  −                                          +
+                 b =  H                               and b =  H                                   .            (24)
+                      r̄pα                                       r̄pᾱ
+                      r p̄β̄ H [α B
+                                    − α W
+                                          ] + β B
+                                                  − β W
+                                                                 r p̄β H    [α B
+                                                                                 − α  W
+                                                                                         ] + β B
+                                                                                                 − β W
+
+
+
+Thus, the result follows.                                                                                         Q.E.D.
+     Before proving Theorems 3 and 4, we first provide two constructive lemmas and their proofs.
+
+Lemma 3. In the main set-up, the log-likelihood ratio process Lt is as follows.
+Case 1: If b+ > b− , then we have Lt = Lt−1 + RtHM (Lt−1 ), where
+                               h             B                  B i
+                                              α                    β̄
+                   
+                    t
+                     1{S M =+} 1{Θt =A} log
+                                              αW  + 1{Θt =NA} log  βW
+                                                                                              if Lt−1 ≥ Lh
+                                      h                               B i
+     RtHM (Lt−1 ) ≜ 1{S H =+,S M =+} 1{Θt =A} log αWB + 1{Θt =NA} log β̄W                     if Lh > Lt−1 > Lℓ
+                        t      t                 α                      β̄
+                   
+                      1{StH =+} [υ1 + υ2 ]                                                    if Lℓ ≥ Lt−1
+                   
+de Véricourt and Gurkan: better or worse                                                            35
+               +                −
+               b                   b
+with Lh ≜ log  b̄+
+                    , L ℓ ≜  log   b̄−
+                                        and
+                                                     B                       B 
+                                                       ᾱ                       α
+                       υ1 ≜ 1{Θt =A} 1{StM =−} log             + 1{StM =+} log          ,
+                                                       ᾱ W
+                                                                                αW
+                                                      B                      B 
+                                                        β                        β̄
+                      υ2 ≜ 1{Θt =NA} 1{StM =−} log             + 1{StM =+} log           .
+                                                        β  W
+                                                                                 β̄ W
+Case 2: If b+ ≤ b− , then we have Lt = Lt−1 + RtHM (Lt−1 ) where
+                                h              B                      B i
+                                                  α                      β̄
+                     1    M       1
+                     {St =+} {Θt =A}      log    αW
+                                                     +  1 {Θt =NA} log   β̄ W
+                                                                                  if Lt−1 > Lh
+        HM
+      Rt (Lt−1 ) ≜ 1{Θt =A} ν1 + 1{Θt =NA} ν2                                     if Lh ≥ Lt−1 ≥ Lℓ (25)
+                    
+                      1{StH =+} [υ1 + υ2 ]                                        if Lℓ > Lt−1
+                    
+               −                +
+with Lh ≜ log b̄b− , Lℓ ≜ log b̄b+ and
+                                              B                               B
+                                               α                                ᾱ
+                          ν1 ≜ 1{StM =+} log         + 1{StM =−} 1{StH =+} log        ,
+                                               α  W
+                                                                                ᾱW
+                                              B                               B
+                                               β̄                               β
+                          ν2 ≜ 1{StM =+} log         + 1{StM =−} 1{StH =+} log        .
+                                               β̄ W                             βW
+  Proof of Lemma 3. As in the proof of Theorem 2, we derive a recursive expression for bt in
+terms of bt−1 using Bayes’ rule but this time using the decision-making procedure characterized in
+Lemma 1.
+  Case 1. When b+ > b− , we have the following three regimes
+  • bt−1 ≥ b+ :
+
+                                      P(Θt = A | StH = −, StM = +, bt−1 ) ≥ r                      (26)
+                                      P(Θt = A | StH = +, StM = −, bt−1 ) < r                      (27)
+
+In this case, StM = + is sufficient and necessary to act, which implies the machine overrides the
+human’s signal StH = −. Further, StH = + is also overruled by S M = −.
+  • b+ > bt−1 > b− :
+
+                                      P(Θt = A | StH = −, StM = +, bt−1 ) < r                      (28)
+                                      P(Θt = A | StH = +, StM = −, bt−1 ) < r                      (29)
+
+In this case, StM = StH = + is the only condition for acting.
+  • b− ≥ bt−1 :
+
+                                      P(Θt = A | StH = −, StM = +, bt−1 ) < r                      (30)
+                                      P(Θt = A | StH = +, StM = −, bt−1 ) ≥ r                      (31)
+
+In this case, StH = + is sufficient and necessary to act. The signal of the human overrides the
+machine’s signal in both conflicting cases.
+36                                                                               de Véricourt and Gurkan: better or worse
+
+
+Finally, the belief update when b+ > b− is as follows.
+          
+                         W 1                 W 1                    −1
+                  b̄t−1   α    {Θt =A,StM =+}    β̄     {Θt =NA,StM =+}
+                                                                                              if bt−1 ≥ b+
+          
+          
+          
+          
+             1 + bt−1 αB                         β̄ B
+          
+                                                                                   −1
+                         W 1                          W 1
+     bt =         b̄t−1        {Θt =A,StM =+,StH =+}    β̄    {Θt =NA,StM =+,StH =+}                                 (32)
+             1 + bt−1 αB α
+                                                        β̄ B
+                                                                                              if b+ > bt−1 > b−
+          
+          
+           h            i −1
+           1 + b̄t−1 ζ
+          
+                                                                                              if b− ≥ bt−1
+          
+                  bt−1
+
+
+where ζ is defined in (17).
+     Case 2. When b+ ≤ b− we have the following three regimes
+     • bt−1 > b− :
+
+                                        P(Θt = A | StH = −, StM = +, bt−1 ) ≥ r                                      (33)
+                                        P(Θt = A | StH = +, StM = −, bt−1 ) < r                                      (34)
+
+In this case, StM = + is sufficient and necessary to act, which implies the machine overrides the
+human’s signal StH = −. Further, StH = + is also overruled by StM = −.
+     • b− ≥ bt−1 ≥ b+ :
+
+                                        P(Θt = A | StH = −, StM = +, bt−1 ) ≥ r                                      (35)
+                                        P(Θt = A | StH = +, StM = −, bt−1 ) ≥ r                                      (36)
+
+In this case, StM = + or StH = + is sufficient for acting.
+     • b+ > bt−1 :
+
+                                        P(Θt = A | StH = −, StM = +, bt−1 ) < r                                      (37)
+                                        P(Θt = A | StH = +, StM = −, bt−1 ) ≥ r                                      (38)
+
+In this case, StH = + is sufficient and necessary to act. The signal of the human overrides the
+machine’s signal in both conflicting cases.
+     Finally the belief update if b− ≤ b+ is as follows.
+                    
+                                    W 1                W 1                −1
+                            b̄t−1        {Θt =A,StM =+}  β̄   {Θt =NA,StM =+}
+                                     α
+                                                                                           if bt−1 > b−
+                    
+                    
+                    
+                    
+                       1 + bt−1 αB                      β̄ B
+                    h              i−1
+               bt =         b̄t−1
+                        1 + bt−1  ι                                                        if b− ≥ bt−1 ≥ b+         (39)
+                    
+                    
+                     h             i−1
+                     1 + b̄t−1 ζ
+                    
+                                                                                           if b+ > bt−1
+                    
+                              bt−1
+
+
+where ζ is defined in (17) and
+        "  1           1                #1{Θ =A} " 1           1                 #1{Θ =NA}
+                                                t                                            t
+            αW {StM =+} ᾱW {StM =−,StH =+}            β̄ W {StM =+} β W {StM =−,StH =+}
+    ι≜
+            αB            ᾱB                          β̄ B           βB
+                                                                        
+The log-likelihood ratio process Lt is then obtained by Lt = log bt /b̄t in both cases.        Q.E.D.
+de Véricourt and Gurkan: better or worse                                                           37
+
+Lemma 4. Consider the following sequences of random variables
+  • i.i.d. Y1,t with E[Y1,t ] > 0 and |Y1,t | ≤ Y1,h where ∞ > Y1,h > 0 for t = 1, . . . ,
+  • i.i.d. Y2,t with P(Y2,t > 0) > 0 and |Y2,t | ≤ Y2,h where ∞ > Y2,h > 0 for t = 1, . . . ,
+  • and, i.i.d. Y3,t with E[Y3,t ] ≥ 0 and |Y3,t | ≤ Y3,h where ∞ > Y3,h > 0 for t = 1, . . . .
+Let Zt be a discrete stochastic process governed by Yi,t and let two thresholds Zℓ and Zh be such
+that Zh > Zℓ as follows.
+
+                         Zt+1 = Zt + Y1,t 1{Zt ≥Zh } + Y2,t 1{Zt ∈(Zℓ ,Zh )} + Y3,t 1{Zt ≤Zℓ } .   (40)
+            a.s.
+Then, Zt −−→ ∞.
+
+  Proof of Lemma 4.         Note that the divergence immediately follows when the mean of Zt+1 − Zt
+is positive for any Zt because in that case in all three regions process Zt is driven by random walks
+drifting to ∞. Thus, we focus on the most extreme parameter regime in terms of divergence to ∞,
+in particular, when the mean of Zt+1 − Zt is nonpositive in (Zℓ , Zh ) and 0 for Zt ≤ Zℓ . To prove
+this result, we show that there exists a finite (but random) period τ such that process Zt remains
+above Zt ≥ Zh for all t > τ . This is sufficient for divergence to ∞ because process Zt is governed
+by a random walk drifting to ∞ above Zh . We prove this in two steps, but first, we define the
+following stopping times recursively by assuming, without loss of generality, that Z0 > Zh .
+
+                                      T1 = inf {t : Zt < Zh },                                     (41)
+
+                                      T̃1 = inf {t > T1 : Zt ≥ Lh },                               (42)
+
+                                       Ti = inf {t > T̃i−1 : Zt < Zh } ∀i > 1,                     (43)
+
+                                       T̃i = inf {t > Ti : Zt ≥ Zh } ∀i > 1 .                      (44)
+
+Here, if one of the sets above is empty, i.e., no such t exists, we assign Ti = ∞ (and respectively
+T̃i = ∞) for the corresponding set.
+  Step 1. In the first step, we prove that P(T̃i < ∞ | Ti < ∞) = 1 for all i. In particular, if process
+Zt goes below Zh once, then with probability one, it will cross up Zh in finite steps. This result
+also implies that the sequence of infinite stopping times (if it exists) is started by Tj = ∞ (but not
+T̃j = ∞) for some j. To prove this result, first fix i and assume that Ti is finite; then we define a
+new sequence of stopping times for process Zt .
+
+                                       V1 = inf {t > Ti : Zt ≤ Zℓ }                                (45)
+
+                                       Ṽ1 = inf {t > V1 : Zt > Zℓ }                               (46)
+
+                                       Vi = inf {t > Ṽi−1 : Zt ≤ Zℓ } ∀i > 1,                     (47)
+
+                                       Ṽi = inf {t > Vi : Zt > Zℓ } ∀i > 1.                       (48)
+38                                                                          de Véricourt and Gurkan: better or worse
+
+
+
+First, note that Vi and Ṽi for i ≥ 1 are proper random variables, i.e., they take finite values with
+probability one. This is because
+
+                                            P(Vi < ∞ | Ṽi−1 < ∞) = 1                                           (49)
+
+                                              P(Ṽi < ∞ | Vi < ∞) = 1 .                                         (50)
+
+The first equality holds because as discussed at the beginning of this proof, we focus on the case
+where the mean of Zt+1 − Zt in (Zℓ , Zh ) is either negative or 0. If negative, Zt is governed by a
+random walk drifting to −∞ in (Zℓ , Zh ); thus it crosses Zℓ with probability one in finite steps (see,
+Theorem 9.1 in Gut 2009, p. 70). If 0, Zt in (Zℓ , Zh ) is a martingale and oscillates (see, Theorem 8.3
+in Gut 2009, p. 68). The second equality holds because Zt is governed again by an oscillating
+random walk when Zt < Zℓ thus it crosses Zℓ in finite steps. Furthermore, Ti < ∞; thus, V1 is also
+finite. Therefore, it follows that Vi < ∞ and Ṽi < ∞ for i ≥ 1.
+     To prove that T̃i is finite, we will show that there exists a finite j such that T̃i < Vj . To do so,
+define events At = {T̃i ≥ Vt }. Then, the Borel-Cantelli lemma implies the following,
+                                     ∞
+                                     X
+                                            P(At ) < ∞ ⇒ P(lim sup At ) = 0                                     (51)
+                                                               i→∞
+                                     t=Ti
+
+
+First, consider P(A1 ) = P(T̃i ≥ V1 ), this probability is bounded, i.e., P(A1 ) < δ < 1 because Zh − Zℓ is
+bounded and Zt has positive size jumps with positive probability in (Zℓ , Zh ). Proceeding similarly,
+we obtain the following
+
+                            P(T̃i ≥ Vt ) = P(T̃i ≥ Vt−1 )P(T̃i ≥ Vt | T̃i ≥ Vt−1 ) < δ t                        (52)
+
+Therefore, it follows that P(lim supi→∞ At ) = 0, which implies that there exists a finite j such that
+T̃i < Vj . As discussed, Vj is finite; thus, it follows that P(T̃i < ∞ | Ti < ∞) = 1.
+     Step 2. In this step, we show that there exists a finite j such that Tj = ∞ and T̃k < ∞ for all
+k < j. Define the following events Et = {Tt < ∞} for t > 1. Then, the Borel-Cantelli lemma implies
+the following
+                                    ∞
+                                    X
+                                           P(Et ) < ∞ ⇒ P(lim sup Et ) = 0 .                                    (53)
+                                                              t→∞
+                                     t=1
+
+In particular, if the summation condition is satisfied, then events Et cannot occur infinitely many
+times, i.e., there exists a finite j such that Tj = ∞. To show that the summation condition is indeed
+satisfied, we construct a finite upper bound for it. Above Zh , process Zt is driven by a random
+walk drifting to ∞. Thus, stopping time T1 is defective, i.e., P(T1 < ∞) < φ < 1 for some φ (see
+Theorem 9.1 in Gut 2009, p.70). Moreover, we bound P(T2 < ∞) as follows:
+
+                  P(T2 < ∞) = P(T2 < ∞ | T̃1 < ∞)P(T̃1 < ∞ | T1 < ∞)P(T1 < ∞) < φ2 .                            (54)
+de Véricourt and Gurkan: better or worse                                                                        39
+
+In Step 1 of this proof, we show that P(T̃1 < ∞ | T1 < ∞) = 1. Moreover, we have P(T2 < ∞ | T̃1 <
+∞) < φ < 1 because T̃1 < ∞ implies that process Zt crosses Zh up in finite steps, and after crossing
+Zh , process Zt is again driven by the same random walk drifting to ∞. Proceeding similarly, it
+follows that P(Et ) < φt . Hence, there exists a finite (but random) j such that Tj = ∞, and Step 1
+implies that T̃k < ∞ for k < j because Tk < ∞. Therefore, after sufficiently large t, process Zt
+always remains above Zh and diverges to ∞.                                                                 Q.E.D.
+    Proof of Theorem 3.       In this proof, we focus on the log-likelihood ratio process Lt because as
+also discussed in the proof of Theorem 2, the continuous mapping theorem implies that the limit
+of Lt characterizes the limit of bt . Our proof is based on analyzing the mean of Lt+1 − Lt when
+Lt takes different values in comparison to Lh and Lℓ for Case 1 and Case 2 characterized in
+Lemma 3. In both cases, process Lt is governed by different random walks with random jumps
+whose means and size change depending on the previous state Lt−1 .9 Trivial cases arise when the
+mean of Lt+1 − Lt always remains positive regardless of Lt . In particular, Lt diverges to ∞ when
+the mean of Lt+1 − Lt is always positive despite changing values of Lt due to the strong law of large
+numbers because three random walks (for Lt ≥ Lh , Lt ∈ (Lh , Lℓ ) and Lt ≤ Lℓ under Case 1) that
+establish the trajectory of process Lt all diverge to ∞ (see Theorem 8.3 in Gut 2009, p. 68). As a
+result, bt converges to 0 as Lt diverges to ∞. We consider the different values of p in the statement
+of the theorem separately.
+    Step 1. Let p ≤ pB . To prove that Lt and hence bt oscillate, we need to show that there exists a
+number that process Lt crosses infinitely often (see, for instance, Vatutin and Wachtel 2009 for a
+mathematical definition of oscillation). This property (oscillation) holds for a random walk with
+a noise term whose mean is 0 (see Theorem 8.2 in Gut 2009, p. 68). However, process Lt does
+not satisfy this property because the mean of Lt+1 − Lt is always positive when Lt ≤ Lℓ in Case 1
+(Lt < Lℓ in Case 2) as discussed. Nevertheless, we can show that process Lt oscillates because the
+mean of Lt+1 − Lt is either negative or zero when p ≤ pB for Lt ≥ Lh in Case 1 (Lt > Lh in Case 2).
+Therefore, process Lt returns to interval (Lℓ , Lh ) in finite steps after lying outside it. Oscillation is
+regardless of the sign of the mean of Lt+1 − Lt in (Lℓ , Lh ) because process Lt goes out of (Lℓ , Lh )
+in finite steps. Specifically, in finite steps, process Lt i) crosses Lh up if the mean of Lt+1 − Lt in
+(Lℓ , Lh ) is positive, ii) crosses Lℓ down if it is negative, and iii) goes out of (Lℓ , Lh ) if it is zero.
+    To illustrate this process, we focus on Case 1 and the setting where the mean of Lt+1 − Lt in
+(Lℓ , Lh ) is negative. Define the following stopping times
+
+                                            J = inf {t ≥ 1 : Lt ≤ Lℓ }                                         (55)
+                                            J˜ = inf {t ≥ 1 : Lt > Lℓ }                                        (56)
+9
+ The log-likelihood ratio process Lt is similar to the oscillating random walk defined in Kemperman (1974) such that
+the partition of R consists of (−∞, Lℓ ], (Lℓ , Lh ) and [Lh , ∞).
+40                                                                        de Véricourt and Gurkan: better or worse
+
+
+
+If J and J˜ are proper random variables (i.e., P(J < ∞) = P(J˜ < ∞) = 1), then process Lt oscillates.
+Assume L0 > Lℓ without loss of generality; then J is a proper (almost surely finite) random variable
+because process Lt is driven by a random walk drifting to −∞ for Lt > Lℓ . Thus, in finite steps
+it will cross Lℓ down. After J steps, process Lt is driven by a random walk drifting to ∞,10 thus
+it crosses Lℓ up in finite steps, so J˜ − J is a proper random variable. Since J is also proper,
+J˜ = J˜ − J + J is also proper. Since Lt crosses Lℓ infinitely often, bt crosses 1/(1 + exp(Lℓ )) infinitely
+often and, hence, oscillates. The same approach can be repeated for the remaining setting where
+the mean of Lt+1 − Lt is positive or zero in (Lℓ , Lh ).
+     The oscillation property also implies that the process Lt and hence bt is recurrent because the
+mean of the random jumps is bounded. With probability 1, process Lt will revisit interval (Lℓ , Lh )
+for Case 1 in finite steps interval [Lℓ , Lh ] for Case 2 in finite steps. Furthermore, intervals that can
+be reached from (Lℓ , Lh ) with positive probability are also recurrent, which implies Corollary 1.
+     Step 2. Let p > pB . Then, the mean of Lt+1 − Lt when Lt ≤ Lℓ for Case 1 and Lt < Lℓ for Case 2
+is positive (see Footnote 10). Further, we know from the proof of Theorem 2 that the mean of
+Lt+1 − Lt when Lt ≥ Lh for Case 1 and Lt > Lh for p > pB is also positive. In Case 1, the mean of
+Lt+1 − Lt for Lt ∈ (Lℓ , Lh ) is
+            B                  B       B          B       H          B
+  H B       α        H B         β̄  H   B  α    B       β̄    H B  α            α
+ α α p log W + β̄ β̄ p̄ log W = β̄ α p log W + β̄ p̄ log W + β̄ α        − 1 log W .
+            α                    β̄         α            β̄         β̄ H         α
+Note that the term above is positive for p > pB . Hence, as discussed Lt diverges to ∞ and bt
+converges to 1 for Case 1 when p is larger than pB . In Case 2, the mean of Lt+1 − Lt for Lt ∈ [Lℓ , Lh ]
+is not necessarily positive. When it is positive, we immediately obtain the same result. Nevertheless,
+we obtain the same divergence despite having negative or zero mean of Lt+1 − Lt for Lt ∈ [Lℓ , Lh ]
+as long as the means of Lt+1 − Lt for Lt < Lℓ and Lt > Lh are positive, which is true as proven in
+Lemma 4. Thus, using Lemma 4, we capture all possible values of Lt with respect to Lh and Lℓ in
+Cases 1 and 2 for p > pB , and show that Lt diverges to ∞, which implies bt converges to 1. Hence,
+we conclude the proof.                                                                                    Q.E.D.
+     Proof of Theorem 4.    The first part of the result in this theorem when p ≤ pW follows from
+Lemma 4 by considering the reflection of the stochastic process. In particular, updating the con-
+ditions in the statement of Lemma 4 as E[Y1,t ] ≤ 0, P(Y2,t < 0) > 0 and E[Y3,t ] < 0 would imply
+     a.s.
+Zt −−→ −∞ in that lemma. This is because the mean of Lt+1 − Lt is nonpositive when Lt ∈ [Lh , ∞)
+in Case 1 (and Lt ∈ (Lh , ∞) in Case 2); and is negative when Lt ∈ (−∞, Lℓ ] in Case 1 (and Lt ∈
+(−∞, Lℓ ) in Case 2).11 Thus, the case for p ≤ pW follows from Lemma 4 with a slight modification.
+10
+  This claim can be proved by invoking Lemma A.2 in Harrison et al. (2012) to show that EB [RtHM (Lt−1 )] > 0 for
+Lt−1 ≤ Lℓ in Case 1, and Lt−1 < Lℓ in Case 2.
+11
+  The second part of this claim can be proved by invoking Lemma A.2 in Harrison et al. (2012) to show that
+EB [RtHM (Lt−1 )] < 0 for Lt−1 ≤ Lℓ in Case 1, and Lt−1 < Lℓ in Case 2.
+de Véricourt and Gurkan: better or worse                                                                  41
+
+  To prove the second part of this result p > pW , we focus on Case 1 (Case 2 can be addressed
+by adjusting weak and strict inequalities in the same way) by assuming the mean of Lt+1 − Lt is
+negative when Lt ∈ (Lℓ , Lh ) and define the following stopping times by assuming L0 > Lh without
+loss of generality.
+
+                         T1 = inf {t : Lt < Lh }                                                          (57)
+
+                         T̃1 = inf {t > T1 : Lt ≥ Lh }                                                    (58)
+
+                         Ti = inf {t > T̃i−1 : Lt < Lh }                   for i ≥ 2                      (59)
+
+                         T̃i = inf {t > Ti : Lt ≥ Lh }                     for i ≥ 2                      (60)
+
+Here, if a set is empty, then the stopping times takes the value of ∞. Therefore, if one of the
+stopping times Ti or T̃i is not finite for some i, then all the following stopping times for j > i also
+                             P∞
+are ∞. We first show that i=1 P(Ti < ∞) < ∞ and then use the Borel-Cantelli lemma to deduce
+that there exists a finite j such that P(Tj = ∞ or T̃j = ∞) = 1. If Tj = ∞, then Lt → ∞; otherwise,
+(T̃j = ∞) then Lt → −∞. Thus, Lt → L, where L ∈ {−∞, ∞}; hence bt converges to a Bernoulli
+random variable.
+  First, consider T1 ; it follows that P(T1 < ∞) < ξ < 1 (i.e., T1 is a defective random variable)
+because process Lt is driven by a random walk drifting to ∞ when Lt > Lh and p > pW . Next,
+considering T̃1 and T2 ; we obtain that
+
+                               P(T̃1 < ∞) =P(T̃1 < ∞ | T1 < ∞)P(T1 < ∞) < ξ 2                             (61)
+
+                               P(T2 < ∞) =P(T2 < ∞ | T̃1 < ∞)P(T̃1 < ∞) < ξ 3                             (62)
+
+  Here, the first term is strictly less than 1, i.e., P(T̃1 < ∞ | T1 < ∞) < ξ < 1 because process Lt is
+driven by random walks drifting to −∞ after T1 . The inequality in the second line follows because
+Lt is driven by a random walk drifting to ∞. Proceeding similarly, it follows that P(Ti < ∞) < ξ (2i−1)
+            P∞
+and hence i=1 P(Ti < ∞) is finite.
+  Note that we assume at the beginning that the mean of Lt+1 − Lt is negative when Lt ∈ (Lℓ , Lh ). If
+it is positive, the same steps can be followed by redefining stopping times using Lℓ as the threshold
+instead of Lh . If it is zero, then stopping times Ti is defined by considering the time when process
+Lt enters (Lℓ , Lh ) and T̃i is the time when Lt exists (Lℓ , Lh ) in any direction. The approach follows
+because outside (Lℓ , Lh ), process Lt diverges (either to ∞ or −∞ depending on being above Lh or
+below Lℓ ) and it oscillates in (Lℓ , Lh ), which guarantees it remains in (Lℓ , Lh ) for finite steps.
+  More specifically, the main driver of this result is that process Lt may diverge to ∞ when above
+Lh and to −∞ when below Lℓ . The sign of the mean between Lℓ and Lh does not affect this
+characteristic in the limit. Thus, we conclude the proof.                                          Q.E.D.
+42                                                                      de Véricourt and Gurkan: better or worse
+
+
+Appendix C: Mistrust Bias against the Machine
+     Proof of Lemma 2.       Note that Informativeness (1)-(3) imply that the posterior after + (after
+−) is larger than or equal to r (resp. lower than r). Thus, there exist thresholds λ−    +
+                                                                                    Γ , λΓ ∈ (0, 1) for
+
+Γ ∈ {B, W} given by
+                                          r − PΓ (Θt = A | S M = −)
+                              λ−
+                               Γ ≜                                            ,                             (63)
+                                  P(Θt = A | S H = +) − PΓ (Θt = A | S M = −)
+                                          PΓ (Θt = A | S M = +) − r
+                              λ+
+                               Γ ≜ Γ                                          .                             (64)
+                                  P (Θt = A | S M = +) − P(Θt = A | S H = −)
+These equations imply that
+
+                        λP(Θt = A | S H = +) + λ̄PB (Θt = A | S M = −) ≥ r ⇔ λ ≥ λ−
+                                                                                  B ,                       (65)
+                        λP(Θt = A | S H = −) + λ̄PB (Θt = A | S M = +) ≤ r ⇔ λ ≥ λ+
+                                                                                  B ,                       (66)
+                       λP(Θt = A | S H = +) + λ̄PW (Θt = A | S M = −) ≤ r ⇔ λ ≤ λ−
+                                                                                 W,                         (67)
+                       λP(Θt = A | S H = −) + λ̄PW (Θt = A | S M = +) ≥ r ⇔ λ ≤ λ+
+                                                                                 W,                         (68)
+
+because the left-hand sides of the first and third inequalities are increasing and the second and the
+fourth ones are decreasing in λ.
+                                                                   −
+     First, note that λ+                   Γ                                           Γ
+                       Γ is increasing in P (Θt = A | S = +), and λΓ is decreasing in P (Θt = A | S =
+                                                       M                                           M
+
+
+−). We also know from Substitution (4)-(5) that PB (Θt = A | S M = +) > PW (Θt = A | S M = +), and
+PW (Θt = A | S M = −) > PB (Θt = A | S M = −). We conclude the proof by defining λmin ≜ max(λ−    +
+                                                                                             W , λW )
+
+and λmax = min(λ−    +
+                B , λB ).                                                                               Q.E.D.
+     Before proving Theorem 5, we first provide a constructive lemma and its proof.
+
+Lemma 5. For λ ∈ (λmin , λmax ), unique thresholds b−               +
+                                                    λ ∈ (0, 1) and bλ ∈ (0, 1) exist such that
+
+
+                  λP(Θt = A | S H = +) + (1 − λ)P(Θt = A | S M = −, bt−1 ) ≥ r ⇔ bt−1 ≤ b−
+                                                                                         λ ,                (69)
+                  λP(Θt = A | S H = −) + (1 − λ)P(Θt = A | S M = +, bt−1 ) ≥ r ⇔ bt−1 ≤ b+
+                                                                                         λ .                (70)
+
+     Proof of Lemma 5.       We obtain the thresholds by solving the following equations.
+
+                         λP(Θt = A | S H = +) + (1 − λ)P(Θt = A | S M = −, b−
+                                                                            λ)=r,                           (71)
+                         λP(Θt = A | S H = −) + (1 − λ)P(Θt = A | S M = +, b+
+                                                                            λ)=r.                           (72)
+
+The closed-form expressions are
+                                 φ−       W
+                                  λ (1 − α ) − β
+                                                 W
+                                                                    β̄ W − φ+
+                                                                            λα
+                                                                               W
+                      b−
+                       λ =                           and b+
+                                                            =
+                             β B − β W + φ−
+                                          λ (α − α )
+                                              B    W      λ
+                                                              φ+
+                                                               λ (α − α ) + β − β
+                                                                   B      W     B W
+
+
+where
+                                                                                                  
+          p   (1 − λ) − r + λP(Θt = A | StH = +)                p (1 − λ) − r + λP(Θt = A | StH = −)
+     φ−
+      λ =                                              and φ+
+                                                            λ =                                        .
+           p̄      r − λP(Θt = A | StH = +)                    p̄      r − λP(Θt = A | StH = −)
+Finally, we can similarly define bHλ = min(b−    +        M        − +
+                                            λ , bλ ) and bλ = max(bλ , bλ ) as in Corollary 1.          Q.E.D.
+de Véricourt and Gurkan: better or worse                                                                     43
+
+  Proof of Theorem 5.         Note that Lemma 5 shows that there exist thresholds b−    +
+                                                                                   λ , bλ ∈ (0, 1) for
+
+λ ∈ (λmin , λmax ) as in the case of Lemma 1. Thus, the exact same steps at which thresholds b− , b+ ∈
+(0, 1) are replaced by b−    +
+                        λ , bλ ∈ (0, 1) in the proofs of Lemma 3, Theorems 3-4 will imply this result
+
+because the results in those theorems do not depend on the exact values of thresholds b− and b+ ,
+as long as they are interior to (0, 1).                                                                 Q.E.D.
+  Proof of Theorem 6.         Note that Lemma 1 also characterizes the DM’s decision rule for the biased
+case. Nevertheless, the belief updating (6) is replaced with the one in Section 7.2 with a bias term
+µ when the machine’s prediction is not correct. Thus, we need to modify Lemma 3 slightly to
+incorporate this change. In particular, the updated log-likelihood ratio process L̃t is as follows.
+Case 1: If b+ > b− , we have L̃t = L̃t−1 + R̃tHM (L̃t−1 ) where
+                              h                 B                      B i
+                                                 α                        β̄
+                     1     M
+                    {St =+}
+                                1 {Θt =A}  log    W  + 1{Θ   =NA} µ log  βW
+                                                                                        if L̃t−1 ≥ Lh
+                                                 α
+                                                      Bt
+                   
+                                       h                                       B i
+       HM
+     R̃t (L̃t−1 ) ≜ 1{S H =+,S M =+} 1{Θt =A} log αW + 1{Θt =NA} µ log β̄W              if Lh > L̃t−1 > Lℓ
+                         t    t                      α                         β̄
+                   
+                     1{StH =+} [υ̃1 + υ̃2 ]                                             if Lℓ ≥ L̃t−1
+                   
+                +               −
+with Lh ≜ log bb̄+ , Lℓ ≜ log b̄b− and
+                                                       B                      B 
+                                                          ᾱ                       α
+                       υ̃1 ≜ 1{Θt =A} 1{StM =−} µ log           + 1{StM =+} log          ,
+                                                          ᾱ W
+                                                                                   αW
+                                                      B                        B 
+                                                         β                         β̄
+                      υ̃2 ≜ 1{Θt =NA} 1{StM =−} log            + 1{StM =+} µ log          .
+                                                         βW                        β̄ W
+Case 2: If b+ ≤ b− , we have L̃t = L̃t−1 + R̃tHM (L̃t−1 ) where
+                               h                 B                       B i
+                                                   α                         β̄
+                     1   M
+                     {St =+}     1 {Θt =A}  log  α W   + 1{Θ t =NA} µ log   β̄ W
+                                                                                       if L̃t−1 > Lh
+       HM
+     R̃t (L̃t−1 ) ≜ 1{Θt =A} ν̃1 + 1{Θt =NA} ν̃2                                       if Lh ≥ L̃t−1 ≥ Lℓ (73)
+                    
+                      1{StH =+} [υ̃1 + υ̃2 ]                                           if Lℓ > L̃t−1
+                    
+               −                +
+with Lh ≜ log bb̄− , Lℓ ≜ log bb̄+ and
+                                                B                                  B
+                                                 α                                   ᾱ
+                        ν̃1 ≜ 1{StM =+} log            + 1{StM =−} 1{StH =+} µ log          ,
+                                                 αW                                  ᾱW
+                                                 B                                 B
+                                                  β̄                                 β
+                        ν̃2 ≜ 1{StM =+} µ log           + 1          1
+                                                            {StM =−} {StH =+}   log         .
+                                                  β̄ W                               βW
+Note that the thresholds in the theorem are determined as the break-even points of the following
+equations.
+                αB
+                                    B
+          B                 B B        β̄
+       pα log     W
+                      + p̄β̄ µ log             =0                                                            (74)
+                α                     β̄ W
+                B                    B
+                α                        β̄
+       pαW log    W
+                      + p̄β̄ W µW log           =0                                                           (75)
+                α                        β̄ W
+                      B               B                  B             B 
+         H    B H      ᾱ          B        α           H   B   β       B H     β̄
+       pα ᾱ µ log             + α log            + p̄β̄ β log      + β̄ µ log        =0                     (76)
+                       ᾱ W
+                                            α W
+                                                                β W
+                                                                                β̄ W
+44                                                                  de Véricourt and Gurkan: better or worse
+
+
+
+The left-hand sides of these equations correspond to the mean of L̃t+1 − L̃t when evaluated at µ in
+place of the thresholds at corresponding values of L̃t . In the remainder of the proof, we explain the
+sign of the mean of L̃t+1 − L̃t given the machine’s type and the value of µ. When the sign of this
+mean is known, the results follow from the proofs of previous theorems on which we elaborate.
+     • when Γ = B,
+       — µ ≥ µB and µ > µH implies that the mean of L̃t+1 − L̃t for Lℓ ≥ L̃t for Case 1 (Lℓ > L̃t for
+Case 2) is negative. Further, the mean of L̃t+1 − L̃t for L̃t ≥ Lh for Case 1 (L̃t > Lh for Case 2) is
+nonpositive. Thus, the proof of the first part (for p ≤ pW ) of Theorem 4 applies to this parameter
+regime.
+       — µB > µ > µH implies that the mean of L̃t+1 − L̃t for Lℓ ≥ L̃t for Case 1 (Lℓ > L̃t for Case 2)
+is positive. Further, the mean of L̃t+1 − L̃t for L̃t ≥ Lh for Case 1 (L̃t > Lh for Case 2) is negative.
+Thus, the proof of the second part (for p > pW ) of Theorem 4 applies to this parameter regime.
+       — µH ≥ µ ≥ µB implies that the mean of L̃t+1 − L̃t for Lℓ ≥ L̃t for Case 1 (Lℓ > L̃t for Case 2)
+is nonnegative. Further, the mean of L̃t+1 − L̃t for L̃t ≥ Lh for Case 1 (L̃t > Lh for Case 2) is
+nonpositive. Thus, the proof of the first part (for p ≤ pB ) of Theorem 3 applies to this parameter
+regime.
+       — if µB > µ and µH ≥ µ implies that the mean of L̃t+1 − L̃t for Lℓ ≥ L̃t for Case 1 (Lℓ > L̃t for
+Case 2) is nonnegative. Further, the mean of L̃t+1 − L̃t for L̃t ≥ Lh for Case 1 (L̃t > Lh for Case 2)
+is positive. Thus, the proof of the second part (for p > pB ) of Theorem 3 applies to this parameter
+regime.
+     • when Γ = W,
+       — µ ≥ µW implies that the mean of L̃t+1 − L̃t for L̃t ≥ Lh for Case 1 (L̃t > Lh for Case 2) is
+nonpositive. Further, the mean of L̃t+1 − L̃t for Lℓ ≥ L̃t for Case 1 (Lℓ > L̃t for Case 2) is negative
+for all µ ≥ 1. Thus, the proof of the first part (for p ≤ pW ) of Theorem 4 applies to this parameter
+regime.
+       — µW > µ implies that the mean of L̃t+1 − L̃t for L̃t ≥ Lh for Case 1 (L̃t > Lh for Case 2) is
+positive. Further, the mean of L̃t+1 − L̃t for Lℓ ≥ L̃t for Case 1 (Lℓ > L̃t for Case 2) is negative for
+all µ ≥ 1. Thus, the proof of the second part (for p > pW ) of Theorem 4 applies to this parameter
+regime.
+     Finally, we show that µH > 1. Note that the following term is always positive when evaluated at
+µH = 1; see Footnote 10.
+                         B           B               B             B 
+             H   B H      ᾱ      B     α           H   B   β       B H     β̄
+           pα ᾱ µ log         + α log        + p̄β̄ β log      + β̄ µ log
+                          ᾱ W
+                                        α W
+                                                            β W
+                                                                            β̄ W
+To make this equal to 0, µH has to be larger than 1 because it is decreasing in µH . Hence, we
+conclude the proof.                                                                                 Q.E.D.
+de Véricourt and Gurkan: better or worse                                                                                                         45
+
+Appendix D: Complementarity
+Before providing the proof of Theorem 7, we first provide some constructive lemmas and their
+proofs. The first lemma is analogous to Lemmas 1 and 2 in terms of characterizing the DM’s
+decision rule as a function of her belief.
+
+Lemma 6. Unique thresholds b−      +
+                            C and bC exist such that
+
+
+                                     P(Θt = A | StH = +, StM = −, bt−1 ) ≥ r ⇐⇒ bt−1 ≤ b−
+                                                                                        C ,                                                     (77)
+
+                                     P(Θt = A | StH = −, StM = +, bt−1 ) ≥ r ⇐⇒ bt−1 ≤ b+
+                                                                                        C .                                                     (78)
+
+  Proof of Lemma 6.              As mentioned in the proof of Lemma 1, the posterior probabilities in the
+statement of this lemma are continuous and monotone in bt−1 and the boundary values 1 and
+0 are on different sides of r due to Complementarity (13)-(14). We next provide the posterior
+probabilities.
+
+                          H                     M           αH (bt−1 ᾱC + b̄t−1 ᾱC )p               +               −
+
+
+          P(Θt = A | St = +, St = −, bt−1 ) = H                                                                                                 (79)
+                                               α (bt−1 ᾱC + b̄t−1 ᾱC )p + β̄ H (bt−1 β C + b̄t−1 β C )p̄
+                                                                                  +               −                       +           −
+
+
+
+                                                            ᾱH (bt−1 αC + b̄t−1 αC )p                +               −
+
+
+          P(Θt = A | StH = −, StM = +, bt−1 ) = H                                                                                               (80)
+                                               ᾱ (bt−1 αC + b̄t−1 αC )p + β H (bt−1 β̄ C + b̄t−1 β̄ C )p̄
+                                                                                  +               −                       +           −
+
+
+
+
+We solve the following equations for bt−1
+
+             P(Θt = A | StH = +, StM = −, bt−1 ) = r and P(Θt = A | StH = −, StM = +, bt−1 ) = r .                                              (81)
+
+We then obtain
+                                                                                                     H
+                                     r̄pαH
+                                     r p̄β̄ H
+                                                    ᾱC − β C
+                                                      −     −
+                                                                                                β̄ C − r̄p−ᾱ
+                                                                                                       r p̄β H
+                                                                                                               αC             −
+
+
+             b−
+              C =
+                                                                               +
+                                                                            and bC =                                  .                       (82)
+                      r̄pαH                                                            r̄pᾱH
+                      r p̄β̄ H
+                                     [αC − αC ] + β C − β C
+                                          +           −         +       −
+
+                                                                                       r p̄β H
+                                                                                                 [αC − αC ] + β C − β C
+                                                                                                              +   −           +   −
+
+
+
+
+The result follows.                                                                                                                           Q.E.D.
+
+Lemma 7. Assume that the accuracy parameters (αΓ , β Γ ) for Γ ∈ {C+, C−} satisfy Complementar-
+ity (13)-(14). Then, it follows that
+
+                                                           αC > αC and β C < β C .
+                                                                +       −             +       −
+                                                                                                                                                (83)
+
+  Proof of Lemma 7.              We prove this result by obtaining two subsets of [0, 1] × [0, 1] using Comple-
+mentarity (13)-(14) that contain accuracy parameters (αC , β C ) and respectively (αC , β C ). These
+                                                                                          +       +                               −       −
+
+
+
+
+sets are disjoint besides the lowest sensitivity in the first set is higher than the highest sensitivity
+in the second set, and vice a versa for specificity.
+  We first define the following constants.
+                                                                    αH r̄p            ᾱH r̄p
+                                                           η≜                and η̃ ≜                                                           (84)
+                                                                    β̄ H rp̄          β H rp̄
+46                                                                                       de Véricourt and Gurkan: better or worse
+
+
+Note that Informativeness (1) implies that η ≥ 1 and η̃ < 1. Now, using these and (13)-(14), we
+obtain that
+
+                          G C ≜ {(α, β) ∈ [0, 1] × [0, 1] : β + ηα > η and 1 > β + η̃α}
+                                +
+                                                                                                                             (85)
+                          G C ≜ {(α, β) ∈ [0, 1] × [0, 1] : β + ηα ≤ η and 1 ≤ β + η̃α}
+                                −
+                                                                                                                             (86)
+
+First observe that G C ∩ G C = ∅. Next, we define Ĝ C ≜ {(α, β) ∈ [0, 1] × [0, 1] : β + ηα ≥ η and 1 ≥
+                           +              −                                   +
+
+
+
+
+β + η̃α}. It follows that
+                                                              min α >         min α
+                                                           (α,β)∈G C+      (α,β)∈Ĝ C+
+
+because G C ⊂ G̃ C and the optimal (α, β) pair minimizing α over Ĝ C is at the corner solution where
+              +     +                                                                       +
+
+
+
+
+both inequalities binding; and that point is not in G C since inequalities are weak. In particular,
+                                                                                  +
+
+
+
+
+we obtain solving the system of equations that                            min α = (η − 1)/(η − η̃).
+                                                                        (α,β)∈Ĝ C+
+     Next, we consider         max α. Again, the optimal solution is at the corner where both inequalities
+                          (α,β)∈G C−
+are binding, and thus it follows that                       max α = (η − 1)/(η − η̃).
+                                                          (α,β)∈G C−
+                                                              C−
+     Combining these, we get that αC > α . Following the same steps to minimize and maximize β
+                                                      +
+
+
+
+
+over these sets yields β C < β C . Hence, we conclude the proof.
+                                    +         −
+                                                                                                                         Q.E.D.
+     We are now ready to prove Theorem 7.
+     Proof of Theorem 7.                We prove this result in 3 steps. Note that the thresholds b−      +
+                                                                                                   C and bC defined
+
+in Lemma 6 imply the DM’s decision rule. In the first step, we provide the log-likelihood ratio
+process generated by the DM’s decision and signal realizations. In the second, we analyze the mean
+of the random jumps that govern the log-likelihood ratio process. In the last step, we combine our
+findings to derive the limit result.
+                               − 12
+     Step 1. Assume that b+
+                          C > bC .  Then, we have the following three regimes
+     • bt−1 > b+
+               C:
+
+
+                                                  P(Θt = A | StH = −, StM = +, bt−1 ) < r                                    (87)
+                                                  P(Θt = A | StH = +, StM = −, bt−1 ) < r                                    (88)
+
+In this case, StM = StH = + is sufficient and necessary to act, which implies the DM decides as in
+type C+.
+     • b+           −
+        C ≥ bt−1 > bC :
+
+
+                                                  P(Θt = A | StH = −, StM = +, bt−1 ) ≥ r                                    (89)
+                                                  P(Θt = A | StH = +, StM = −, bt−1 ) < r                                    (90)
+
+In this case, StM = + is necessary and sufficient condition for acting.
+                       −
+12
+  The case when b+C ≤ bC can be analyzed in the same way, and the result still follows as in the case of Theorems 3-4.
+Thus, we omit it to avoid repetition.
+de Véricourt and Gurkan: better or worse                                                                                                47
+
+  • b−
+     C ≥ bt−1 :
+
+
+                                          P(Θt = A | StH = −, StM = +, bt−1 ) ≥ r                                                       (91)
+
+                                          P(Θt = A | StH = +, StM = −, bt−1 ) ≥ r                                                       (92)
+
+In this case, the DM decides to act after StH = + or StM = +.
+Finally, the belief update is as follows.
+          
+                         C 1                        C 1                         −1
+                  b̄t−1      −
+                              {Θt =A,StM =+,StH =+}   β̄     {Θt =NA,StM =+,StH =+}
+                                                                                −
+                          α
+                                                                                                                    if bt−1 > b+
+          
+          
+          
+          
+             1 + bt−1 αC     +
+                                                      β̄ C                      +
+                                                                                                                               C
+          
+                                                                     −1
+                         C 1                C 1
+     bt =         b̄t−1      −
+                              {Θt =A,StM =+}    β̄     {Θt =NA,StM =+}
+                                                                    −
+                                                                                                                                    −   (93)
+             1 + bt−1 αC α
+                              +
+                                                β̄ C                    +                                           if b+
+                                                                                                                        C ≥ bt−1 > bC
+          
+          
+           h            i −1
+           1 + b̄t−1 ζ̃                                                                                            if b−
+          
+                                                                                                                        C ≥ bt−1
+          
+                  bt−1
+
+
+where ζ̃ is defined as
+       C 1                  C 1                       C 1{Θ =NA,SM =+}  C 1
+       α    −
+              {Θt =A,StM =+}  ᾱ   {Θt =A,StM =−,StH =+}
+                                      −
+                                                          β̄     t     t      β    {Θt =NA,StM =−,StH =−}
+                                                                                            −                       −
+
+
+ ζ̃ ≜                                                                                                     (94)
+       αC   +
+                              ᾱC     +
+                                                          β̄ C                βC            +                       +
+
+
+
+
+Then, the transition of the log-likelihood ratio process follows from its definition using the recursive
+expression of bt . As discussed, in the proofs of Theorem 3-4, the transition rule of the log-likelihood
+                                                −
+ratio process when bt−1 is in (b+
+                                C , 1) and (0, bC ] determine the limit of Lt . Thus, in the following
+                                                                                                 −
+steps we analyze the mean of the random jumps that govern Lt when bt−1 lies in (b+
+                                                                                 C , 1) and (0, bC ].
+
+  Step 2. Assume bt lies in (b+
+                              C , 1). In this case, the log-likelihood ratio Lt process is governed by
+
+the random jumps RtHM whose mean is given by
+                                            C                 C                     +                   +
+                        Γ   HM      H Γ      α         H Γ      β̄
+                       E [Rt ] = pα α log      C
+                                                 + p̄β̄ β̄ log                          −
+                                             α                  β̄ C                                        −
+
+
+
+
+for Γ ∈ {C+, C−}. Since αC > αC and β C < β C (which implies β̄ C > β̄ C ) as shown in Lemma 7, it
+                                  +       −                     +           −                           +       −
+
+
+
+
+follows that EΓ [RtHM ] > 0.
+  Assume now bt−1 lies in (0, b−
+                               C ]. In this case, we have
+                            C              +
+                                                 C                    C       +
+                                                                                             C               +                  +
+       Γ  HM      H    Γ       α           Γ     ᾱ              H   Γ    β̄          Γ      β
+      E [Rt ] = pα α log         C
+                                       + ᾱ log     C
+                                                           + p̄β̄ β̄ log          + β   log
+                               α              −
+                                                 ᾱ                       β̄ C      −
+                                                                                             βC                 −                  −
+
+                |                   {z                  } |                    {z                }
+                                     I                                         II
+                              C                 +
+                                                      C                                       +
+                     H Γ        α            H Γ      β̄
+                + pᾱ α log            + p̄β β̄ log
+                                αC            −
+                                                      β̄ C                                  −
+
+                  |                    {z                   }
+                                                          III
+
+Note that the sign of terms I and II are determined by Γ because the terms inside the square
+brackets are KL-divergence (see proof of Theorem 1 for more). In particular, terms I and II
+are positive when Γ = C+ and negative when Γ = C−. Differently, term III is always positive
+regardless of Γ and p because αC > αC and β C < β C (which implies β̄ C > β̄ C ) as shown in
+                                                      +             −                   +           −                   +      −
+48                                                                                 de Véricourt and Gurkan: better or worse
+
+
+Lemma 7. Therefore, when Γ = C+, it follows that EΓ [RtHM ] > 0. However, when Γ = C−, the value
+of p determines the sign of EΓ [RtHM ]. Observe that EC [RtHM ] is linear function of p, and it is positive
+                                                                       −
+
+
+
+
+when p = 0 since
+                                    β̄ C
+                                          +
+                                                    C                C 
+                                                                       −                      −
+                               C−             C      β   −    H C       β      −
+                          β̄ log           ≥ β log     C
+                                                          > β̄ β log
+                                    β̄ C    −
+                                                     β                 +
+                                                                        βC                    +
+
+
+
+Here, the first inequality follows from the fact that KL-divergence is positive, and the second follows
+from 1 > β̄ H . Hence, we define pC as follows.
+                                     (
+                                                    termb
+                                                                   if termb > terma
+                                    pC ≜        termb −terma
+                                                                                                                        (95)
+                                                1                  otherwise.
+where
+                                                   αC
+                                                             +
+                                                                       C            +
+                                                    C−        H C       ᾱ −
+                             terma = α log                + α ᾱ log
+                                                   αC          −
+                                                                        ᾱC           −
+
+                                                  C          +
+                                                                       C            +
+                                          C        β̄−        H C       β  −
+                             termb = β̄ log               + β̄ β log
+                                                   β̄ C        −
+                                                                        βC            −
+
+
+
+Thus, it follows that EC [RtHM ] ≥ 0 if p ≤ pC ; and EC [RtHM ] < 0 if p > pC .
+                           −                                       −
+
+
+
+
+     Step 3. We now combine our findings in the previous steps to analyze the limiting behavior of the
+log-likelihood ratio process. First, we consider Γ = C+. In this case, the sign of the mean EC [RtHM ]              +
+
+
+
+                                                 −
+is always positive for bt−1 in (b+
+                                 C , 1) and (0, bC ]. Thus, Lt converges to infinity and bt converges to
+
+1. Next, consider Γ = C−. In this case, for p ≤ pC , we have the sign of the mean EC [RtHM ] is positive
+                                                                                                       −
+
+
+
+                                                      −
+for bt−1 in (b+
+              C , 1) and nonnegative for bt−1 in (0, bC ]. Thus, bt again converges to 1 because Lt goes
+
+to infinity. If p > pC , then EC [RtHM ] < 0 for bt−1 in (0, b−
+                                    −                                     C  HM           −        +
+                                                              C ], while E [Rt ] > 0 for bt−1 in (bC , 1).
+
+Therefore, bt converges to a Bernoulli random variable.13                                                          Q.E.D.
+
+Appendix E: Relaxation of the Verification Bias
+In this section of the appendix, we relax the verification bias by changing the belief updating
+process in two different ways. Specifically, we first consider a setup where the DM updates her
+belief about the machine’s type based on the signal generated by the machine when the correctness
+of the machine’s prediction is not revealed. Second, we allow the DM to observe the correctness of
+the machine’s prediction regardless of the DM’s decision to act.
+     First, we consider that the DM updates her belief when she decides not to act. In this case,
+the DM accounts for the machine prescription and her own judgment to update her belief. The
+modified belief updating rule that replaces equation (6) is given by
+                                                 −1
+                  b̄t−1 PW (StM = sM , StH = sH )
+             1+                                       if P(Θt = A | StH = sH , StM = sM , bt−1 ) < r
+            
+            
+                   bt−1 PB (StM = sM , StH = sH )
+        bt =                                     −1                                                                   (96)
+                  b̄t−1 PW (StM = sM | Θt = θ)
+             1+
+            
+                                                      if P(Θt = A | StH = sH , StM = sM , bt−1 ) ≥ r.
+                   bt−1 PB (StM = sM | Θt = θ)
+     Thus, we directly focus on the proof when the DM updates her belief
+13
+  See proofs of Theorems 3-4 for more about the relation between the sign of the mean of the random jumps and the
+convergence behavior.
+de Véricourt and Gurkan: better or worse                                                                          49
+
+                                                                                         a.s.
+Proposition 1. If the DM updates her belief using (96), then bt −−→ 1{Γ=B} .
+
+  Proof of Proposition 1.                 We prove this result by analyzing the no-interaction and no-overriding
+benchmarks in the first two steps. Finally, we combine our findings to conclude the proof for the
+main set-up.
+  No-Interaction Benchmark. The log-likelihood ratio process Lt becomes a random walk such
+that the mean of the i.i.d. random jumps is given by
+                                                                                      H B
+                                                                                      pᾱ α + p̄β H β̄ B
+                                                                                                         
+      Γ               H   Γ          pᾱH ᾱB + p̄β H β B
+                                      H   Γ                       H Γ     H Γ
+    E [Rt ] =(pᾱ ᾱ + p̄β β ) log                          + (pᾱ α + p̄β β̄ ) log
+                                     pᾱH ᾱW + p̄β H β W                             pᾱH αW + p̄β H β̄ W
+                            B                 B                     B               B 
+                    H    Γ      ᾱ         Γ       α                H   Γ       β̄         Γ      β
+             + p α ᾱ log          W
+                                      + α log         W
+                                                             + p̄ β̄ β̄ log           + β log
+                                ᾱ                 α                            β̄ W              βB
+
+We next show that EB [Rt ] > 0 and EW [Rt ] < 0. The terms inside the square brackets above are in
+fact the same as in (19). In the proof of Theorem 1, we prove that the sign of those terms are
+aligned with the true type of the machine. Thus, we focus on the following term.
+
+                                                                                        pᾱH αB + p̄β H β̄ B
+                                                                                                            
+              H   Γ           H pᾱH ᾱB + p̄β H β B
+                                  Γ                                   H   Γ     H    Γ
+          (pᾱ ᾱ + p̄β β ) log                                 + (pᾱ α + p̄β β̄ ) log
+                                pᾱH ᾱW + p̄β H β W                                    pᾱH αW + p̄β H β̄ W
+
+Assume first Γ = B. Then, we show that the above term is negative in the following.
+                                                                                     H B
+                                                                                      pᾱ α + p̄β H β̄ B
+                                                                                                         
+                  H   B           H pᾱH ᾱB + p̄β H β B
+                                      B                          H B      H B
+         − (pᾱ ᾱ + p̄β β ) log                           − (pᾱ α + p̄β β̄ ) log
+                                   pᾱH ᾱW + p̄β H β W                               pᾱH αW + p̄β H β̄ W
+                                                                                   pᾱH αW + p̄β H β̄ W
+                               H W                                                                   
+            H B      H B        pᾱ ᾱ + p̄β H β W             H B     H B
+       =(pᾱ ᾱ + p̄β β ) log                            + (pᾱ α + p̄β β̄ ) log
+                                 pᾱH ᾱB + p̄β H β B                              pᾱH αB + p̄β H β̄ B
+                                    H W         H W
+             H W        H W
+                                                                H     H
+       ≤ log pᾱ ᾱ + p̄β β + pᾱ α + p̄β β̄ = log [pᾱ + p̄β ] < log(1) = 0
+
+Here, the first inequality follows because log is a concave function. The second inequality follows
+because pᾱH + p̄β H is less than one. Thus, we obtain that EB [Rt ] > 0, and following the same steps
+imply that EW [Rt ] < 0.
+  No-Overriding Benchmark. In this case, the mean of the random jumps that govern the log-
+likelihood ratio process is given by
+                                                                                       B H
+                                                                                       pᾱ ᾱ + p̄β B β H
+                                     B H                                                                  
+       Γ          Γ H     Γ H           pᾱ α + p̄β B β̄ H          Γ H      Γ H
+     E [Rt ] =(pᾱ α + p̄β β̄ ) log                           + (pᾱ ᾱ + p̄β β ) log
+                                       pᾱW αH + p̄β W β̄ H                            pᾱW ᾱH + p̄β W β H
+                         B                  B
+                          α                    β̄
+              + pαΓ log     W
+                                + p̄β̄ Γ log         .
+                          α                   β̄ W
+
+Both of these terms are KL-divergence when Γ = B and −KL-divergence when Γ = W. Thus it is
+respectively positive and negative which implies that the log-likelihood ratio process converges to
+                                                                              a.s.
+infinity and respectively minus infinity. Hence, we obtain bt −−→ 1Γ=B} .
+50                                                                      de Véricourt and Gurkan: better or worse
+
+
+     Main Set-up. Note that the decision rule characterized in Lemma 1 implies that the DM follows
+no-interaction and no-overriding decision rules at low and respectively high bt . As shown in the
+previous steps, the log-likelihood ratio process under those decision rules converge to ∞ for Γ = B,
+and −∞ for Γ = W. Therefore, the DM correctly learns the machine’s type.                                Q.E.D.
+     Finally, we consider that the DM observes the pair (StM , Θt ) in all periods. In this case, the
+updating rule is given by                                        −1
+                                          b̄t−1 PW (StM | Θt = θ)
+                                bt = 1 +                                                                    (97)
+                                          bt−1 PB (StM | Θt = θ)
+We drop the decision rule in (97) because it does not affect the belief updating there.
+     In fact, when the DM can observe the pair (StM , Θt ) in all periods, the sum of probability of
+observing all potential outcomes equals one. For those cases, the frequentist consistency of Bayesian
+updating (Diaconis and Freedman 1986) thus implies that the DM’s belief converges almost surely
+to one when the machine’s type is B (and respectively to zero when the machine’s type is W).
+
+E.1. Partial Relaxation of the Verification Bias
+Note that the modified belief updating rule in Equation (96) is a fully Bayesian belief updating
+rule in the sense that the DM uses Bayes’ rule to update her belief by accounting for all available
+information. Indeed, the frequentist consistency of Bayesian updating (Diaconis and Freedman
+1986) is not violated by the censorship (not observing θt in case of no action) because the total
+probabilities of all potential observations, which are (StM , StH ) and (StM , θt ) pairs add up to one.
+Hence, the belief updating rules in (6) and (96) represent two extremes such that the DM fully
+ignores and respectively fully accounts for the information when the correctness of the machine’s
+prediction is not verified. In this section, we analyze the cases in between these two extremes by
+using the following belief update rule for 0 < ε < 1.
+     For any value of ε < 1, the DM overlooks the information generated by unverified cases. Indeed,
+Equation (15) is reduced to (6) (to (96)) for ε = 0 (and resp., ε = 1). Hence, Proposition 1 and
+Theorems 3-4 can be thought of special cases of the following theorem.
+     Proof of Theorem 8.     We prove this result in a way akin to the proof of Proposition 1. Thus,
+we first start with the benchmark cases even though the statement of the theorem is for the main
+set-up. Finally, we combine the results for benchmark cases to derive the results in the statement
+of the theorem.
+     No-Interaction Benchmark. The log-likelihood ratio process Lt becomes a random walk such
+that the mean of the i.i.d. random jumps is given by
+                                                                                     H B
+                                                                                      pᾱ α + p̄β H β̄ B
+                                    H B                                                                  
+    Γ            H Γ      H Γ       pᾱ ᾱ + p̄β H β B            H Γ     H Γ
+   E [Rt ] =ε(pᾱ ᾱ + p̄β β ) log                         + ε(pᾱ α + p̄β β̄ ) log
+                                    pᾱH ᾱW + p̄β H β W                              pᾱH αW + p̄β H β̄ W
+                            B              B                      B               B 
+                    H   Γ      ᾱ       Γ        α                H   Γ      β̄         Γ      β
+            + p α ᾱ log         W
+                                    + α log        W
+                                                           + p̄ β̄ β̄ log           + β log
+                              ᾱ                 α                           β̄ W              βB
+de Véricourt and Gurkan: better or worse                                                                               51
+
+We next show that EB [Rt ] > 0 and EW [Rt ] < 0. The terms inside the square brackets above are, in
+fact, the same as in (19). In the proof of Theorem 1, we prove that the sign of those terms are
+aligned with the true type of the machine. Thus, we focus on the following term.
+                                                                               H B
+                                                                               pᾱ α + p̄β H β̄ B
+                              H B                                                                
+            H Γ      H Γ        pᾱ ᾱ + p̄β H β B          H Γ     H Γ
+      ε (pᾱ ᾱ + p̄β β ) log                         + (pᾱ α + p̄β β̄ ) log
+                               pᾱH ᾱW + p̄β H β W                            pᾱH αW + p̄β H β̄ W
+
+In the proof of Proposition 1, we showed that the sign of the term inside the curly brackets above
+is aligned with the machine’s type. Since ε > 0, it does not change it. Hence, the DM’s belief
+converges to 1{Γ=B} in the no-interaction benchmark when the belief updating rule is as in (15).
+  No-Overriding Benchmark. In this case, the mean of the random jumps that govern the log-
+likelihood ratio process is given by
+                                                                                        B H
+                                                                                        pᾱ ᾱ + p̄β B β H
+                                    B H                                                                    
+     Γ           Γ H      Γ H          pᾱ α + p̄β B β̄ H            Γ H      Γ H
+   E [Rt ] =ε(pᾱ α + p̄β β̄ ) log                            + ε(pᾱ ᾱ + p̄β β ) log
+                                       pᾱW αH + p̄β W β̄ H                             pᾱW ᾱH + p̄β W β H
+                       B                  B
+                        α                    β̄
+            + pαΓ log         + p̄β̄ Γ log         .
+                        αW                   β̄ W
+
+We first consider Γ = B. If p ≥ pB , then we have the following inequality.
+                                          B               B
+                                     B     α          B     β̄
+                                 pα log      W
+                                                + p̄β̄ log       ≥0
+                                           α                β̄ W
+
+Using this, we obtain the following positive lower bound on EB [Rt ].
+                                                                                    B H
+                                                                                    pᾱ ᾱ + p̄β B β H
+                                   B H                                                                 
+    B           B H      B H        pᾱ α + p̄β B β̄ H           B H      B H
+  E [Rt ] ≥ε(pᾱ α + p̄β β̄ ) log                         + ε(pᾱ ᾱ + p̄β β ) log
+                                   pᾱW αH + p̄β W β̄ H                             pᾱW ᾱH + p̄β W β H
+                        B                  B 
+                           α                  β̄
+            + ε pαB log     W
+                                + p̄β̄ B log            > 0.
+                          α                   β̄ W
+This lower bound is positive because we obtain the KL-divergence as discussed in the proof of
+Proposition 1 when we use ε as the common factor.
+  If p < pB , then it follows that
+
+                                              αB                      β̄ B
+                                                                          
+                                            B                   B
+                                       pα log              + p̄β̄ log            < 0,
+                                              αW                      β̄ W
+                                                                                        B H
+                                                                                          pᾱ ᾱ + p̄β B β H
+                                                                                                            
+           B   H      B   H          pᾱB αH + p̄β B β̄ H          B H      B H
+       (pᾱ α + p̄β β̄ ) log                                 + (pᾱ ᾱ + p̄β β ) log                             > 0,
+                                    pᾱW αH + p̄β W β̄ H                                 pᾱW ᾱH + p̄β W β H
+                                                                                           B H
+                                                                                             pᾱ ᾱ + p̄β B β H
+                                      B H                                                                      
+                                         pᾱ α + p̄β B β̄ H
+         (pᾱB αH + p̄β B β̄ H ) log                           + (pᾱ B H
+                                                                       ᾱ + p̄β B H
+                                                                                 β  ) log
+                                        pᾱW αH + p̄β W β̄ H                                pᾱW ᾱH + p̄β W β H
+                      W                      W
+                       α                       β̄
+          > pαB log        B
+                                 + p̄β̄ B log
+                       α                        β̄ B
+Here, the first inequality is implied by the definition of pB . The second and third inequalities follow
+from the first inequality and the fact that the KL-divergence for the better machine is positive.
+52                                                                                                    de Véricourt and Gurkan: better or worse
+
+
+     Thus, we need to analyze how ε balances these two terms with opposing signs. In particular,
+a sufficiently high ε ensures that the positive term dominates the negative and hence EB [Rt ] > 0
+                      a.s.
+which implies bt −−→ 1. Similarly, a sufficiently low ε implies the opposite. These thresholds over ε
+depend on p. Consider the following break-even point of ε such that EB [Rt ] = 0.
+                                                          W                 W
+                                           pαB log ααB + p̄β̄ B log β̄β̄ B
+         εB ≜                             B H B H                                             B H B H                                       (98)
+              (pᾱB αH + p̄β B β̄ H ) log ppᾱᾱW ααH +p̄β β̄
+                                                          W
+                                                      +p̄β β̄ H + (pᾱ B ᾱH + p̄β B β H ) log  pᾱ ᾱ +p̄β β
+                                                                                                pᾱW ᾱH +p̄β W β H
+
+
+If p < pB and ε = εB , then EB [Rt ] = 0 and hence the log-likelihood ratio process Lt and the DM’s
+belief bt oscillates (as in the case of Theorem 2 for p = pB ). On the other hand, p < pB and ε < εB
+                       a.s.                                     a.s.
+(ε > εB ) imply bt −−→ 0 (and respectively bt −−→ 1). This break-even point εB is in (0, 1) for p < pB .
+     Next, we consider Γ = W. The same arguments with opposing signs and thresholds pW and εW
+follow where
+                                                                  B                          B
+                                                                    α                          β̄
+                                                     pαW log        αW
+                                                                               + p̄β̄ W log    β̄ W
+             W
+            ε ≜                                                                                                                       .     (99)
+                                                     pᾱB αH +p̄β B β̄ H                                           pᾱB ᾱH +p̄β B β H
+                   (pᾱB αH + p̄β B β̄ H ) log       pᾱW αH +p̄β W β̄ H
+                                                                               + (pᾱB ᾱH + p̄β B β H ) log       pᾱW ᾱH +p̄β W β H
+
+     The break-even point εW is in (0, 1) for p < pW .
+     Main Set-up. Indeed, the pairs of p and ε generate the cases that are analogous to Theorems 3-
+4. This is because, the DM always (regardless the value of ε) correctly learns the machine’s type
+Γ in the no-interaction benchmark. Yet, the belief might wrongly converge to zero or one in the
+no-overriding benchmark as discussed in the first two steps of this proof.
+     Note that, the DM’s decision rule in the main set-up in equation (6), and that of equation (15)
+are the same, specifically, P(Θt = A | StH = sH , StM = sM , bt−1 ) ≥ r. Thus, Lemma 1 characterizes the
+DM’s decision rule again.
+     Overall, when the machine is better, the DM correctly learns the machine’s type in the main set-
+up if p and ε values imply that the belief at the no-overriding benchmark converges to 1. Otherwise
+(more specifically p < pB and ε ≤ εB ), the DM’s belief is recurrent and oscillates as in the proof of
+Theorem 3.
+     Similarly, when the machine is worse, the DM correctly learns the machine’s type in the main
+set-up if p and ε values are p ≤ pW or ε ≥ εW such that the belief at the no-overriding benchmark
+converges to zero or oscillates. Otherwise (more specifically p > pW and ε < εW ), the DM’s belief in
+the main set-up converges to a Bernoulli random variable as in the proof of Theorem 4.                                                        Q.E.D.
+Recent ESMT Working Papers
+
+                                                                                    ESMT No.
+
+  Is your machine better than you? You may never know                              22-02 (R1)
+  Francis de Véricourt, ESMT Berlin
+  Huseyin Gurkan, ESMT Berlin
+
+  Decertification in quality-management standards by incrementally and radically     22-04
+  innovative organizations
+  Joseph A. Clougherty, University of Illinois at Urbana-Champaign
+  Michał Grajek, ESMT European School of Management and Technology
+
+  Do decision makers have subjective probabilities? An experimental test             22-03
+  David Ronayne, ESMT European School of Management and Technology
+  Roberto Veneziani, Queen Mary University of London
+  William R. Zame, University of California at Los Angeles
+
+  Is your machine better than you? You may never know                                22-02
+  Francis de Véricourt, ESMT Berlin
+  Huseyin Gurkan, ESMT Berlin
+
+  Mismanaging diagnostic accuracy under congestion                                   22-01
+  Mirko Kremer, Frankfurt School of Finance and Management
+  Francis de Véricourt, ESMT Berlin
+

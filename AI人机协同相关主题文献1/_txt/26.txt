@@ -1,0 +1,1079 @@
+SUPER MARIO MEETS AI: EXPERIMENTAL EFFECTS OF AUTOMATION AND
+       SKILLS ON TEAM PERFORMANCE AND COORDINATION
+                                   Fabrizio Dell’Acqua, Bruce Kogut, and Patryk Perkowski*
+
+Abstract—This article studies the effects of the introduction of artificial     tasks that feature human-machine interaction. Our goal is to
+intelligence (AI) into teams in a laboratory experiment. We randomly as-        measure both the direct team performance consequences of
+sign automated co-workers into “laboratory firms” who are playing a team-
+based game on the Nintendo Switch console. We demonstrate that even             automation, and also how it changes human co-worker be-
+in a task where AI outperforms humans, automation decreases overall             haviors and attitudes.
+team performance and increases coordination failures. These effects are            A rich literature in evolutionary economics (Nelson &
+especially large in the short-term and in low- and medium-skilled teams.
+Moreover, automation reduces team trust and individual effort provision.        Winter, 1982) and the organizational sciences (e.g., March &
+Our results support the implication that improving collaborative human-         Simon, 1958) has studied the use of routines in organizations
+machine teams is key to the positive transformation that AI may bring to        to coordinate the actions of their members. While automa-
+organizations.
+                                                                                tion may improve performance in tasks suited to machine
+                                                                                learning, we posit that their introduction presents a larger
+
+
+
+
+                                                                                                                                                           Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+                                                                                tradeoff by disrupting these routines. Additionally, we ex-
+                           I.    Introduction
+                                                                                plore the distributional consequences of introducing AI into
+                                                                                teams. A central concern in the recent economics literature
+A     RTIFICIAL intelligence (AI) is a toolkit of software al-
+      gorithms that is used for learning from data. These al-
+gorithms infer patterns in the data that permit predictions of
+                                                                                is the question of the impact of automation over the skill dis-
+                                                                                tribution. Many have speculated that AI-based automation
+complicated phenomena, classify people by the proximity of                      has skill-biased consequences in line with previous genera-
+their features in a multidimensional space, and improve on                      tions of information technology. However, there is little di-
+statistical precision when models are overfitted to the data.1                  rect evidence for this bias, as well as the mechanisms that are
+AI algorithms have many applications, from facial recogni-                      behind it.
+tion, assignment of articles to topics, and identifying defects                    Empirically studying these questions is difficult for a few
+in manufacturing, to enabling bots to respond to and query                      reasons. Estimating the causal effect of automation requires
+customers at call centers or through virtual assistants, for ex-                clean variation in the set of firms that adopt AI. However,
+ample, Amazon’s Alexa.                                                          technology adoption decisions are endogenous to firm char-
+   The introduction of AI into the workplace will have fun-                     acteristics, and the use of technology varies widely across
+damental implications for the internal organization of firms.                   industry, geography, and even within the same firm. For that
+Prior work has examined the types of jobs that are likely                       reason, nonexperimental approaches may suffer from omit-
+to be impacted by automation and the specific tasks where                       ted variable bias and simultaneity, making it difficult to dis-
+machine learning outperforms humans (Brynjolfsson et al.,                       entangle, for example, whether AI improves performance or
+2018; Felten et al., 2018; Webb, 2020). In this paper, we                       whether higher-performing organizations are more likely to
+take a complementary approach by studying the intraorgani-                      adopt AI. Even if we could obtain clean variation in the orga-
+zational impacts of automation in collaborative production                      nizations that adopt AI, we need to collect fine-grained data
+                                                                                before and after the intervention on team productivity and
+  Received for publication May 13, 2021. Revision accepted for publica-
+                                                                                potential mechanisms, such as team coordination.
+tion January 27, 2023. Editor: Shachar Kariv.                                      We circumvent these challenges by running a laboratory
+  ∗
+    Dell’Acqua: Harvard Business School; Kogut: Columbia Business               study with “experimental firms.” Our approach stems from
+School; Perkowski: Yeshiva University.
+  This research was kindly funded by The Sanford C. Bernstein & Co.
+                                                                                a rich tradition in experimental organizational economics
+Center for Leadership and Ethics at Columbia Business School and a fel-         that argues that we can advance our study of organizational
+lowship from the Columbia Business School Behavioral Research Lab. We           economics by creating highly reduced-form models of more
+thank Shreya Jha, Laurel Kim, and Valeria Viazmytynova for helpful re-          complex organizations (see Camerer & Weber, 2012 for an
+search assistance, and Ashley Culver and Yaritza Perez for setting up the
+experiment. For helpful feedback, we thank Ian Cockburn, Jeff Furman,           overview). Our experiment involves participants completing
+Don Green, Shane Greenstein, Jorge Guzman, Ebehi Iyoha, Megan Mac-              a group-based task from the “Super Mario Party” game on
+Garvie, Stephan Meier, Angela Ryu, Robert Seamans, and Dan Wang, and            the Nintendo Switch console.2 We grouped participants into
+for their comments on the paper, Maria Abascal, Jordi Colomer, Daniel
+Keum, Amit Khandelwal and Richard Nelson. Finally, we thank seminar             firms of four, consisting of two teams of two players each.
+participants at Columbia Business School and the NBER Productivity, In-         Teams must work together on a task that involves retrieving
+novation, and Entrepreneurship Program. We thank the editor and three           ingredients to complete recipes. Each recipe contains three
+anonymous referees, whose feedback greatly improved the paper. The ex-
+periment in this paper was approved by Columbia University IRB (IRB-            ingredients, and teams have one minute per round to col-
+AAAS5372) and preregistered with the AEA RCT Registry (AEARCTR-                 lect as many ingredients as possible. The task requires team
+0004382). All errors are our own.
+  A supplemental appendix is available online at https://doi.org/10.1162/
+rest_a_01328.                                                                    2
+                                                                                   Per Järvelä et al. (2014)’s recommendation regarding game quality, we
+  1
+    For an accessible introduction to the statistical basis of AI and machine   note that Super Mario Party has received good ratings from 7.3/10, IGN;
+learning, see Abu-Mostafa et al. (2012); James et al. (2013).                   76%, Metacritic; and 5/5, Common Sense Media.
+
+The Review of Economics and Statistics, July 2025, 107(4): 951–966
+© 2023 The President and Fellows of Harvard College and the Massachusetts Institute of Technology. Published under a Creative Commons Attribution 4.0
+International (CC BY 4.0) license.
+https://doi.org/10.1162/rest_a_01328
+952                                         THE REVIEW OF ECONOMICS AND STATISTICS
+
+coordination, communication, and strategic planning, and                   effort provision for players assigned to play with the auto-
+represents an abstract form of many real-world tasks in or-                mated agent. These results indicate that introduction of in-
+ganizations.                                                               telligent machines in firms is likely to have relevant and po-
+   The research lab design allows us to experimentally re-                 tentially detrimental consequences on culture and employee
+place human players with automated co-workers to study the                 motivation through their effects on human workers.
+effect of automation on team performance and behavior. The                    Finally, we explore the distributional consequences of au-
+“Super Mario Party” game has a built-in AI that outperforms                tomation in relation to the skill makeup of teams. Prior to
+the vast majority of human players. Halfway through game-                  the start of the experiment, we collected rich skills data
+play, we select a random subset of firms to receive the auto-              on all participants in the experiment. Our results indicate
+mated co-worker, and then a random worker within the labo-                 that the automation leads to large performance decreases in
+ratory firm to be replaced by the automated co-worker. This                low- and medium-skilled teams, while high-skilled teams re-
+substitution generates exogenous variation in (i) the firms                turn slightly more ingredients following automation. These
+that are automated, (ii) the team that receives the AI substi-             results indicate that the skills of teams are an important
+tution, and (iii) the specific human player who is substituted.            driver of the overall effects of automation, and they sug-
+
+
+
+
+                                                                                                                                             Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+We additionally included a control condition where a third                 gest that the routines used by high-skilled teams allowed
+of the teams remain the same, and a traditional turnover/new               them to more easily absorb the introduction of an automated
+hire condition for another third of the teams, where a ran-                agent.
+domly selected player was substituted by a human player                       Our paper contributes to the growing literature on the ef-
+from another firm. These experimental conditions allow us                  fects of artificial intelligence on jobs and workplace tasks.
+to test not only the causal effect of automation but also the              Prior work in this line of research has generated predictions
+extent to which automation differs from traditional employee               about the types of jobs that are likely to be impacted by arti-
+turnover.                                                                  ficial intelligence from the task content of jobs (Frey & Os-
+   We classify our results as related to three literatures: the            borne, 2017; Brynjolfsson et al., 2018; Felten et al., 2018;
+effect of automation on productivity and coordination within               Webb, 2020). A central focus in this research stream has
+teams, peer effects in the workplace, and automation and                   been the technical suitability of tasks for machine learning
+skill bias. The primary experimental results concern the im-               (i.e., understanding the types of tasks where AI can outper-
+pact of automation on team productivity. The results indicate              form humans given technological progress and the state of
+that the introduction of a high-performing automated player                machine learning). Our paper contributes to this literature
+reduces team performance, as these firms return fewer ingre-               by directing attention toward the organizational aspects of
+dients. These effects are especially strong in the round fol-              work and highlighting how automation may adversely im-
+lowing automation and remain present until the final round                 pact team coordination. In our setting, automated agents out-
+of play. The experimental design allows us to decompose                    perform human ones when they play in isolation, but re-
+this aggregate performance change into its team-component                  placing a human player with an automated one decreases
+parts. We find that automation decreases performance not                   team performance and increases the difficulty of team
+only in teams that receive the automated agent, but also in                coordination.
+teams (housed in the same laboratory firm) who do not re-                     Second, our paper contributes to the literature on peer
+ceive an automated agent.                                                  effects in the workplace but in the context of the effects
+   Moreover, we test for how well teams coordinate among                   of AI on worker productivity and behavior. Overall, re-
+their members.3 The productivity of teams in our task is                   search has found that worker productivity is influenced by
+highly dependent upon the ability of members to coordi-                    the productivity of peers (Mas & Moretti, 2009; Falk &
+nate their actions efficiently. An innovative contribution of              Ichino, 2006; Jackson & Bruegmann, 2009; De Grip &
+the study is the measure of coordination that directly af-                 Sauermann, 2012), especially by higher-productivity peers
+fects team performance. Research assistants watched videos                 (Mas & Moretti, 2009). Our paper examines peer effects
+of gameplay and coded the number of times players bumped                   with automated co-workers rather than human ones. Our re-
+into one another as our measure of coordination failures. Our              sults show that participants randomly assigned to work with
+results show that automation leads to a sharp increase in co-              a (high-productivity) AI report less effort, suggesting that
+ordination failures between humans and AI, particularly in                 the introduction of automated co-workers may have impor-
+the short-term.                                                            tant motivational consequences on the human workers that
+   Our second set of results concern peer effects, and                     remain.
+whether automation led to changes in the beliefs and behav-                   Lastly, our paper contributes to the literature on automa-
+iors of human co-workers. Survey responses following the                   tion and skill-bias by providing microlevel experimental ev-
+experiment revealed that, despite no change in financial in-               idence that the impacts of automation depend on the skills
+centives, automation led to a decrease in team trust and lower             of workers. Previous work has theorized that automation is
+                                                                           skill-biased, like previous technologies such as the Internet
+ 3
+   Cohen and Bacdayan (1994) show through an innovative card game that     and computing (see Goldin & Katz, 1998), and it increases
+pairs of players develop heuristic routines to guide their coordination.   labor demand toward more highly skilled workers relative
+                                                       SUPER MARIO MEETS AI                                                                      953
+
+to the less skilled ones (Acemoglu & Restrepo, 2020b).4                    new (human) hires can be compared. Moreover, as we have
+In our setting, we find that low- and middle-skilled teams                 observations on individual skills and team performance, we
+perform worse following the introduction of an automated                   are able to analyze both skills and team contributions.
+agent, while high-skilled teams are more successful in in-                    Before we discuss the details of our experimental design
+tegrating their automated co-workers. Such causal evidence                 further, two points are warranted. First, lab experiments are
+is rare in the literature, and is very relevant given the broad            popular tools to study a wide range of organizational is-
+implications that AI will have for firms and labor markets                 sues. These experiments require researchers to create skele-
+moving forward.                                                            tal models of more complex organizations. While lab ex-
+   The remainder of the paper proceeds as follows. Section II              periments cannot capture all of the richness of modern-day
+describes our pre-registered experiment, while section III                 firms, they provide a natural training ground to test and re-
+presents our empirical strategy. Section IV covers the results,            fine theories (Camerer & Weber, 2012), and they “can help
+section V provides a broader discussion of the findings, and               get a handle on the basic processes underlying [real-world]
+section VI concludes on the societal implications of the cen-              phenomena” (Weber & Camerer, 2003). Moreover, lab ex-
+tral findings.                                                             periments are better suited to study mechanisms that can
+
+
+
+
+                                                                                                                                                         Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+                                                                           help create more generalizable knowledge occurring within
+                                                                           organizational processes. By allowing researchers to ma-
+                   II.    Experimental Design
+                                                                           nipulate key variables of interest systematically, lab exper-
+   The foundational design of the experiment used in our                   iments provide a natural training ground to test theories re-
+paper draws upon the behavioral economics studies by We-                   garding organizations.
+ber and Camerer (2003) and Camerer and Weber (2008) on                        A second aspect of the experiment that deserves comment
+growing culture in a firm, and its further elaboration by Rick             is the use of video games. While research using video games
+et al. (2007) on tacit knowledge. Common to these studies                  faces the criticism of running “the risk of appearing frivolous
+is an initial phase of play to allow teams to learn to coordi-             and less serious than other types of laboratory research,”
+nate and acquire a language or more broadly tacit knowledge                video games tend to be more cognitively demanding and
+held commonly among its members, followed by a second                      motivating; they require more coordination, communication,
+phase of play that disrupts these cultures and tacit routines              and strategic planning than traditional experimental tasks
+by merging separate teams to cooperate on the same task. In                (Washburn, 2003, p. 187ff). Moreover, video games provide
+particular, in Rick et al. (2007)’s study, teams of four com-              a natural testing group for experimenting with artificial in-
+plete a picture-naming task that requires participants to order            telligence. As computer scientists Georgios Yannakakis and
+pictures in the proper order. One member of the group (the                 Julian Togelius argue in their 2018 book, “games provide
+“manager”) has the correct order of pictures and must con-                 the best benchmarks for AI because of the way they are de-
+vey information to other team members so they identify pic-                signed to challenge many different human cognitive abilities,
+tures in the right order in the shortest amount of time. In the            as well as for their technical convenience and the availabil-
+tacit-intensive condition, the player with the correct order of            ity of human data” (Yannakakis & Togelius, 2018, p. xiii). In
+pictures remains the same throughout all rounds, allowing                  particular, the video game used in this experiment resembles
+the team to develop the know-how to complete the task. In                  coordination tasks that occur in organizations, and it allows
+the tacit-restricted condition, players alternate as the “man-             us to compare the performance of human versus automated
+ager” in each round, which interferes with the team’s ability              agents.5
+to coordinate using tacit knowledge.
+   In the experiment that we designed, we adopt the same
+structure of one phase for learning (in our experiment, Phase              A.   Task
+2), followed by a phase that introduces the treatments of in-
+                                                                              We grouped participants into experimental firms of four
+terest (in our experiment, Phase 3). In our case, Phase 2 con-
+                                                                           players each and tasked them with playing a team-based
+sists of two two-people teams that constitute a firm located in
+                                                                           minigame using the “Super Mario Party” game on the Nin-
+a room with a large screen that displays a Super Mario game.
+                                                                           tendo Switch console. “Super Mario Party” is a multiplayer
+Each of the two teams is colocated and plays simultaneously,
+                                                                           game with 80 free-for-all and team-based minigames that
+with incentives pegged to organizational performance, that
+                                                                           has sold over 18 million units as of December 2022.6 We
+is, the productivity of both teams. We also hold out a third
+                                                                           randomly assigned each participant to one of four “Super
+of the teams throughout both phases of play without further
+                                                                           Mario Party” game characters (Mario, Peach, Luigi, and
+treatment; these teams are high in tacit knowledge and pro-
+                                                                           Daisy), which do not vary in their skills or tasks.
+vide a benchmark against which the AI teams and teams with
+  4
+    For empirical evidence at the macroeconomic level, see Graetz and
+                                                                             5
+Michaels (2018) and Acemoglu and Restrepo (2020a). Meanwhile, the              Another relevant study is that of Englmaier et al. (2024), who use a
+engineering and organizational literature has been more oriented towards   real-life escape game to study the impact of different incentive structures
+complementarities achieved through human and robotic interactions. For     on joint team performance in a nonroutine analytical task.
+                                                                             6
+recent examples, see the studies by Hsieh et al. (2020) and Ju (2015).         https://www.nintendo.co.jp/ir/en/finance/software/index.html
+954                                          THE REVIEW OF ECONOMICS AND STATISTICS
+
+   Our experimental task focused on the “Dash and Dine”                       distance to the lettuce), and executes this action (for exam-
+minigame. In the task, each group of four is subdivided into                  ple, retrieving the lettuce). We selected the most-skilled au-
+two teams of two players each. Participants must work with                    tomated agent out of the three available options on the game
+their assigned partner to compile ingredients to complete                     (i.e., the computer difficulty level of “very hard”). Important
+recipes. The ingredients for each recipe are listed on the top                for our purposes is that the automated agent in this game
+of each team’s side, and participants must retrieve these in-                 is high-skilled, and in fact outperforms humans. In figure 1,
+gredients from the three tables at the bottom of the screen.                  we display a kernel density plot of performance for humans
+Each completed recipe is worth one point, and players have                    versus automated agents. The automated agent returns on av-
+one minute to complete as many recipes as possible. Fig-                      erage 18% more ingredients per round than human players
+ure A3 shows a screen shot from actual gameplay. Mario                        (7.5 ingredients for automated agents versus 6.4 ingredients
+and Peach are on the left team and must retrieve two toma-                    for humans). This is also true throughout the vast majority of
+toes and one lettuce to complete their recipe. Meanwhile,                     the productivity distribution. In appendix A.4, we show that
+Luigi and Daisy are on the right team and must retrieve one                   the worst performance observed for the automated agent is
+lettuce and two tomatoes to complete their recipe. Players                    better than almost 30% of human players, while less than 3%
+
+
+
+
+                                                                                                                                                   Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+cannot return ingredients to the other team’s table or hand                   of humans outperform the best automated agent.
+ingredients to other players.                                                    Third, the task allows us to collect rich data at the firm,
+   Participants played the game using the controllers dis-                    team, and individual level. In terms of performance data, we
+played in appendix A.1. This required them to use their left                  observe in each round the total number of ingredients col-
+thumb to toggle a joystick to move their character around the                 lected by (i) the firm, (ii) each team, and (iii) each player.
+map, and their right thumb to press a button that picked up                   This allows us to study the effects of automation and firm
+and dropped off the ingredients. No prior experience with                     and team productivity, and individual contributions to firm
+the gaming system was necessary, and an informal survey                       and team productivity. Moreover, we supplement our pro-
+of participants revealed that the majority of participants had                ductivity measures with data on coordination failures (ob-
+no prior experience with the game. While all were able to                     tained by recording the screens visible to participants) and
+easily learn the controls following the first phase of the ex-                player attitudes (through surveys in the middle and at the
+periment, we tested for and found variation in players’ initial               end of the task).
+skills prior to the start of the team-level experiment.
+   The “Dash and Dine” mini-game has three attractive
+                                                                              B.   Experimental Structure
+features for the purposes of this study. First, the task
+is coordination-based and requires both within-team and                          The experiment took place in the Behavioral Research
+across-team (within-firm) cooperation for success. Each                       Lab at Columbia Business School. Each session occurred in
+player must work with not only their assigned partner (to                     three phases and lasted between 45 min. and 1 hr. Figure A4
+collect ingredients to complete their team’s recipes) but also                displays the general structure of the experiment.
+members of the other team (to navigate through the map                           In the first phase of the experiment, each player completed
+without bumping into one another). Our financial bonus (de-                   four minigames from the Super Mario Party game.8 We in-
+scribed in detail below) incentivized participants to maxi-                   cluded this phase for two reasons. First, it allowed partici-
+mize total firm output (the number of ingredients returned                    pants to get familiar with the Nintendo Switch console and
+by both teams on average), not just team output (number of                    controller prior to the start of the team task. Second, and
+ingredients returned by each team). Overall, the task cap-                    more importantly, rather than rely on self-reported measures
+tures the coordination and social skills required in real-world               of prior experience with the console, we collected a direct
+teams, as it requires interdependent members to integrate                     measure of each participants’ general skills in the game. We
+their knowledge and actions in order to achieve a common                      selected a mix of games that span visual, perceptive, and mo-
+goal.7                                                                        tor skills, and we created a normalized index of performance
+   Second, the game includes a high-performing automated                      in these games to use as a control in all of our regressions
+agent that can easily replace a player. While the algorithm’s                 given its strong prognostic ability in predicting performance
+details are proprietary information, this game’s automated                    in the team task.
+agent is designed to coordinate with its partner to maximize                     Prior to the start of the second phase, we randomized par-
+the total number of ingredients it returns. The automated                     ticipants into one of the two team types. In some firms, par-
+agent does many of the same actions required by humans                        ticipants played with the same partner for all rounds, while
+in this game: it retrieves information from the environment                   in others they alternated partners (see section IIC for addi-
+(for example, seeing that their partner is heading toward a                   tional details). Phase 2 then consisted of six rounds of the
+tomato and that the final remaining item to complete the                      “Dash and Dine” game. Following the sixth round, partici-
+recipe is lettuce), evaluates this information to make a plan                 pants completed a survey on team communication, trust, and
+of action (for example, selecting the route with the smallest                 effort (see appendix A.2 for the survey questions).
+
+  7                                                                            8
+    Recent work documents that social skills are necessary for working well      The games were Candy Shakedown, Barreling Along, Precision Gar-
+in a team (see, e.g., Deming, 2017, and Weidmann & Deming, 2021).             dening, and Follow the Money.
+                                                                              SUPER MARIO MEETS AI                                                                                                     955
+
+                                                         FIGURE 1.—KERNEL DENSITY PLOT OF PERFORMANCE: AI VS HUMANS
+
+
+
+
+                                                                                                                                                                                                                 Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+This figure displays a kernel density plot of performance for human versus automated agents. The data on AI come from 50 simulations of gameplay without any humans, which lets us observe how the AI would
+perform in isolation from humans. Meanwhile, the data on human performance come from round 6 of our experiment, the last round of human play before automated agents are introduced. We exclude the first five
+rounds (where the performance differentials are even larger) to ensure we are capturing human performance and not game inexperience.
+
+
+
+   Prior to the start of the third phase, we randomized teams                                            C.      Experimental Manipulations
+into one of the three organizational changes. These included
+an automation condition, a new hire condition, and a control                                                Our experiment followed a 2 × 3 factorial design where
+condition, which we further describe in section IIC. Partici-                                            we manipulated team type (two treatment arms) and orga-
+pants then completed another six rounds of the “Dash and                                                 nizational change (three treatment arms). We describe each
+Dine” game. Following the 12th round, participants com-                                                  manipulation below.
+pleted a second survey, which contained questions on trust,
+effort, and AI attitudes (see appendix A.3 for the survey                                                   Team type. We first randomly assigned each group of
+questions).                                                                                              participants into one of two team types prior to the start of
+   As noted above, we recorded the game screen and player                                                Phase 2. We display these manipulations in the top half of
+interactions throughout Phases 2 and 3. This allowed us to                                               figure 2. While each firm contained four players and each
+capture team scores, individual scores, and coordination fail-                                           player played six rounds, we manipulated whether the par-
+ures for each round. Panel A of table 1 displays descriptive                                             ticipants played with the same partner or a different partner
+statistics at the participant-level, while panel B of table 1 dis-                                       from their firm in each round. In the tacit (same-partner)
+plays them at the team-level. Our final sample contains 220                                              condition, each player was randomly assigned a partner
+participants, split across 55 firms (or 110 teams). Given each                                           from their firm in round 1 and played with this partner
+team completed twelve rounds of gameplay, our dataset con-                                               for six rounds. In the explicit (different-partner) condition,
+tains 1,320 observations at the team-round level (110 teams                                              players in the firm alternated partners every round. For
+* 12 rounds).                                                                                            example, the player denoted by the black circle in figure 2
+   Finally, we incentivized participants by tying their perfor-                                          played with the dark gray player in round 1, the light gray
+mance to actual pay-offs at the firm level. Each participant                                             player in round 2, the white player in round 3, and then
+i ∈ {1, 2, 3, 4} in firm f received a total payout of Pi, f =                                            back to the dark gray player in round 4. Otherwise, players
+         12     Y f ,r
+
+$5 + r=112 2 , where r indexes rounds, and Y f ,r measures                                               in both conditions played six rounds of the game with the
+the total number of recipes returned by firm f in round r.                                               same overall firm of four players.
+This payment includes a $5 show-up fee plus a bonus based                                                   Our goal with the team type manipulation was to induce
+on their firm’s average performance in each team across all                                              differences in the opportunity for our laboratory firms to
+twelve rounds. We tied the financial bonus to performance at                                             form tacit knowledge and organizational routines. The
+the organizational level to incentivize cooperation between                                              organizational learning literature has found that the devel-
+all four members of the organization.9                                                                   opment of team routines depends on interactions between
+                                                                                                         members that are both repeated and near-identical (Cohen
+                                                                                                         & Bacdayan, 1994; Gersick & Hackman, 1990). Repetition
+  9
+    Pretesting revealed that incentives at the team level increased competi-                             enhances shared knowledge among team members, thereby
+tion between teams within the same firm and led some participants to block
+players in the other team. Incentives at the organizational level supported                              improving coordination. Our manipulation of randomizing
+cooperation between participants.                                                                        whether participants retain partners or switch alters task
+956                                                              THE REVIEW OF ECONOMICS AND STATISTICS
+
+                                                                                     TABLE 1.—DESCRIPTIVE STATISTICS
+  Panel A: Participant-level
+
+                                                    Mean                  Std.Dev                   Min                   P25                  Median                   P75                  Max                    N
+  Skills
+   Game 1                                            38.30                  21.94                   13.52                 23.48                 30.73                  45.44                99.99                  220
+   Game 2                                            37.44                  10.59                   25.72                 30.65                 34.31                  40.31                99.99                  220
+   Game 3                                            16.15                   1.95                   13.35                 14.79                 15.63                  17.00                24.90                  220
+   Game 4                                            18.37                   9.67                    0.00                 11.50                 18.00                  25.00                51.00                  220
+  Panel B: Team-level
+                                                    Mean                  Std.Dev                   Min                   P25                  Median                   P75                  Max                    N
+  Performance outcomes
+   Ingredients returned                              12.41                   2.75                    3.00                 11.00                 12.00                  14.00                21.00                1320
+   Recipes completed                                  3.83                   0.97                    1.00                  3.00                  4.00                   4.00                 7.00                1320
+   Coordination failures                              6.66                   4.00                    0.00                  4.00                  6.00                  10.00                26.00                1272
+
+
+
+
+                                                                                                                                                                                                                               Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+  Other variables
+   Round difficulty, z-score                        −0.00                    1.00                  −2.12                 −0.66                    0.05                   0.60                 2.07               1320
+   Team skill, z-score                               0.03                    0.68                  −2.11                 −0.41                    0.13                   0.53                 1.29               1320
+  This table displays descriptive statistics for our sample. Panel A displays descriptive statistics at the participant-level (from Phase 1 of the experiment), while panel B displays them at the team-level (from Phases 2
+and 3 of the experiment).
+
+
+                                                                               FIGURE 2.—EXPERIMENTAL MANIPULATIONS
+
+
+
+
+This figure outlines the experimental conditions and round structure.
+
+
+similarity between rounds and, consequently, the opportu-                                                       tion, we selected a player at random and replaced them with
+nity to accrue tacit knowledge required for the formation of                                                    another human player. The “new hires” completed Phases 1
+routines (Rick et al., 2007).                                                                                   and 2 at the same time but in a separate room. This was done
+   We included three questions in our Phase 2 survey to mea-                                                    to ensure that the “new hires” had the same experience with
+sure the extent to which teams coordinate their actions using                                                   the game, so the only difference would be that they are now
+explicit knowledge concerning trust, individual effort, and                                                     completing the task with a different firm. This also allowed
+attitudes toward AI.                                                                                            us to collect skills data for these players before they joined
+                                                                                                                a new firm.11 Finally, in the “no change” condition, we kept
+   Organizational change. We also assigned each firm to
+                                                                                                                the firm the same as in Phase 2—those in the tacit condition
+one of three organizational change conditions prior to the                                                      continued to play with the same partner, while those in the
+start of Phase 3. We display this manipulation in the bottom
+half of figure 2. In the “automation” condition, we selected
+a player at random and replaced them with the automated                                                         who replaced the laid-off player received the same financial incentives
+                                                                                                                as all other players to limit prosocial concerns discussed in Brown et al.
+agent described in section IIA.10 In the “new hire” condi-                                                      (2015).
+                                                                                                                  11
+                                                                                                                     The “new hires” on average have the same performance on the skills
+  10
+     The laid-off player received the show-up fee and performance bonus                                         task in Phase 1 as do the automated agents (0.37 for the AI versus 0.33 for
+for Phase 2, and then left the room prior to the start of round 7. The player                                   the new hires).
+                                                           SUPER MARIO MEETS AI                                                                    957
+
+explicit condition continued to alternate partners as in the                    and t, f ,r is the error term. β1 captures the effect of automa-
+first six rounds.                                                               tion, while β2 captures the effect of hiring a new employer
+                                                                                on team performance. We can estimate treatment effects by
+                      III.    Empirical Strategy
+                                                                                the team-structure condition by running equation (2) for the
+                                                                                tacit and explicit groups separately, or we can estimate the
+   Our design allows us to measure numerous treatment ef-                       overall treatment effect across both team types by pooling
+fects from both our team type and organizational change ma-                     both conditions and including SamePartner f in the vector
+nipulations. We describe each below.                                            of controls χt . We estimate equation (2) using robust stan-
+                                                                                dard errors clustered at the firm level.
+A.     Impact of the Team Type Manipulation
+  To estimate the effects of the team type manipulation, we                        Direct and spillover effects. We can also decompose the
+run the following regression:                                                   total effect of automation into its component parts. Each firm
+                                                                                consists of two teams, and only one team receives the auto-
+     yt, f ,r = α0 + α1 ∗ SamePartner f + θr + χt + t, f ,r , (1)
+
+
+
+
+                                                                                                                                                           Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+                                                                                mated agent. This allows us to estimate both the direct effect
+where t indexes teams of two, f indexes firms of four (two                      of automation (the effect on teams who receive an automated
+teams per firm), and r indexes rounds. SamePartner f is a                       agent) and the spillover effect (the effect on teams who do
+binary indicator that equals 1 if firm f was assigned to the                    not receive the automated agent but are in a firm where the
+same-partner (tacit) condition and 0 if they were assigned                      other team received the automated agent). By construction,
+to the different-partner (explicit) condition. θr is a vector of                the average total effect of automation is the average of the
+round fixed effects, χt is a set of team control variables,12                   direct and spillover effects.
+and t, f ,r is the error term. α1 captures the effect of the                      To estimate these effects, we replace the variables AI f
+tacit manipulation on performance. We estimate equation (1)                     and NewHire f in equation (2) with variables AIt,Direct
+                                                                                                                                      f    and
+using robust standard errors that are clustered at the firm                     AIt,S pillover
+                                                                                      f        , and NewHiret,Direct
+                                                                                                               f     and NewHiret,S pillover
+                                                                                                                                    f        , respec-
+level.13                                                                                      Direct
+                                                                                tively. AIt, f is a binary indicator equal to 1 if team t in firm
+                                                                                 f has an automated agent on it and firm f was assigned to the
+B.     Impact of the Organizational Change Manipulation                         automation condition, and 0 otherwise. AIt,S pillover
+                                                                                                                               f          is a binary
+                                                                                indicator that equals 1 if team t in firm f does not have an
+   Total effect. Our design allows us to estimate the total                     automated agent in it, but firm f was assigned to the automa-
+effect of the organizational change on firm performance,                        tion condition, and 0 otherwise. We define NewHiret,Direct         f
+which is the difference in performance for firms of four as-
+signed to various organizational changes. To do so, we run                      and NewHiret,S pillover
+                                                                                                f       similarly. The regression we run to test
+the following regression at the team level:14                                   for direct and spillover effects is thus
+
+     yt, f ,r = β0 + β1 ∗ AI f + β2 ∗ NewHire f
+                                                                                  yt, f ,r = α0 + α1 ∗ AIt,Direct
+                                                                                                            f     + α2 ∗ AIt,S pillover
+                                                                                                                               f
+             + θr + χt + t, f ,r ,                                      (2)
+                                                                                            + α3 ∗ NewHiret,Direct
+                                                                                                             f     + α4 ∗ NewHiret,S pillover
+                                                                                                                                     f
+where t indexes teams of two, f indexes firms of four, and
+r indexes rounds. AI f is a binary indicator that equals 1 if                               + θr + χt + t, f ,r .                                  (3)
+firm f was assigned to the AI organizational change condi-
+tion, and 0 otherwise, while NewHire f is a binary indicator                       In equation (3), α1 captures the effect of automation on
+that equals 1 if firm f was assigned to the new hire organi-                    the pair that includes an automated agent, while α2 captures
+zational change condition, and 0 otherwise. θr is a vector of                   the effect of automation on the pair that does not include an
+round fixed effects, χt is a set of team control variables,15                   automated agent but needs to coordinate with the pair that
+                                                                                includes the automated agent. Meanwhile, α3 captures the
+  12
+     Although our skills data from Phase 1 are collected at the individual      effect of turnover on the pair that receives a new hire, while
+level, we estimate equation (1) at the team-level. This requires that we        α4 captures the effect of turnover on the pair that does not
+aggregate the individual skills data from four minigames to the team-level.
+To do so, we create a z-score of average performance on each of these four      receive a new hire but needs to coordinate with the new hire.
+games per player, and then we control for the average and minimum skill         As in equation (2), we can estimate these effects across our
+of each team in our regressions.                                                two team types or pool them, and we use robust standard
+  13
+     We cluster at the firm level because that is the level of random assign-
+ment (Abadie et al., 2023).                                                     errors clustered at the firm level.
+  14
+     Since each firm contains two teams, the firm-level impact of the or-
+ganizational change is twice the average team-level treatment effect. We
+could theoretically estimate these treatment effects at the firm-level, but
+this reduces statistical precision in our estimates.
+  15
+     χt contains the same controls as in equation (1) plus average pair per-    ganizational change condition and is highly prognostic of performance in
+formance in Phase 2 since this is prior to random assignment of the or-         Phase 3 (Gerber & Green, 2012, chap. 4).
+958                                                             THE REVIEW OF ECONOMICS AND STATISTICS
+
+                    FIGURE 3.—CUMULATIVE PERFORMANCE PLOTS                                                  tacit condition begin to outperform those in the explicit con-
+                                                                                                            dition.16 We attribute this to the development of tacit knowl-
+                                                                                                            edge (Weber & Camerer, 2003; Rick et al., 2007) and or-
+                                                                                                            ganizational routines (Cohen & Bacdayan, 1994). Firms in
+                                                                                                            this condition provide one counterfactual that we will use to
+                                                                                                            examine the effects of automation.
+                                                                                                               We next compare the aggregate impact of automation and
+                                                                                                            new hires on team performance. Panel B of figure 3 plots
+                                                                                                            differences in ingredients returned between AI and new hire
+                                                                                                            firms compared to control firms across all twelve rounds in
+                                                                                                            the experiment. The dashed line between rounds 6 and 7
+                                                                                                            signifies when the organizational change manipulation oc-
+                                                                                                            curred. If randomization were successful, we would not ob-
+                                                                                                            serve differences between AI and new hire groups relative to
+
+
+
+
+                                                                                                                                                                                           Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+                                                                                                            the control prior to round 7. This is indeed what we see, sug-
+                                                                                                            gesting that assignment into the AI and new hire conditions
+                                                                                                            was independent of performance in Phase 2.17 Nonethe-
+                                                                                                            less, in order to ensure that prerandomization differences
+                                                                                                            do not drive our AI results, we control for average Phase 2
+                                                                                                            (rounds 1–6) performance when estimating treatment effects
+                                                                                                            in Phase 3 (rounds 7–12). This additionally greatly reduces
+                                                                                                            noise in our estimates given Phase 2 performance is highly
+                                                                                                            prognostic of Phase 3 performance (and was measured prior
+                                                                                                            to randomization).
+                                                                                                               The results in figure 3 show that introducing an auto-
+                                                                                                            mated agent reduced overall team performance, although,
+                                                                                                            as discussed above, these automated agents outperform hu-
+                                                                                                            mans throughout the productivity distribution. We find that
+                                                                                                            six rounds after the introduction of AI, these teams returned
+                                                                                                            three fewer ingredients in total compared to the control team.
+                                                                                                            Additionally, these results were significant for our partici-
+                                                                                                            pants, as they led to an average decrease in their performance
+                                                                                                            pay compensation bonus of about 13% for the AI group.
+                                                                                                               As a guide to interpreting the average effects estimated
+                                                                                                            in the regressions discussed next, these plots lead to an im-
+                                                                                                            portant inference about the control group’s characteristics.
+This figure displays cumulative ingredients by condition. Figure 3a compares performance in tacit vs
+explicit teams in the control group. The data come from a regression of performance on round and
+                                                                                                            In comparison to our baseline group that did not incur a dis-
+tacit/explicit interactions, and Phase 2 controls. Figure 3a plots the cumulative ingredients by round by   ruption to the accrual of tacit knowledge and routines, firms
+summing all of the rounds up to and including that round. Figure 3b compares the difference in perfor-
+mance between automation and new hire teams (relative to the control). The data come from two regres-       in the Phase 3 condition of replacing a team member (by
+sions of performance on interactions between round and automation/new hire indicators, using the same
+linear combination strategy as in figure 3a.                                                                an AI agent or by a new hire) on average performed worse
+                                                                                                            than firms that were not treated by organizational change.
+                                                                                                            As a result, the average effects of organizational change (the
+                                        IV.        Results
+                                                                                                            treatment) is always negative. These plots supply a verifica-
+                                                                                                            tion that the firms had learned to coordinate over the first
+A.      Impacts on Team Performance and Coordination
+                                                                                                            six rounds that were sustained in the control group through
+                                                                                                            Phase 3.
+   We begin by examining the performance over time of
+firms in the control condition. As discussed earlier, after                                                   16
+                                                                                                                 If we compare performance only in Phase 3 (the final six rounds), teams
+Phase 2, we held out one-third of the experimental firms that                                               in the tacit condition outperform those in the control condition (p = 0.07).
+did not incur a disruption to the accrual of tacit knowledge                                                To obtain this p-value, we limited our sample to control (non-AI, non-new
+and routines developed in the first six rounds. We examine                                                  hire) units in Phase 3, and we ran a regression of total ingredients on the
+                                                                                                            tacit identifier, our vector of Phase 3 controls, and round indicators, with
+their performance in panel A of figure 3. The figure breaks                                                 robust standard errors clustered at the team level.
+out control firms by their team type condition. Those in the                                                  17
+                                                                                                                 One slight exception is round 6, where the new hire condition slightly
+tacit condition played with the same partner every round,                                                   outperforms the control group. However, with twelve overall comparisons
+                                                                                                            (AI versus control and new hire versus control, for six rounds each), we
+while those in the explicit condition switched partners every                                               would expect that around 1.2 (= 0.10 ∗ 12) comparisons would return a
+round. The figure illustrates that as time goes on, firms in the                                            p-value of p < 0.10 by random chance.
+                                                              SUPER MARIO MEETS AI                                                                             959
+
+   Impact of AI on performance: direct and spillover effects.                          Our experimental design allows us to decompose the ag-
+Table 2 examines the effect of automation and new hires on                          gregate firm performance change into its component parts.
+the total number of ingredients returned per round. Columns                         Recall that each firm consists of two teams, and only one
+1–4 display the results of equation (2) while columns 5–8                           of the teams in the firm receives an automated agent that
+display the results of equation (3). These regressions pool                         replaces a human. We refer to this team as the “AI direct ef-
+both team type manipulations by including a binary indica-                          fect” and the nonchanged team as the “AI spillover effect.”
+tor for assignment to the tacit condition, so the coefficient                       Columns 5–8 of table 2 examine which team is responsi-
+returned on AI and new hire represents a weighted average                           ble for the change in firm performance. Column 5 illustrates
+of the treatment effects across both team types.18 We display                       that across Phase 3, the change in firm performance is driven
+the effect across all six rounds in Phase 3 in columns 1 and                        by teams that receive an automated agent who retrieves on
+5, and then break up the effect across various rounds in the                        average 0.80 fewer ingredients per round. In the immediate
+remaining columns. Columns 2 and 6 examine the impact in                            term, however, firm performance decreases in both directly
+the short-term (round 7, the round right after the organiza-                        affected teams and spillover teams (column 6). In fact, each
+tional manipulation), columns 3 and 7 in the medium-term                            of these teams contributes an equal share to the firm’s per-
+
+
+
+
+                                                                                                                                                                       Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+(rounds 8–11), and columns 4 and 8 in the final round of the                        formance decrease.19 This suggests a peculiarity of the be-
+task.                                                                               havioral response to AI, as the initial disruption affects the
+   The results in table 2 indicate that the introduction of                         spillover team, while this does not happen when a new hu-
+high-performing automated agents decreased firm perfor-                             man hire is introduced. Performance in the spillover teams
+mance. Across all six rounds in Phase 3, teams in firms as-                         rebounds quickly and is not different from control teams in
+signed to the AI condition returned 0.51 fewer ingredients                          rounds 8–11 (column 7). However, the team with an auto-
+on average per round (column 1). Each firm in our exper-                            mated agent experiences a more prolonged period of lower
+iment consisted of two teams, so firms assigned to the au-                          performance, as the coefficient only decreases by less than
+tomation condition returned on average 6.12 (=2 teams *                             half from round 7 to round 12.
+0.51 ingredients * 6 rounds) fewer ingredients in total than                           Our previous discussion estimates the impact of automa-
+those in the control group. This performance difference had                         tion relative to a control group that experiences no change in
+a meaningful impact on financial payoffs, as the bonus tied                         its members or structure. This comparison may conflate the
+to performance was 13% lower.                                                       effect of automation with the effects of any organizational
+   This average effect of automation conceals important het-                        change to the experimental firm. To more fully understand
+erogeneity across time. Table 2 indicates that the negative                         how automation is unique in this regard, we can compare the
+effect of automation was highest in the round following the                         point estimates of automation versus those of a common or-
+introduction. Column 2 in table 2 shows that teams in firms                         ganizational change: traditional (human) turnover. The bot-
+assigned to the AI condition returned one fewer ingredient                          tom of table 2 contains p-values from these tests across each
+on average in round 7. This effect is economically mean-                            column. The results indicate that both automation and in-
+ingful: it represents an almost 8% (= 1.01/13.3) decrease                           troducing a new human hire led to inferior performance in
+in ingredients returned relative to the control mean in round                       the firm when compared to the control condition. This is in
+7. This negative performance effect for the teams assigned to                       line with our expectations, as the control condition has built
+the AI condition shrinks by half across rounds 8–11 (column                         organizational routines and tacit knowledge, which are not
+3) but is still statistically significant at conventional levels. In                disrupted by the introduction of a new (either human or auto-
+the medium term, firms assigned to AI improve their produc-                         mated) player. Looking at the point estimates, they are larger
+tivity but still underperform relative to control firms. Mean-                      for new hires (i.e., the impact on firm performance is more
+while, the final round of gameplay shows no difference be-                          negative) than the ones for automation, but this comparison
+tween teams with automated agents and those in the control                          is not statistically significant in any of the total effect results
+group (column 4). A speculative explanation is that teams                           in columns 1–4.
+assigned to the AI condition have learned how to play with                             Our results indicate, however, that automation and new
+the AI agent by the final round.                                                    hires operate through different organizational channels.
+                                                                                    While automation decreases performance in directly af-
+                                                                                    fected and spillover teams in the short-term, the introduction
+  18
+                                                                                    of a new hire only changes performance in the directly af-
+     We do this for three reasons. First, Phase 2 results indicate that the tacit
+manipulation did not impact team performance or use of explicit communi-            fected team. The change in performance in directly affected
+cation (see appendix B.1). Second, Phase 3 results indicate that the effects        teams is twice as large for the new hire condition compared
+of automation and turnover do not vary by team type (see section B.3).              to the automation condition (p = 0.012). These results
+Third, Columbia University’s IRB closed all nonessential in-person lab
+studies due to COVID-19 precautions, forcing us to halt data collection             highlight that the organizational implications of automation
+on March 12, 2020. At this point, we had finished collecting data on 55/60
+teams. The remaining groups were all in the explicit new hire condition,
+                                                                                      19
+so these estimates would be underpowered. Pooling both team types in-                    The point estimate on the spillover effect is slightly larger than that
+creases the precision in our estimates of the impact of automation, though          on the direct effect, though this difference is not statistically significant at
+we disaggregate results by team type in section B.3.                                conventional levels (p = 0.83, not displayed).
+960                                                             THE REVIEW OF ECONOMICS AND STATISTICS
+
+                                                           TABLE 2.—EFFECT OF AI AND NEW HIRES ON INGREDIENTS RETURNED
+                                                                                                     DV = Total ingredients returned
+                                                                   Total effect                                                                          Direct and spillover effect
+                                     (1)                     (2)                      (3)                     (4)                    (5)                      (6)                     (7)                     (8)
+  AI                            −0.51∗∗∗                 −1.01∗∗                  −0.52∗∗                  −0.14
+                                 (0.19)                   (0.44)                   (0.20)                   (0.43)
+  New hire                      −0.74∗∗∗                 −1.35∗∗∗                 −0.78∗∗∗                 −0.077
+                                 (0.25)                   (0.44)                   (0.27)                   (0.42)
+  AI direct team                                                                                                                 −0.80∗∗∗                −1.02∗                   −0.84∗∗∗                 −0.55
+                                                                                                                                  (0.24)                  (0.52)                   (0.22)                   (0.51)
+  AI spillover team                                                                                                              −0.31                   −1.14∗∗                  –0.29                      0.17
+                                                                                                                                  (0.21)                  (0.52)                   (0.23)                   (0.52)
+  New hire direct team                                                                                                           −1.29∗∗∗                −2.52∗∗∗                 −1.25∗∗∗                 −0.35
+                                                                                                                                  (0.34)                  (0.53)                   (0.35)                   (0.58)
+  New hire spillover team                                                                                                        −0.24                   −0.26                    −0.35                      0.16
+                                                                                                                                  (0.31)                  (0.56)                   (0.31)                   (0.47)
+
+
+
+
+                                                                                                                                                                                                                           Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+  R2                    0.469                              0.506                    0.461                   0.530                  0.485                   0.557                    0.475                    0.541
+  Observations            660                               110                      440                    110                     660                     110                      440                     110
+  Control mean         12.992                             13.300                   12.887                  13.100                12.992                  13.300                   12.887                   13.100
+  Rounds               Phase 3                               7                      8-11                    12                   Phase 3                     7                      8-11                     12
+  p-values, AI = New Hire
+  Overall               0.288                               0.451                   0.304                    0.893
+  Direct                                                                                                                           0.115                    0.012                    0.219                   0.724
+  Spillover                                                                                                                        0.808                    0.186                    0.836                   0.983
+   This table examines the effect of automation and new hires on team performance. Columns 1–4 display the results of equation (2), while columns 5–8 display the results of equation (3). Each column refers to a
+different time period of the task. Columns 1 and 5 display the effect across all six rounds in Phase 3, columns 2 and 6 limit the sample to only round 7 (the round following the manipulation), columns 3 and 7 display
+the effect for rounds 8–11, and columns 4 and 8 limit the sample to the final round of game play. The bottom of the table displays p-values from an F-test comparing the effects of automation versus the effects of a
+new hire. All regressions include robust standard errors clustered at the firm level. ∗ p < 0.1, ∗∗ p < 0.05, and ∗∗∗ p < 0.01.
+
+
+
+are distinct from those of traditional (human) turnover and                                                   a larger standard error, the magnitudes across rounds follow
+involve relevant behavioral adjustments for all affected                                                      the patterns in table 2.
+players.                                                                                                         These coordination failures represent a unique considera-
+                                                                                                              tion for automation. The results in table 3 indicate that teams
+   Impact of AI on coordination failures. We next explore                                                     in firms that receive a new human hire do not experience
+how automation influenced the ability of firms to coordinate                                                  more coordination failures than control firms. Moreover, the
+their actions. Successful coordination in this task requires                                                  p-values at the bottom of table 3 indicate that the increase in
+that participants (1) collect nonduplicate recipes when only                                                  coordination failures is unique to automation. These results
+one was needed, and (2) navigate the map without bump-                                                        shed light on one reason why introducing high-performing
+ing into one another. Cases of the former were very rare in                                                   automated agents decreases firm performance: automation
+our setting, and so we focus on the number of bumps per                                                       increases the difficulty of team coordination, especially for
+round. This measure was coded by research assistants who                                                      human-AI teams.
+were blind to the treatment conditions. Table 3 examines the
+effects of the organizational change manipulations on coor-
+                                                                                                              B.        Impact on Trust, Effort, and AI Attitudes
+dination failures.
+   The results in table 3 indicate that the introduction of                                                      In this section, we explore the impact on participant at-
+an automated agent hampered team coordination. Teams in                                                       titudes and beliefs. Following the final round of play, par-
+firms assigned to the automation condition experienced on                                                     ticipants completed a nine-item survey containing questions
+average 1.28 more coordination failures per round across                                                      about trust, individual effort, and attitudes toward AI.20 We
+Phase 3 compared to control teams. Moreover, the relative                                                     choose these three concepts because they highlight plausible
+patterns in treatment effects across rounds in columns 2–4                                                    mechanisms through which automation can affect organiza-
+line up with the performance effects observed in table 2. The                                                 tional outcomes.
+effects were largest in the round following automation; AI-                                                      We first theorized that automation may impact organiza-
+firms experienced 2.51 more coordination failures in round                                                    tional culture by changing team trust. Trust is an essential
+7 before leveling off in the final round of play.                                                             component of corporate culture and is linked to improved
+   The results in columns 5–8 decompose the total effect into                                                 productivity within firms by increasing decentralization
+direct and spillover effects and show that the effect is con-                                                 (Bloom et al., 2012) and specialization (Meier et al., 2019).
+centrated in teams that receive an automated agent. These                                                     A growing literature in the social sciences has documented
+teams experience on average 2.81 more coordination fail-                                                      that humans do not trust AI, even if these systems outper-
+ures across all rounds, and 3.80 more in round 7. Coordina-                                                   form humans (Dietvorst et al., 2015). If humans do not
+tion failures weakly increase for spillover teams in round 7;
+although the coefficient is not statistically significant due to                                                 20
+                                                                                                                      We list the survey questions in appendix A.3.
+                                                                                 SUPER MARIO MEETS AI                                                                                                              961
+
+                                                           TABLE 3.—EFFECT OF AI AND NEW HIRES ON COORDINATION FAILURES
+                                                                                                     DV = # of coordination failures
+                                                                  Total effect                                                                           Direct and spillover effect
+                                     (1)                    (2)                     (3)                     (4)                     (5)                      (6)                       (7)                      (8)
+  AI                                1.28∗∗                 2.51∗∗                  1.43∗∗                −0.29
+                                  (0.60)                  (1.01)                  (0.58)                  (0.90)
+  New hire                       −0.19                   −0.92                   −0.19                     0.64
+                                  (0.58)                  (1.02)                  (0.57)                  (0.91)
+  AI direct team                                                                                                                 2.81∗∗∗                   3.80∗∗∗                   3.06∗∗∗                   0.93
+                                                                                                                                (0.61)                    (1.31)                    (0.61)                    (1.23)
+  AI spillover team                                                                                                              0.0081                    1.33                      0.070                   −1.22
+                                                                                                                                (0.68)                    (1.10)                    (0.70)                    (0.94)
+  New hire direct team                                                                                                           0.48                    −0.16                       0.49                      1.20
+                                                                                                                                (0.68)                    (1.24)                    (0.69)                    (1.14)
+  New hire spillover team                                                                                                      −0.77                     −1.63                     −0.75                       0.14
+                                                                                                                                (0.62)                    (1.09)                    (0.58)                    (1.00)
+
+
+
+
+                                                                                                                                                                                                                             Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+  R2                     0.065                             0.136                   0.070                   0.062                 0.110                     0.174                     0.120                     0.089
+  Observations            636                              106                      424                    106                    636                       106                       424                      106
+  Control mean           6.117                             5.900                   6.075                   6.500                 6.117                     5.900                     6.075                     6.500
+  Rounds               Phase 3                               7                     8–11                    12                  Phase 3                       7                       8-11                      12
+  p-values, AI = New Hire
+  Overall                0.015                             0.001                   0.007                   0.394
+  Direct                                                                                                                          0.001                     0.007                    0.001                     0.858
+  Spillover                                                                                                                       0.294                     0.012                    0.278                     0.220
+   This table examines the effect of automation and new hires on coordination failures. Columns 1–4 display the results of equation (2), while columns 5–8 display the results of equation (3). Each column refers to a
+different time period of the task. Columns 1 and 5 display the effect across all six rounds in Phase 3, columns 2 and 6 limit the sample to only round 7 (the round following the manipulation), columns 3 and 7 display
+the effect for rounds 8–11, and columns 4 and 8 limit the sample to the final round of game play. The bottom of the table displays p-values from an F-test comparing the effects of automation versus the effects of a
+new hire. All regressions include robust standard errors clustered at the firm level. ∗ p < 0.1, ∗∗ p < 0.05, and ∗∗∗ p < 0.01.
+
+
+
+trust automated agents relative to human partners, they may                                                                TABLE 4.—IMPACT ON TRUST, EFFORT, AND AI ATTITUDES
+spend more time and attention monitoring the actions of                                                                                         Trust index            Effort index           AI attitudes index
+their automated counterparts. The degree of trust thus rep-
+                                                                                                                                                      (1)                    (2)                         (3)
+resents potentially one way that automation compromises
+                                                                                                                  AI partner                      −1.44∗∗∗               −0.81∗∗                     −0.069
+effective organizational routines.                                                                                                                 (0.42)                 (0.32)                      (0.28)
+   A second avenue is through effort provision. The finan-                                                        AI spillover                    −0.15                  −0.24                       −0.15
+cial incentives in our experiment did not change between                                                                                           (0.14)                 (0.18)                      (0.19)
+                                                                                                                  New hire player                   0.028                −0.23                       −0.75∗∗
+Phases 2 and 3 of the experiment. However, automation may                                                                                          (0.21)                 (0.38)                      (0.28)
+decrease effort provision due to a change in intrinsic moti-                                                      New hire partner                  0.039                −0.26                       −0.27
+vation if participants have a preference for completing the                                                                                        (0.19)                 (0.27)                      (0.22)
+                                                                                                                  New hire spillover                0.073                −0.22                       −0.094
+task with other humans. Most human players are conditional                                                                                         (0.17)                 (0.24)                      (0.21)
+players: their effort depends on those around them. For ex-                                                       R2                                0.229                  0.056                       0.057
+ample, Mas and Moretti (2009) find that worker productiv-                                                         Observations                       200                   200                         200
+ity increases when working alongside a highly productive                                                         This table examines the effect of automation and new hires on survey measures of trust, effort, and AI
+                                                                                                                                                                                           Direct broken down in the new
+                                                                                                              attitudes. Each column displays the results of equation (3) with NewH iret,
+(human) co-worker. A central question in this experiment is                                                                                                                                  f
+                                                                                                              hire and the remaining player whose partner is the new hire. The regression includes controls for round
+whether this is true for automated workers. If humans have a                                                  difficulty, player skills, and player performance in phase 3. All regressions include robust standard errors
+                                                                                                              clustered at the firm level. ∗ p < 0.1, ∗∗ p < 0.05, and ∗∗∗ p < 0.01.
+preference for working with other human players, partnering
+with an automated partner may reduce their intrinsic motiva-
+tion and effort on the task.21
+   Finally, we explore whether human interactions with au-                                                    sure whether subjects that interacted with AI as a partner
+tomated agents impact attitudes towards AI. A growing lit-                                                    improved or worsened their attitudes towards AI.
+erature in psychology and behavioral economics discusses                                                         Table 4 examines how automation influenced these out-
+algorithmic aversion (Dietvorst et al., 2015). Humans feel                                                    comes. It displays the results of equation (3) with an addi-
+uncomfortable with machines, are less tolerant of mistakes                                                    tional binary indicator (“New hire, actual”) that equals 1 if
+made by machines (Dietvorst et al., 2015), and are less likely                                                the survey respondent is the new team member to join the
+to incorporate assistance from machines (Luo et al., 2019).                                                   group, and 0 otherwise. Column 1 displays the results for
+Overall, these elements may hinder collaboration between                                                      trust in their partner, column 2 for individual effort, and col-
+humans and AI. Our survey questions here intended to mea-                                                     umn 3 for AI attitudes. Each outcome family (trust, effort,
+                                                                                                              and AI attitudes) contained three questions, which we nor-
+ 21                                                                                                           malize and average to create three standardized indices with
+    In related work, Dell’Acqua (2022) finds that humans matched with
+better-performing AI exert less effort than those matched with lower-                                         mean 0 and standard deviation 1. We display the treatment
+performing AI.                                                                                                effects on individual survey items in appendix B.6.
+962                                           THE REVIEW OF ECONOMICS AND STATISTICS
+
+   Our results indicate that automation led to changes in                      directly collect each player’s skills from their Phase 1 play.
+components of organizational culture and individual effort                     Second, the exogenous assignment of players to teams and
+provision. The results in table 4 indicate that automation de-                 teams to automation allows for a more nuanced investigation
+creased trust and effort provision for directly affected play-                 of the interaction between skills and automation. Our exper-
+ers. Players who were assigned to play with the automated                      imental setup allows us to test for heterogeneity by both the
+agent report 1.44 standard deviations lower on our trust in-                   skills of the replaced player and those of the remaining play-
+dex. This effect is larger for the general trust question and                  ers to uncover what is driving skill complementarity in our
+trust in effort provision, while not statistically different from              setting.
+zero for trust in skills (see appendix B.6). Players assigned                     Panel A of table 5 examines differences in treatment ef-
+to play with the automated agent also report 0.81 standard                     fects across the skill distribution. Columns 1–3 display the
+deviations lower on our effort index, and participants were                    effects of automation and new hire depending on the skill of
+especially more likely to report that they did not pay atten-                  the player replaced, while columns 4–6 do so for the skills
+tion (see appendix B.6).22 Meanwhile, we see no effect on                      of the three retained players. We partition our sample by the
+participants in spillover teams or in the new hire condition.23                skill distributions of the players that are replaced, and of the
+
+
+
+
+                                                                                                                                                            Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+   Although automation shifts trust and effort for directly af-                players that are retained.24 Low refers to players and teams
+fected players, we observe no change in attitudes towards                      in the bottom third of the skill distribution, medium in the
+AI. Participants assigned to play directly with the AI avatar                  middle third, and high in the top third. Column 3, for exam-
+show no difference on our AI attitudes index (0.07 standard                    ple, examines the effect of automation and new hires when a
+deviations lower, p = 0.81). This suggests that our results                    high-skilled player is removed from a team. Our key statistic
+are not driven by algorithmic aversion. Instead, we theorize                   to test for skill bias in our experiment is a p-value obtained
+that our participants derive a benefit from playing with other                 from seemingly unrelated estimation, under the null hypoth-
+humans.                                                                        esis that automation has the same treatment effect across the
+   While the effect of automation dissipates by the final                      skill distribution. We display this p-value at the bottom of
+round of play, our results indicate that it led to longer-term                 table 5.
+changes in components of organizational culture and indi-                         The results in table 5 provide experimental support for the
+vidual effort provision. The survey results presented in this                  theory that automation is skill-biased. The complementar-
+section reveal that automation led to a decrease in team trust,                ity between automation and skills that we observe is due
+an essential component of corporate culture, and effort pro-                   to the skill-makeup of the team of remaining players. A
+vision. These results indicate that the introduction of intel-                 joint-test of equality across columns 4–6 indicates that the
+ligent machines in firms likely has important consequences                     returns to automation vary by the skills of the remaining
+on organizational culture and employee motivation. We re-                      players (p = 0.019). Low- and medium-skilled teams strug-
+turn to this observation in our discussion.                                    gle to integrate their automated co-workers and experience
+                                                                               large performance decreases, while high-skilled teams actu-
+                                                                               ally return slightly more ingredients (though this effect is not
+C.    Skills
+                                                                               statistically significant at conventional levels). On the other
+   The setup of our experiment allows us also to investigate                   hand, automation does not depend on the skills of the depart-
+how skills interact with automation to impact team produc-                     ing player. Teams who lose a high-skilled player experience
+tivity. As described in section IIB, we collected rich skills                  the same performance impact as those who lose a low- or
+data on all participants. We create a normalized z-score skill                 medium-skilled one (p = 0.724). Overall, the results in ta-
+measure for each participant, and we provide evidence in ap-                   ble 5 support the argument that automation and team skills
+pendix B.8 that this measure is strongly correlated with per-                  are complements,25 and that the skill-bias arises not from the
+formance. Two features of this measure provide additional                      skills of an individual player, but from the skills of the other
+benefits for our investigation of skills and automation. First,                members of the team.
+rather than rely on broad worker categories such as wages                         In appendix B.9, we further examine what is behind the
+or education, as is common in the literature, we are able to                   complementarity between automation and team skills doc-
+                                                                               umented above. We find no evidence that the complemen-
+  22
+     One potential mechanism that may help explain our findings is proso-      tarity is due to the automated agent returning more ingredi-
+cial concerns. Brown et al. (2015) find that replacing workers with lower-     ents when matched to a high-skilled team (appendix B.9.2).
+wage workers can decrease the effort of remaining players due to prosocial
+concerns. We believe this is unlikely in the new hire condition because the    Instead, the source of complementarity stems from an
+wages offered to the new hire had the same structure as the other players,     improvement in the performance of high-skilled teams when
+and they experienced no change in effort following the new hire manipula-      assigned an automated agent versus a human control player
+tion. If prosocial concerns drove the automation results, we would expect
+to observe a negative impact for all participants in the AI firm. However,
+                                                                                 24
+the negative effort effects only occur for the player that worked with the          For analyzing retained human players, we take the average skill level
+automated agent in the last round.                                             of the three retained players.
+  23                                                                             25
+     In appendix B.5, we rerun these tables by interacting treatment with           In appendix B.9.1, we run an alternative test for complementarities
+an indicator for the tacit condition, and we find limited differences in the   using Milgrom and Roberts (1990) and Brynjolfsson and Milgrom (2013)
+treatment effects across the two team types.                                   and find further support for these results.
+                                                                                  SUPER MARIO MEETS AI                                                                                                            963
+
+                                                                                         TABLE 5.—SKILLS ANALYSIS
+  Panel A: Heterogeneity by skill
+                                                                                                                          DV = Total ingredients returned
+                                                                                                     Player replaced                                                          Players remaining
+                                                                                 Low                           Middle                      High                    Low                  Middle                High
+                                                                                  (1)                           (2)                         (3)                     (4)                  (5)                   (6)
+  AI                                                                          −0.702                          −0.242                    −0.590∗∗              −0.500∗                −0.626∗∗                0.272
+                                                                               (0.414)                         (0.473)                   (0.223)               (0.244)                (0.265)               (0.254)
+  New Hire                                                                    −0.993∗                         −0.363                    −1.028∗∗∗             −0.994∗∗∗              −1.495∗∗∗               0.541
+                                                                               (0.563)                         (0.542)                   (0.283)               (0.334)                (0.417)               (0.314)
+  R2                                                                            0.461                           0.424                     0.572                 0.517                  0.473                 0.520
+  Observations                                                                   216                            228                        216                   216                    216                   228
+  p-values (Low = Middle = High):
+  AI                                                                                                             0.724                                                                  0.019
+  New Hire                                                                                                       0.514                                                                  0.001
+
+
+
+
+                                                                                                                                                                                                                            Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+  Panel B: Impact of skills on team performance
+                                                                         Total ingredients              Total ingredients
+  Player skill, max                                                              0.66∗                          0.93∗∗
+                                                                                (0.34)                         (0.40)
+  Player skill, min                                                              0.44∗∗∗                        0.49∗∗
+                                                                                (0.15)                         (0.22)
+  R2                                                                             0.104                          0.369
+  Observations                                                                    660                           660
+  Firm fixed effect                                                               No                            Yes
+   This table examines our results by skills. Panel A examines heterogeneity in the effects of automation and new hires by player skills. We estimate equation (2) on various subsamples based on player skills. Low
+refers to the bottom 1/3, middle to the middle 1/3, and high to the top 1/3 of teams given each skill distribution. Columns 1–3 examine heterogeneity by the skill distribution of the replaced player, while columns 4–6
+examine heterogeneity by the average skill distribution of the remaining players. The bottom of the table displays p-values from a joint test of treatment effect equality for low, middle, and high-skilled teams. Panel
+B examines whether the skill of the lowest or highest player is most predictive of team performance. It displays a regression of team output on variables measuring the team’s lowest and highest skills, round fixed
+effects. All regressions include robust standard errors clustered at the firm level. ***p < 0.01, **p < 0.05, and *p < 0.10.
+
+
+
+
+(appendix B.9.3). We lack the data to identify a specific                                                      tacit teams, this difference is not statistically significant (p =
+mechanism through which automation improves the per-                                                           0.55). Meanwhile, we find that the effects of automation do
+formance of high-skilled teams, but we can rule out ex-                                                        not vary by the difficulty of the task (p = 0.40).
+planations regarding learning (appendix B.10), coordina-
+tion failures (appendix B.11), and exclusively direct effects                                                                                         V.      Discussion
+(appendix B.11.1).
+   Finally, to improve insight into sources of variation due to                                                   The evidence that AI augments the productivity of work-
+skills in our experiment, we decompose productivity by the                                                     ers has motivated many studies about the possibilities and
+contributions of higher- and lower-skilled players on a given                                                  limits of AI augmentation (Raj & Seamans, 2019; Brynjolf-
+team.26 This analysis serves to distinguish between two                                                        sson et al., 2021). Our study provides further insights on the
+types of production functions: one where output is a “weak                                                     behavioral and organizational changes that automation and
+link” production function of the minimal skilled worker (as                                                    augmentation entail, as well as how these impacts vary with
+analyzed in Becker & Murphy, 1992), and the second is a                                                        the skills of teams. Because of our experimental design, we
+function of the maximally skilled worker. Panel B of table                                                     can test whether automation is skill-biased with microlevel
+5 reports this analysis to see which is more predictive of                                                     measurements of skills, connecting our insights to a large
+a given team’s performance. The results indicate that both                                                     macroeconomic literature on skill-biased technical change
+skills matter: teams do better on average when the skills of                                                   (SBTC) (Acemoglu & Autor, 2011; Goos et al., 2014; Autor,
+their best and worst players improve.                                                                          2015; Acemoglu & Restrepo, 2020b). There are, of course,
+                                                                                                               limitations to connecting our setup to the larger SBTC de-
+                                                                                                               bate. In our experiment, all workers do the same task, so any
+D.      Additional Results                                                                                     skill bias that arises occurs within a given task that both hu-
+  In appendix B.3, we examine heterogeneity in the effect of                                                   mans and machines do. However, automation can also shift
+automation by team type and task difficulty. We find limited                                                   the types of tasks that are assigned to humans towards ma-
+evidence that the effects of automation differed by team type.                                                 chines. Such across-task reallocation is key to macroeco-
+Although automation has a larger (more negative) effect on                                                     nomic approaches examining SBTC.
+                                                                                                                  The task in our experiment requires a mixture of motor
+  26                                                                                                           and cognitive skills, as well as the social skills for working
+     This decomposition permits us to address the analysis in Ahmadpoor
+and Jones (2019) regarding the matching of skills of members to a team                                         well in a team (Deming, 2017; Weidmann & Deming, 2021).
+and the effects on productivity.                                                                               The advantage to our laboratory experiment is the ability to
+964                                  THE REVIEW OF ECONOMICS AND STATISTICS
+
+directly measure skills without relying on broad census clas-                           VI.    Conclusion
+sifications linking skill to occupations or tasks. Using our
+skills measure, section IVC provides an analysis of skill-bias      Much of the debate around the future of work has focused
+in automation. Our experiment found a more successful pair-      primarily on the types of tasks that will be substituted by
+ing of machines and humans if the human workers are highly       AI. Our results indicate that progress in the future design of
+skilled. Low- and medium-skilled teams are unable to inte-       work will be determined by the routines by which teams and
+grate both humans and their AI avatar partners within the        organizations coordinate their actions, and the design of the
+total organization.                                              algorithms that support human-machine collaboration. Ad-
+   Our experimental results illustrate that there are motiva-    ditionally, human responses will be fundamental. Successful
+tional costs arising from human-AI collaboration, particu-       AI introduction will require augmenting humans through AI
+larly for the participant playing directly with the AI agent.    rather than potentially demoralizing them through AI collab-
+One way to understand this decrease in motivation is that the    oration they do not enjoy.
+introduction of AI generates a loss in sociality in the work-       One way to understand our results is that humans prefer
+place. This speculation is grounded in the questionnaire re-     working with humans, and AI agents play well alone. AI
+
+
+
+
+                                                                                                                                       Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+sponses we reported earlier. Field experiments using dictator    agents cannot be assumed to make for great team members.
+games suggest that sociality is a central mechanism influ-       A challenge for the design of high-performing human and
+encing the degree of equitable sharing of monetary awards        machine teams is the creation of systems of humans and ma-
+(Henrich et al., 2001, 2004). After the end of Phase 3 in        chines that benefit from algorithmic learning while maintain-
+our experiment, we surveyed participants and asked them          ing a motivated human workforce.
+to rate their partner preference from 1 (strongly prefer AI)        The experimental approach we use has advantages in ma-
+to 7 (strongly prefer human). We display the histogram of        nipulating worker environments to evaluate the causal im-
+responses in figure B10. Human participants prefer work-         pact of automation on team performance and worker atti-
+ing with humans than with AI; 84% reported they prefer or        tudes and behaviors. The laboratory design using pairs of
+strongly prefer human co-workers. Additionally, the retained     teams created in a laboratory setting focused on key fea-
+human workers exert less effort when paired in a team with       tures in current theories and discussions of the impact of
+AI. These results underscore the conditional nature of hu-       AI on the future of work, not only in terms of productivity
+man effort on the preference for human sociality. This non-      but also in terms of coordination and motivations. We chose
+pecuniary preference affects productivity as the presence of     a coordination-based task with a highly skilled automated
+algorithmic co-workers negatively influences the provision       agent, and we selected a subset of teams at random for sub-
+of effort.                                                       stituting a human worker by this AI agent. Our results indi-
+   Coordination failures in our experiment provide another       cate that the introduction of these automated agents reduced
+measure of the organizational consequences of automation.        team performance, especially in low- and medium-skilled
+The control condition of human-human teams relying on ac-        teams. We provide evidence that automation decreases team
+crued tacit routines evidenced higher productivity and coor-     coordination, trust, and individual effort.
+dination throughout Phase 3 of the game (Nelson & Winter,           These reflections on the organizational and motivational
+1982; Kogut & Zander, 1992; Cohen & Bacdayan, 1994).             consequences of automation through AI echo an older his-
+The results point to the inference that disrupting the organi-   tory of research on the close connection of social and techni-
+zation of work within and between teams is costly. As found      cal change. The 1951 study by Eric Trist and Ken Bamforth
+in prior studies such as Bresnahan et al. (2002), work prac-     of the adoption of a new organizational technology called the
+tices anchored in human routines and technology are com-         “longwall method of coal-getting” became a classic study of
+plementary, and deviations of one from the other are costly.     organizational change as a “socio-technical” system (Trist
+In our experiment, we were able to test this proposition di-     & Bamforth, 1951). The study reported on the effects of
+rectly by randomizing the assignment of players, and thereby     technical change on worker stress in the mines as well as
+teams, to the AI treatment introduced in Phase 3.                at home due to the reversal of status and pay that also af-
+   These observations permit speculation into the AI “pro-       fected worker motivation. Our results indicate that arriving
+ductivity paradox” that the productivity gains to the adoption   at an understanding of the economic performance of human
+of AI technologies are not evident in the macro data (see,       and AI mixed teams requires a healthy appreciation of hu-
+e.g., Brynjolfsson et al., 2019). Our experimental results       man motivation and sociality in the changing workplaces of
+suggest that one possible explanation may lie in the hetero-     the future.
+geneous composition of teams in regard to human skills and
+in the behavioral motivations of players. The results from the                               REFERENCES
+experiments analyzed above point to the relevance of taking      Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M.
+an organizational and team perspective on the relationship             Wooldridge, “When Should You Adjust Standard Errors for Clus-
+of the sociality found in work teams and the motivational              tering?” Quarterly Journal of Economics 138:1 (2023), 1–35.
+                                                                 Abu-Mostafa, Yaser S., Malik Magdon-Ismail, and Hsuan-Tien Lin,
+degradation of human productivity caused by automation.                Learning from Data, Vol. 4 (AMLBook, 2012).
+                                                         SUPER MARIO MEETS AI                                                                        965
+
+Acemoglu, Daron, and David Autor, “Skills, Tasks and Technologies: Im-       Englmaier, Florian, Stefan Grimm, Dominik Grothe, David Schindler, and
+       plications for Employment and Earnings” (pp. 1043–1171), in Or-              Simeon Schudy, “The Effect of Incentives in Nonroutine Analytical
+       ley Ashenfelter and David Card (eds.), Handbook of Labor Eco-                Team Tasks,” Journal of Political Economy 132:8 (2024), 2695–
+       nomics, Vol. 4 (Elsevier, 2011).                                             2747.
+Acemoglu, Daron, and Pascual Restrepo, “Robots and Jobs: Evidence            Falk, Armin, and Andrea Ichino, “Clean Evidence on Peer Effects,” Jour-
+       from US Labor Markets,” Journal of Political Economy 128:1 (June             nal of Labor Economics 24:1 (2006), 39–57. 10.1086/497818
+       2020a), 2188–2244. 10.1086/705716                                     Felten, Edward W., Manav Raj, and Robert Seamans, “A Method to
+——— “Unpacking Skill Bias: Automation and New Tasks,” AEA                           Link Advances in Artificial Intelligence to Occupational Abilities,”
+       Papers and Proceedings 110 (May 2020b), 356–361. 10.1257/                    AEA Papers and Proceedings 108 (May 2018), 54–57. 10.1257/
+       pandp.20201063                                                               pandp.20181021
+Ahmadpoor, Mohammad, and Benjamin F. Jones, “Decoding Team and In-           Frey, Carl B., and Michael A. Osborne, “The Future of Employment:
+       dividual Impact in Science and Invention,” Proceedings of the Na-            How Susceptible Are Jobs to Computerisation?” Technological
+       tional Academy of Sciences 116:28 (2019), 13885–13890. 10.1073/              Forecasting and Social Change 114 (2017), 254–280. 10.1016/
+       pnas.1812341116                                                              j.techfore.2016.08.019
+Autor, David, “Why Are There Still so Many Jobs? The History and Future      Gerber, Alan S., and Donald P. Green, Field Experiments: Design, Anal-
+       of Workplace Automation,” Journal of Economic Perspectives 29:3              ysis, and Interpretation (New York: W.W. Norton & Company,
+       (2015), 3–30. 10.1257/jep.29.3.3                                             2012).
+Becker, Gary S., and Kevin M. Murphy, “The Division of Labor, Coordina-      Gersick, C. J., and J. R. Hackman, “Habitual Routines in Task-Performing
+
+
+
+
+                                                                                                                                                             Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+       tion Costs, and Knowledge,” The Quarterly Journal of Economics               Groups,” Organizational Behavior and Human Decision Processes
+       107:4 (1992), 1137–1160. 10.2307/2118383                                     47 (1990), 65–97. 10.1016/0749-5978(90)90047-D
+Bloom, Nicholas, Raffaella Sadun, and John Van Reenen, “The Organiza-        Goldin, Claudia, and Lawrence F. Katz, “The Origins of Technology-Skill
+       tion of Firms across Countries,” Quarterly Journal of Economics              Complementarity,” Quarterly Journal of Economics 3:4 (1998),
+       127:4 (2012), 1663–1706. 10.1093/qje/qje029                                  693–732. 10.1162/003355398555720
+Bresnahan, Timothy F., Erik Brynjolfsson, and Lorin M. Hitt, “Information    Goos, Maarten, Alan Manning, and Anna Salomons, “Explaining Job Po-
+       Technology, Workplace Organization, and the Demand for Skilled               larization: Routine-Biased Technological Change and Offshoring,”
+       Labor: Firm-Level Evidence,” The Quarterly Journal of Economics              American Economic Review 104:8 (2014), 2509–2526. 10.1257/
+       117:1 (2002), 339–376. 10.1162/003355302753399526                            aer.104.8.2509
+Brown, Jason L., Patrick R. Martin, Donald V. Moser, and Roberto A.          Graetz, Georg, and Guy Michaels, “Robots at Work,” this REVIEW 100:5
+       Weber, “The Consequences of Hiring Lower-Wage Workers in an                  (2018), 753–768.
+       Incomplete-Contract Environment,” The Accounting Review 90:3          Henrich, Joseph, Robert Boyd, Samuel Bowles, Colin Camerer, Ernst Fehr,
+       (2015), 941–966. 10.2308/accr-50959                                          and Herbert Gintis, Foundations of Human Sociality: Economic Ex-
+Brynjolfsson, Erik, and Paul Milgrom, “Complementarities in Organiza-               periments and Ethnographic Evidence from Fifteen Small-Scale So-
+       tions” (pp. 11–55), in The Handbook of Organizational Economics              cieties (Oxford: Oxford University Press, 2004).
+       (Princeton, NJ: Princeton University Press, 2013).                    Henrich, Joseph, Robert Boyd, Samuel Bowles, Colin Camerer, Ernst
+Brynjolfsson, Erik, Daniel Rock, and Chad Syverson, “Artificial Intelli-            Fehr, Herbert Gintis, and Richard McElreath, “In Search of Homo
+       gence and the Modern Productivity Paradox: A Clash of Expecta-               Economicus: Behavioral Experiments in 15 Small-Scale Soci-
+       tions and Statistics” (pp. 23–60), in Ajay Agrawal, Joshua Gans,             eties,” American Economic Review 91:2 (2001), 73–78. 10.1257/
+       and Avi Goldfarb (eds.), The Economics of Artificial Intelligence:           aer.91.2.73
+       An Agenda (Chicago, IL: University of Chicago Press, 2019).           Hsieh, Te-Yi, Bishakha Chaudhury, and Emily S. Cross, “Human-Robot
+——— “The Productivity J-Curve: How Intangibles Complement General                   Cooperation in Economic Games: People Show Strong Reci-
+       Purpose Technologies.,” American Economic Journal: Macroeco-                 procity but Conditional Prosociality toward Robots,” Interna-
+       nomics 13:1 (2021), 333–372.                                                 tional Journal of Social Robotics 15 (2020), 791–805. 10.1007/
+Brynjolfsson, Erik, Tom Mitchell, and Daniel Rock, “What Can Ma-                    s12369-023-00981-7
+       chines Learn, and What Does It Mean for Occupations and the           Jackson, C. K., and Elias Bruegmann, “Teaching Students and Teaching
+       Economy?” AEA Papers and Proceedings 108 (May 2018), 43–47.                  Each Other: The Importance of Peer Learning for Teachers,” Amer-
+       10.1257/pandp.20181019                                                       ican Economic Journal: Applied Economics 1:4 (October 2009),
+Camerer, Colin F., and Roberto Weber, “Growing Organizational Culture               85–108. 10.1257/app.1.4.85
+       in the Laboratory” (pp. 903–907), in Charles R. Plott and Vernon L.   James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshira, Intro-
+       Smith (eds.), Handbook of Experimental Economics Results, Vol. 1             duction to Statistical Learning, Springer Texts in Statistics (Berlin:
+       of Handbook of Experimental Economics Results, Chapter 96 (Am-               Springer, 2013).
+       sterdam: Elsevier, March 2008). 10.1016/S1574-0722(07)00096           Järvelä, Simon, Inger Ekman, J. Matias Kivikangas, and Niklas Ravaja,
+       -0                                                                           “A Practical Guide to Using Digital Games as an Experiment Stim-
+——— “Experimental Organizational Economics” (pp. 213–262), in                       ulus,” Transactions of the Digital Games Research Association 1:2
+       Robert Gibbons and John Roberts (eds.), The Handbook of Orga-                (2014). 10.26503/todigra.v1i2.16
+       nizational Economics (Princeton, NJ: Princeton University Press,      Ju, Wendy, The Design of Implicit Interactions, Synthesis Lectures on
+       2012).                                                                       Human-Centered Informatics (Berlin: Springer, 2015).
+Cohen, Michael D., and Paul Bacdayan, “Organizational Routines Are           Kogut, Bruce, and Udo Zander, “Knowledge of the Firm, Combinative Ca-
+       Stored as Procedural Memory: Evidence from a Laboratory Study,”              pabilities, and the Replication of Technology,” Organization Sci-
+       Organization Science 5:4 (1994), 554–568. 10.1287/orsc.5.4.554               ence 3:3 (1992), 383–397. 10.1287/orsc.3.3.383
+De Grip, Andries, and Jan Sauermann, “The Effects of Training on             Luo, Xueming, Siliang Tong, Zheng Fang, and Zhe Qu, “Frontiers: Ma-
+       Own and Co-Worker Productivity: Evidence from a Field Experi-                chines vs. Humans: The Impact of Artificial Intelligence Chat-
+       ment,” The Economic Journal 122:560 (2012), 376–399. 10.1111/                bot Disclosure on Customer Purchases,” Marketing Science 38:6
+       j.1468-0297.2012.02500.x                                                     (2019), 937–947.
+Dell’Acqua, Fabrizio, “Falling Asleep at the Wheel: Human/AI Collab-         March, James G., and Herbert A. Simon, Organizations (New York: John
+       oration in a Field Experiment on HR Recruiters,” working paper               Wiley & Sons, 1958).
+       (2022).                                                               Mas, Alexandre, and Enrico Moretti, “Peers at Work,” American Economic
+Deming, David J., “The Growing Importance of Social Skills in the Labor             Review 1:99 (2009), 112–145. 10.1257/aer.99.1.112
+       Market,” The Quarterly Journal of Economics 132:4 (2017), 1593–       Meier, Stephan, Matthew Stephenson, and Patryk Perkowski, “Culture of
+       1640. 10.1093/qje/qjx022                                                     Trust and Division of Labor in Nonhierarchical Teams,” Strategic
+Dietvorst, B. J., J. P. Simmons, and C. Massey, “Algorithm Aversion: Peo-           Management Journal 40:8 (2019), 1171–1193.
+       ple Erroneously Avoid Algorithms after Seeing Them Err,” Jour-        Milgrom, Paul, and John Roberts, “The Economics of Modern Manufactur-
+       nal of Experimental Psychology: General 144:1 (2015), 114–126.               ing: Technology, Strategy, and Organization,” American Economic
+       10.1037/xge0000033                                                           Review 80:3 (1990), 511–528.
+966                                        THE REVIEW OF ECONOMICS AND STATISTICS
+
+Nelson, Richard, and Sidney Winter, An Evolutionary Theory of Economic    Washburn, David A., “The Games Psychologists Play (and the Data They
+       Change (Cambridge, MA: Harvard University Press, 1982).                  Provide),” Behavior Research Methods, Instruments, Computers
+Raj, Manav, and Robert Seamans, “Primer on Artificial Intelligence              35:2 (2003), 185–193. 10.3758/BF03202541
+       and Robotics,” Journal of Organization Design 8:1 (2019), 1–14.    Webb, Michael, “The Impact of Artificial Intelligence on the Labor Mar-
+       10.1186/s41469-019-0050-0                                                ket,” working paper (2020).
+Rick, Scott, Roberto A. Weber, and Colin F. Camerer, “Knowledge Trans-    Weber, Roberto A., and Colin F. Camerer, “Cultural Conflict and Merger
+       fer in Simple Laboratory Firms: The Role of Tacit vs. Explicit           Failure: An Experimental Approach,” Management Science 49:4
+       Knowledge,” Department of Social and Decision Sciences working           (2003), 400–415. 10.1287/mnsc.49.4.400.14430
+       paper (2007).                                                      Weidmann, Ben, and David J. Deming, “Team Players: How Social Skills
+Trist, Eric L., and Ken W. Bamforth, “Some Social and Psychological             Improve Group Performance,” Econometrica 89:6 (2021), 2637–
+       Consequences of the Longwall Method of Coal-Getting: An Ex-              2657.
+       amination of the Psychological Situation and Defences of a Work    Yannakakis, Georgios N., and Julian Togelius, Artificial Intelligence and
+       Group in Relation to the Social Structure and Technological Con-         Games, 1 ed. (Cham: Springer International Publishing, 2018).
+       tent of the Work System,” Human Relations 4:1 (1951), 3–38.
+       10.1177/001872675100400101
+
+
+
+
+                                                                                                                                                      Downloaded from http://direct.mit.edu/rest/article-pdf/107/4/951/2078952/rest_a_01328.pdf by guest on 21 December 2025
+

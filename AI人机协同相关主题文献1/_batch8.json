@@ -1,0 +1,122 @@
+[
+  {
+    "file": "72 The power of disagreement- A field experiment to investigate human-algorithm collaboration in loan evaluations..pdf",
+    "title": "The Power of Disagreement: A Field Experiment to Investigate Human-Algorithm Collaboration in Loan Evaluations",
+    "research_question": "在人机协作中，分歧（人类推翻算法推荐）何时产生、如何影响协作价值，其内在机制是什么？具体：(1) 不同情境下人类何时与算法分歧；(2) 分歧如何影响协作价值；(3) 驱动有益分歧的机制因素。",
+    "method": "与一家大型亚洲在线小额贷款公司合作的随机田野实验。2×2设计：信息量（有限/丰富）× 是否披露算法依据；采用两步法记录评估者在看到算法推荐前后的决策；算法为XGBoost。数据来源为真实贷款申请及违约结果。",
+    "theory": "协作价值（决策增强）概念；团队冲突与分歧文献（Coleman & Ferguson 等）；人机决策规则异质性；以算法自我矛盾作为感知算法质量的线索。",
+    "contributions": [
+      "强调“分歧”在人-算法协作中的核心地位，并提出以分歧为中心的机理框架；",
+      "揭示分歧对协作价值呈非线性、非简单正向影响（分歧比例高不等于价值高）；",
+      "发现算法自我矛盾可帮助人类在正确时机分歧，从而纠正错误推荐，提供管理启示。"
+    ],
+    "key_findings": "人机协作优于单独人类或单独算法；分歧在所有情境均出现但分歧比例高不等于协作价值高；当人类与算法决策规则相似时分歧有害，差异大时分歧无害；算法自我矛盾提升分歧可能性且使分歧更可能带来决策增强。",
+    "limitations": "（1）实验仅持续两周，未考虑长期学习效应；（2）仅用“披露算法依据”一种方式衡量感知算法质量；（3）两步协作顺序（人先算法后）未覆盖“算法先人后”模式；（4）仅限在线借贷情境，外推到招聘等需伦理考量的情境需谨慎。",
+    "pages": "摘要 p.1；研究问题 p.3；方法/实验设计 p.8-10；结论与讨论 p.29-30；局限 p.30-31"
+  },
+  {
+    "file": "73 Algorithmic writing assistance on jobseekers’ resumes increases hires..pdf",
+    "title": "Algorithmic Writing Assistance on Jobseekers' Resumes Increases Hires",
+    "research_question": "简历写作质量对求职者被雇佣是否有因果效应？其作用机制是“信号观”（写作体现能力）还是“清晰观”（写作帮助雇主识别能力）？",
+    "method": "在线劳动力市场田野实验，近48万新求职者；注册时随机分配治疗组（提供算法写作辅助）与控制组（无辅助），追踪从简历创建到雇佣及雇佣后雇主评价；辅以观察数据与理论模型。数据来源为某大型在线劳动力市场平台。",
+    "theory": "“清晰观” vs “信号观”；预测技术成本下降（Agrawal 等 Prediction Machines）；匹配市场中的信息摩擦。",
+    "contributions": [
+      "首次在简历写作质量上做自然变化的田野实验，证实因果效应；",
+      "区分清晰观与信号观，证据支持清晰观；",
+      "提供可合理化发现的简单模型，表明AI写作辅助不损害雇主满意度。"
+    ],
+    "key_findings": "治疗组被雇佣概率提高约8%、时薪约高10%；写作质量改善在低端最明显；雇主对治疗组工人的满意度与再雇佣无显著下降，反驳信号观；治疗组未改变申请行为，效应来自雇主决策。",
+    "limitations": "原文未设独立“局限”小节；文中指出本研究仅描述局部均衡、无法讨论挤出效应（crowd-out），且AI写作辅助可能“毁掉”写作作为能力信号的角色（偏向未来讨论），外部有效性未明确展开。",
+    "pages": "摘要 p.1-2；引言/研究问题 p.2-4；方法/实验设计 p.2-5；结论 p.33-35"
+  },
+  {
+    "file": "74 Identity disclosure and anthropomorphism in voice chatbot design- A field experiment..pdf",
+    "title": "Identity Disclosure and Anthropomorphism in Voice Chatbot Design: A Field Experiment",
+    "research_question": "在语音聊天机器人设计中，披露机器人身份（透明度）与拟人化（添加语气词/填充词）如何影响运营绩效？拟人化能否抵消身份披露的负面效应？",
+    "method": "与中国大型卡车共享平台（YunYou Freight）合作的随机田野实验，将约11,000名卡车司机随机分配接听不同版本的外呼语音聊天机器人。数据来源为真实外呼交互与订单数据。",
+    "theory": "“计算机作为社会行动者”(CASA)框架（Nass 等）；算法厌恶文献；运营透明度文献。",
+    "contributions": [
+      "首次以田野实验提供语音聊天机器人身份披露与拟人化因果效应的证据；",
+      "提出并验证两种TTS拟人化改进（语气词、填充词），已被合作平台采用；",
+      "表明拟人化可缓解身份披露的负面影响。"
+    ],
+    "key_findings": "披露聊天机器人身份使响应率下降约11%；拟人化（不披露时）使响应率+5.6%~7.3%、对话时长+24.9%~26.9%、接单意向+10.1%~19.7%；即便披露身份，拟人化仍改善绩效（对话时长+15.9%，接单意向+15%）；机制为增强信任、司机更愿意披露信息。",
+    "limitations": "原文未设独立“局限”小节；结论处指出未来方向：(1) 结果是否推广到金融、医疗、教育等需专业知识的领域未知；(2) 主要捕捉短期效应，长期行为变化需更长期数据；(3) 其他缓解AI透明度挑战的策略待研究。",
+    "pages": "摘要 p.1；引言 p.1-3；实验设计 p.8-11；结论 p.27-29"
+  },
+  {
+    "file": "75 My advisor, her AI and me- Evidence from a field experiment on human-AI collaboration and investment decisions..pdf",
+    "title": "My Advisor, Her AI and Me: Evidence from a Field Experiment on Human-AI Collaboration and Investment Decisions",
+    "research_question": "在AI服务生产中保留“人在回路”（人类顾问对AI投资建议有最终决定权）是否会损害建议质量？下游消费者是否更接受人-AI协作建议，其机制为何？",
+    "method": "与欧洲一家大型储蓄银行合作的田野实验：生产纯AI与人-AI协作投资建议并传递给客户，衡量客户采纳度；辅以在线控制实验检验机制。数据来源为银行分支实地实验与在线实验。",
+    "theory": "人在回路/人类干预文献；算法厌恶；说服的精细加工可能性模型（中心/边缘路线）；社会影响。",
+    "contributions": [
+      "推进人在回路系统研究，考察金融服务中协作的下游消费效应；",
+      "发现消费者对人类参与的积极反应主要来自社会线索带来的情感舒适（边缘路线），而非能力互补；",
+      "指出让人类拥有最终决定权可缓解下游对算法建议的厌恶。"
+    ],
+    "key_findings": "生产侧：人类顾问参与未削弱建议质量；消费侧：客户更可能采纳人-AI协作建议（尤其高风险投资时），带来更高物质福利；机制并非认为质量更高，而是人类参与作为增强情感吸引的边缘线索。",
+    "limitations": "（1）聚焦投资顾问领域，其他领域（医疗/法律）情境因素可能不同；（2）缺少真正“纯人类”对照，无法判断人-AI是否优于纯人类建议；（3）AI与协作系统约70%准确率，更高AI准确率下的调节效应未检验；（4）人类顾问自信度等边界条件未纳入。",
+    "pages": "摘要 p.1；引言 p.2-4；贡献 p.5；实地实验方法 p.17-32；局限 p.39"
+  },
+  {
+    "file": "76 Designing AI-Based Work Processes How the Timing of AI Advice Affects Diagnostic Decision Making.pdf",
+    "title": "Designing AI-Based Work Processes: How the Timing of AI Advice Affects Diagnostic Decision Making",
+    "research_question": "在临床诊断中，AI建议的呈现时机（事前/事后）如何影响医生诊断准确性与校准？其机制是什么？",
+    "method": "实验室实验（非田野），医生使用think-aloud方法在三种条件下诊断：事后建议（先独立诊断再给AI建议）、事前建议（AI建议与临床信息同时呈现）、无建议控制；使用可解释临床AI系统与真实急诊腹痛病例。数据来源为医生出声思考协议与诊断记录。",
+    "theory": "决策增强/工作设计文献；锚定效应；信息加工；建议采纳；过度自信与校准。",
+    "contributions": [
+      "率先研究AI建议“时机”这一被忽视的工作流程设计干预对诊断质量的影响；",
+      "调和以往AI辅助诊断不一致的发现（部分成功/部分无效）；",
+      "揭示事后建议通过更深入临床信息加工与对AI推理的主动思考带来更优诊断。"
+    ],
+    "key_findings": "事后建议组诊断准确性与校准最佳，控制组最差；事后建议使医生更能区分正确与错误AI建议，并从与初始诊断相左的高质量AI建议中获益；医生并非盲从错误AI建议；异质性分析基于医生与病例特征。",
+    "limitations": "（1）样本量较小（医生难招募），但重复测量设计具足够统计效力；（2）基于急诊腹痛这一特定临床场景与特定可解释AI，推广到其他医疗场景/不同准确率AI需谨慎；（3）事后建议可能以效率（耗时）为代价；（4）结论限于医疗等专业知识领域，非专业领域态度可能不同。",
+    "pages": "摘要 p.1-2；引言 p.2；讨论 p.19；局限 p.20；结论 p.21"
+  },
+  {
+    "file": "77 When emotion AI meets strategic users..pdf",
+    "title": "When Emotion AI Meets Strategic Users",
+    "research_question": "当组织用情感AI识别个体负面情绪并分配有限资源时，策略性用户会如何博弈（夸大情绪）？情感AI在何种条件下值得采用？其福利与社会监管含义？",
+    "method": "博弈论/解析模型（signaling game 与 muddled information 框架）。构建情感AI采用与资源分配策略模型，分析均衡与福利；无实证数据，辅以数值模拟。数据来源为理论建模。",
+    "theory": "信号博弈（signaling game）、muddled information框架（Frankel & Kartik）；策略性用户博弈；负面情绪溢出效应；委托-代理。",
+    "contributions": [
+      "揭示“情感AI悖论”：旨在处理负面情绪的系统反而激励更多负面反馈与错配损失；",
+      "将噪声引入信号框架，证明算法噪声并非总是有害、更强AI未必社会合意；",
+      "拓展到用情感AI监控员工并与人类经理监控比较，发现噪声可能增加AI监控利润。"
+    ],
+    "key_findings": "若负面情绪的溢出效应相对于资源错配损失可忽略，则采用情感AI对公司始终有价值（无论算法噪声与博弈行为）；更强AI不总是社会合意，需监管；多种条件下用AI系统优于人类系统；较弱AI反而可能增加监控利润。",
+    "limitations": "原文未明确设独立局限小节；作为解析模型，结论依赖参数化假设，外部有效性未经验证，未用真实平台数据校准。",
+    "pages": "摘要 p.1；引言 p.1-3；模型 p.9-10；结论 p.27-29"
+  },
+  {
+    "file": "78 Engaging customers with AI in online chats- Evidence from a randomized field experiment..pdf",
+    "title": "Engaging Customers with AI in Online Chats: Evidence from a Randomized Field Experiment",
+    "research_question": "AI生成的回复建议如何影响客服坐席生产力与客户情绪？效应如何因坐席经验与对话类型而异？",
+    "method": "与美国一家餐食配送公司的随机田野实验。利用138名聊天坐席“启用AI”日期的外生变化（2021年1-9月滚动随机）识别AI建议回复的影响。数据来源为一年期（2020.12-2021.11）真实聊天记录、客户情绪文本分析及聊天机器人交互数据。",
+    "theory": "人-算法交互/混合模型；算法厌恶；对话上下文与意图；自动化与客户服务。",
+    "contributions": [
+      "提供AI辅助坐席对效率与有效性（客户情绪）因果影响的田野证据；",
+      "揭示异质性：对新坐席效益最大，订阅取消场景有效，重复投诉场景无效；",
+      "发现前期聊天机器人理解失败会负向溢出到后续AI辅助人工交互。"
+    ],
+    "key_findings": "AI使坐席回复更快、客户互动更深、客户情绪改善（低经验坐席最明显）；文本分析显示AI辅助消息更具同理心、信息量与解决方案；但在重复投诉（系统性问题）中效果最差；若客户先遇聊天机器人理解失败再转AI辅助人工，会因过快回复误以为仍在与机器人对话而情绪受损。",
+    "limitations": "（1）仅聚焦聊天渠道，缺其他渠道数据；（2）未充分探究坐席对AI建议的遵从度；（3）数据局限使机制分析（语气、个性化等）非穷尽；（4）数据来自2021年生成式AI之前，推广到LLM时代需谨慎。",
+    "pages": "摘要 p.1；引言 p.2-3；方法 p.8-10；结论 p.41-42；局限 p.43"
+  },
+  {
+    "file": "79 Incentivizing the content creator when tasks can be delegated to artificial intelligence..pdf",
+    "title": "Incentivizing the Content Creator When Tasks Can Be Delegated to Artificial Intelligence",
+    "research_question": "当任务可委托给AI时，平台应如何调整收入分成以激励人类创作者？引入AI对平台利润与社会福利的影响？",
+    "method": "博弈论/委托-代理模型（principal-agent）。以视频创作（如CapCut脚本转视频）为例，分析代表性人类创作者的委托与创作决策及平台最优收入分成与AI强度配置；辅以异构创作者数值实验。无实证数据。",
+    "theory": "委托-代理问题（Shapiro & Stiglitz 等）；平台经济与收入分成；人机任务比较优势；元知识（meta-knowledge）。",
+    "contributions": [
+      "揭示人类创作者会过度委托AI以偷懒，且随AI变强而加剧；",
+      "给出非单调的收入分成策略：委托提升总产出时降低分成，否则提高分成（AI强度增时先降后升）；",
+      "提出“AI利润陷阱”，并指出若平台可内生配置AI强度，最优收入分成可与无AI时相同，简化决策。"
+    ],
+    "key_findings": "创作者总是偷懒并过度委托；平台收入分成应随AI委托有效性非单调调整；强AI可能损害平台利润（AI利润陷阱）；若平台可最优配置AI强度，收入分成无需改变；过强AI亦损害其他利益相关者与社会福利。",
+    "limitations": "原文未设独立“局限”小节；作为解析模型，假设（代表性创作者、广义函数形式）限制外部有效性，作者指出需实证研究验证，并建议未来研究长期效应、创造力与多主体互动。",
+    "pages": "摘要 p.1；引言 p.2；结论 p.32-34"
+  }
+]

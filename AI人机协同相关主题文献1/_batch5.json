@@ -1,0 +1,152 @@
+[
+  {
+    "file": "41 Managing with artificial intelligence-An integrative framework..pdf",
+    "title": "Managing with Artificial Intelligence: An Integrative Framework",
+    "research_question": "如何整合“人—AI协作(HAIC)”与“算法管理(AM)”两大分散文献，以推进对“用AI管理(managing with AI)”这一现象的理解？",
+    "method": "整合性文献综述（integrative review）。系统回顾2018–2024年发表的183篇实证研究，先分别分析HAIC与AM，再以系统视角(systems lens)重新分析样本。",
+    "theory": "HAIC与AM的概念分野（情境context、能动性agency、互动interaction、结果outcome四维）；系统视角(Anderson 1999; Waldrop 1993)；组织理论。",
+    "contributions": [
+      "首次系统整合HAIC与AM两文献，揭示二者实为同一现象的两面：HAIC研究“人如何用AI管理”，AM研究“人如何被AI管理”。",
+      "提出整合框架，将视角从任务提升到组织情境、从个体到集体能动性、从局部到系统互动、从微观到多层结果。",
+      "为“用AI管理”奠定组织层面的研究基础。"
+    ],
+    "key_findings": "HAIC描绘赋能情境下的高管决策（保留人类能动性、增强型互动、提升任务绩效）；AM描绘强制情境下的管理控制（限制人类能动性、自动化互动、个人被影响）。两文献因微观层面聚焦不同管理任务而割裂，但实为同一现象两侧。",
+    "limitations": "概念性综述，依赖现有实证研究质量；未提出可证伪的新假设或实证检验（原文未明确列出局限性）。",
+    "pages": "摘要 p.1；综述样本与方法 p.2（期刊344）；整合框架 p.2–5"
+  },
+  {
+    "file": "42 Human-algorithmic bias-Source, evolution, and impact..pdf",
+    "title": "Human–Algorithmic Bias: Source, Evolution, and Impact",
+    "research_question": "在微观借贷这一高 stakes、重复决策场景中，人类评估者偏见的来源、演变动态及其影响为何？人类偏见如何被机器学习算法继承为算法偏见？",
+    "method": "结构计量经济模型(structural econometric model)+反事实模拟；利用真实世界重复决策微观借贷数据集（同一申请人多次决策）；在含偏见数据与去除偏见的反事实数据上训练多种SOTA ML算法。",
+    "theory": "偏好型偏见(preference/taste-based)与信念型偏见(belief-based)二分(Becker 1957; Arrow 1973; Bohren et al. 2019)；贝叶斯/简化学习模型刻画评估者动态决策。",
+    "contributions": [
+      "首个利用重复决策大样本与结构模型实证识别并量化不同类型人类偏见的研究。",
+      "首次精确刻画不同类型人类偏见如何编码进训练数据并被ML继承、表现为算法偏见。",
+      "补充微观借贷/FinTech文献，揭示人类与机器偏见如何影响平台盈利与公平性。"
+    ],
+    "key_findings": "人类评估者同时存在偏好型与信念型偏见且偏向女性申请人；消除任一类偏见均提升金融资源分配公平性与平台利润（主要来自男性借款人批准概率上升）；对新申请人算法偏见小于人类，但对重复申请人相反；即便公平性意识强的ML也会继承历史偏见。",
+    "limitations": "聚焦单一微观借贷场景；结构模型依赖特定学习假设；未涵盖其他人口属性（原文未明确其他局限）。",
+    "pages": "摘要 p.1；研究问题 p.2；偏见分类理论 p.3；方法(结构模型) p.8；结果与贡献 p.5"
+  },
+  {
+    "file": "43 The fairness of credit scoring models..pdf",
+    "title": "The Fairness of Credit Scoring Models",
+    "research_question": "如何正式检验信用评分模型的算法公平性，识别导致不公平性缺失的变量，并在保持预测精度的同时优化公平—绩效权衡？",
+    "method": "理论框架+正式统计检验（基于列联表的公平性检验）；涵盖统计均等、条件统计均等、均等机会、预测均等、充分性等多种公平性定义；用零售借款人数据库(性别)做实证检验并优化权衡。",
+    "theory": "多类公平性定义(independence/separation/sufficiency; Barocas et al. 2023)；监管约束（银行不使用敏感属性D作输入）；假设检验框架。",
+    "contributions": [
+      "提出可正式检验信用评分算法公平性的统一框架。",
+      "可定位导致不公平的具体变量，使“公平借贷”法律概念具备统计可操作性。",
+      "为贷款人、监管者提供监控/控制公平性并兼顾预测准确性的工具。"
+    ],
+    "key_findings": "当性别被显式用作特征时检验可拒绝公平性假设；排除性别后多数公平性定义下无法拒绝（但偏见仍可能隐含）；展示了如何在保持高预测精度下改善受保护群体公平性，呼应欧盟AI高风险分类监管需求。",
+    "limitations": "实证主要聚焦性别这一受保护属性；依赖特定零售借款人数据库；假设银行不将敏感属性纳入模型。",
+    "pages": "摘要 p.1；引言 p.2；公平定义与方法 p.3–4；实证结果 p.4；检验框架 p.15"
+  },
+  {
+    "file": "44 Discretionary task ordering-Queue management in radiological services..pdf",
+    "title": "Discretionary Task Ordering: Queue Management in Radiological Services",
+    "research_question": "工作者偏离规定任务顺序（自由裁量）的驱动因素是什么？这种自由裁量如何影响生产绩效？调度自由裁量应如何授权？",
+    "method": "二手数据（240万条放射诊断记录）；工具变量模型(IV)，利用任务随机分配到医生队列以缓解内生性；分析任务完成时间。",
+    "theory": "调度/排队理论；行为运营(behavioral operations)；学习曲线（经验降低偏离惩罚）。",
+    "contributions": [
+      "首批关注队列管理中任务顺序自由裁量角色的研究。",
+      "揭示自由裁量偏离侵蚀生产率，但该损害随医生经验学习而减弱。",
+      "区分不同类型偏离(SEPT、batching)的异质影响，启示何时/如何授权自由裁量。"
+    ],
+    "key_findings": "医生优先处理相似任务(batching)与期望更快完成的任务(SEPT)；经验越多越倾向自由裁量；偏离使平均读片时间增约13%，若不偏离每年可省2494小时、利润增3%；SEPT尤其有害；主动batching反而降生产率（与外生分组的收益相反），说明偏离成本超过重复收益。",
+    "limitations": "单一放射科场景；观察性数据（虽用IV缓解）；未涵盖质量以外更广绩效（原文未明确其他局限）。",
+    "pages": "摘要 p.3；引言 p.4；方法(IV) p.4；结果与贡献 p.5"
+  },
+  {
+    "file": "45 When will workers follow an algorithm A field experiment with a retail business..pdf",
+    "title": "When Will Workers Follow an Algorithm? A Field Experiment with a Retail Business",
+    "research_question": "在零售自动售货机业务中，工人何时会遵循算法建议？将工人预测整合进算法是否提高遵从度？",
+    "method": "田野实验（东京饮料自动售货机公司）；开发多臂老虎机(Thompson Sampling)算法用于产品组合实验；处理：仅算法建议 vs 整合工人先验信念；并用非实验变化分析工人/情境异质性。",
+    "theory": "算法厌恶(algorithm aversion; Dietvorst et al. 2015)；多臂老虎机/强化学习；委托—代理与利益冲突(Fehr et al. 2013)。",
+    "contributions": [
+      "首个在真实商业场景（非实验室）检验算法厌恶及整合工人意见有效性的研究。",
+      "揭示算法名义绩效与实际遵从之间的差距及实践难题。",
+      "强调工人与情境异质性（销量、波动、授权）对算法采纳的关键作用。"
+    ],
+    "key_findings": "平均工人不愿遵从算法建议；但将其预测整合进算法后遵从度提高；高后悔、高销量波动、较少授权会增加遵从；工人回避高流量机器、聚焦高波动机器；对销量的影响与对组合的影响相似，且处理对销量无统计显著影响。",
+    "limitations": "单一公司/日本自动售货机场景，外部有效性受限；仅关注产品组合任务；实验设计未完全区分“心理整合”与“建议相似”两渠道。",
+    "pages": "摘要 p.1；引言 p.2；实验设计 p.2–3；结果 p.3,25；讨论/相关文献 p.5–6"
+  },
+  {
+    "file": "46 Field experiment on the profit implications of merchants’ discretionary power to override data-driven decision-making tools..pdf",
+    "title": "Field Experiment on the Profit Implications of Merchants’ Discretionary Power to Override Data-Driven Decision-Making Tools",
+    "research_question": "给予商家（买方）推翻数据驱动决策(DDD)工具的自由裁量权，是提高还是降低了盈利能力？",
+    "method": "田野实验（汽车零配件零售连锁）；分层随机化——按SKU使部分门店遵循商家决策、部分遵循DDD的移除决策；分析产品生命周期(PLC)阶段异质性。",
+    "theory": "渐近统计学习理论(Bajari et al. 2018：预测误差随样本N或时间T增大而降)；工人自由裁量文献(Hopp et al. 2007)；代理问题与激励错位。",
+    "contributions": [
+      "提供商家推翻DDD对利润因果影响的田野实验证据。",
+      "揭示推翻权价值随产品年龄/生命周期递减。",
+      "补充工人自由裁量文献，对“自动化 vs 保留自由裁量”的零售实践有启示。"
+    ],
+    "key_findings": "总体授予自由裁量权使SKU盈利能力降低5.77%；但在成长阶段产品提升利润23.01%，成熟阶段降7.82%，衰退阶段降17.89%；商家信息优势随产品年龄（历史数据增多）而减弱，总体结果支持自动化。",
+    "limitations": "单一零售商与特定DDD工具；仅关注“保留/移除SKU”决策；结论或受该零售链情境限制。",
+    "pages": "摘要/引言 p.2；理论与假设 p.4；实验结果 p.5"
+  },
+  {
+    "file": "47 Profit Implications of Judgmental Adjustments to Forecast Inputs Evidence from a Large-Scale Field Experiment.pdf",
+    "title": "Profit Implications of Judgmental Adjustments to Forecast Inputs: Evidence from a Large-Scale Field Experiment",
+    "research_question": "允许商家调整库存算法的预测输入（判断性调整），是否改善底线利润？",
+    "method": "大规模随机田野实验（美国汽车零配件零售连锁，约18,000个SKU-store组合）；流程：预测工具生成需求预测→经理可调整→随机应用或不应用该调整→决策算法做组合合理化；对比利润。",
+    "theory": "判断性预测文献(judgmental forecasting; Fildes et al. 2009; Perera et al. 2019; Donohue et al. 2019)；因果推断。",
+    "contributions": [
+      "首个检验判断性调整对下游利润因果影响的大规模随机田野实验。",
+      "证实预测准确性绩效未必转化为运营/利润绩效。",
+      "小/大调整区分在本场景不映射利润影响；负向调整更改善预测准确性，但利润上正负调整无显著差异。"
+    ],
+    "key_findings": "人类难以对所有SKU提供有益调整（能力受限）；预测准确性与利润绩效可背离；正向/负向调整对利润无显著差异影响；研究凸显现实中海量SKU下人类有益调整的能力边界。",
+    "limitations": "单一零售链；聚焦预测输入调整而非最终决策；外部有效性待检验（原文未明确其他局限）。",
+    "pages": "摘要 p.1；方法(实验设计) p.2；贡献与结论 p.3"
+  },
+  {
+    "file": "49 Human decisions and machine predictions..pdf",
+    "title": "Human Decisions and Machine Predictions",
+    "research_question": "机器学习如何用于改进并理解人类决策（以审前保释/拘留决策为例）？相比法官，算法潜在的福利增益有多大？",
+    "method": "二手数据（纽约市2008–2013年758,027名被告）；梯度提升决策树预测犯罪风险；准随机案件分配等计量策略处理选择性偏差；政策模拟。",
+    "theory": "机器学习“预测”与经济学“因果推断”的区分；计量经济学工具（payoff函数、准实验）；福利分析。",
+    "contributions": [
+      "提供“预测问题”分析模板，展示ML如何补充并改进人类决策。",
+      "处理算法—法官比较的两大难题（数据由先前法官决策生成、法官偏好更宽泛）。",
+      "量化巨大潜在福利增益，连接ML与政策设计。"
+    ],
+    "key_findings": "政策模拟显示：保持羁押率不变犯罪可降24.8%（文中另处为18.8%），或保持犯罪率不变羁押人口可降42.0%（另处24.5%）；算法在“预测”任务上显著优于人类，但需与法官更广泛偏好（如种族、特定暴力犯罪）协调。",
+    "limitations": "仅纽约市保释场景；算法聚焦单一风险变量，未涵盖法官更广泛偏好；比较本身因数据生成机制而复杂（原文已承认）。",
+    "pages": "摘要 p.2；引言与数据 p.3；方法 p.3；政策模拟结果 p.3,8"
+  },
+  {
+    "file": "50 On statistical discrimination as a failure of social learning-A multi-armed bandit approach..pdf",
+    "title": "On Statistical Discrimination as a Failure of Social Learning: A Multi-Armed Bandit Approach",
+    "research_question": "招聘市场中的统计性歧视如何作为社会学习失败而出现？何种机制导致对少数群体的持续低估？如何缓解？",
+    "method": "理论模型（多臂老虎机/multi-armed bandit）；设计UCB决策规则与UCB指数补贴规则（以临时平权行动实施）；推导regret界与定理。",
+    "theory": "统计性歧视；社会学习；多臂老虎机（UCB）；群体间关联的学习。",
+    "contributions": [
+      "将统计性歧视建模为“社会学习失败”（多臂老虎机框架）。",
+      "证明自由放任导致对少数群体持续低估，且即便人口比例微小不平衡也常导致永久低估。",
+      "证明以临时平权行动实施的补贴规则可有效缓解数据不足导致的歧视。"
+    ],
+    "key_findings": "自由放任下少数群体很少被雇用，低估持续并自我强化；微小人口不平衡即导致永久低估；基于UCB的补贴规则（临时平权行动）有效缓解源于数据不足的歧视。",
+    "limitations": "纯理论模型，依赖特定假设；未用实证数据验证；要求企业按群体适配统计模型解释。",
+    "pages": "摘要 p.2；模型构建 p.3；补贴规则与结果 p.3,9"
+  },
+  {
+    "file": "51 The gatekeeper effect-The implications of prescreening, self-selection, and bias for hiring processes..pdf",
+    "title": "The Gatekeeper Effect: The Implications of Pre-Screening, Self-Selection, and Bias for Hiring Processes",
+    "research_question": "在招聘等不确定下的筛选决策中，增加一个“看门人(gatekeeper)”筛选阶段，何时提升或阻碍筛选效率？对候选人自选择与偏见有何影响？",
+    "method": "理论模型（博弈论/贝叶斯更新）；候选人据私人信号用贝叶斯规则更新信念并决定是否申请，看门人策略影响申请人池；推导定义与条件（含MLRP信号结构）。",
+    "theory": "筛选理论；贝叶斯更新；自选择(self-selection)；信号结构(MLRP)；AI自动化招聘。",
+    "contributions": [
+      "揭示看门人（常由AI自动化）不仅过滤候选人，还会意外影响候选人自身决策（自选择效应）。",
+      "刻画看门人提升或阻碍效率的条件。",
+      "指出招聘中统计模型“独立同分布”假设因候选自选择而被违背，对筛选质量与效率有重要含义。"
+    ],
+    "key_findings": "看门人降低企业筛选成本，但间接后果——预拒绝不太可能成功的候选人会改变申请人池构成（自选择），可能降低整体筛选质量；AI自动化看门人面临“不可测特征”与“自选择违背i.i.d.”两大挑战。",
+    "limitations": "纯理论模型；聚焦招聘并假设特定信号结构；未做实证检验（原文未明确其他局限）。",
+    "pages": "摘要 p.2；引言 p.2–3；模型与方法 p.3,7"
+  }
+]

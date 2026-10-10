@@ -1,0 +1,112 @@
+[
+  {
+    "file": "52 Till tech do us part-Betrayal aversion and its role in algorithm use..pdf",
+    "title": "Till tech do us part: Betrayal aversion and its role in algorithm use",
+    "research_question": "背叛厌恶（对违背信任规范的强烈反感）是否会阻碍人们接受算法专家建议？相比人类专家，人们对算法的背叛风险反应是否不同？",
+    "method": "在线金融投资实验（oTree+Heroku），40轮模拟市场，275名被试，2（顾问类型：算法/人类）×3（无提示/背叛风险/错误风险）被试间设计；含真实人类对照以避免欺骗。",
+    "theory": "背叛厌恶（betrayal aversion）与信任规范理论：相比单纯金钱损失，人们对被背叛有更强反感，宁愿多花钱避免背叛。",
+    "contributions": "①将背叛厌恶引入人与算法协作研究；②区分‘错误风险’与‘背叛风险’对采纳的异质影响；③发现背叛风险下人们对算法与人类的外包意愿下降程度不同。",
+    "key_findings": "平均顾问使用率基线56.44%、主轮42.59%；存在背叛风险时人们更不愿将决策外包给算法而非人类（H3成立）；背叛厌恶本身会降低期望货币回报。",
+    "limitations": "仅限金融投资情境；被试间设计无法测个体层面背叛；高stakes情境待研究（p.41）。",
+    "pages": "摘要/引言 p.1；理论发展 p.10；实验设计 p.5；结果 p.22；讨论与局限 p.40-41。"
+  },
+  {
+    "file": "53 Human-centered artificial intelligence- A field experiment..pdf",
+    "title": "Human-centered artificial intelligence: A field experiment",
+    "research_question": "在以人为中心、定制化的人机交互（相对不定制）下，AI系统如何影响非结构化管理决策任务中专家的表现与AI使用？",
+    "method": "现场实验（field experiment），销售人员专家分组（D2不定制 / D3定制人机交互），多周期追踪；辅以补充分析观察学习效应（实验设计 p.5，方法 p.7）。",
+    "theory": "以人为中心的AI（Shneiderman 2022）；补充-互补适配（supplementary vs complementary fit）。",
+    "contributions": "①首个在非结构化管理任务中的人机交互现场实验；②证明定制的以人为中心交互产生显著正向效应，不定制则负面；③揭示销售专家中的学习效应。",
+    "key_findings": "定制AI交互带来显著正向处理效应，不定制交互反而降低表现；D3组随时间学习改善，D2组逐渐减少对AI的使用（p.13-14）。",
+    "limitations": "统计功效受限（power-constrained），结果需谨慎解读；鼓励更大样本实验验证（p.14）。",
+    "pages": "摘要/引言 p.2；实验设计 p.5；方法 p.7；讨论 p.13-14；局限 p.14。"
+  },
+  {
+    "file": "54 Algorithmic bias An empirical study of apparent gender-based discrimination in the display of stem career ads.pdf",
+    "title": "Algorithmic bias: An empirical study of apparent gender-based discrimination in the display of STEM career ads",
+    "research_question": "旨在性别中立投放的STEM职业广告为何实际向女性展示更少？算法是否产生‘表面性别歧视’？",
+    "method": "田野测试（field test），在多个国家投放本应性别中立的STEM招聘广告并观测展示分布；结论扩展至其他主流数字平台二手数据（数据 p.2-5）。",
+    "theory": "算法成本-效果优化导致‘挤出’（crowding out）；竞价生态中其他广告主出价造成间接歧视。",
+    "contributions": "①揭示算法单纯优化成本-效果即可产生表面性别歧视；②归因于年轻女性为高价值人群、展示成本更高导致挤出；③证明该规律跨多个数字平台存在。",
+    "key_findings": "女性看到的广告更少，因年轻女性更贵；优化成本-效果的算法以表面歧视方式投放本应中立的广告（p.35）。",
+    "limitations": "仅单一STEM广告、单一设计；无法观测真实广告算法内部机制，竞价作用为推测性（p.35）。",
+    "pages": "摘要 p.2；引言 p.3；数据 p.2-5；结果 p.5；讨论与局限 p.35。"
+  },
+  {
+    "file": "55 Apparent algorithmic discrimination and real-time algorithmic learning in digital search advertising..pdf",
+    "title": "Apparent algorithmic discrimination and real-time algorithmic learning in digital search advertising",
+    "research_question": "实时算法的‘冷启动’学习机制本身是否会导致对少数族裔群体的不利结果（如搜索广告差异）？",
+    "method": "两项田野测试（field tests），在Google投放针对黑人与白人姓名搜索的广告，观测展示概率与算法学习速度（数据 p.3，总结讨论 p.26）。",
+    "theory": "实时算法学习/冷启动问题：少数群体样本更少→作为实验对象比例更高→学习更慢→不利广告更持久。",
+    "contributions": "①将表面歧视归因于算法学习速度差异而非刻意偏见；②用田野实验验证黑人姓名搜索展示更多背景调查广告的机制；③揭示‘冷启动’造成系统性差异。",
+    "key_findings": "黑人姓名搜索更易触发背景调查广告；因黑人姓名更罕见，算法学习广告质量更慢，广告更易持续展示（p.26-29）。",
+    "limitations": "受Sweeney(2013)启发但其他因素（广告主政策）也可能起作用；未提出具体算法设计对策（p.29-30）。",
+    "pages": "摘要 p.2；引言 p.3；数据 p.3；结果 p.2；总结讨论 p.26；局限 p.29-30。"
+  },
+  {
+    "file": "56 Algorithmic precision and human decision- A study of interactive optimization for school schedules..pdf",
+    "title": "Algorithmic precision and human decision: A study of interactive optimization for school schedules",
+    "research_question": "如何设计交互式优化框架，使精确算法与政策制定者的人类决策有效结合，解决复杂学校排课问题？",
+    "method": "与SFUSD合作：建微观基础模型刻画研究者与政策制定者互动；提出快速算法+交互式优化；并实地部署（数据 p.5，结果 p.3起）。",
+    "theory": "微观基础模型：优化误差与政策误差、研究-政策依赖；限制双方依赖是关键。",
+    "contributions": "①提出兼顾算法精度与政策判断的交互式优化框架；②实现美国首个由优化驱动的校历变更（133校，年省超500万美元）；③理论解释人机依赖的权衡。",
+    "key_findings": "框架促成SFUSD在2021年更新全部133所学校作息，交通年节省超500万美元；敏感度工具增强透明度（p.23,30）。",
+    "limitations": "依赖交互式工具，无法单独改一所学校而不触发连锁；调查数据存在选择偏差（p.23,30）。",
+    "pages": "摘要 p.1；引言 p.2；数据 p.5；结果 p.3；讨论与局限 p.23,30。"
+  },
+  {
+    "file": "57 Algorithm aversion- Evidence from ridesharing drivers..pdf",
+    "title": "Algorithm aversion: Evidence from ridesharing drivers",
+    "research_question": "司机为何回避平台用于全局优化的算法选址推荐？哪些因素解释算法厌恶？",
+    "method": "大型网约车平台算法推荐推广的二手数据（非随机），分析司机在位置-时间单元上的采纳行为；控制多因素与固定效应（结果 p.5，结论 p.20）。",
+    "theory": "算法厌恶（algorithm aversion）；情境经验与从众（herding）/信息瀑布。",
+    "contributions": "①基于真实推广数据识别‘情境经验’与‘从众’两因素解释司机算法厌恶；②当推荐与历史经验或同伴行为冲突时更少采纳；③给出促进采纳的管理启示。",
+    "key_findings": "当算法推荐与司机在该位置-时段的历史经验不符、或同伴行为相悖时，司机更不遵循算法（p.20-21）。",
+    "limitations": "无随机分配，不能做因果解释；从众效应可能因无法观测各司机信息集而偏误（p.20-21）。",
+    "pages": "摘要 p.1；引言 p.3；结果 p.5；结论与局限 p.20-21。"
+  },
+  {
+    "file": "58 Augmenting the operations manager with a prediction machine..pdf",
+    "title": "Augmenting the operations manager with a prediction machine",
+    "research_question": "部署预测机器（AI预测引擎）会如何通过改变管理者预测努力影响其价值？最优披露策略是什么？",
+    "method": "解析理论模型（贝叶斯说服 / Bayesian persuasion），建模面临不确定需求的企业，管理者努力生成预测、机器提供信号（结论 p.31）。",
+    "theory": "委托-代理与贝叶斯说服；管理者努力替代效应（机器披露预测后自身努力下降）。",
+    "contributions": "①证明部署预测机器可能因管理者努力下降而减损价值，完全披露甚至使公司更差；②刻画最优披露依赖成本-收益比与努力成本；③证明部分披露可最优。",
+    "key_findings": "机器完全披露预测时管理者减少努力，公司可能变差；部分披露（最小/最大 obfuscation）在平衡努力与信息后最优（p.32-33）。",
+    "limitations": "原文未明确（文末仅提未来可用实验/医疗等其他场景拓展，p.32-33）。",
+    "pages": "摘要 p.1；引言 p.2；数据 p.8；结论 p.31；未来研究 p.32-33。"
+  },
+  {
+    "file": "59 1＋1》2？Information, humans, and machines..pdf",
+    "title": "1 + 1 > 2? Information, Humans, and Machines",
+    "research_question": "任务复杂度（尤其信息复杂度）与机器解释如何共同促进人类深度思考，从而提升人机协作成效？",
+    "method": "实验研究（含多阶段/两阶段设置、不同经验被试），考察信息复杂度与解释对决策的影响（实验设计 p.13，结果 p.19）。",
+    "theory": "任务复杂度与信息丰度激发深度思考；机器解释的有效性取决于情境因素（contingent factor）。",
+    "contributions": "①强调任务/信息复杂度是机器解释生效的关键调节；②提出人机协作产生‘1+1>2’需二者协同；③指出人类可充当纠正机器性别偏见的策展人角色。",
+    "key_findings": "任务复杂度和信息丰富度协同促进人类深度思考，提升人机协作；经验较少者异质性更大（p.37-38）。",
+    "limitations": "聚焦静态场景、无人类相互学习；现实中长期相互学习未纳入（p.37-38）。",
+    "pages": "摘要 p.1；引言 p.2；实验设计 p.13；结果 p.19；讨论与局限 p.37-38。"
+  },
+  {
+    "file": "60 Frontiers- Machines vs. humans- The impact of artificial intelligence chatbot disclosure on customer purchases..pdf",
+    "title": "Frontiers: Machines vs. Humans: The impact of artificial intelligence chatbot disclosure on customer purchases",
+    "research_question": "在对外销售电话中，披露聊天机器人身份会如何影响顾客购买？其机制与缓解方式为何？",
+    "method": "现场实验（field experiment），>6,200名顾客随机接受聊天机器人或人类外呼；分析披露前后购买率与通话时长（结果 p.1，局限 p.9）。",
+    "theory": "主观人机感知（对机器反感）、感知专业性与共情；对象征性人类身份的偏好。",
+    "contributions": "①量化未披露机器人=熟练员工、4倍于新手；披露使购买降79.7%；②机制为感知知识/共情更低；③晚披露与既往AI经验可缓解负面效应。",
+    "key_findings": "未披露聊天机器人与熟练员工同样有效、为新手的4倍；披露身份使购买率降逾79.7%；顾客因觉机器人不专业/无共情而简短且少买（p.9）。",
+    "limitations": "外呼为受限双向信息交换而非高度互动对话；结果在动态入站等其他场景的普适性待验（p.9）。",
+    "pages": "摘要 p.1；引言 p.1；结果 p.1；讨论 p.2；局限 p.9。"
+  },
+  {
+    "file": "61 Speaking in Private Privacy Expectations Depend on Communication Modality.pdf",
+    "title": "Speaking in Private: Privacy Expectations Depend on Communication Modality",
+    "research_question": "消费者对不同沟通模态（语音 vs 文本）披露的信息是否有不同的隐私期望？",
+    "method": "三项研究（实验），基于语境完整性理论（contextual integrity），测量对语音/文本信息披露可接受度并检验机制与调节（实证概览 p.4-5，总讨论 p.9）。",
+    "theory": "语境完整性理论（Nissenbaum）；自我控制差异与‘所有权感’（felt ownership）。",
+    "contributions": "①发现语音披露比文本引发更严格的隐私期望；②机制为对语音内容更高的所有权感；③对隐私监管、语音应用设计、定向广告有启示。",
+    "key_findings": "三项研究一致显示，相比文本，消费者对语音披露的信息流更不可接受；部分由语音内容更高的所有权感驱动（p.9）。",
+    "limitations": "原文未明确（无独立局限性小节；总讨论仅指出机制可能多元、其他机制待研，p.9）。",
+    "pages": "摘要 p.2；引言 p.2；实证概览 p.4-5；总讨论与机制 p.9。"
+  }
+]

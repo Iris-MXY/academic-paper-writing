@@ -1,0 +1,16 @@
+# Local tooling
+.tools/
+
+# Original paper library
+*.pdf
+
+# Office temporary files
+~$*.docx
+~$*.xls
+~$*.xlsx
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+*.tmp
+

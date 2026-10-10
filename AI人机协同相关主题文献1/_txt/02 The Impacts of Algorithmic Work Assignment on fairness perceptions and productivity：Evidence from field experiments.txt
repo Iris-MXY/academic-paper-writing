@@ -1,0 +1,2351 @@
+     The Impacts of Algorithmic Work Assignment on
+     Fairness Perceptions and Productivity: Evidence
+                 from Field Experiments
+             Bing Bai1 , Hengchen Dai2 , Dennis J. Zhang1 , Fuqiang Zhang1 , Haoyuan Hu3
+                    1. Olin Business School, Washington University in St. Louis, St. Louis, MO, USA
+             2. Anderson School of Management, University of California, Los Angeles, Los Angeles, CA, USA
+                                          3. Alibaba Group, Hangzhou, China
+
+
+     Problem Definition: We study how algorithmic (vs. human-based) task assignment processes change task
+     recipients’ fairness perceptions and productivity.
+     Academic/Practical Relevance: Since algorithms are widely adopted by businesses and often require
+     human involvement, understanding how humans perceive algorithms is instrumental to the success of al-
+     gorithm design in operations. Particularly, the growing concern that algorithms may reproduce inequality
+     historically exhibited by humans calls for research about how people perceive the fairness of algorithmic
+     decision-making (relative to traditional human-based decision-making) and, consequently, adjust their work
+     behaviors.
+     Methodology: In a 15-day-long field experiment with Alibaba Group in a warehouse where workers pick
+     products following orders (or “pick lists”), we randomly assigned half of the workers to receive pick lists
+     from a machine that ostensibly relied on an algorithm to distribute pick lists, and the other half to receive
+     pick lists from a human distributor.
+     Results: Despite that we used the same underlying rule to assign pick lists in both groups, workers perceive
+     the algorithmic (vs. human-based) assignment process as fairer by 0.94-1.02 standard deviations. This yields
+     productivity benefits: receiving tasks from an algorithm (vs. a human) increases workers’ picking efficiency
+     by 15.56%-17.86%. These findings persist beyond the first day when workers were involved in the experiment,
+     suggesting that our results are not limited to the initial phrase when workers might find algorithmic assign-
+     ment novel. We replicate the main results in another field experiment involving a nonoverlapping sample of
+     warehouse workers. We also show via online experiments that people in the U.S. also view algorithmic task
+     assignment as fairer than human-based task assignment.
+     Managerial Implications: We demonstrate that algorithms can have broader impacts beyond offering
+     greater efficiency and accuracy than humans: introducing algorithmic assignment processes may enhance
+     fairness perceptions and productivity. This insight can be utilized by managers and algorithm designers to
+     better design and implement algorithm-based decision making in operations.
+
+     Key words : Behavioral Operations, Field Experiment, Productivity, Fairness, Artificial Intelligence
+
+
+
+
+1.     Introduction
+With the increasing availability of data and the development of information technologies, companies
+are rapidly implementing algorithms to process a large amount of data in order to efficiently
+
+                                                          1
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3550887
+2                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+make daily operational decisions. For example, digital service platforms such as Uber and Airbnb
+instantly match customers with service providers, taking high-dimensional information into account
+(e.g., customers’ willingness to pay, service providers’ availability) in their algorithms. Ad platforms
+such as Facebook and Google combine advertising algorithms with rich data about consumers to
+identify specific audience groups for which to display certain ads.
+    Such growing interest in using algorithms in practice has inspired a large stream of research
+dedicated to improving algorithms’ performance (e.g., Bhandari et al. 2008, Zhang and Kulkarni
+2018). However, in many domains of daily operations, algorithms rely on human involvement to
+complete tasks. For example, retailing platforms such as Alibaba use algorithms to determine which
+set of items should be packed into which box but need human workers in warehouses to pack
+the items according to algorithmic prescriptions (Sun et al. 2021). Similarly, sales platforms such
+as Salesforce use algorithms to decide which product to be advertised to whom but need human
+salespeople to make sales pitches following algorithmic recommendations.
+    Thus, a fundamental question about algorithm development in operations management is how
+humans perceive and interact with algorithms. A growing body of work has begun to study this
+question from both operational and psychological perspectives (e.g., Dijkstra et al. 1998, Dietvorst
+et al. 2015, 2018, Leung et al. 2018, Logg et al. 2019, Luo et al. 2019, Newman et al. 2020, Sun
+et al. 2021). This literature has largely documented that people are reluctant to use algorithms
+and prefer instead to defer to judgments made by a human. Another growing concern regarding
+human and algorithm collaboration is that algorithms may produce or reproduce discriminatory
+outcomes and lead to new or more systematic biases than what humans have historically exhibited
+(see Cowgill and Tucker 2019 a review). Motivated by this concern, researchers have studied various
+ways of defining and enforcing fairness when designing algorithms (Kleinberg et al. 2018).
+    Extending these two lines of work on how to improve human and algorithm collaboration, we
+study how workers perceive the fairness of algorithmic decisions and how such fairness perceptions
+affect their behavior when algorithms are used to make decisions related to workers’ tasks.
+    In work settings, algorithms are increasingly replacing human decision makers to allocate re-
+sources and tasks (e.g., delivery trips, customers, cases) across workers. We specifically examine
+how an algorithmic task assignment process, relative to a human-based task assignment process,
+changes task recipients’ fairness perceptions and productivity. To causally answer this question,
+we conducted two field experiments in collaboration with Alibaba—the largest retailing platform
+in China—in its warehouse setting. In recent years, e-commerce warehouses have started digitizing
+equipment and applying algorithms to many key tasks, such as picking, routing, scheduling, and
+bin packing (Sun et al. 2021). We focus on picking tasks for which workers follow a “pick list” to
+collect products from different stocking shelves.
+
+
+
+
+                    Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                        3
+
+  During our experiments, workers in our partner warehouse were randomly assigned to one of two
+groups: workers in the algorithm group received picking tasks from a machine that ostensibly relied
+on an algorithm to distribute pick lists, whereas workers in the human group received picking tasks
+from a human distributor. We kept the objective nature of these two task assignment processes
+as well as the characteristics of the assigned pick lists as similar as we could, so the difference
+we observe between these two assignment processes can be attributed to workers’ beliefs and
+perceptions about the differences between algorithmic and human-based assignment.
+  The first, main experiment involved 50 temporary workers for 15 days in August-September,
+2019. We collected data about all 4, 486 pick lists completed by these workers during this ex-
+periment, along with 108 daily questionnaires from them. We present three key findings. First,
+we find that workers hold different views about the fairness of these two assignment processes:
+workers receiving tasks from an algorithm on average perceive their assignment process as fairer
+than workers receiving tasks from a human distributor, and the difference is 0.94-1.02 standard
+deviations (depending on our model specifications). Second, we document productivity differences
+between these two assignment processes: receiving tasks from an algorithm significantly increases
+workers’ picking efficiency by 15.56%-17.86%, compared to receiving tasks from a human distribu-
+tor. Third, since unobserved variables such as worker ability, can be correlated with both how fair
+workers believe they are treated and their productivity, we estimate via an instrumental variable
+approach the effect of fairness perceptions on productivity. We show that a one-standard-deviation
+increase in fairness perceptions is associated with a boost of picking efficiency by 12.97%-16.98%.
+We conducted the second field experiment with a nonoverlapping sample of workers in December,
+2019-January, 2020 and validated the robustness of our main results.
+  To further validate our findings from the field, we conducted an online experiment to study the
+effect of algorithmic (vs. human-based) task assignment on perceived fairness among a different
+population—201 people in the United States recruited from an online labor market (Amazon’s
+Mechanical Turk). Study participants imagined working in a warehouse and receiving picking tasks
+from either a machine or a human distributor. Despite imagining receiving the same picking tasks,
+people on average perceived the assignment process run by a machine based on an algorithm as
+fairer than the process run by a human. We replicated this pattern in another online experiment
+with a slightly different design.
+  In sum, we examine people’s psychological and behavioral responses to algorithmic decision-
+making processes across experiments and settings, and we present the first field experiments to
+our knowledge in an actual workplace to study this issue. By keeping the nature of pick lists the
+same between conditions, our design provides a clean test of how people perceive algorithmic (vs.
+human-based) decision-making processes and how people behave after receiving decisions made by
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+4                                     Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+these processes. Theoretically, this angle differentiates our study from the large body of research
+that examines sources of algorithm-engendered biases and compares algorithms with humans in the
+actual level of inequality they produce (Kleinberg et al. 2016, Caliskan et al. 2017, Cowgill 2018,
+Kleinberg et al. 2018, Lambrecht and Tucker 2019, Obermeyer et al. 2019). Practically, through this
+unique design, our findings can help companies understand workers’ perceptions about algorithmic
+decision-making processes and optimize the framing of task assignment processes. Altogether, our
+research complements the existing literature about human-algorithm collaboration, highlights the
+importance of understanding workers’ fairness perceptions when utilizing algorithms, and provides
+insights for designing better human-algorithm collaboration in daily operations.
+
+2.     Literature Review and Theoretical Contributions
+Our work is mainly related to four research areas: human collaboration with algorithms, algorithmic
+bias, operations management research about automation, and behavioral operations.
+
+2.1.    Human Collaboration with Algorithms
+Our work is closely connected to the growing stream of literature studying how people perceive and
+react to algorithms and automation. The primary focus of this literature has been on examining
+whether humans, as users of algorithms, are willing to rely on algorithmic prescriptions and utilize
+automated systems. With a few exceptions (Dijkstra et al. 1998, Logg et al. 2019), research in this
+area has largely documented algorithm aversion, whereby people are reluctant to utilize algorithms
+and automation (compared to their own judgment, human experts’ advice, or their peers’ aid),
+despite the fact that algorithms give identical output or, in some cases, even superior performance
+than humans (Dietvorst et al. 2015, 2018, Leung et al. 2018, Luo et al. 2019).
+    More recently, this literature has begun to examine how people as recipients of decisions (e.g.,
+employees receiving personnel decisions) respond to algorithmic decision processes. This line of
+research so far has found that people view algorithms as less capable of taking into account their
+unique, contextual, and personal characteristics (Longoni et al. 2019); as a result, people per-
+ceive algorithmic decision-making as less procedurally fair and express less commitment to their
+organizations if algorithms (rather than humans) drive decision making (Newman et al. 2020).
+    We make several contributions to this literature. First, while recent research suggests that people
+disfavor algorithms when they want decision-making processes to consider their unique and personal
+characteristics (Castelo et al. 2019, Longoni et al. 2019, Newman et al. 2020), we recognize that
+people often have the equality motive—that is, they would like to receive equal treatment and
+opportunity relative to others (Fehr and Schmidt 1999, Dawes et al. 2007, Blake and McAuliffe
+2011). We complement prior research by documenting that algorithmic decision-making processes
+are viewed more favorably than human-based decision-making processes in settings where people
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                           5
+
+prioritize the equality motive over other motives that consider personal characteristics. Second,
+while prior research has focused on how people collaborate with algorithms on prediction tasks and
+consumer decision-making, we examine how employees perceive algorithms that determine their
+tasks at work. Our empirical context in the field studies—a labor-intensive working environment—
+is also a complement to the literature. Third, while the prior research reviewed above has largely
+used laboratory and online experiments, we conducted field experiments in a common operation
+setting (warehouse operations) to provide more external validity of our insights. Fourth, going
+beyond examining people’s perceptions of algorithms, we further study employees’ work behaviors
+and find a downstream consequence of algorithmic work assignment process on productivity.
+
+2.2.   Algorithmic Bias
+Our paper is also related to the emerging literature about biases and discrimination engendered by
+algorithms. Scholars are concerned that algorithms may reproduce, codify, or even amplify dispari-
+ties due to biases in objective functions, people building the algorithms, or historical data (Cowgill
+and Tucker 2019), and have provided evidence that algorithms perpetuate existing inequality across
+domains. For example, algorithms have been shown to derive semantics that associate female names
+more with family than career-related words (Caliskan et al. 2017), produce gender discrimination
+in ad delivery (Lambrecht and Tucker 2019), and yield racial bias in health risk assessments (Ober-
+meyer et al. 2019). This concern has motivated researchers to study how to define and enforce
+fairness when designing algorithms (Kleinberg et al. 2018). Despite the concern around algorith-
+mic bias, the scarce research that compares algorithms to human decision makers suggests that
+algorithmic judgment actually appears less biased than human judgement, even when algorithms
+are trained on historical data involving biased human decisions (Cowgill 2018). This provides some
+empirical support for the more optimistic view that the use of AI could have positive implications
+for social equality and fairness.
+  While prior work in this literature has focused on identifying when algorithms produce biased
+outcomes and has compared algorithms to humans in the actual level of fairness generated, we
+study people’s perceptions of algorithms’ ability to deliver fair treatments. We ask the fundamental
+question of how knowing that one’s outcome is determined by an algorithm (vs. a human) affects
+people’s perceived fairness about the decision process, which subsequently influences their behav-
+iors. To examine this question, we keep the underlying decision-making logic and the assigned
+outcomes the same but investigate how people’s perceptions change when they are led to believe
+that their outcomes are decided by an algorithm rather than a human decision maker.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+6                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+2.3.    Automation in Operations Management
+Our work adds to the literature in operations management studying problems that arise in the
+presence of automation, particularly research that incorporates the role of humans in the design
+of automated systems (Van Donselaar et al. 2010, Karacaoglu et al. 2018, Zhang and Kulkarni
+2018, Li et al. 2021, Sun et al. 2021). For example, Van Donselaar et al. (2010) and Sun et al.
+(2021) study how managers’ and workers’ deviations from algorithmic prescriptions could yield
+insights for improving operational efficiency. While prior research in this area has focused on how
+to make algorithms and automated systems more powerful, we study how people’s perceptions
+about automation affect their efficiency. We show that in the presence of automation, psychological
+factors such as fairness perceptions impact worker productivity.
+
+2.4.    Behavioral Operations
+Finally, our work builds on the behavioral operations literature. This literature has documented
+a number of behavioral and psychological drivers of productivity, such as team familiarity, time
+pressure, peer pressure, quality monitoring, and free-rider effect (e.g., Huckman et al. 2009, Tan and
+Netessine 2019, Ibanez and Toffel 2020, Xu and Zhu 2020, Akşin et al. 2021, Wu and Wang 2021),
+mostly based on archival data analysis. Through longitudinal field experiments, we document that
+perceived fairness about task assignment is another important driver of productivity. Also, the
+behavioral operations literature has shown that people in various operation settings fall prey to
+behavioral biases, such as framing (Buell and Norton 2011, Kc 2020). For example, Kc (2020)
+shows that the framing of patients’ admission time may affect doctors’ discharge decisions. Our
+finding—that people view a decision process as fairer and work more productively when the process
+is seemingly driven by an algorithm (vs. a human)—provides an example where the framing of
+work assignment affects operational efficiency.
+
+3.     Hypothesis Development
+We present two hypotheses regarding how assigning tasks via algorithms versus humans affects
+task recipients’ fairness perceptions and productivity in prevalent work settings where workers tend
+to prioritize the equality motive and desire equal treatment and opportunity relative to others.
+    When evaluating the fairness of a process that is used to make allocation decisions, people often
+consider whether the process is free from decision makers’ personal biases, applies decision rules
+consistently across people and across time, and uses appropriate factual information to make de-
+cisions (Tyler 1989, Colquitt et al. 2001). People may worry that a human decision maker would
+consciously or unconsciously make favorable or disadvantageous decisions about some individuals
+for unjustifiable reasons (e.g., close relationships, physical attractiveness), but they may expect
+algorithms to be free of these personal biases and more capable of consistently applying rules and
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                           7
+
+providing equal treatment across individuals. The differential beliefs about human versus algorith-
+mic decision makers may arise because people often evaluate the fairness of an allocation based on
+how they attribute the outcome to the decision maker’s intentions (Falk et al. 2008) and people tend
+to perceive algorithmic decision makers as less intentional than humans (Gray et al. 2007, Gray and
+Wegner 2012). Even in settings as our field experiments where, as explained later in Section 4.1,
+human distributors actually allocated tasks following a specific guideline (rather than using their
+own discretion), task recipients may still infer that assignment outcomes are more attributable to
+human distributors’ preferences and biases than algorithms’. This psychological process may reflect
+people’s beliefs about the intentionality of different assignment processes. Altogether, we propose
+the following hypothesis for settings where workers prioritize the equality motive:
+
+  Hypothesis 1. Workers perceive a task assignment process as fairer if they believe the process
+is implemented by an algorithm than if they believe the process is implemented by a human.
+
+  Our next hypothesis pertains to how algorithmic (vs. human-based) assignment affects pro-
+ductivity. Research in psychology, organizational behavior, and behavioral economics consistently
+suggests that people desire fair treatments and behave differently at work in accordance to whether
+they think they are fairly treated in their organizations (see Cohen-Charash and Spector 2001,
+Colquitt et al. 2001, Fehr et al. 2009 for reviews of relevant research). In particular, meta-analyses
+of hundreds of studies suggest that procedural fairness perceptions have a moderately positive
+correlation with work performance on average (r = 0.30; Colquitt et al. 2001) and that the rela-
+tionship is stronger among actual employees in work settings (r = 0.47) than among students in
+laboratory studies (Cohen-Charash and Spector 2001). Building on prior research, we predict that
+as an algorithmic task assignment process increases people’s perceived fairness (Hypothesis 1), it
+should subsequently have a positive impact on their productivity.
+
+  Hypothesis 2. Workers are more productive if they believe their task assignment process is
+implemented by an algorithm than if they believe the process is implemented by a human.
+
+4.     Experiment Design and Data
+4.1.   Field Setting and Experiment Design
+Our field experiments were conducted in collaboration with Alibaba. In 2013, along with five
+package delivery companies, Alibaba co-founded Cainiao Network (hereafter, “Cainiao”), a logis-
+tic platform operator dedicated to digitizing the shipping industry and building a smart logistic
+network nationally and globally. Cainiao has the largest bonded warehouse network in China and
+manages more than 60% packages from Alibaba’s Chinese retail marketplaces.
+  We study one core task that workers perform in warehouses: picking, which requires workers
+to collect certain products from different shelves following specific “pick lists”. When an online
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+8                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+purchase order is placed on Alibaba, Cainiao’s warehouse management system first decides which
+warehouse should fulfill the order based on the Stock Keeping Units (SKUs) included in the or-
+der and their stocking information. After accumulating a number of purchase orders for a given
+warehouse, the system generates a set of pick lists for this warehouse, with each pick list usually
+covering multiple purchase orders. A pick list contains information about products that a worker
+should pick, including SKU name, the quantity the worker should pick for each SKU, and the
+stocking location of each SKU (see Online Appendix A for an example pick list).
+    We conducted two experiments in one of Cainiao’s warehouses where picking workers were paid
+hourly. These experiments had the same design but were run at different times involving nonover-
+lapping samples of workers. We focus on the first field experiment in this paper, and report the
+second field experiment as a replication study in Online Appendix B. Our first, main experiment
+involved 50 temporary workers and spanned 15 days, starting from August 20, 2019 and ending
+on September 6, 2019. On August 25-26 and August 30, 2019, the warehouse had a much heavier
+workload than usual due to Alibaba’s platform-wide “shopping holidays” so the experiment was
+temporally halted on these days.
+    Before and in between our field experiments, a staff member in the warehouse periodically printed
+out pick lists as physical hard copies and placed them on a table at the pick list distribution
+station so that workers could get pick lists themselves based on their own preferences. During our
+experiments, we manipulated how workers received pick lists and randomly assigned workers into
+either the human group or the algorithm group. Once assigned, workers stayed in the same group
+during the span of the experiment. We set up two tables side by side at the distribution station,
+one for the human group and the other for the algorithm group.
+    In the human group, hard-copy pick lists were printed and assigned by a human distributor.
+Specifically, a human distributor stood at the human-based assignment table and periodically
+printed out a stack of hard-copy pick lists from the pool of available pick lists. The selection of
+pick lists from the pool and the printing order were designed to be random. When a worker in
+the human group came to the human-based assignment table, the human distributor handed the
+worker the hard-copy pick list at the top of the stack. Upon receiving the pick list, the worker
+scanned the bar code on the pick list using a radio-frequency hand-held monitor, at which time
+Cainiao’s system would record the starting time of this pick list. After scanning the bar code on
+the hard-copy pick list, the picking worker no longer needed the hard-copy pick list since she could
+access the pick list’s information on her hand-held monitor. In the algorithm group, picking tasks
+were assigned to workers by an algorithm. Specifically, when a worker in the algorithm group came
+to the distribution station for her next pick list, she would scan a bar code on the algorithmic
+assignment table at the station. This would trigger the algorithm to randomly choose a pick list
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                9
+
+
+
+
+             Warehouse
+             Management       Generating Pool        Algorithmic Assignment
+               System          of Pick Lists         of Pick Lists to Workers
+ Purchase         Item
+                                 Pick List A
+  Orders      Information
+                                 Pick List B
+                Stocking            …
+              Information                                                             Picking   Finish
+
+
+
+                                                     Human-based Assignment
+                                                      of Pick Lists to Workers
+
+                            Figure 1      Flow Chart of Picking Process for Both Groups
+
+
+from the pool of available pick lists and then display the selected pick list on the worker’s hand-held
+monitor. At that time Cainiao’s system would record the starting time of this pick list.
+  From this point on, the process of completing a pick list was the same in the algorithm and
+human groups. Upon a pick list showing up on their monitor, workers in both groups would walk
+to the stocking location of the first SKU on the pick list. Once they found the first SKU and put
+the corresponding quantity into a cart, they scanned the bar code of the first SKU to record the
+time. When workers picked the last SKU in a pick list and scanned its bar code, the completion
+time of the pick list would be recorded. Figure 1 illustrates the pick list generation and picking
+process for both groups of workers.
+  Note that the pick list assignment process in both the human and algorithm conditions dif-
+fered from how pick lists were assigned in this warehouse before and in between our experiments.
+Thus, the preexperiment assignment process could not have served as an anchor that differently
+affected workers’ perceptions of their assignment process during our experiments. Workers, human
+distributors, and the operation manager in this warehouse were unaware of the objectives of our
+experiments or our hypotheses, and they did not have information about the algorithm in use.
+  To cleanly examine workers’ perceptions of algorithmic (vs. human-based) assignment processes
+and the subsequent implications for productivity, we took several measures to ensure that the
+accessibility of pick lists and the assignment outcomes are comparable between conditions so that
+the two conditions only differ in workers’ perceived distributor (i.e., algorithm vs. human).
+  First, in both conditions, pick lists assigned to workers at any given point were drawn from
+the same pool of pick lists using the same underlying rule. Specifically, in the human group, we
+instructed human distributors to give out pick lists in the same order as how pick lists were
+randomly selected from the pool and printed. This instruction prevented human distributors from
+handing out pick lists at their own discretion. In the algorithm group, the algorithm by design
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3550887
+10                                   Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+randomly selected a pick list from the pool of available pick lists each time. Therefore, in essence,
+workers in both groups received pick lists that were randomly drawn from a common pool of pick
+lists. Our following randomization check in Section 4.3 also confirms that the characteristics of pick
+lists are comparable between conditions.
+     Second, workers in both groups had to walk to the same location to obtain pick lists, which
+eliminated the effects of different walking distances on productivity. In other words, it cannot be
+the case that workers in one group walked less, were less fatigued, and thus were more productive
+than workers in the other group. Third, we sought to make the process of receiving pick lists
+equally simple for workers in both groups, so differences in productivity could not be driven by
+how inconvenient workers found the assignment process. Indeed, as shown in 4.3, workers in both
+groups rated the process of receiving pick lists as similarly convenient.
+     We also tried to address the potential influence of operational transparency. Research about
+operational transparency suggests that when people have more knowledge about how things work
+during an operation process, their trust and engagement will be enhanced (Buell et al. 2020). For
+example, showing customers who is serving them and how service is done can increase customers’
+service satisfaction (Buell and Norton 2011, Buell et al. 2017, 2020); and allowing employees to
+observe customers can improve service quality and efficiency (Buell et al. 2017). Particularly related
+to our research, Demirdag and Shu (2020) find that people disfavor algorithms relative to their own
+decision-making processes because they perceive algorithmic decision processes as less transparent.
+To mitigate the influence of transparency in our field experiments, we decided not to tell workers
+how the human distributor or the algorithm assigned pick lists. In addition, as we have mentioned,
+the assignment process in both the human and algorithm conditions differed from how pick lists
+were assigned in the warehouse prior to our experiments; thus, workers in both conditions may
+similarly have uncertainty about how the assignment of pick lists was exactly determined.
+     Another potential concern about our experimental design is the interference between workers;
+that is, the behavior of a particular worker may depend not only on her own pick list assignment
+process but also on the assignment process experienced by others in the warehouse (e.g., because
+they may communicate with each other). We use a post-experiment statistical test (Aronow 2012)
+to show that the behavior of workers in our experiments was unlikely to have been affected by the
+assignment process of others working around them. We discuss this test later in Section 6.2. In
+Online Appendix C, we also explain why we consider our design (similar to Hossain and List 2012,
+Bloom et al. 2015) the cleanest among all feasible approaches given the constraints.
+
+4.2.     Data and Survey Design
+During our experiments, we collected two types of data: (1) operations data from the warehouse
+management system tracking the characteristics and processing time of each pick list, and (2)
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                                                                                                                11
+
+                                                                                                                                                                      1250
+                        1000                                                                    1500
+
+
+                                                                                                                                                                      1000
+ Number of pick lists
+
+
+
+
+                                                                         Number of pick lists
+
+
+
+
+                                                                                                                                               Number of pick lists
+                        750
+                                                                                                1000
+                                                                                                                                                                       750
+
+                        500
+                                                                                                                                                                       500
+                                                                                                 500
+                        250
+                                                                                                                                                                       250
+
+
+                           0                                                                      0                                                                      0
+                               0       25        50          75   100                                  0      10    20     30    40       50                                 0       10         20      30
+                                            Pick list size                                                 Number of stocking positions                                            Picking efficiency
+                                   (a) Pick List Size                           (b) Number of Stocking Positions                                                             (c) Picking Efficiency
+                                        Figure 2             Distributions of Pick List Characteristics in the First Field Experiment
+
+
+workers’ responses to surveys that we administered every day. For each pick list, we tracked the
+pick list size (i.e., the total quantity of items to be picked), the number of stocking positions (i.e.,
+the number of shelf positions in which SKUs in the pick list were stocked), the identifier of the
+worker who handled this pick list, and the times when the worker started versus completed the
+pick list.
+          On average, workers in the first experiment worked 2.16 days during the experimental period,
+yielding a total of 108 worker-day level observations. These workers completed 4,486 pick lists in
+total. Figure 2 provides the distributions of pick list characteristics across all pick list observations
+in our first experiment. Figure 2(a) shows the distribution of pick list size. Since the picking carts
+where workers temporarily stored products they collected had capacity limits, most (72.96%) pick
+lists contained no more than 20 items. Figure 2(b) shows the distribution of the number of stocking
+positions, which is highly skewed to the right. Since pick lists were designed to combine items in the
+same stocking position, the number of stocking positions was generally smaller than the number
+of items in a pick list. Figure 2(c) displays the distribution of picking efficiency. Picking efficiency
+equals the total quantity of items in a pick list divided by how long (in minutes) it took a worker
+to complete the pick list. It captures the average quantity of items a worker picked per minute
+while working on a pick list.
+          At the end of each day, we distributed surveys to all picking workers who showed up that day.
+Workers were told that their responses would be kept confidential and would be used exclusively for
+research purposes. Our daily survey collected workers’ perceptions about their pick list assignment
+process as well as their demographics. When assessing people’s attitudes towards algorithmic and
+human-based decision-making, prior research has often had people make head-to-head comparisons
+of these two methods (e.g., Dietvorst et al. 2015, 2018, Longoni et al. 2019). Therefore, we developed
+two questions to assess workers’ perceived fairness about their current assignment process (relative
+to the alternative assignment process; see Table 1).
+
+
+
+
+                                                      Electronic copy available at: https://ssrn.com/abstract=3550887
+12                                            Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+                                       Table 1     Measures of Fairness Perceptions
+
+         Question      Group                                           Question
+         number                                                        wording
+         1           Algorithm    Do you think it would be fairer if pick lists were assigned by a human distributor?
+                                                  (1=Definitively would, 5=Definitively would not)
+                      Human           Do you think it would be fairer if pick lists were assigned by an algorithm?
+                                                  (1=Definitively would, 5=Definitively would not)
+         2           Algorithm                  Which assignment process do you think would be more
+                                               appropriate if you were paid by item instead of by time?
+                                   (1=Definitively algorithmic assignment, 5=Definitively human-based assignment)
+                      Human                     Which assignment process do you think would be more
+                                               appropriate if you were paid by item instead of by time?
+                                   (1=Definitively algorithmic assignment, 5=Definitively human-based assignment)
+
+     Note: The English translation does not match the Chinese version of our survey word by word, but it captures the meaning
+     of our survey questions and scale response anchors well after considering the context.
+
+
+     First, we asked workers whether they thought it would be fairer to assign pick lists using the
+alternative process than using their current process. Specifically, workers in the algorithm group
+were asked, “Do you think it would be fairer if pick lists were assigned by a human distributor?”
+Workers in the human group were asked, “Do you think it would be fairer if pick lists were as-
+signed by an algorithm?” Workers in both groups responded using a five-point Likert scale from
+1 (“Definitively would”) to 5 (“Definitively would not”). In both groups, choosing a higher value
+(relative to a lower value) indicates that the worker viewed their current assignment process more
+favorably and less strongly believed the alternative assignment process would be fairer.
+     Second, we asked workers, “Which assignment process do you think would be more appropriate if
+you were paid by item instead of by time?” (with the five-point scale ranging from 1 = “Definitively
+algorithmic assignment” to 5 = “Definitively human-based assignment”). We framed the ques-
+tion this way because people are generally sensitive to fairness in task assignment when receiving
+performance-based incentives (Isaac 2001). Thus, we expected workers to report what they deemed
+as a fairer assignment process when they were asked to pick their preferred assignment process
+under a piece-rate pay scheme. For workers in both groups, choosing a higher number in response
+to our second question indicates that the worker viewed human-based assignment more favorably.
+Since we wanted to compare between groups how fair workers believed their current assignment
+process to be, we reverse coded the responses of workers in the algorithm group so that a higher
+value instead would indicate that the worker viewed the algorithmic assignment process—their
+current assignment process—as fairer. Reverse coding scale items is a common practice in psychol-
+ogy and other fields that use survey responses (e.g., Paulhus 1991, Lachman and Weaver 1998).
+Specifically, we used six to subtract the original answer of each worker in the algorithm group.
+For example, if a worker in the algorithm group gave an answer of one, the worker’s reverse-coded
+answer would be five. For workers in the human group, we made no adjustment to their original
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                          13
+
+answers. In the end, for workers in both groups, a higher (vs. lower) value indicates that the worker
+more strongly viewed their current assignment process as fairer than the alternative process.
+  Workers’ responses to the aforementioned two questions (after we reverse coded the second one)
+are significantly and positively correlated (r = 0.31; p = 0.001). For each worker each day, we
+averaged her responses to these two questions to measure the extent to which she perceived her
+current assignment process as fairer than the alternative process (Perceived Fairness). In Online
+Appendix D, we show that our results are largely robust to separately using each fairness ques-
+tion. To facilitate the interpretation of how fairness perceptions affect productivity, we constructed
+Standardized Perceived Fairness, which equaled Perceived Fairness divided by its standard devia-
+tion in the whole sample. Moving forward, we report results using this standardized measure.
+  To evaluate the convenience of their assignment process, we asked workers, “How convenient do
+you feel it was to receive your pick lists today?” Workers responded using a five-point Likert scale
+(from 1 = “Very convenient” to 5 = “Very inconvenient”). We reverse coded their answers such
+that a higher value indicates greater convenience. We collected this measure to confirm that it did
+not seem easier to receive pick lists in one group than in the other.
+  To evaluate workers’ emotional sensitivity to receiving difficult tasks, we asked workers how often
+they would feel upset if they received pick lists that were difficult to handle. Workers responded
+using a five-point Likert scale (from 1 = “Always” to 5 = “Never”). We reverse coded their answers
+to this question such that a higher value indicates that the worker was more sensitive to task
+difficulty. We used this variable for an analysis of heterogeneous treatment effect.
+  Finally, we asked workers for their gender (female or male), education (middle school or under,
+high school, or college or above), residence (rural or urban), and age. Since two workers did not
+report residence (both of whom only worked one day during our first experiment), when we add
+demographic controls to regressions, two observations are dropped from regressions predicting
+perceived fairness and 71 observations are dropped from regressions predicting picking efficiency.
+
+4.3.   Randomization Check
+To confirm that our randomization process was successful, we compare workers’ demographics
+and the number of days they came to work in the warehouse between the algorithm and human
+groups. As shown in Panel A of Table 2, the proportion of females, education levels, the proportion
+of workers born in urban areas, age, and the number of work days during our experiment do
+not significantly differ between two groups. The Kolmogorov–Smirnov test further shows that the
+distributions of age and work days (the two continuous demographics variables) are comparable
+between the two groups of workers. These findings suggest that we have a comparable sample of
+workers between groups and thus our randomization process was successful.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+14                                              Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+                                               Table 2      Randomization Check
+
+                                               Pick list assignment process                         Statistical test
+                                           Human-based             Algorithmic         p-value of     p-value of       p-value of
+                                            assignment             assignment            t-test       prop-test         ks-test
+                                                (1)                     (2)                (3)            (4)             (5)
+                                                    Panel A: Worker characteristics and perceived convenience
+      Gender                                    0.40                  0.44                –          0.77                  –
+                                               (0.50)                (0.51)
+      Education                                 1.52                  1.60              0.69           –                   –
+                                               (0.65)                (0.76)
+      Residence                                 0.25                  0.13                –          0.27                  –
+                                               (0.44)                (0.34)
+      Age                                      29.36                 24.88              0.08           –                 0.28
+                                               (9.17)                (8.35)
+      Number of work days                       2.40                  1.96              0.41          –                  0.91
+                                               (2.00)                (1.37)
+      Process                                   3.72                  4.08              0.15           –                 0.70
+      convenience                              (0.98)                (0.76)
+      Observations                      25(24 for residence)  25(24 for residence)       –            –                    –
+
+                                                                 Panel B: Pick list characteristics
+      Pick list size                           20.09                  21.04              0.12              –             0.12
+                                              (20.48)                (20.62)
+      Number of stocking positions              7.10                   7.34              0.25              –             0.43
+                                               (6.41)                 (7.30)
+      Observations                             2,474                  2,012                –               –               –
+
+     Note: The categorical variables in the table are defined as follows: gender = 0-male, 1-female; education = 1-middle school or
+     under, 2-high school, 3-college or above; residence = 0-rural, 1-urban. Process convenience equals the average of a worker’s
+     responses across days if the worker showed up in our experiment for more than one day. Standard deviations are reported
+     in the parentheses. “prop-test” refers to the two-sample proportion test, and “ks-test” refers to the Kolmogorov–Smirnov
+     test. In addition to the tests reported in the table, we also predict pick list characteristics as a function of each worker’s
+     assignment group, following the ordinary least squares regression specification (2) described later, which further confirms
+     that pick list characteristics do not significantly differ between conditions (p-values ≥ 0.37).
+
+
+     In addition, workers’ survey responses confirm that they found it similarly convenient to receive
+pick lists in the algorithm and human groups (Panel A in Table 2). Moreover, as mentioned earlier,
+an important feature of our experiment is that pick lists were distributed to workers in two groups
+using the same underlying process. Indeed, key pick list characteristics—pick list size and the
+number of stocking positions—are quite similar between groups (Panel B of Table 2), confirming
+that the two groups of workers received pick lists of the same nature.
+
+5.      Main Results from Our Main Field Experiment
+5.1.      The Effect of Algorithmic Assignment on Perceived Fairness
+We first test whether assigning pick lists via an algorithm boosts workers’ perceived fairness about
+their task assignment process, relative to assigning pick lists via a human (Hypothesis 1). To test
+this hypothesis, we apply the following regression specification to worker-day level observations,
+with each observation representing worker i on day t:
+
+                       Standardized perceived fairnessit = η0 + η1 Algorithmi + η2 Xi + λt + ϵit ,                                  (1)
+
+     where Standardized perceived fairnessit refers to worker i’s standardized perceived fairness on
+day t, Algorithmi is a binary variable equaling one if worker i was in the algorithm group and
+
+
+
+
+                            Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                          15
+
+  Table 3     The Effects of Algorithmic (vs. Human-based) Assignment on Perceived Fairness and Productivity
+
+               Dependent variable        Standardized perceived fairness                Picking efficiency
+                                            (1)         (2)        (3)            (4)          (5)           (6)
+               Algorithm                 0.94∗∗∗∗    0.96∗∗∗∗    1.02∗∗∗∗       0.70∗∗∗      0.68∗∗∗    0.61∗∗∗
+                                          (0.20)      (0.20)      (0.23)         (0.27)       (0.23)     (0.19)
+               Day fixed effects            No         Yes         Yes            No           Yes        Yes
+               Hour fixed effects           No         No          No             No           Yes        Yes
+               Demographics controls        No         No          Yes            No           No         Yes
+               Pick list controls           No         No          No             No           No         Yes
+               Observations                 108        108         106           4,486        4,486      4,415
+
+   Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 3.92.
+
+
+zero if worker i was in the human group, and Xi is the vector of demographics controls including
+worker i’s gender, education, residence, and age. λt captures day fixed effects. We cluster standard
+errors at the worker level (our results are robust to clustering standard errors at the day level). We
+analyze fairness at the worker-day level because this is our most granular level of observation for
+capturing fairness, given that each worker provided their fairness perceptions once each work day.
+  We report results from specification (1) and its variants (with or without controls) in Table
+3. In Column 1 (without control variables), a positive and significant coefficient on the indicator
+Algorithm (p < 0.0001) indicates that receiving pick lists from an algorithm significantly increases
+workers’ perceived fairness about their assignment process, compared to receiving pick lists from
+a human distributor. Specifically, algorithmic assignment (relative to human-based assignment)
+increases perceived fairness by 0.94 standard deviations. This effect is robust when we control for
+day fixed effects (0.96 standard deviations, p < 0.0001; Column 2) as well as when we control for
+both day fixed effects and worker demographics (1.02 standard deviations, p < 0.0001; Column 3).
+Overall, these results support Hypothesis 1 that assigning pick lists by an algorithm (vs. a human)
+boosts workers’ perceived fairness about their pick list assignment process.
+  We suspect that the positive effect of algorithmic assignment on fairness perceptions occurs be-
+cause in our labor-intensive working environment where tasks are easier to be quantified, picking
+workers hold a strong equality motive for task assignments. To test this intuition, we distributed a
+survey to workers involved in our second field experiment (from December 27, 2019 to January 5,
+2020) when they started their shift (see Online Appendix B). We asked workers whether they be-
+lieved it is more important to ensure equality in task assignments or to customize task assignments
+based on workers’ personal characteristics. Workers responded to this question using a five-point
+Likert scale from 1 (“Definitely prefer equality”) to 5 (“Definitely prefer consideration of personal
+factors”). Workers’ average response was 2.49 (95% confidence interval [2.28,2.69]), which is sig-
+nificantly lower than 3, the mid-point of the scale (p < 0.0001). This suggests that workers in our
+field setting on average consider it more important to ensure equality than to take into account
+everyone’s personal characteristics in task assignment.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3550887
+16                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+     To further understand why workers perceive algorithmic assignment fairer than human-based
+assignment when they care strongly about equality, we conducted structured interviews with 13
+workers after both of our field experiments ended. When asked whether a pick list assignment
+process run by a human distributor would be fair or unfair, more than half of workers (n = 7)
+indicated that a human-based assignment process might cause unfair outcomes. These workers
+mostly justified their judgment by mentioning that they believed human distributors are subject
+to personal biases. In addition, when asked whether they thought the assignment process would
+be more or less fair if they could receive pick lists by scanning a bar code (as opposed to from a
+human distributor), most workers (n = 10) believed that the process run by a machine would be
+fairer; and most of these workers (n = 8) explained that they believed an algorithmic assignment
+process does not fall prey to human distributors’ personal preferences, would be able to deliver
+equal treatments across workers, and would not selectively favor or disadvantage certain workers.
+We present details about our interviews in Online Appendix E.
+
+5.2.     The Effect of Algorithmic Assignment on Productivity
+We next test whether assigning pick lists via an algorithm (vs. a human) enhances workers’ pro-
+ductivity (Hypothesis 2). To test this hypothesis, we apply the following specification to pick list
+observations:
+
+                     Picking efficiencyikt = δ0 + δ1 Algorithmi + δ2 Xikt + λt + ϵikt ,                    (2)
+
+where Picking efficiencyikt refers to the quantity of items worker i picked per minute for pick
+list k at time t, Algorithmi is defined the same as in specification (1), and Xikt is the vector of
+demographics controls (gender, education, residence, and age) and pick list controls (pick list size
+and the number of stocking positions). In addition to day fixed effects, λt also includes hour fixed
+effects since pick list characteristics often change across hours within a day. We cluster standard
+error at the worker-hour level (our results are robust to clustering standard errors at the day-hour
+level). We analyze productivity at the pick list level because this is our most granular level of
+observation for capturing picking efficiency.
+     As shown in Columns 4-6 in Table 3, the coefficient on the indicator Algorithm is positive
+and statistically significant (all p-values ≤ 0.008) with or without controls, which means that the
+algorithmic assignment treatment significantly improves workers’ productivity. Specifically, without
+control variables (Column 4), we estimate that assigning pick lists via an algorithm increases
+worker productivity by 0.70 items per minute, or 17.86% relative to the average picking efficiency of
+3.92 in the human-based assignment group. When we add controls for time, worker demographics,
+and pick list characteristics, the effect remains statistically significant though decreases slightly in
+magnitude (17.35% in Column 5 and 15.56% in Column 6).
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                             17
+
+5.3.   The Effect of Perceived Fairness on Productivity
+Next, we estimate how workers’ perceived fairness about their work assignment process affects their
+productivity. To causally estimate this effect, we take the instrumental variable (IV) approach and
+use the following specifications to explain our IV estimation:
+
+         Picking efficiencyikt = α0 + α1 Standardized perceived fairnessikt + α2 Xikt + λt + ϵikt    (3)
+
+and
+
+              Standardized perceived fairnessikt = β0 + β1 Algorithmi + β2 Xikt + λt + ϵikt .        (4)
+
+  Directly using specification (3) to estimate the effect of fairness perceptions on productivity does
+not yield a causal estimate because of the omitted variable bias. Unobserved variables, such as
+worker ability, can be correlated with both how fair workers believe they are treated and their
+productivity. Therefore, we use the random assignment of workers to the algorithm group as an
+IV for their fairness perceptions. The two-stage least squares estimate is given in specifications
+(3) and (4), and standard errors are clustered at the worker-hour level (our results are robust to
+clustering standard errors at the day-hour level). Though workers reported perceived fairness once
+each work day (which is why specification (1) has the notation Standardized perceived fairnessit ),
+here we use Standardized perceived fairnessikt as the notation to indicate the level of observation
+(i.e., pick list level) used in the two-stage least squares estimation.
+  To validate our IV estimation, we first check the relevance assumption: the IV Algorithmi should
+be correlated with the independent variable Standardized perceived fairnessikt . As shown earlier in
+Table 3, the algorithmic (vs. human-based) assignment process significantly affects workers’ per-
+ceived fairness at worker-day level under specification (1). We confirm that this effect is statistically
+significant at pick list level under specification (4) used in our IV estimation (all p-values < 0.0001
+with or without control variables). Also, our IV passes the weak instrument test (F = 1477.71).
+  We next check the exclusion restriction assumption, which requires that the IV Algorithmi be
+independent of ϵikt in specification (3). That is, assigning pick lists by an algorithm (vs. a human)
+should only affect productivity by altering the workers’ fairness perceptions and should not be
+correlated with other factors that influence productivity. We think this assumption is satisfied for
+two reasons. First, since we randomly assigned workers to receive pick lists from either an algorithm
+or a human distributor, Algorithmi by design should not be correlated with variables whose value
+was determined before the experiment (e.g., worker characteristics), which we verify in Section 4.3.
+  Second, while it is impossible to statistically prove, we carefully designed our experiment to
+ensure that our experimental manipulation was unlikely to affect productivity via other mechanisms
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+18                                            Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+                          Table 4     IV-Estimated Effect of Perceived Fairness on Productivity
+
+                                Dependent variable                         Picking efficiency
+                                                                     (1)          (2)           (3)
+                                Standardized perceived fairness   0.71∗∗∗       0.68∗∗∗    0.55∗∗∗
+                                                                   (0.27)        (0.23)     (0.18)
+                                Day fixed effects                   No            Yes        Yes
+                                Hour fixed effects                  No            Yes        Yes
+                                Demographics controls               No            No         Yes
+                                Pick list controls                  No            No         Yes
+                                Observations                       4,486         4,486      4,415
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency across algorithm and human groups was 4.24.
+
+
+than fairness perceptions. During our structured interviews, we asked workers, “what factors usually
+influence your motivation and productivity?” The most frequently mentioned factors, brought up
+by 7 out of 13 workers, involve pick list characteristics including the number of items they have to
+collect and how many stocking positions they have to get products from. As explained in Section
+4.1 and confirmed in Table 2, we ensured that human-based assignment and algorithmic assignment
+essentially used the same underlying rule. Another factor, which was brought up by 2 workers, is
+the convenience of obtaining pick lists. As explained in Section 4.1 and confirmed in Table 2, we
+made it similarly convenient to obtain pick lists between the algorithm and human groups. We also
+asked workers in the interviews, “besides pick list characteristics and the assignment process, what
+other factors may influence your productivity?” Workers brought up special circumstances (whether
+certain products are out of stocks, whether picking carts are temporarily unavailable), physical work
+environment (warehouse temperature, weather), and their physical well-being. All these factors
+should be comparable between two groups of workers since they worked in the same environment
+and were randomly assigned to the algorithm or human group. Furthermore, as discussed in Section
+4.1, operational transparency is unlikely to be an alternative mechanism since workers in both
+groups were likely to have uncertainty about how pick lists were assigned.
+     Table 4 shows the average treatment effect of perceived fairness on productivity using IV esti-
+mation. We consistently find that workers’ perceived fairness has a positive effect on productivity
+regardless of whether we include control variables (all p-values ≤ 0.009 in Columns 1-3). Specifi-
+cally, as perceived fairness increases by one standard deviation, worker productivity is estimated
+to significantly increase by 0.55-0.71 items per minute, or 12.97%-16.98% relative to the average
+pick efficiency of 4.24 across both algorithm and human groups.
+
+6.      Additional Results about Our Main Field Experiment
+6.1.      Persistence of the Treatment Effects of Algorithmic Assignment
+In this section, we compare the effects of algorithmic (vs. human-based) assignment between the
+first day when a worker was involved in the experiment (hereafter, “the first experiment day”) and
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                                  19
+
+ Table 5     Effects of Algorithmic (vs. Human-based) Assignment Broken Down by First Experiment Day versus
+                                                Subsequent Experiment Days
+
+                                (1)                         (2)                     (3)                           (4)
+Dependent variable:               Standardized perceived fairness                           Picking efficiency
+Subsample:              First experiment day   Subsequent experiment days   First experiment day   Subsequent experiment days
+Algorithm                     1.52∗∗∗∗                    0.67∗∗∗                 1.00∗∗∗                        0.53∗∗
+                               (0.35)                      (0.23)                  (0.36)                        (0.25)
+Day fixed effects               Yes                        Yes                      Yes                           Yes
+Hour fixed effects              No                         No                       Yes                           Yes
+Demographics controls           Yes                        Yes                      Yes                           Yes
+Pick list controls              No                         No                       Yes                           Yes
+Observations                    48                         58                      1,845                         2,570
+
+   Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 4.01 for workers on
+   first experiment day and 3.87 for workers on later experiment days.
+
+
+later days during the experiment (hereafter, “subsequent experiment days”). This allows us to test
+whether our findings are primarily driven by the first experiment day when workers were new to
+the experiment and had little experience with either the algorithmic pick list assignment process
+or the revised human assignment process.
+  We first analyze all workers in our main field experiment, and split the sample based on whether
+an observation was associated with a worker’s first experiment day. As shown in Table 5, the effects
+of algorithmic (vs. human-based) assignment on perceived fairness and productivity are positive
+and significant both on the first experiment day and subsequent experiment days (all p-values
+≤ 0.032). This indicates that the effect of algorithmic assignment is not limited to the first day
+when workers might find algorithmic assignment novel and instead persists on later days after
+workers have gained more experience with it.
+  As robustness checks, we perform the same set of analyses on two additional samples. First, we
+focus on a filtered sample that includes only workers who participated in the experiment for more
+than one day, so we ensure that observations about the first experiment day came from the same
+set of workers as observations about subsequent experiment days. Second, we create a combined
+sample of workers who participated in either the first or the second field experiment for more
+than one day. For both samples, we consistently find that algorithmic assignment has significantly
+positive effects on fairness perceptions and productivity for subsequent experiment days.
+
+6.2.    Checking Interference Between Workers
+Following Aronow (2012), we use a statistical test to check whether the behavior of a particular
+worker depends only on her assignment process, not on the assignment process of others working
+around her. This is an ex post method to detect interference between units (where each unit
+represents a worker in our context) in a randomized experiment. In our setting, interference between
+workers could occur if (1) workers in the human group viewed their assignment process as less
+fair and became less motivated (relative to workers in the algorithm group) because they learned
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3550887
+20                                   Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+that workers in the other group scanned a bar code to get their pick lists; or (2) if workers in the
+algorithm group perceived their assignment process fairer and became more motivated (relative to
+workers in the human group) because they learned that workers in the other group got their pick
+lists from a human distributor.
+     The idea of this test is to randomly draw simulations to rearrange workers into either the
+algorithm group or the human group, recalculate the treatment rate each day (which refers to
+the proportion of workers in the algorithm group that day in a simulation), and estimate the
+relationship between the daily treatment rate and each worker’s focal outcome variables of interest
+(either productivity or perceived fairness). Specifically, we first randomly select 12 workers in the
+human group as a fixed subset and randomly re-assign the remaining 38 workers (the variant subset)
+in our first field experiment to be in either the human group or the algorithm group each day. For
+each simulation (i.e., each time we re-assign the 38 workers), we compute the Spearman’s rank
+correlation coefficient ρ between the simulated daily treatment rate and workers’ productivity (or
+perceived fairness) across workers in the fixed subset across days they came to work. Across 1,000
+simulations, we obtain 1,000 values of ρ. The distribution of the 1,000 ρs represents the approximate
+distribution of ρ associated with the null hypothesis that interference on productivity between
+workers did not occur for workers in the human group, since the 38 workers in the variant subset
+were purely randomly assigned to the algorithm vs. human condition in each simulation and 1,000
+simulations were independent. If the productivity and perceived fairness of workers in the human
+group were actually affected by those in the algorithm group as a result of interference between
+groups, these outcome variables should be strongly correlated with the proportion of workers in the
+algorithm group on a day in our actual data. However, the observed correlation coefficient ρ in our
+first field experiment does not significantly deviate from the center of null distribution. Therefore,
+we cannot reject the null hypothesis that there is no interference on productivity for workers in
+the human group.
+     To confirm the robustness of our test (and ensure that the null effect is not unique to the
+specific fixed subset we have drawn), we randomly re-draw 12 out of 25 workers in the human
+group as the fixed subset for 1,000 times, and each time a fixed subset is selected, we repeat the
+process described above involving 1,000 simulations. This additional step further suggests that
+the perceived fairness and productivity of workers in the human group are unlikely to have been
+affected by the interference between the algorithm and human groups. We also go through the
+same simulation process by treating workers in the algorithm group as the fixed subset. Similarly,
+we show that workers in the algorithm group are unlikely to have been affected by the interference,
+either. See details about our test in Online Appendix C.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                            21
+
+6.3.   Heterogeneous Treatment Effects Based on Task Difficulty and Sensitivity to
+       Difficult Tasks
+We have also explored how the effects vary across workers and tasks. Understanding for whom
+and for what type of task algorithmic assignment yields a greater impact may not only shed light
+on why algorithmic assignment boosts fairness perceptions and productivity in our setting but
+also suggest to managers who will benefit the most from algorithmic assignment processes. For
+example, we find that algorithmic assignment (vs. human assignment) improves productivity to
+a larger extent among workers with at least a high school degree than workers with a lower level
+of education—a finding we report in detail in Online Appendix F in the interest of space. In this
+section, we explore whether the effects of algorithmic assignment change with task difficulty and
+workers’ sensitivity to task difficulty.
+
+  6.3.1.    Heterogeneous Treatment Effects Based on Task Difficulty
+  The number of stocking positions is a key characteristic that reflects the difficulty of a pick list.
+A pick list with more stocking positions usually requires workers to walk more. Besides, the number
+of stocking positions was mentioned most frequently by workers in our interviews as a factor that
+could affect the difficulty of a pick list. Therefore, we use the number of stocking positions in a pick
+list as a measure of task difficulty (see Online Appendix F for more details about this variable).
+  As mentioned in Section 5.1, workers in our setting on average believe that it is more important
+for a pick list assignment process to achieve equality than to consider individuals’ characteristics.
+This emphasis on the equality motive is in line with prior research suggesting that people exhibit
+aversion to both disadvantageous inequity (when they are worse off than others) and advantageous
+inequity (when they are better off than others) (Fehr and Schmidt 1999, Dawes et al. 2007, Blake
+and McAuliffe 2011). Under the equality motive, receiving particularly difficult tasks from a human
+distributor may be perceived by workers as reflecting the distributor’s bias against them, but
+receiving particularly easy tasks may also be attributed by workers to the distributor’s intentional
+decisions and be viewed as reflecting the distributor’s preference in favor of them. In other words,
+as long as pick lists assigned by a human distributor obviously deviate from the middle range of
+task difficulty, workers may attribute the deviations to the human distributor’s personal biases
+and cast doubt on the fairness of human-based assignment process. Thus, workers may tend to
+view human-based assignment as less fair than algorithmic assignment when they receive either
+particularly difficult tasks or particularly easy tasks.
+  To test this possibility, we calculate the average stocking positions across all pick lists assigned
+to a given worker on a given day, and we then categorize the worker-day level observations into
+three subsamples by splitting the range between the minimum (2.41) and maximum (15.17) of
+average stocking positions into three equal intervals. Specifically, if a worker’s average stocking
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+22                                                Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+                     Table 6       Effects of Algorithmic Assignment Broken Down by Task Difficulty
+
+                                        (1)             (2)          (3)            (4)              (5)              (6)
+       Dependent variable:               Standardized perceived fairness                      Picking efficiency
+       Workload characteristics:     Low task      Medium task    High task      Low task      Medium task         High task
+                                     difficulty     difficulty    difficulty     difficulty     difficulty         difficulty
+       Algorithm                     1.57∗∗∗∗          0.73         1.09∗         0.64∗∗∗           0.07            0.81∗∗
+                                      (0.33)          (1.06)        (0.56)         (0.20)          (0.17)           (0.33)
+       Day fixed effects                Yes            Yes           Yes            Yes             Yes               Yes
+       Hour fixed effects               No             No            No             Yes             Yes               Yes
+       Demographics controls            Yes            Yes           Yes            Yes             Yes               Yes
+       Pick list controls               No             No            No             Yes             Yes               Yes
+       Observations                     52             29            25            4,102            261               52
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 3.95 for tasks with
+     low difficulty, 3.64 for tasks with medium difficulty, and 3.16 for tasks with high difficulty.
+
+
+positions on a day were in the interval of [2.41,6.66], this worker on average faced low task difficulty
+that day; the interval of (6.66,10.92] represents medium task difficulty; and the interval of (10.92,
+15.17] represents high task difficulty. As shown in Table 6, when task difficulty is either lower or
+higher than normal, algorithmic (vs. human-based) assignment (marginally) significantly increases
+fairness perceptions by 1.57 or 1.09 standard deviations (p < 0.0001 in Column 1 and p = 0.078 in
+Column 3) respectively. Under medium task difficulty, algorithmic assignment does not significantly
+increase fairness perceptions (p = 0.51 in Column 2), and the estimated (insignificant) treatment
+effect is directionally smaller than the estimated effect under low and high task difficulty. These
+results provide suggestive evidence for the speculation that algorithmic assignment boosts fairness
+perceptions (relative to human-based assignment) both when people receive particularly easy or
+particularly hard tasks.
+     To explore the further implications for productivity, we similarly categorize pick lists into three
+subsamples by splitting the range between the minimum (1.00) and maximum (49.00) of the number
+of stocking positions into three equal intervals. Specifically, if the number of stocking positions on
+a pick list was in the interval of [1.00,17.00], (17.00,33.00], (33.00,49.00], we deem this pick list as
+having a low, medium, or high task difficulty, respectively. As shown in Table 6, when a pick list
+is associated with low task difficulty, algorithmic assignment significantly boosts picking efficiency
+by 0.64 items per minute (or 16.20% relative to the average efficiency in the human group among
+low difficulty pick lists; p = 0.001 in Column 4); and when a pick list is associated with high task
+difficulty, algorithmic assignment significantly boosts picking efficiency by 0.81 items per minute
+(or 25.63% relative to the average in the human group among high difficulty pick lists; p = 0.022
+in Column 6). There is not a statistically significant effect of algorithmic assignment on picking
+efficiency when workers handle pick lists with medium difficulty (p = 0.66 in Column 5), and the
+estimated (insignificant) treatment effect is directionally smaller than the estimated effect under
+low and high task difficulty.
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                        23
+
+  These patterns are consistent with our speculation that since workers in our setting on average
+hold the equality motive, they view substantial deviation from the medium range of task difficulty
+as reflecting a human distributor’s intentionality and perceive the human-based assignment process
+as less fair than algorithmic assignment. We acknowledge that the number of observations in each
+subsample is small, especially when we analyze productivity in the medium and high task difficulty
+subsamples. Thus, we present the results as suggestive evidence. We have also tried splitting both
+worker-day and pick list level observations into two subsamples based on the corresponding median
+value in the full sample and reported the results in Online Appendix F for full transparency. We
+hope that reporting the suggestive evidence can encourage future research to more systematically
+integrate inequality aversion with workers’ attribution of assignment outcomes.
+
+  6.3.2.    Heterogeneous Treatment Effects Based on Worker Sensitivity to Task Dif-
+ficulty
+  We next explore whether the effects of algorithmic assignment change with workers’ sensitivity
+to task difficulty. In the field experiment, we asked workers how often they felt upset when they
+received difficult tasks. We use responses to this survey question to assess workers’ sensitivity to
+task difficulty. For workers who worked for more than one day during our experiment, we take the
+average of their responses across days. The median of this measure was 2.00 across workers. We
+treat workers whose average response was higher than 2.00 as “high sensitivity” workers (n = 21)
+and workers whose average response was equal to or lower than 2.00 as “low sensitivity” workers
+(n = 28). For these two types of workers, we first separately estimate the effect of algorithmic
+(vs. human-based) assignment on perceived fairness using specification (1) and on productivity
+using specification (2); then we run an interaction model whereby we predict fairness perceptions
+and productivity as a function of the algorithmic treatment indicator, a binary variable indicating
+whether a worker is in the “high sensitivity” category, and the interaction of these two indicators.
+  As shown in Table 7, among high-sensitivity workers, algorithmic assignment is viewed as sig-
+nificantly fairer than human-based assignment by 1.59 standard deviations (p < 0.0001 in Column
+1). The effect holds among low-sensitivity workers though with a directionally smaller size: among
+this subsample, algorithmic assignment significantly increases perceived fairness by 1.15 standard
+deviations, relative to human-based assignment (p = 0.014 in Column 2). The treatment effect of
+algorithmic assignment on fairness perception is directionally but not significantly amplified among
+high-sensitivity workers relative to low-sensitivity workers (p = 0.36 in Column 3).
+  Further, as shown in Table 7, algorithmic assignment boosts the productivity of high-sensitivity
+workers by 1.34 items per minute (or 34.36% relative to the average picking efficiency of high-
+sensitivity workers in the human group; p < 0.0001 in Column 4), but does not significantly impact
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+24                                            Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+                  Table 7       Heterogeneous Treatment Effect Based on Sensitivity to Task Difficulty
+
+                                             (1)           (2)         (3)          (4)            (5)           (6)
+          Dependent variable:              Standardized perceived fairness                Picking efficiency
+          Subsample of workers:             High           Low          All       High            Low            All
+                                          sensitivity   sensitivity   sample    sensitivity    sensitivity     sample
+          Algorithm                        1.59∗∗∗∗       1.15∗∗      0.81∗∗     1.34∗∗∗∗        −0.33           0.15
+                                            (0.32)        (0.44)      (0.39)      (0.26)         (0.24)         (0.24)
+          High Sensitivity                                            −0.64                                     −0.11
+                                                                      (0.41)                                    (0.22)
+          Algorithm * High Sensitivity                                 0.49                                    0.84∗∗∗
+                                                                      (0.54)                                    (0.29)
+          Day fixed effects                  Yes           Yes         Yes         Yes            Yes           Yes
+          Hour fixed effects                 No            No          No          Yes            Yes           Yes
+          Demographics controls              Yes           Yes         Yes         Yes            Yes           Yes
+          Pick list controls                 No            No          No          Yes            Yes           Yes
+          Observations                       53            53          106        2,311          2,104         4,415
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 3.90 among high-
+     sensitivity workers and 3.95 among low-sensitivity workers.
+
+
+the productivity of low-sensitivity workers (p = 0.16 in Column 5). The treatment effect of algorith-
+mic assignment on productivity is significantly amplified among high-sensitivity workers relative
+to low-sensitivity workers (p = 0.003 in Column 6).
+     Altogether, using all observations in the field experiment, we present suggestive evidence that
+the assignment process (algorithmic vs. human-based) affects high-sensitivity workers more than
+low-sensitivity workers. Interestingly, we also replicate this pattern when we examine only the
+subset of observations whose task difficulty is above the median (see Online Appendix F).
+
+7.      Online Experiments Assessing the Impact of Algorithmic
+        Assignment on Fairness Perceptions
+Following our field experiments, we conducted two additional online scenario-based experiments
+with survey respondents in the United States to replicate the effect of algorithmic (vs. human-
+based) assignment on perceived fairness. Online experiments have often been used to complement
+field studies (Buell et al. 2017, Staats et al. 2018). In their recent book chapter about field exper-
+iments, Ibanez and Staats (2018) highlighted that “lab and field should be seen as complements
+rather than substitutes; in particular. . . researchers can go back to the lab after field experiments”
+(p. 125).
+     We designed online experiments to complement our field experiments in a few ways. First, we
+intended to demonstrate the generalizability of our findings about fairness perceptions and the
+preference for equality in the warehouse context. By using a larger sample of participants under
+a different culture than the population in our field experiments, the online experiments help us
+address external validity concerns about the field results being specific to the Alibaba warehouse
+workforce. Second, both of our field experiments measured workers’ fairness perceptions about
+their current assignment process by asking them to compare the algorithmic assignment process
+
+
+
+
+                             Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                        25
+
+with the human-based assignment process. In our online experiments, we measured people’s per-
+ceptions about their current assignment process without drawing any comparison with alternative
+assignment processes. Third, although we adopted the best design possible in our field experiments,
+workers could communicate with each other across groups. In addition to leveraging the ex post
+method discussed in Section 6.2 to detect interference between experimental groups, we seek to
+rule out the influence of interference in our online experiments. Since in the online experiments,
+participants did not know about alternative assignment processes, the contamination effect could
+not have played a role in the online setting. Our two online experiments followed the same design
+with one exception and yielded consistent results. We report one of the experiments below and
+detail the other experiment in Online Appendix G.
+
+7.1.   Experimental Design and Analysis
+We recruited study participants from an online labor marketplace, Amazon’s Mechanical Turk, to
+complete a 4-minute study in exchange for $0.60. Only people who accessed our study on a non-
+mobile device, successfully completed a CAPTCHA, and passed an attention check were allowed to
+start our study. People who satisfied these criteria were asked to imagine themselves as a warehouse
+picking worker and read about descriptions of picking tasks. To ensure that participants understood
+this work setting and could immerse themselves into the scenario, we required that participants
+had to correctly answer three questions about the scenario in order to continue with the study.
+Those who passed our comprehension check questions and completed our study (N = 201; 41.29%
+female, Mage = 39.47) comprised our final sample.
+  Upon passing our comprehension check questions, participants were randomly assigned to either
+the algorithm condition (n = 100) or the human condition (n = 101). The descriptions of the two
+conditions mimicked the set-up in our field experiments. In the algorithm condition, participants
+were told that their pick list assignment process was run by a machine and that they received
+pick lists by scanning a bar code marked at the distribution station. In the human condition,
+participants were told that their pick list assignment process was run by a human and that they
+received hard-copy pick lists from a manager at the distribution station. Then participants in both
+conditions were told that the average pick list size (or the average number of items in a pick list)
+in the warehouse was 21 (based on the actual average pick list size in our main field experiment).
+Participants were also presented with their average pick list size on each of the past 10 workdays,
+and this information was the same between the algorithm and human conditions. We presented
+this information about pick list size and kept it the same between conditions so as to control for
+pick list assignment outcomes and cleanly investigate people’s perceptions of a given assignment
+process, as we did in the field. In our other online experiment, we did not provide information
+about pick list size and obtained similar results (see Online Appendix G).
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+26                                   Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+     One assumption underlying our Hypothesis 1 is that people believe humans are subject to per-
+sonal biases and algorithmic assignment processes are more capable of delivering equal treatments
+across workers. In our field setting, most workers in our interviews did express such beliefs (as we
+discussed in Section 5.1). To test this assumption in our online experiment, we asked participants to
+indicate their agreement with the following statement about the assignment process they imagined
+getting pick lists from (either algorithmic or human-based): “I think this assignment process would
+treat every worker perfectly equally” (from 1 = “Strongly disagree” to 7 = “Strongly agree”).
+Choosing a higher (vs. lower) value indicates that the participant viewed their assignment process
+as more capable of preserving equality.
+     Then we assessed fairness perceptions about an assignment process by asking participants to
+indicate their agreement with four statements adapted from Conlon et al. (2004) and Newman et al.
+(2020): (1) “the way this warehouse assigns pick lists seems fair,” (2) “the warehouse’s process for
+distributing pick lists is fair,” (3) “the decision regarding whether I get more difficult pick lists is
+fair,” and (4) “the outcome of the pick list distribution is fair.” The anchors on the scale ranged
+from 1 (“Strongly disagree”) to 7 (“Strongly agree”). Choosing a higher (vs. lower) value indicates
+that the participant viewed their assignment process as fairer. Participants’ ratings of these four
+statements reached a high inter-item reliability (Cronbach’s alpha = 0.96) and were thus averaged
+to form a composite score of Perceived Fairness. Following the analysis in our field experiment,
+we constructed Standardized Perceived Fairness, which equaled Perceived Fairness divided by its
+standard deviation in the whole sample.
+     Next, to check whether people in our online experiment held a strong equality motive for the
+assignment of picking tasks, we measured the perceived importance of equality and uniqueness.
+Specifically, we asked participants to separately rate how important they thought it was for a
+pick list assignment process to treat all workers equally and how important it was for a pick list
+assignment process to take into account individual workers’ characteristics. The anchors on both
+scales ranged from 1 (“Not important at all”) to 7 (“Very important”). Choosing a higher value
+indicates a higher perceived importance. In addition, we also used a single item as in our field setting
+and asked participants which of the two objectives they thought the warehouse should prioritize
+when it comes to assign picking tasks: treating all workers equality or taking into consideration
+personal characteristics. We obtained consistent results using these two methods to examine the
+relative importance of the equality versus uniqueness motive (see Online Appendix G), and focus
+on the former in the paper. Finally, participants reported their gender, age, and education.
+
+7.2.     Results
+By comparing participants’ importance ratings for equality versus uniqueness, we first confirm that
+people on average prioritize equality over uniqueness in the warehouse task assignment setting
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                         27
+
+(Mequality = 5.88, SD = 1.27 vs. Muniqueness = 4.53, SD = 1.71; t(200.00) = 8.84, p < 0.0001 for a
+paired t test, Cohen’s d = 0.90). Second, supporting the assumption underlying our Hypothesis
+1, people view the assignment process run by a machine as more capable of preserving equality
+than the assignment process run by a human (Malgorithm = 4.95, SD = 1.12 vs. Mhuman = 4.36,
+SD = 1.13; t(198.61) = 2.74, p < 0.001, Cohen’s d = 0.73). Further, in support of Hypothesis 1,
+participants in the algorithm condition perceived their assignment process fairer than those in the
+human condition (Malgorithm = 4.23, SD = 0.99 vs. Mhuman = 3.79, SD = 0.96; t(198.70) = 3.20, p
+< 0.005, Cohen’s d = 0.45). Note that since the variances are unequal between groups, we report
+degrees of freedom that have been adjusted for variance.
+
+8.    General Discussion
+We study the impact of algorithmic (vs. human-based) work assignment on assignment recipients’
+fairness perceptions and productivity. In two randomized field experiments, we randomly assigned
+picking workers in one of Alibaba’s warehouses to receive tasks either from an algorithm or from a
+human distributor. Combining performance data from Alibaba’s digital labor system with survey
+responses, we present several findings.
+  First, we find that assignment recipients’ fairness perceptions change with the framing of how
+their tasks are determined. In our field setting where workers believe that task assignments should
+prioritize equality over consideration of personal characteristics, receiving tasks from an algorithm
+increases workers’ perceived fairness by 0.94-1.02 standard deviations (depending on the inclusion of
+control variables), relative to receiving tasks of an identical nature from a human. While we sought
+to ensure that tasks were distributed to workers in both groups using the same underlying rule,
+workers may believe that algorithms can apply rules consistently across workers and treat everyone
+equally but human distributors have the discretion to favor some workers, as our interviews suggest.
+  Second, we find that the two types of task assignment methods have an economically meaningful
+difference in productivity: workers’ picking efficiency increases by 15.56%-17.86% when pick lists
+are assigned by an algorithm than when pick lists are assigned by a human distributor. This is
+driven by the positive effect of fairness perceptions on productivity. Using the IV approach, we
+estimate that a one-standard-deviation increase in perceived fairness is associated with a boost of
+picking efficiency by 12.97%-16.98%.
+  In addition, we find that the effects of algorithmic assignment on fairness perceptions and produc-
+tivity are not limited to the first experiment day when workers might find algorithmic assignment
+novel but persist on later days after workers have gained more experience with it. Our analysis of
+heterogeneous treatment effects provides suggestive evidence that the positive effects of algorithmic
+assignment (relative to human-based assignment) on fairness perceptions and productivity hold
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+28                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+when workers experience particularly high or low task difficulty, and are stronger among workers
+who reported being more (vs. less) upset about receiving difficult tasks.
+     We conducted two auxiliary online experiments. Similar to Chinese picking workers in our col-
+laborating warehouse, U.S. survey respondents also believe that it is more important for a task
+assignment process to maintain equality than to consider task recipients’ unique characteristics.
+They expect algorithms to be better at delivering equal treatments across workers than human
+task distributors. As a generalization of our finding about perceived fairness in the field experi-
+ments, our online experiments reveal that people in Western culture also perceive an algorithmic
+assignment process to be fairer than a human-based assignment process, even when assignment
+outcomes are the same between these two processes.
+     Our research has important practical implications. First, our results highlight that when algo-
+rithms are applied to solve operational problems, they can have broader impacts beyond offering
+greater efficiency and accuracy than humans. Managers may want to introduce algorithmic assign-
+ment processes to reap their benefits on fairness perceptions and productivity. Second, our ability to
+observe productivity differences between groups even when the algorithm and human distributors
+assigned objectively comparable pick lists suggests that the framing and people’s beliefs about an
+assignment process also matter to productivity. This insight encourages managers to find the most
+motivating framing of task assignment processes for their workers and to understand their workers’
+beliefs about different allocation processes. Third, our results underscore the important role of
+psychological factors such as fairness perceptions in driving workers’ motivation and productivity.
+Simple strategies like drawing employees’ attention to algorithmic task assignment processes that
+are used in their organizations may lead employees to perceive their managers as caring about
+fairness, which could be beneficial for employees’ performance.
+     Our research opens up avenues for future research. First, previous work in algorithmic bias sug-
+gests that algorithms at times exhibit discrimination towards females and underrepresented racial
+minorities (Caliskan et al. 2017, Kleinberg et al. 2018, Lambrecht and Tucker 2019, Obermeyer
+et al. 2019). It would be interesting to examine whether females and racial minorities express dif-
+ferent sentiments towards algorithmic assignment compared to males and those who are not racial
+minorities. Prior research suggests that compared with males, females care more about procedural
+fairness (Sweeney and McFarlin 1997), put greater emphasis on equal opportunity for all (Schwartz
+and Rubel 2005), and are more inequality averse in economic experiments (Andreoni and Vester-
+lund 2001). In our context, given that we propose people view algorithmic assignment as fairer
+than human-based assignment when they particularly care about equality (over other values), the
+positive effect of algorithmic assignment on perceived fairness may be larger among females than
+males. Consistent with this speculation, we find that algorithmic assignment has a directionally
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                29
+
+larger impact on fairness perceptions among females than among males, but the difference is not
+statistically significant (see Online Appendix H).
+  Second, while we deliberately tone down the impact of operational transparency in our field ex-
+periments so as to focus on perceived fairness as the underlying mechanism (as discussed in Section
+4.1), it would be valuable for future research to vary the level of transparency in algorithmic and
+human-based assignment processes and understand the role of transparency in driving people’s re-
+sponses to algorithmic decision making in other settings. Third, since most workers only participate
+in our main field experiment for no more than two days, we do not have enough samples to examine
+how the effects of algorithmic (vs. human-based) assignment on fairness and productivity change
+in the long term. Besides, our field experiments only involve temporary workers. We encourage
+future research to study how workers’ responses to algorithmic decision-making processes change
+over time as well as whether regular workers’ prior work experiences moderate such responses.
+
+References
+Akşin, Zeynep, Sarang Deo, Jónas Oddur Jónasson, Kamalini Ramdas. 2021. Learning from many: Partner
+     exposure and team familiarity in fluid teams. Management Science 67(2) 854–874.
+
+Andreoni, James, Lise Vesterlund. 2001. Which is the fair sex? gender differences in altruism. The Quarterly
+     Journal of Economics 116(1) 293–312.
+
+Aronow, Peter M. 2012. A general method for detecting interference between units in randomized experi-
+     ments. Sociological Methods & Research 41(1) 3–16.
+
+Bhandari, Atul, Alan Scheller-Wolf, Mor Harchol-Balter. 2008. An exact and efficient algorithm for the
+     constrained dynamic operator staffing problem for call centers. Management Science 54(2) 339–353.
+
+Blake, Peter R, Katherine McAuliffe. 2011. “I had so much it didn’t seem fair”: Eight-year-olds reject two
+     forms of inequity. Cognition 120(2) 215–224.
+
+Bloom, Nicholas, James Liang, John Roberts, Zhichun Jenny Ying. 2015. Does working from home work?
+     evidence from a chinese experiment. The Quarterly Journal of Economics 130(1) 165–218.
+
+Buell, Ryan W, Tami Kim, Chia-Jung Tsay. 2017. Creating reciprocal value through operational trans-
+     parency. Management Science 63(6) 1673–1695.
+
+Buell, Ryan W, Michael I Norton. 2011. The labor illusion: How operational transparency increases perceived
+     value. Management Science 57(9) 1564–1579.
+
+Buell, Ryan W, Ethan Porter, Michael I Norton. 2020. Surfacing the submerged state: Operational trans-
+     parency increases trust in and engagement with government. Manufacturing & Service Operations
+     Management .
+
+Caliskan, Aylin, Joanna J Bryson, Arvind Narayanan. 2017. Semantics derived automatically from language
+     corpora contain human-like biases. Science 356(6334) 183–186.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+30                                     Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+Castelo, Noah, Maarten W Bos, Donald R Lehmann. 2019. Task-dependent algorithm aversion. Journal of
+     Marketing Research 56(5) 809–825.
+
+Cohen-Charash, Yochi, Paul E Spector. 2001. The role of justice in organizations: A meta-analysis. Organi-
+     zational Behavior and Human Decision Processes 86(2) 278–321.
+
+Colquitt, Jason A, Donald E Conlon, Michael J Wesson, Christopher OLH Porter, K Yee Ng. 2001. Justice
+     at the millennium: a meta-analytic review of 25 years of organizational justice research. Journal of
+     Applied Psychology 86(3) 425.
+
+Conlon, Donald E, Christopher OLH Porter, Judi McLean Parks. 2004. The fairness of decision rules. Journal
+     of Management 30(3) 329–349.
+
+Cowgill, Bo. 2018. Bias and productivity in humans and algorithms: Theory and evidence from resume
+     screening. Columbia Business School, Columbia University .
+
+Cowgill, Bo, Catherine E Tucker. 2019. Economics, fairness and algorithmic bias. Preparation for: Journal
+     of Economic Perspectives .
+
+Dawes, Christopher T, James H Fowler, Tim Johnson, Richard McElreath, Oleg Smirnov. 2007. Egalitarian
+     motives in humans. Nature 446(7137) 794–796.
+
+Demirdag, Ipek, Suzanne Shu. 2020. Insights into the black box: Input explainability of algorithmic decisions
+     drives consumer satisfaction in the digital world. ACR North American Advances .
+
+Dietvorst, Berkeley J, Joseph P Simmons, Cade Massey. 2015. Algorithm aversion: People erroneously avoid
+     algorithms after seeing them err. Journal of Experimental Psychology: General 144(1) 114.
+
+Dietvorst, Berkeley J, Joseph P Simmons, Cade Massey. 2018. Overcoming algorithm aversion: People will use
+     imperfect algorithms if they can (even slightly) modify them. Management Science 64(3) 1155–1170.
+
+Dijkstra, Jaap J, Wim BG Liebrand, Ellen Timminga. 1998. Persuasiveness of expert systems. Behaviour
+     & Information Technology 17(3) 155–163.
+
+Falk, Armin, Ernst Fehr, Urs Fischbacher. 2008. Testing theories of fairness—intentions matter. Games and
+     Economic Behavior 62(1) 287–303.
+
+Fehr, Ernst, Lorenz Goette, Christian Zehnder. 2009. A behavioral account of the labor market: The role of
+     fairness concerns. Annual Reviews of Economics 1(1) 355–384.
+
+Fehr, Ernst, Klaus M Schmidt. 1999. A theory of fairness, competition, and cooperation. The Quarterly
+     Journal of Economics 114(3) 817–868.
+
+Gray, Heather M, Kurt Gray, Daniel M Wegner. 2007. Dimensions of mind perception. Science 315(5812)
+     619–619.
+
+Gray, Kurt, Daniel M Wegner. 2012. Feeling robots and human zombies: Mind perception and the uncanny
+     valley. Cognition 125(1) 125–130.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                  31
+
+Hossain, Tanjim, John A List. 2012. The behavioralist visits the factory: Increasing productivity using simple
+     framing manipulations. Management Science 58(12) 2151–2167.
+
+Huckman, Robert S, Bradley R Staats, David M Upton. 2009. Team familiarity, role experience, and per-
+     formance: Evidence from indian software services. Management science 55(1) 85–100.
+
+Ibanez, Maria R, Bradley R Staats. 2018. Behavioral empirics and field experiments. The Handbook of
+     Behavioral Operations 121–147.
+
+Ibanez, Maria R, Michael W Toffel. 2020. How scheduling can bias quality assessment: Evidence from
+     food-safety inspections. Management Science 66(6) 2396–2416.
+
+Isaac, Joe E. 2001. Performance related pay: The importance of fairness. Journal of Industrial Relations
+     43(2) 111–123.
+
+Karacaoglu, Nil, Antonio Moreno, Can Ozkan. 2018. Strategically giving service: The effect of real-time
+     information on service efficiency. Available at SSRN 3260035 .
+
+Kc, Diwas Singh. 2020. Heuristic thinking in patient care. Management Science 66(6) 2545–2563.
+
+Kleinberg, Jon, Jens Ludwig, Sendhil Mullainathan, Ashesh Rambachan. 2018. Algorithmic fairness. AEA
+     Papers and Proceedings, vol. 108. 22–27.
+
+Kleinberg, Jon, Sendhil Mullainathan, Manish Raghavan. 2016. Inherent trade-offs in the fair determination
+     of risk scores. arXiv preprint arXiv:1609.05807 .
+
+Lachman, Margie E, Suzanne L Weaver. 1998. The sense of control as a moderator of social class differences
+     in health and well-being. Journal of Personality and Social Psychology 74(3) 763.
+
+Lambrecht, Anja, Catherine Tucker. 2019. Algorithmic bias? an empirical study of apparent gender-based
+     discrimination in the display of stem career ads. Management Science 65(7) 2966–2981.
+
+Leung, Eugina, Gabriele Paolacci, Stefano Puntoni. 2018. Man versus machine: Resisting automation in
+     identity-based consumer behavior. Journal of Marketing Research 55(6) 818–831.
+
+Li, Yao, Lauren Xiaoyuan Lu, Susan F Lu, Jian Chen. 2021. The value of health it interoperability: Evidence
+     from interhospital transfer of heart attack patients. Available at SSRN 3557010 .
+
+Logg, Jennifer M, Julia A Minson, Don A Moore. 2019. Algorithm appreciation: People prefer algorithmic
+     to human judgment. Organizational Behavior and Human Decision Processes 151 90–103.
+
+Longoni, Chiara, Andrea Bonezzi, Carey K Morewedge. 2019. Resistance to medical artificial intelligence.
+     Journal of Consumer Research 46(4) 629–650.
+
+Luo, Xueming, Siliang Tong, Zheng Fang, Zhe Qu. 2019. Frontiers: Machines vs. humans: The impact of
+     artificial intelligence chatbot disclosure on customer purchases. Marketing Science 38(6) 937–947.
+
+Newman, David T, Nathanael J Fast, Derek J Harmon. 2020. When eliminating bias isn’t fair: Algorithmic
+     reductionism and procedural justice in human resource decisions. Organizational Behavior and Human
+     Decision Processes 160 149–167.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+32                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+Obermeyer, Ziad, Brian Powers, Christine Vogeli, Sendhil Mullainathan. 2019. Dissecting racial bias in an
+     algorithm used to manage the health of populations. Science 366(6464) 447–453.
+
+Paulhus, Delroy L. 1991. Measurement and control of response bias. Measures of personality and social
+     psychological attitudes 17–59.
+
+Schwartz, Shalom H, Tammy Rubel. 2005. Sex differences in value priorities: cross-cultural and multimethod
+     studies. Journal of Personality and Social Psychology 89(6) 1010.
+
+Staats, Bradley R, Diwas S Kc, Francesca Gino. 2018. Maintaining beliefs in the face of negative news: The
+     moderating role of experience. Management Science 64(2) 804–824.
+
+Sun, Jiankun, Dennis J Zhang, Haoyuan Hu, Jan A Van Mieghem. 2021. Predicting human discretion to
+     adjust algorithmic prescription: A large-scale field experiment in warehouse operations. Management
+     Science .
+
+Sweeney, Paul D, Dean B McFarlin. 1997. Process and outcome: Gender differences in the assessment of
+     justice. Journal of Organizational Behavior: The International Journal of Industrial, Occupational and
+     Organizational Psychology and Behavior 18(1) 83–98.
+
+Tan, Tom Fangyun, Serguei Netessine. 2019. When you work with a superman, will you also fly? an empirical
+     study of the impact of coworkers on performance. Management Science 65(8) 3495–3517.
+
+Twenge, Jean M, W Keith Campbell. 2002. Self-esteem and socioeconomic status: A meta-analytic review.
+     Personality and Social Psychology Review 6(1) 59–71.
+
+Tyler, Tom R. 1989. The psychology of procedural justice: A test of the group-value model. Journal of
+     Personality and Social psychology 57(5) 830.
+
+Van Donselaar, Karel H, Vishal Gaur, Tom Van Woensel, Rob ACM Broekmeulen, Jan C Fransoo. 2010.
+     Ordering behavior in retail stores and implications for automated replenishment. Management Science
+     56(5) 766–784.
+
+Wiesenfeld, Batia M, William B Swann Jr, Joel Brockner, Caroline A Bartel. 2007. Is more fairness always
+     preferred? self-esteem moderates reactions to procedural justice. Academy of Management Journal
+     50(5) 1235–1253.
+
+Wu, Anqi Angie, Yixin Iris Wang. 2021. The more monitoring, the better quality? empirical evidence from
+     the generic drug industry. Empirical Evidence from the Generic Drug Industry (January 27, 2021) .
+
+Xu, Yuqian, Lingjiong Zhu. 2020. Operational risk management: Team-based effort and incentive bonus.
+     Available at SSRN 3191887 .
+
+Zhang, Yu, Vidyadhar Kulkarni. 2018. Automated teller machine replenishment policies with submodular
+     costs. Manufacturing & Service Operations Management 20(3) 517–530.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                       33
+
+Online Appendix
+Online Appendix A: Pick List Example
+
+
+                    Total quantity of items to be picked                  Pick list
+
+
+
+
+                    Stocking position         Bar code for each SKU SKU name
+
+                                          Figure 3    Pick List Example
+
+
+Online Appendix B: Second Field Experiment as Replication
+We conducted another experiment from December 27th, 2019 to January 5th, 2020 to replicate the
+main results that we report in the paper. The second experiment involved 20 temporary picking
+workers. We randomly assigned them into either the algorithm group or the human group. The
+experimental design was the same as what we described in 4.1. These workers completed 3,181
+pick lists in total. The sample size of workers was smaller in the second experiment than the first
+experiment because (1) we could only run the second experiment for 10 days before a large sales
+period started on January 6th, 2020 and (2) the warehouse reduced labor floating, meaning that
+workers came to work for more days during the second experiment and consequently leaving us
+with fewer unique workers. Due to the small sample size of workers, we focus on replicating main
+effects, rather than heterogeneous treatment effects across different types of workers.
+  We distributed surveys at the end of each day to workers who worked at the warehouse that
+day. To assess their fairness perceptions, we asked workers two questions that contrasted algorith-
+mic vs. human-based assignment processes. The first question asked workers, “Which assignment
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+34                                              Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+Table 8       The Effects of Algorithmic (vs. Human-based) Assignment on Perceived Fairness and Productivity and
+                         IV-Estimated Effect of Perceived Fairness on Productivity (Replication)
+
+Dependent variable                Standardized perceived fairness                        Picking efficiency
+                                    (1)       (2)         (3)         (4)       (5)       (6)          (7)       (8)       (9)
+Algorithm                         1.09∗∗∗   1.13∗∗∗     1.10∗∗∗     1.21∗∗∗   1.10∗∗∗   0.98∗∗∗
+                                   (0.35)    (0.34)      (0.34)      (0.38)    (0.35)    (0.32)
+Standardized perceived fairness                                                                      1.20∗∗∗   1.04∗∗∗   0.94∗∗∗
+                                                                                                      (0.38)    (0.33)    (0.31)
+Day fixed effects                   No        Yes         Yes         No       Yes       Yes           No       Yes       Yes
+Hour fixed effects                  No        No          No          No       Yes       Yes           No       Yes       Yes
+Demographics controls               No        No          Yes         No       No        Yes           No       No        Yes
+Pick list controls                  No        No          No          No       No        Yes           No       No        Yes
+Observations                        87        87          87         3,181    3,181     3,181         3,181    3,181     3,181
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 5.03. Average picking
+     efficiency across algorithm and human groups was 5.57.
+
+
+
+process do you think is fairer, algorithmic assignment or human-based assignment?” This question
+was measured on a five-point scale, with the anchors ranging from 1 (“Definitively algorithmic
+assignment”) to 5 (“Definitively human-based assignment”) for all workers. The second question
+was the same as the second question in the first experiment (see Table 1). For workers in the algo-
+rithm group, we reverse coded their answers to both questions; for workers in the human group, we
+made no adjustment to their original answers. Therefore, for workers in both groups, a higher (vs.
+lower) value on a question indicates that the worker more strongly viewed their current assignment
+process as fairer than the alternative process. The correlation between workers’ responses to these
+two fairness questions (after reverse coding) was high (r = 0.84; p < 0.0001). Following the same
+procedure as described in 4.2, we created a score of Standardized Perceived Fairness for each worker
+each day. The survey also asked the same set of demographics as the survey described in the paper.
+     We analyze the effect of algorithmic (vs. human-based) assignment on fairness perceptions using
+specification (1). As shown in Columns 1-3 of Table 8, receiving pick lists from an algorithm signif-
+icantly increases workers’ perceived fairness about their assignment process by 1.09-1.13 standard
+deviations (depending on what we control for), compared to receiving pick lists from a human
+distributor (all p-values < 0.003).
+     We then analyze the effect of algorithmic (vs. human-based) assignment on productivity using
+specification (2). As shown in Columns 4-6 of Table 8, algorithmic assignment treatment signifi-
+cantly improves workers’ productivity by 19.48-24.06% (depending on control variables), relative to
+the average picking efficiency of 5.03 in the human-based assignment group (all p-values ≤ 0.002).
+     Columns 7-9 in Table 8 shows the average treatment effect of perceived fairness on productivity
+using IV estimation based on specifications (3)-(4). As perceived fairness increases by one standard
+deviation, worker productivity is estimated to significantly increase by 16.88-21.54%, relative to
+the average picking efficiency of 5.57 across the algorithm and human groups (all p-values < 0.003).
+
+
+
+
+                           Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                           35
+
+Online Appendix C: Discussion about Interference Between Workers
+  C.1. Discussion about Potential Alternative Experiment Designs
+  We consider our experimental design (similar to Hossain and List 2012, Bloom et al. 2015),
+whereby workers in the same work location were assigned to one of two experimental conditions,
+the cleanest among all feasible approaches. Other experimental designs that may avoid potential
+interference between workers are unfortunately not feasible in our case. For example, running the
+experiments across multiple warehouses and assigning workers to the human or algorithm condition
+at the warehouse level could reduce communications across conditions. However, picking tasks
+usually differ greatly across warehouses in terms of the number of items per pick list, the number
+of stocking positions covered, and walking distance, which could all affect productivity. Thus, we
+would have to run our experiments in a very large number of warehouses to have a comparable set
+of control versus treatment warehouses, which would not have been logistically infeasible based on
+Cainiao’s priorities at the time of our experiments.
+  Another alternative design is to run the experiments in one warehouse and randomly assign
+different days (rather than workers) into one of the two conditions. Though this approach avoids co-
+location of the algorithm and human groups, it introduces two significant limitations in our setting.
+First, workers who work in a warehouse for multiple days would likely experience both the algorithm
+and human conditions in this alternative design, in which case interference between conditions could
+arise because workers’ experiences with one condition may affect their perceptions and behavior in
+the other condition. Second, in our setting, picking tasks differ substantially across work days (e.g.,
+promotion days versus non-promotion days). Considering the frequency of promotions for various
+product categories at Alibaba, we need to run our experiments for at least a few months to get
+a comparable set of work days assigned to the algorithm group versus the human group, which is
+infeasible in our setting.
+
+  C.2: Check Interference Between Workers via a Statistical Test
+  To perform the test recommended by Aronow (2012) for our main field experiment, we first
+randomly select 12 workers from the human condition as the fixed subset. The remaining 38 workers
+belong to our variant subset. Then we draw 1,000 simulations on the experimental condition of the
+variant subset. In each simulation, we randomly select 25 workers from the variant subset to be
+in the algorithm condition and 13 workers to be in the human condition. For each simulation and
+for each day during our field experiment, we calculate the simulated daily algorithmic treatment
+rate, which equals the proportion of workers who were assigned to the algorithm condition in the
+simulation among all workers coming to work that day. Then for each simulation, we compute the
+Spearman’s rank correlation coefficient ρ between the picking efficiency associated with pick lists
+assigned to workers in the fixed subset and the simulated daily algorithmic treatment rate.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+36                                                Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+
+
+                                                                             3.0
+                5
+                4
+
+
+
+
+                                                                             2.0
+      Density
+
+
+
+
+                                                                   Density
+                3
+                2
+
+
+
+
+                                                                             1.0
+                1
+
+
+
+
+                                                                             0.0
+                0
+
+
+
+
+                       −0.2      0.0      0.2        0.4                           −0.4   −0.2   0.0   0.2   0.4
+                               Rank Correlation                                           Rank Correlation
+     (a) Algorithmic Treatment Rate and Productivity (Ac- (b) Algorithmic Treatment Rate and Perceived Fair-
+     tually Observed ρ = 0.08)                                    ness (Actually Observed ρ = −0.08)
+Figure 4            Distributions of Rank Correlation Coefficients Across 1,000 Simulations and the Observed Coefficients
+
+
+     Across 1,000 simulations, we obtain 1,000 values of ρ. We plot the distribution of ρ in Figure
+4(a). Since workers in the variant subset were purely randomly assigned to the algorithm vs. human
+condition in each simulation and 1,000 simulations were independent, Figure 4(a) presents the
+approximate distribution of ρ associated with the null hypothesis that interference on productivity
+between workers did not occur for workers in the human group. The dashed line in Figure 4(a)
+represents the observed correlation coefficient ρ in our first field experiment. The observed ρ is
+around the center of null distribution, yielding p = 0.82 in a two-tailed test (since we do not know a
+priori whether the observed correlation would be negative or positive). Therefore, we cannot reject
+the null hypothesis at the 5% level that there is no interference on productivity for workers in the
+human group.
+     Using these 1,000 simulations, we perform a similar test on perceived fairness. For each simu-
+lation, we compute the Spearman’s rank correlation coefficient ρ between the perceived fairness
+of each worker in the fixed subset on a day and the simulated daily algorithmic treatment rate
+that day. We plot the distribution of ρ in Figure 4(b). The observed ρ, as indicated by the dashed
+line, is again close to the center of sharp null distribution, yielding p = 0.86 in a two-tailed test.
+Thus, we cannot reject the null hypothesis at the 5% level that there is no interference on fairness
+perceptions for workers in the human group.
+     So far, we have done 1,000 simulations by taking the same set of 12 workers in the human group
+as the fixed subset. To confirm the robustness of our test, we randomly draw 12 workers from 25
+workers in the human group as the fixed subset for 1,000 times. Each time we randomly select
+a fixed subset, we repeat the process described above involving 1,000 simulations and obtain two
+p-values (one for productivity and one for perceived fairness). Figure 5(a) shows the distribution of
+p-values for the interference test on productivity across 1,000 draws of fixed subsets. The p-values
+from our 1,000 draws of fixed subsets are smaller than 0.05 only 3.70% of the time, lower than 5%
+
+
+
+
+                              Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                                                    37
+
+                          12.5                                                              12.5
+
+
+                          10.0                                                              10.0
+
+          Percentage(%)
+
+
+
+
+                                                                            Percentage(%)
+                           7.5                                                               7.5
+
+
+                           5.0                                                               5.0
+
+
+                           2.5                                                               2.5
+
+
+                           0.0                                                               0.0
+                                 0.0    0.2     0.4    0.6    0.8    1.0                           0.0    0.2    0.4    0.6     0.8    1.0
+                                                 p−value                                                          p−value
+                             (a) Interference Test on Productivity                                 (b) Interference Test on Fairness
+                                  Figure 5     Distributions of p-values for the Interference Test (Human Group)
+
+
+                          12.5                                                              12.5
+
+
+                          10.0                                                              10.0
+          Percentage(%)
+
+
+
+
+                                                                            Percentage(%)
+                           7.5                                                               7.5
+
+
+                           5.0                                                               5.0
+
+
+                           2.5                                                               2.5
+
+
+                           0.0                                                               0.0
+                                 0.0    0.2     0.4    0.6    0.8    1.0                           0.0    0.2    0.4    0.6     0.8    1.0
+                                                 p−value                                                          p−value
+                             (a) Interference Test on Productivity                                 (b) Interference Test on Fairness
+                                 Figure 6     Distributions of p-values for the Interference Test (Algorithm Group)
+
+
+(the chance level for p-values to fall below 0.05 under uniform distribution). This suggests that the
+productivity of workers in the human group is unlikely to have been affected by the interference
+between the algorithm group and the human group.
+  Figure 5(b) shows the distribution of p-values for the interference test on fairness across 1,000
+draws of fixed subsets. The p-values from our 1,000 draws are smaller than 0.05 only 2.10% of the
+time, lower than the chance level of 5% under uniform distribution. This suggests that the perceived
+fairness of workers in the human group is unlikely to have been affected by the interference between
+the algorithm and human groups.
+  We next check the existence of interference for workers in the algorithm group. We follow the
+same steps as described above, except that we randomly select 12 workers from the algorithm
+condition as the fixed subset in each of the 1,000 draws. Figure 6(a) shows the distribution of
+p-values for the interference test on productivity across 1,000 draws of fixed subsets. None of the
+p-values from the 1,000 draws is smaller than 0.05. Figure 6(b) shows the distribution of p-values
+for the interference test on perceived fairness across 1,000 draws of fixed subsets. Only 0.2% of
+p-values from the 1,000 draws are smaller than 0.05. Thus, we further confirm that the productivity
+and fairness perceptions of workers in the algorithm group are unlikely to have been affected by
+the interference between the algorithm group and the human group.
+
+
+
+
+                                       Electronic copy available at: https://ssrn.com/abstract=3550887
+38                                              Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+Online Appendix D. Separately Examining the Two Questions Measuring Fairness
+Perceptions
+In this section, we check the results about fairness perceptions separately using the first versus
+second question that measures perceived fairness (see Table 1), since one may be concerned that
+the second question does not directly measure workers’ fairness perceptions. We show that our
+results about fairness perception are largely robust to using only the first question.
+     In the first field experiment, the first question asked workers whether they thought it would be
+fairer to assign pick lists using the alternative process than using their current process. Specifi-
+cally, workers in the algorithm group were asked, “Do you think it would be fairer if pick lists
+were assigned by a human distributor?”; and workers in the human group were asked, “Do you
+think it would be fairer if pick lists were assigned by an algorithm?” Workers in both groups
+responded using a five-point Likert scale from 1 (“Definitively would”) to 5 (“Definitively would
+not”). We constructed Standardized perceived fairness Q1 (or Standardized perceived fairness Q2),
+which equaled each worker’s response to the first question (or the second question) divided by the
+standard deviation of the responses in the whole sample. As shown in Column 1 of Table 9, the
+effect of algorithmic assignment on perceived fairness about worker’s assignment process is positive
+but not statistically significant if we only use the first question to measure fairness perceptions
+(p = 0.38). If we use the second question to measure fairness perceptions, algorithmic assignment
+significantly increases perceived fairness by 1.36 standard deviations (p < 0.0001 in Column 4 of
+Table 9). We speculate that the first question alone does not yield a statistically significant effect
+on fairness perceptions because half (50.93%) of the responses were 3 (the middle option of the
+five-point scale), indicating a neutral preference between the current and alternative assignment
+processes.
+
+Table 9        The Effects of Algorithmic (vs. Human-based) Assignment on Perceived Fairness (Based on the First
+                                                      vs. Second Question)
+
+                                      (1)            (2)         (3)              (4)          (5)           (6)
+       Dependent variable           Standardized perceived fairness Q1          Standardized perceived fairness Q2
+       Data:                        First          Second     Combined          First        Second       Combined
+                                  experiment     experiment   experiment      experiment   experiment    experiment
+       Algorithm                     0.23          1.02∗∗∗     0.65∗∗∗         1.36∗∗∗∗      1.08∗∗∗∗      1.26∗∗∗∗
+                                    (0.26)          (0.38)      (0.24)          (0.20)        (0.30)        (0.19)
+       Day fixed effects              Yes           Yes          Yes             Yes           Yes           Yes
+       Demographics controls          Yes           Yes          Yes             Yes           Yes           Yes
+       Observations                   106           87           193             106           87            193
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001.
+
+
+
+     We actually noticed that many people chose the middle option in the first field experiment
+after we collected data. We thought it may be because the anchors on our Likert scale did not
+
+
+
+
+                            Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                           39
+
+make the current and alternative assignment processes clear. Thus, to reduce the chance that
+workers simply picked the middle option, we made a small change to the anchors of the first
+question in the second experiment. The question itself was almost identical as before and asked
+workers, “Which assignment process do you think is fairer, algorithmic assignment or human-based
+assignment?”. But this time, we explicitly labeled each anchor with an assignment process, such
+that 1 = “Algorithmic assignment is obviously fairer”, 2 = “Algorithmic assignment is slightly
+fairer”, 3 = “They are equally fair”, 4 = “Human-based assignment is slightly fairer”, and 5 =
+“Human-based assignment is obviously fairer”. The second question was identical between the first
+and second field experiments. As shown in Columns 2 and 5 of Table 9, regardless of whether we use
+the first or second question, the algorithmic assignment significantly increases fairness perceptions
+to a similar extent (around one standard deviation) in the second experiment (p = 0.009 in Column
+2 and p = 0.0007 in Column 5).
+  Further, as shown in Column 3 of Table 9, if we combine the two field experiments and measure
+fairness perceptions using the first question, we also observe that the algorithmic assignment signif-
+icantly improves workers’ perceived fairness about their assignment process (p = 0.007). Similarly,
+as shown in Column 6 of Table 9, if we use the second question to measure fairness perceptions
+and analyze data from two field experiments combined, the result that algorithmic assignment
+significantly increases perceived fairness holds (p < 0.0001).
+  In addition, we test the inter-item reliability between the first and second questions. The Pearson
+correlation coefficient was 0.31 (p = 0.001), 0.84 (p < 0.001), and 0.53 (p < 0.001) in the first field
+experiment, the second experiment, and two experiments combined, respectively.
+  In summary, we find that (1) the first and second questions behaved similarly and were highly
+correlated in the second experiment, (2) the second question behaved similarly between the first
+and second field experiments, and (3) the first question worked well when two experiments are
+combined. These observations give us faith in our results about fairness perceptions.
+
+Online Appendix E: Results of Interviews
+In September 2020, we conducted structured interviews with 13 picking workers (61.54% females,
+Mage = 30.54) in the warehouse where our field experiments were implemented. The interviews
+lasted about 25 minutes on average. At the time of our interviews, hard-copy pick lists were printed
+and laid out on a table at the distribution station for workers to take. Note that the interviews took
+place one year after our first field experiment and eight months after our second field experiment.
+Considering that the workers in our field experiments were temporary workers, the workers in our
+interviews have a low chance of overlapping with workers in our field experiments. We could not
+verify this for sure since workers took our interviews anonymously and we could not match them
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+40                                     Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+with our field experiment data. In this online appendix, we summarized the key questions in order
+we asked workers, along with the key insights we gleaned from each question.
+     We first asked workers, “what factors usually influence your motivation and productivity?” The
+most frequently mentioned factors, brought up by 7 out of 13 workers, involve pick list character-
+istics including the number of items they have to collect and how many stocking positions they
+have to get products from. Another factor, which was brought up by 2 out of 13 workers, is the
+convenience of obtaining pick lists.
+     Next, we asked workers, “what factors could influence whether you find a pick list assignment
+process fair or unfair?” The most frequently mentioned factor, brought up by seven workers, is
+whether pick lists of varying task difficulty are assigned evenly across workers, especially in terms
+of how many stocking positions they have to get products from. In addition, some workers (n = 4)
+focused on the assignment process in the warehouse at the time of our interviews and complained
+that since pick lists were put on a table for workers to take, some of their colleagues tended to take
+pick lists according to their own preferences and leave harder pick lists to others, causing unfair
+task allocations.
+     Then we asked workers whether they thought the pick list assignment process would be fair or
+unfair if it was run by a human distributor as well as why they thought one way or the other. Among
+workers who indicated that a human-based assignment process might cause unfair outcomes (n =
+7), most (n = 5) justified their judgment by mentioning that they believed human distributors are
+subject to personal biases. For example, human distributors could give easier pick lists to workers
+who they personally know or who they have a good relationship with. Or workers could get difficult
+pick lists if they refuse to do personal favors for human distributors. We found out later that among
+workers who indicated that a human-based assignment process would be fair (n = 6), two workers
+misunderstood our question. Specifically, they thought about human-based assignment as having
+workers take pick lists printed out by a human (i.e., the same as what was actually going on in
+their warehouse at the time of our interviews), rather than having a human allocate pick lists (i.e.,
+what we were interested in knowing their thoughts about).
+     Furthermore, to get some sense about when workers care about fairness, we asked workers to
+rate how much they would care about the fairness of a pick list assignment process under three
+circumstances (from 1 = “Not at all” to 5 = “Very much”): their average response was 3.42 if they
+were paid based on the number of items they picked; 2.38 if they were paid by hour; and 4.00 if
+they were paid by their performance ranking among workers in the warehouse.
+     Next, we asked whether they thought the pick list assignment process would be more or less fair
+if they could receive pick lists by scanning a bar code than if they could receive pick lists from a
+human distributor. Most workers (n = 10) believed the assignment process run by a machine would
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                          41
+
+be fairer. When asked why they believed so, most workers (n = 8) explained that they believed an
+algorithmic assignment process does not follow human distributors’ personal preferences, would be
+able to deliver equal treatments across workers, and would not selectively favor or disadvantage
+certain workers.
+  In the end, we asked workers, “besides pick list characteristics and the assignment process,
+what other factors may influence your productivity?”. Common factors brought up by workers
+included special circumstances (whether certain products are out of stocks, whether picking carts
+are temporarily unavailable), physical work environment (warehouse temperature, weather), and
+workers’ physical well-being.
+
+Online Appendix F. Additional Results in Heterogeneous Treatment Effects in Our
+Main Field Experiment
+  F.1. Heterogeneous Treatment Effects Based on Workers’ Education Level
+  In this section, we explore whether workers’ education levels affect how they respond to algo-
+rithmic assignment. We split our sample by education level: workers whose education level is at
+or below middle school form a subsample (n = 28), and workers whose education is at or above
+high school form another subsample (n = 22). We separate the sample based on whether a worker
+achieved a degree higher than middle school because China has the nine-year compulsory education
+policy: citizens are required to attend school for at least nine years including six years of primary
+education and three years of middle school, which are all funded by the government.
+  As shown in Columns 1-2 of Table 10, for both subsamples of workers, algorithmic assignment
+process is perceived as fairer than human-based assignment. Specifically, assigning pick lists via an
+algorithm (vs. via a human distributor) significantly increases workers’ fairness perceptions of their
+current assignment process by 1.39 standard deviations among workers with a high school degree
+or above (p = 0.001) and by 0.87 standard deviations among workers without a high school degree
+(p = 0.025). When we add an interaction between the algorithmic treatment and a dummy variable
+indicating whether workers had a high school degree or above to predict fairness perceptions, the
+treatment effect of algorithmic assignment on fairness perception is not significantly moderated by
+education (p = 0.17, Column 3 in Table 10).
+  As shown in Columns 4-5 of Table 10, for workers with a high school degree or above, algorithmic
+assignment boosts productivity by 34.90%, relative to the average picking efficiency of 3.84 among
+workers with at least a high school degree in the human group (p < 0.0001); however, algorithmic
+(vs. human-based) assignment has no significant effect on the productivity of workers without a
+high school degree (p = 0.37). Furthermore, as shown in Column 6 of Table 10, the interaction
+between the indicator for algorithmic treatment and the indicator for having at least a high school
+degree is positive and significant (p = 0.026). This indicates that algorithmic assignment (vs.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+42                                               Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+                   Table 10      Heterogeneous Treatment Effect Based on Workers’ Education Level
+
+                                           (1)              (2)          (3)              (4)               (5)         (6)
+ Dependent variable:                      Standardized perceived fairness                         Picking efficiency
+ Subsample of workers:                High school      Middle school     All         High school      Middle school      All
+                                       or above          or under      sample         or above          or under       sample
+ Algorithm                               1.39∗∗∗          0.87∗∗        0.72∗∗         1.34∗∗∗∗            0.28         0.45
+                                          (0.40)          (0.37)        (0.32)          (0.23)            (0.32)       (0.28)
+ High school or above                                                   −0.35                                          0.91∗∗
+                                                                        (0.59)                                         (0.40)
+ Algorithm*High school or above                                          0.64                                          0.79∗∗
+                                                                        (0.46)                                         (0.36)
+ Day fixed effects                         Yes              Yes          Yes              Yes               Yes         Yes
+ Hour fixed effects                        No               No           No               Yes               Yes         Yes
+ Demographics controls                     Yes              Yes          Yes              Yes               Yes         Yes
+ Pick list controls                        No               No           No               Yes               Yes         Yes
+ Observations                              52               54           106             2,177             2,238       4,415
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 3.84 for workers with
+     a high school degree or above and 4.02 for workers with a middle school degree or under.
+
+
+human assignment) improves productivity to a significantly larger extent among workers with at
+least a high school degree than workers with a lower level of education. This result is consistent with
+prior research showing that people with higher levels of education tend to have higher self-esteem,
+maintain a more positive evaluation of their own worth (Twenge and Campbell 2002); and that
+people with high (vs. low) self-esteem are more eager to embrace fair treatments and more likely
+to adjust their attitudes and effort at work based on their fairness perceptions (Wiesenfeld et al.
+2007). Future research that systematically tests the role of education and the underlying reasons
+would be interesting.
+
+     F.2 Additional Information about Task Difficulty in the Main Field Experiment
+     To examine the relationship between picking efficiency and the number of stocking positions, we
+run an ordinary least squares regression to predict picking efficiency as a function of the number
+of stocking positions. As the number of stocking positions in a pick list increases by one, picking
+efficiency on average decreases by 0.17 items per minute (or 4.01% relative to the average picking
+efficiency in the sample; p< 0.001). Compared to a regression that only uses time fixed effects and
+worker demographics to predict picking efficiency, adding the number of stocking positions as a
+predictor increases the R2 of the regression by 0.0516. This suggests that the number of stocking
+positions can explain 5.16% of the variation in picking efficiency on top of day fixed effects, hour
+fixed effects, and worker demographics combined.
+     As mentioned in Section 6.3.1, we calculate the average stocking positions across all pick lists
+assigned to a given worker on a given day. We then categorize worker-day level observations into
+three groups by splitting the range between the minimum (2.41) and maximum (15.17) of average
+stocking positions into three equal intervals. If a worker’s average stocking positions on a day were
+in the interval of [2.41,6.66], (6.66,10.92], or (10.92,15.17], this worker was considered as on average
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                                                                                                                                                                                                                                              43
+
+                                                                                                                                                  20
+
+
+
+
+                                                                                                    Number of worker−day level observations
+                                                                                                                                                  15
+
+
+
+
+                                                                                                                                                  10
+
+
+
+
+                                                                                                                                                                       5
+
+
+
+
+                                                                                                                                                                       0
+
+                                                                                                                                                                                   0          5           10           15          20
+                                                                                                                                                                                            Average stocking positions
+
+
+                                                     Figure 7              Distribution of Average Stocking Positions Across Worker-day Level Observations
+
+
+                                               60                                                                                                                             25                                                                                                   8
+     Number of worker−day level observations
+
+
+
+
+                                                                                                                                    Number of worker−day level observations
+
+
+
+
+                                                                                                                                                                                                                                         Number of worker−day level observations
+                                                                                                                                                                              20
+                                                                                                                                                                                                                                                                                   6
+
+                                               40
+                                                                                                                                                                              15
+
+                                                                                                                                                                                                                                                                                   4
+
+                                                                                                                                                                              10
+                                               20
+
+                                                                                                                                                                                                                                                                                   2
+                                                                                                                                                                               5
+
+
+
+
+                                                0                                                                                                                              0                                                                                                   0
+
+                                                    0%           5%            10%           15%                                                                                   0%             5%           10%          15%                                                        0%           5%            10%           15%
+                                                         Percentage of high difficulty pick lists                                                                                       Percentage of high difficulty pick lists                                                            Percentage of high difficulty pick lists
+   (a) Worker-day Subsample with (b) Worker-day Subsample with (c) Worker-day Subsample with
+   Low Task Difficulty                                                                              Medium Task Difficulty                                                                                                              High Task Difficulty
+   Figure 8                                                    Distributions of Percentage of High Difficulty Pick Lists in Three Worker-day Level Subsamples
+
+
+facing low, medium, or high task difficulty that day, respectively. We similarly categorize pick lists
+into three groups by splitting the range between the minimum (1.00) and maximum (49.00) of
+the number of stocking positions into three equal intervals. Specifically, if the number of stocking
+positions in a pick list was in the interval of [1.00,17.00], (17.00,33.00], or (33.00,49.00], we deem
+this pick list as having a low, medium, or high task difficulty, respectively. As shown in Figure
+2(b) in the paper and Figure 7, compared to the distribution of average stocking positions at the
+worker-day level, the distribution of the number of stocking positions at the pick list level is much
+more positively skewed. Thus, the cutoffs used to mark the levels of task difficulty are higher at
+the pick list level than at the worker-day level.
+  In Figures 8(a)-8(c), the x-axis indicates the percentage of pick lists that are deemed as high
+difficulty across all pick lists a worker received on a day (i.e., percentage of high difficulty pick lists),
+and each bar represents the number of worker-day level observations within a given subsample
+
+
+
+
+                                                                             Electronic copy available at: https://ssrn.com/abstract=3550887
+44                                            Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+whose percentage of high difficulty pick lists fall into a specific range. For example, Figure 8(a)
+indicates that among the worker-day subsample with low task difficulty, all of the 52 worker-day
+level observations have 0-2% of pick lists deemed as high difficulty. That is, no observations have
+more than 2% of high difficulty pick lists. Figures 8(a)-8(c) show that if a worker-day observation
+is categorized into the high task difficulty subsample, the worker would be more likely to receive a
+higher percentage of high difficulty pick lists that day, compared to if the worker-day observation
+is categorized into the medium or low task difficulty subsample.
+
+     F.3 Heterogeneous Treatment Effects Based on Task Difficulty—Median Split
+     In addition to splitting the observations into three subsamples to identify particularly difficult
+or easy tasks, we have also done a median split to separate our observations into two subsamples.
+Specifically, we split the worker-day level observations based on whether a given worker’s average
+stocking positions on a given day was greater than the median value of 7.00. As shown in Table
+11, when workers experience below-median task difficulty (i.e., average stocking positions below
+or equal to 7.00), algorithmic (vs. human-based) assignment increases fairness perceptions by 1.51
+standard deviations (p < 0.001 in Column 1). When workers experience above-median task difficulty
+(i.e., average stocking positions above 7.00), algorithmic (vs. human-based) assignment does not
+significantly increase fairness perceptions (p = 0.14 in Column 2). We further split pick lists based
+on whether the number of stocking positions in a given pick list was greater than the median
+value of 5.00. When workers handle tasks with below-median difficulty (i.e., the number of stocking
+positions no more than 5.00), algorithmic assignment significantly boosts productivity by 0.75
+items per minute (or 16.48% relative to the average productivity for low difficulty pick lists in the
+human group; p = 0.014 in Column 3). This impact is not statistically significant when workers
+handle tasks with above-median difficulty (i.e., the number of stocking positions above 5.00; p =
+0.62 in Column 4).
+
+     Table 11      Effects of Algorithmic (vs. Human-based) Assignment Broken Down by Median Task Difficulty
+
+                                               (1)              (2)                  (3)               (4)
+                Dependent variable:      Standardized perceived fairness               Picking efficiency
+                Subsample:               Below median      Above median         Below median      Above median
+                                         task difficulty   task difficulty      task difficulty   task difficulty
+                Algorithm                   1.51∗∗∗∗            0.83                0.75∗∗             0.05
+                                             (0.32)            (0.55)               (0.31)            (0.10)
+                Day fixed effects             Yes               Yes                  Yes               Yes
+                Hour fixed effects            No                No                   Yes               Yes
+                Demographics controls         Yes               Yes                  Yes               Yes
+                Pick list controls            No                No                   Yes               Yes
+                Observations                  55                51                  2,250             2,165
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 4.55 for tasks below
+     median difficulty and 3.30 for tasks above median difficulty.
+
+
+
+
+                            Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                                                    45
+
+  Altogether, when we split our observations into two subsamples based on the median task dif-
+ficulty, the effect of algorithmic (vs. human-based) assignment seems weaker in the above-median
+subsample than in the below-median subsample. However, it is important to note that since task
+difficulty is positively skewed, especially at the pick list level (as shown in Online Appendix F.2),
+the above-median subsample includes the majority or all of observations in the range of medium
+task difficulty, whereas the below-median subsample primarily consists of observations in the range
+of low task difficulty. This, along with our finding in Section 6.3.1 that the effect of algorithmic
+assignment tends to emerge when workers are faced with particularly easy or difficult tasks (i.e.,
+in the range of low or high task difficulty), helps explain why the effect of algorithmic assignment
+seems weaker in the above-median subsample than in the below-median subsample.
+
+  F.4 Heterogeneous Treatment Effect Based on Sensitivity to Task Difficulty When
+Task Difficulty Is Above Median
+  In this section, we examine heterogeneous treatment effect based on sensitivity to task difficulty
+using only the subset of observations where task difficulty is above the median. As shown in Ta-
+ble 12, when faced with above-median task difficulty on a day, high-sensitivity workers perceive
+algorithmic assignment to be significantly fairer than human-based assignment by 2.34 standard
+deviations (p < 0.0001 in Column 1); but for low-sensitivity workers, there is no significant differ-
+ence in perceived fairness between the two assignment processes (p = 0.40 in Column 2). In fact,
+the treatment effect of algorithmic assignment on fairness perceptions is significantly amplified
+among high-sensitivity workers than among low-sensitivity workers (p = 0.0006 in Column 3).
+
+                Table 12      Heterogeneous Treatment Effect Based on Sensitivity to Task Difficulty
+                                         When Task Difficulty Is Above Median
+
+                                           (1)          (2)           (3)              (4)              (5)          (6)
+      Dependent variable:                 Standardized perceived fairness                      Picking efficiency
+      Subsample of workers:              High           Low           All             High             Low            All
+                                       sensitivity   sensitivity    sample          sensitivity     sensitivity     sample
+      Algorithm                         2.34∗∗∗∗       −0.47        −0.57             0.39∗∗          −0.19         −0.14
+                                         (0.35)        (0.54)       (0.54)            (0.18)          (0.13)        (0.13)
+      High Sensitivity                                             −2.65∗∗∗∗                                         0.03
+                                                                    (0.61)                                          (0.12)
+      Algorithm * High Sensitivity                                 2.68∗∗∗∗                                         0.34∗
+                                                                    (0.70)                                          (0.19)
+      Day fixed effects                   Yes           Yes           Yes              Yes             Yes           Yes
+      Hour fixed effects                  No            No            No               Yes             Yes           Yes
+      Demographics controls               Yes           Yes           Yes              Yes             Yes           Yes
+      Pick list controls                  No            No            No               Yes             Yes           Yes
+      Observations                        24            27            51              1,070           1,095         2,165
+
+   Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. This table includes worker-day or pick list level observations that are
+   associated with above-median task difficulty (i.e., if the average stocking positions for a worker on a day or the number of
+   stocking positions in a pick list was above median). For pick lists whose number of stocking positions was above median,
+   average picking efficiency in the human group was 3.59 among high-sensitivity workers and 3.10 among low-sensitivity
+   workers.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3550887
+46                                    Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+     Further, when workers handle pick lists with above-median task difficulty, algorithmic assignment
+boosts the productivity of high-sensitivity workers by 0.39 items per minute (or 10.86% relative
+to the average picking efficiency of high-sensitivity workers in the human group; p = 0.026 in
+Column 4), but does not significantly impact the productivity of low-sensitivity workers (p =
+0.13 in Column 5). The treatment effect of algorithmic assignment on productivity is marginally
+significantly amplified among high-sensitivity workers relative to low-sensitivity workers (p = 0.073
+in Column 6).
+
+Online Appendix G: Supplement Results of Online Experiments
+     G.1 Additional Results about the Experiment Reported in the Paper
+     In addition to the measure described in the paper, we also measured the relative importance of
+equality and uniqueness using one scale. We asked participants which of the two objectives they
+thought the warehouse should prioritize when it comes to assign picking tasks: treating all workers
+equality or taking into consideration personal characteristics. The anchors on the scale ranged from
+1 (“Definitely should treat all workers equally”) to 7 (“Definitely should consider workers’ charac-
+teristics”). Choosing a higher (vs. lower) value indicates that the participant put less (more) weight
+on equality (uniqueness). Choosing the midpoint of the scale (i.e., 4) means that the participant
+thought it equally important to ensure equality and consider workers’ unique characteristics. We
+confirm that people on average prioritize equality over uniqueness in the warehouse task assignment
+setting (M = 3.46 < 4, SD = 1.85; t(200.00) = 26.55, p< 0.0001 for a one-sample t-test).
+
+     G.2 Results about the Replication Online Experiment
+     We conducted another online experiment that followed the same design as the online experiment
+reported in the paper, except that we did not present information about pick list size in this
+additional experiment. A total of 200 participants from Amazon’s Mechanical Turk comprised our
+study sample (38.50% female, Mage = 38.925). They were randomly assigned to either the algorithm
+condition (N = 99) or the human condition (N = 101).
+     Supporting the assumption underlying our Hypothesis 1, people view the assignment process run
+by a machine as more capable of preserving equality than the assignment process run by a human
+(Malgorithm = 5.21, SD = 1.53 vs. Mhuman = 4.27, SD = 1.68; t(196.91) = 4.17, p< 0.0001, Cohen’s
+d = 0.59). Following the analysis in our field experiment and online experiment reported in the
+paper, we constructed Standardized Perceived Fairness, which equaled Perceived Fairness divided
+by its standard deviation in the whole sample. In support of Hypothesis 1, participants in the
+algorithm condition perceived their assignment process fairer than those in the human condition
+(Malgorithm = 3.56, SD = 0.87 vs. Mhuman = 2.98, SD = 1.04; t(193.23) = 4.32, p < 0.0001, Cohen’s
+d = 0.61).
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment                           47
+
+Online Appendix H: Heterogeneous Treatment Effects by Gender
+In this appendix, we report findings about the heterogeneous treatment effects of algorithmic
+assignment based on gender in both our field and online experiments.
+  In terms of fairness perceptions, as shown in Columns 1-2 of Table 13, algorithmic assignment
+(vs. human-based assignment) significantly improves fairness perceptions for both female workers
+and male workers during our main field experiment (all p-values ≤ 0.002). The effect size seems
+directionally larger among females than among males. When we predict fairness perceptions as a
+function of gender, the algorithmic treatment, and their interaction, gender does not significantly
+moderate the effect of algorithmic assignment on fairness perceptions: as shown in Column 3 of
+Table 13, p-value for the interaction term is 0.11. As for the online experiment reported in the paper,
+Columns 1-2 of Table 14 indicate that algorithmic (vs. human-based assignment) significantly
+increases fairness perceptions among females (p = 0.0012 in Column 1) but does not significantly
+change fairness perceptions among males (p = 0.13 in Column 2). The impact of algorithmic
+assignment on fairness perceptions is directionally but not significantly larger among females than
+among males, as shown in Column 3 of Table 14 (p = 0.18).
+  In terms of productivity, as shown in Columns 4-5 of Table 13, algorithmic assignment has a
+positive but not statistically significant effect among female workers (p = 0.12 in Column 4), and
+has a significant, positive impact among male workers (p < 0.0001 in Column 5) in our main field
+experiment. Notably, the estimated effect size is similar in magnitude between female workers and
+male workers, and the non-significant effect among females may be related to sample size: During
+our main field experiment, male workers on average came to work in the warehouse for 2.59 days,
+while female workers only worked for 1.57 days; and female workers in total contributed only
+28.64% of all pick lists. Gender does not significantly moderate the effect of algorithmic assignment
+on productivity (p = 0.76 in Column 6 of Table 13).
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3550887
+48                                                 Bai, Dai, Zhang, Zhang and Hu: The Impacts of Algorithmic Work Assignment
+
+
+       Table 13      Effects of Algorithmic (vs. Human-based) Assignment Broken Down by Gender (Main Field
+                                                              Experiment)
+
+                                             (1)        (2)         (3)                (4)            (5)            (6)
+              Dependent variable:         Standardized perceived fairness                      Picking efficiency
+              Subsample of workers:      Female        Male      All sample           Female         Male      All sample
+              Algorithm                  1.66∗∗∗      0.87∗∗∗     0.85∗∗∗∗             0.82        0.88∗∗∗∗∗    0.57∗∗
+                                          (0.45)       (0.27)      (0.23)             (0.52)         (0.22)     (0.22)
+              Female                                               −0.52∗                                       −0.50∗
+                                                                   (0.31)                                       (0.26)
+              Algorithm*Female                                      0.53                                         0.12
+                                                                   (0.33)                                       (0.39)
+              Day fixed effects              Yes        Yes         Yes                Yes           Yes             Yes
+              Hour fixed effects             No         No          No                 Yes           Yes             Yes
+              Demographics controls          Yes        Yes         Yes                Yes           Yes             Yes
+              Pick list controls             No         No          No                 Yes           Yes             Yes
+              Observations                   31         75          106               1,214         3,201           4,415
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Average picking efficiency in the human group was 3.94 for female workers
+     and 3.92 for male workers.
+
+
+
+
+Table 14        Effects of Algorithmic (vs. Human-based) Assignment Broken Down by Gender (Online Experiment)
+
+                                                                  (1)         (2)            (3)
+                                    Dependent variable          Standardized perceived fairness
+                                    Subsample of workers:        Female      Male      All sample
+                                    Algorithm                   0.67∗∗∗       0.29        0.29
+                                                                 (0.20)      (0.19)      (0.18)
+                                    Female                                               0.003
+                                                                                         (0.20)
+                                    Algorithm*Female                                      0.38
+                                                                                         (0.28)
+                                    Observations                   83         116            199
+
+     Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001.
+
+
+
+
+                           Electronic copy available at: https://ssrn.com/abstract=3550887
+

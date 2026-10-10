@@ -1,0 +1,1416 @@
+Received: 30 June 2020      Accepted: 20 July 2022
+
+DOI: 10.1111/poms.13839
+
+
+SPECIAL ISSUE ARTICLE
+
+
+
+
+Algorithmic fairness in business analytics: Directions for research
+and practice
+
+Maria De-Arteaga1                          Stefan Feuerriegel2                           Maytal Saar-Tsechansky1
+
+1
+  The McCombs School of Business, The                   Abstract
+University of Texas at Austin, Austin, Texas, USA
+                                                        The extensive adoption of business analytics (BA) has brought financial gains and
+2
+    LMU Munich, Munich, Germany                         increased efficiencies. However, these advances have simultaneously drawn attention
+                                                        to rising legal and ethical challenges when BA inform decisions with fairness impli-
+Correspondence
+                                                        cations. As a response to these concerns, the emerging study of algorithmic fairness
+Maria De-Arteaga, The McCombs School of
+Business, The University of Texas at Austin, 2110       deals with algorithmic outputs that may result in disparate outcomes or other forms of
+Speedway, Austin, TX 78705, USA.                        injustices for subgroups of the population, especially those who have been historically
+Email: dearteaga@utexas.edu
+                                                        marginalized. Fairness is relevant on the basis of legal compliance, social responsibil-
+                                                        ity, and utility; if not adequately and systematically addressed, unfair BA systems may
+Handling Editor: Special Issue Business
+Analytics Editors                                       lead to societal harms and may also threaten an organization’s own survival, its com-
+                                                        petitiveness, and overall performance. This paper offers a forward-looking, BA-focused
+Funding information                                     review of algorithmic fairness. We first review the state-of-the-art research on sources
+Swiss National Science Foundation, Grant/Award          and measures of bias, as well as bias mitigation algorithms. We then provide a detailed
+Number: 197485; Good Systems
+(http://goodsystems.utexas.edu/), a UT Austin
+                                                        discussion of the utility–fairness relationship, emphasizing that the frequent assumption
+Grand Challenge to develop responsible AI               of a trade-off between these two constructs is often mistaken or short-sighted. Finally,
+technologies                                            we chart a path forward by identifying opportunities for business scholars to address
+                                                        impactful, open challenges that are key to the effective and responsible deployment
+                                                        of BA.
+
+                                                        KEYWORDS
+                                                        algorithmic fairness, business analytics, fairness, machine learning
+
+
+
+
+1          INTRODUCTION                                                                  in order to deliver value to stakeholders, firms’ decisions and
+                                                                                         actions must also reflect broadly held societal values, includ-
+The widespread adoption of business analytics (BA) has                                   ing in particular fairness, explicitly noted in the statement.
+brought financial gains and increased efficiencies (Choi                                 This important transition in corporate goals underscores a
+et al., 2018; Cohen, 2018; Cui et al., 2018). However, cul-                              realization that aligning firms with widely held notions of
+tural and corporate transformations have led to increased                                ethics and fairness is crucial for the long-term well-being
+focus on other important consequences of analytic-based                                  of firms and of the economy. Globally, improving fairness
+decision-making (Nkonde, 2019). In particular, the once                                  and reducing inequality are viewed as integral to sustain-
+dominant view that a company’s responsibility is principally                             able development, as also reflected by the United Nations’
+to produce profit for shareholders has meaningfully shifted,                             Sustainable Development Goals (United Nations, 2015).
+culminating in the 2019 Business Roundtable1 statement that                                 BA is assuming a major role in optimizing company
+corporations share a key responsibility to all stakeholders:                             operations and decision-making (Choi et al., 2018; Cohen,
+customers, employees, suppliers, and communities—in addi-                                2018; Cui et al., 2018); yet, the BA literature has thus far
+tion to shareholders. The statement conveys a vision where,                              focused largely on traditional business utilities (Cachon
+                                                                                         et al., 2020). The transition toward incorporating notions
+Accepted by Special Issue Business Analytics Editors, after two revisions.               of fairness into BA is necessary but nontrivial: it requires
+This is an open access article under the terms of the Creative Commons Attribution-NonCommercial-NoDerivs License, which permits use and distribution in any medium, provided
+the original work is properly cited, the use is non-commercial and no modifications or adaptations are made.
+© 2022 The Authors. Production and Operations Management published by Wiley Periodicals LLC on behalf of Production and Operations Management Society.
+
+
+Prod Oper Manag. 2022;31:3749–3770.                                                                                           wileyonlinelibrary.com/journal/poms       3749
+                                                                                                                                         19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3750                                                                                                                DE-ARTEAGA ET AL.
+        Production and Operations Management
+
+understandings and appreciation of an array of complex              Price, 2016). For research and practice, algorithmic fairness
+challenges, as well as concentrated efforts to advance              research is key to identify sources of potential unfairness
+the state-of-the-art so as to achieve meaningful impact in          in important contexts in which BA informs decisions and
+practice. Fairness in algorithmic decision-making refers to         underlies operations, and to develop and evaluate the impli-
+models’ outcomes systematically deviating from statistical,         cations of methods to detect and mitigate bias in these
+moral, or regulatory standards (Danks & London, 2017),              contexts. The potential of BA to improve business oper-
+especially in ways that disproportionately impact groups            ations and decision-making offers ample opportunities to
+along social axes, such as race, gender, and class (Mitchell        impact the transition into a business culture that aims to
+et al., 2021). Decisions informed by BA intended to benefit         deliver value to all stakeholders. We hope that this paper will
+traditional business utilities can simultaneously undermine         contribute to this transition by facilitating understandings
+fairness, ultimately introducing ethical, regulatory, and busi-     of the challenges ahead, and that it will inspire future BA
+ness risks, including to a firm’s competitiveness, and overall      research that will advance algorithmic fairness in business
+performance.                                                        operations.
+   Evidence of how BA can undermine fairness and lead                  Most algorithmic fairness research thus far has been driven
+to discrimination has been reported across different areas.         by a computer science research agenda (e. g., Cohen et al.,
+For example, to inform revenue management, the Amer-                2022; Dwork et al., 2012; Friedler et al., 2016; Klein-
+ican retailer Staples adopted a data-driven online pricing          berg et al., 2017; Pleiss et al., 2017), and existing surveys
+algorithm, that adjusted prices based on customers’ proxim-         provide perspectives from computer science (Chouldechova
+ity to competitors’ stores (Wall Street Journal, 2012). This        & Roth, 2020; Corbett-Davies & Goel, 2018), statistics
+data-driven pricing, however, led to higher prices for low-         (Mitchell et al., 2021), philosophy (Danks & London, 2017;
+income customers, as these customers often lived farther from       Fazelpour & Danks, 2021), law (Barocas & Selbst, 2016),
+competitors’ stores. In operations management (OM), allo-           and economics (Cowgill & Tucker, 2020). Tutorials have
+cations of resources may be not be equal among customers,           also provided summaries of the literature on sources of
+suppliers, or other stakeholders, thus making fairness a com-       bias and methodologies to detect and mitigate it (Fu et al.,
+mon concern (Rea et al., 2021). In healthcare operations,           2020).
+state-of-the-art algorithms for risk scoring were found to sys-        Different from existing surveys, our paper is the first to
+tematically underestimate the health risk of Black patients as      focus on algorithmic fairness in the context of BA/OM,
+compared to equally sick White patients (Obermeyer et al.,          and, to this end, we discuss several opportunities and chal-
+2019). As we will discuss at length below, the ultimate goal        lenges that are unique to business operations. In particular,
+of research toward methods for both detection and miti-             we discuss how bias may arise in key areas such as revenue
+gation of such biases in BA is to yield consistently fair           management, retail operations, logistics, and supply chain
+business operations.                                                management; we provide a structured and novel characteri-
+   To date, BA practices in selected domains have been reg-         zation of the utility-fairness relationship that it fundamental
+ulated in the United States, as well as in other countries (cf.     to business operations; and we identify key directions for
+Barocas & Selbst, 2016; Kleinberg, Ludwig, Mullainathan,            impactful future work that build on the strengths of the
+& Sunstein, 2018). In the United States, for example, fair          BA/OM communities.
+lending laws penalize some forms of algorithmic discrimina-            In this paper, we first review evidence of algorithmic bias
+tion in risk scoring. Similarly, the Equal Credit Opportunity       in business operations in Section 2, followed by a taxonomy
+Act prohibits certain types of algorithmic discrimination by        of the sources from which biases may arise in Section 3.
+age or race, and the Algorithmic Accountability Act requires        We then review the state-of-the-art in both algorithmic
+firms to conduct assessments of high-risk systems involving         bias detection (Section 4) and algorithmic bias mitigation
+automated decisions, including specifically systems that may        (Section 5). In Section 6, we discuss the critical relation-
+contribute to bias or discrimination. In the European Union,        ship between bias and traditional business objectives (e. g.,
+accountability of analytics is directed by the General Data         profits), characterizing where there may or may not be a
+Protection Regulation (GDPR) and, in the future, will be fur-       trade-off. Finally, we outline important future directions for
+ther subject to an Artificial Intelligence Act. Overall, there is   BA (Section 7), critical to ensuring the impact of BA in
+a growing tendency by regulators around the world to enact          practice. Figure 1 offers an overview of the structure of the
+laws that forbid disparate treatments, including specifically in    paper.
+the context of algorithmic decision-making (White & Case,
+2020).
+   Regulatory and societal pressures over the risks of algo-        2       ALGORITHMIC BIAS IN BA
+rithmic bias and discrimination have led to an emerging
+body of work on algorithmic fairness. These works focus             In this section, we discuss fairness issues that arise in specific
+on understanding the different sources of bias, and on              BA tasks. Specifically, we review examples that underscore
+effective data-driven techniques for both detecting and             the diverse contexts in operations and management where
+mitigating algorithmic bias (e. g., Chouldechova, 2017;             algorithmic decisions can be inflicted with bias, the variety
+Corbett-Davies et al., 2017; Dwork et al., 2012; Hardt &            of reasons that can lead to algorithmic bias, and the different
+                                                                                                                                                                    19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                                                   3751
+                                                                                               Production and Operations Management
+
+
+
+
+FIGURE 1            Overview of the paper outlining how algorithmic fairness can be addressed in business analytics
+
+
+
+TA B L E 1      Examples where algorithmic bias occurs in business analytics
+
+Area                                                      Example
+
+Revenue management                                        Dynamic pricing identifies a user’s propensity of purchase based on available covariates. However,
+                                                           when the geographic location of users is considered, this might bias the outcome against certain
+                                                           neighborhoods and, as a consequence, against high/low income households.
+Service operations                                        Credit scoring is used to determine when customers can use credit versus debit cards or whether they
+                                                           are offered a loan. However, some of these algorithms have been found to be implicitly biased
+                                                           against women and racial minorities (Hardt & Price, 2016).
+Retail operations                                         Allocating marketing efforts to customers is based on algorithmic tools. However, Google Ads was
+                                                           found to be more likely to show high-paying job ads to men than to women (Datta et al., 2015).
+Logistics                                                 Amazon used business analytics to determine where it should offer free same-day delivery. However,
+                                                           the data-driven decisions resulted in the exclusion of primarily Black neighborhoods.
+Supply chain management                                   Analytics supports the distribution of COVID-19 vaccines to those who need them most. However,
+                                                           simply targeting all people alike is biased toward high-income people, as low-income people are
+                                                           often at higher infection risk. Hence, analytics must correct for that to target the most vulnerable
+                                                           populations effectively (IBM, 2021).
+Human resource operations                                 Business analytics is increasingly used in hiring to screen job applications and then make decisions
+                                                           for workforce selection. Amazon’s algorithmic tools for automating hiring decisions systematically
+                                                           favored men applicants over women (Dastin, 2018).
+Healthcare operations                                     Analytics for treatment planning in diabetes management is often calibrated toward White,
+                                                           middle-class patients. Because of this, analytics may introduce over-proportional high error rates
+                                                           for other patient cohorts (Barda et al., 2021).
+Public sector operations                                  Decision models for policing rely commonly on data from past arrests, thereby replicating existing
+                                                           racial biases in policing operations (Lum & Isaac, 2016).
+
+
+
+
+kinds of individual and societal implications of such biased                       attributes, such as gender; for instance, salary may be a
+treatments (see Table 1 for further examples).                                     proxy for gender when men receive a higher salary than
+   In service operations, the use of BA to assess creditworthi-                    women (Pierce et al., 2021). From an ethical perspec-
+ness has been found to present algorithmic bias risks (Hardt                       tive, such disparities in the access to credit are especially
+& Price, 2016). Historical data are often used to model and                        harmful, given that credit (e. g., student loans) is an essential
+infer creditworthiness; yet, such data might already reflect                       instrument for enabling socioeconomic opportunities and
+human or societal biases. Consequently, unless such biases                         economic mobility.
+can be detected and mitigated, they may be encoded into                               A meaningfully different case of algorithmic bias in the
+models that inform future decisions (Kozodoi et al., 2021).                        context of logistics has risen when Amazon relied on BA
+For instance, it has been shown that historical decisions on                       to determine which US regions are offered free same-day
+creditworthiness can be biased against people of certain                           delivery (Bloomberg, 2016). These data-driven decisions,
+age, race, and gender, even if the sensitive attributes are                        which prioritized zip codes with high concentration of Ama-
+unobserved by the model (Kallus et al., 2021). In part, this                       zon Prime members, ultimately limited access to the service
+is because other attributes may act as proxies for sensitive                       for individuals in predominately Black neighborhoods, even
+                                                                                                                                         19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3752                                                                                                                DE-ARTEAGA ET AL.
+        Production and Operations Management
+
+when all surrounding neighborhoods were offered the ser-            3       SOURCES OF BIAS IN BA
+vice. The resulting disparities compounded existing barriers
+for residents of predominantly Black neighborhoods, who             To understand the risks and consequences of algorithmic
+are already disproportionately impacted by food deserts             bias, one must first understand where such bias may come
+(Bower et al., 2014). As Amazon’s role as a main provider           from. Fairness concerns the allocation of goods and burdens,
+of basic goods (e. g., fresh food) grows, the societal value        and thus is a property of the decisions that may be made
+of providing equal access to delivery services becomes more         or informed by algorithms. As such, bias in algorithmic-
+salient.                                                            informed decisions may stem from biased algorithmic
+   In healthcare operations, analytics is increasingly lever-       outputs, or from other portions of the sociotechnical system
+aged to stratify patients by risk, which subsequently informs       that the algorithm is embedded on (Dolata et al., 2022). In
+healthcare resource allocation (e. g., Ayvaci et al., 2017,         this section, we provide a taxonomy of common sources
+2018; Helm et al., 2011; Ibrahim et al., 2016). For instance,       of algorithmic bias—understood as biased algorithmic
+analytics is used to estimate patients’ risks of mortality,         outputs—with an emphasis on business operations problems.
+adverse reactions to a treatment, or hospital readmission.          We then conclude with a discussion of other sources of
+Such risk scores are used to inform treatment decisions so          bias during deployment. Throughout, we consider algo-
+as to achieve cost-effective allocation of resources. Partic-       rithms that estimate a model that maps input onto a target
+ularly with the growing use of machine learning (Bastani            outcome.
+et al., 2022), healthcare analytics has been highly effec-
+tive in enabling efficiencies in the United States and other
+countries, and have also been shown to reduce disparities           3.1       Data collection and representation
+in some contexts (Ganju et al., 2020). However, state-of-
+the-art algorithms were also found to exhibit racial bias,          3.1.1        Sampling bias
+systematically inferring that Black patients were less sick
+than they actually were (Obermeyer et al., 2019). In this           Although the possibility of learning from low-cost, obser-
+case, the bias stemmed from the use of health costs as a            vational, and easily available data is often listed as an
+proxy for health needs, without considering that less money         advantage of data-driven decision-making when pitching
+is spent on Black patients who have the same level of               BA solutions, the importance of good data, and not just
+need.                                                               big data, should not be undervalued. Estimation and eval-
+   In addition to the real-world examples uncovered by              uation of decision models rely on assumptions about the
+researchers and reporters, theoretical research in OM has also      data distribution being representative of a distribution of
+studied fairness considerations in optimization, especially         interest. When there is a mismatch between the data distri-
+with regard to the “price of fairness” (Bertsimas et al., 2011,     bution upon estimating a decision model and its deployment
+2012, 2013; Cohen et al., 2022; Katok et al., 2014; Rea et al.,     (i. e., a domain shift), this can undermine the generaliz-
+2021). For example, the trade-offs brought about by fairness        ability of the model. Sampling bias has important fairness
+have been studied for single-resource allocations (Bertsimas        implications, as convenient data samples do not represent
+et al., 2011) and for multi-resource allocations (Rea et al.,       all subpopulations equally. In particular, marginalized groups
+2021). In a related context, Katok et al. (2014) analyze how        who have been historically excluded or underserved are
+supply chain coordination is affected by fairness in wholesale      frequently under-represented in data. For instance, clini-
+pricing. In healthcare operations, prior literature has used the-   cal trials for learning personalized treatment rules involve
+oretical models to understand the impact of different fairness      primarily White patients (cf. Warren et al., 2020); there-
+constraints on organ transplantation (Bertsimas et al., 2013),      fore, the estimated treatment rule might be ineffective when
+appointment scheduling (Qi, 2017), and pricing (Cohen et al.,       deployed in a population that also comprises patients of other
+2022).                                                              races.
+   In spite of this growing body of work and evidence, algo-           Under-representation in data is a pervasive phenomenon
+rithmic decision-making often enjoys a veneer of inherent           across many domains. For instance, marketing operations are
+objectivity, deemed an evidence-based alternative to biased         confronted with a sampling bias as targeting is often cali-
+and idiosyncratic human decisions (e. g., Cui et al., 2020;         brated using data of a subset of the user base (e. g., a specific
+Pierce et al., 2021).2 The above examples suggest that algo-        geographic area or a carrier route) which might not be repre-
+rithmic bias is widespread in the deployment of BA and              sentative of the entire user base (Simester et al., 2020). When
+that it can arise across a variety of contexts and for dif-         exploring the use of alternatives sources of data that can pro-
+ferent reasons. Moreover, the risk of algorithmic bias will         vide business value such as the use of social media data to
+increase with a more prevalent use of big data among busi-          improve sales forecasts (Cui et al., 2018), it is essential to
+ness and operations. This presents ample opportunities for          consider the potential limitations stemming from sampling
+BA scholars and practitioners to meaningfully contribute to         bias. For instance, while the availability of social media offers
+algorithmic fairness, and establish best practices for fair con-    the possibility to listen to what people are saying, it is crucial
+duct toward suppliers, customers, employees, and society at         to be cautious about the biases in terms of whose views and
+large.                                                              voices are included in such data (Malik et al., 2015).
+                                                                                                                                    19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                   3753
+                                                                           Production and Operations Management
+
+   Finally, an important note ought to be made regarding          coarse information, like one’s neighborhood, and ignoring
+the link between data sampling and algorithmic bias. A rep-       individual-level factors, like credit history (Corbett-Davies &
+resentative sample, collected by randomly sampling from           Goel, 2018).
+the population of interest, may also lead to algorithmic
+bias. Algorithms often optimize for overall performance,
+which means that generalization from such a sample may            3.1.3       Biased observed outcomes
+lead the algorithm to prioritize the majority over the
+minority populations. We discuss this in further detail in        Finally, what an algorithm predicts may also be a source
+Subsection 3.2.1.                                                 of bias. At this stage, we differentiate between bias that
+                                                                  stems from a gap between the outcome of interest and the
+                                                                  measured outcome, and bias that stems from relying on
+3.1.2       Differential subgroup validity                        human assessments as target outcomes.
+
+Sampling bias refers to who or which instances are repre-         Proxies and mismeasurement errors
+sented in the data; how they are represented also matters.        Decision makers pursue complex, multidimensional, and,
+In a modeling task, the predictive or prescriptive power of       at times, not easily quantifiable objectives. Furthermore,
+covariates relative to an outcome of interest may differ across   getting the most value from data often means repurpos-
+groups (Corbett-Davies & Goel, 2018), which may be a              ing data that were collected for other reasons, in which
+source of disparate performance.                                  case the quantified and recorded information may not be
+   The choice of which covariates to collect or use may be        perfectly suitable for what the new task requires. Conse-
+informed by practitioners’ intuition and domain expertise,        quently, a common step in BA is to choose proxies that
+as well as previous studies that have established associations    can approximate and take the place of constructs of inter-
+between certain covariates and the outcome of interest. As a      est (Bastani, 2021). For example, the goal of hiring the most
+result, the choice of covariates may be overly influenced by      qualified candidates may be translated into the task of hir-
+relationships that exist for advantaged groups. Meanwhile,        ing candidates based on their predicted future performance
+covariates that are indicative of an outcome of interest for      reviews or predicted future sales (Raghavan et al., 2020), and
+minority or historically marginalized groups may be missed.       the goal of prioritizing high-risk patients for early medical
+For instance, consider the growing industry of artificial         care may be transformed into the task of estimating which
+intelligence for health management aimed at allocating            patients are most likely to incur high costs (Obermeyer et al.,
+preventive care to patients by estimating the likelihood of       2019).
+a condition. Here, the strength of the correlations between          Proxies, as their name indicates, are not a perfect match
+covariates and outcomes may vary across groups. For exam-         with the desired objective. Importantly, the extent to which
+ple, dermatological symptoms may present differently across       they diverge from the objective—and the way in which
+races; asking patients whether they have a “red rash” cor-        they do—may vary for different subpopulations, which
+responds to collecting and relying on a covariate that only       can be a source of algorithmic bias. A prominent example
+has predictive power for certain skin colors (Adamson &           was studied by Obermeyer et al. (2019), who analyzed a
+Smith, 2018; Ebede & Papier, 2006), and could result in a         healthcare algorithm deployed nationwide in the United
+model that has a subpar performance for patients with dark        States as part of a high-risk care management program. The
+skin.                                                             model’s goal was to estimate patients’ health needs and
+   Moreover, even covariates that initially have the same         inform which patients should be prioritized for enrollment
+predictive power may become differentially predictive if          in the program. Rather than directly estimating needs, the
+only some groups can strategically adapt to the incentives        model predicted health costs. Intuitively, the health costs
+introduced by the utilization of a decision model. Consider       a patient incurs would be reflective of health needs and
+the use of standardized tests in college admission decisions.     diseases, making cost a seemingly reasonable and easily
+The use of tests as a criteria for admissions motivates stu-      observable proxy. However, unequal access to care means
+dents to invest in tutoring and to retake tests. However,         that less money is spent on Black patients despite having
+not all students can afford this. This strategic adaptation to    the same level of needs as other patients; thus, the algorithm
+incentives, sometimes referred to as “strategic manipula-         underestimated the needs of Black patients, and erroneously
+tion,” may lead to variations in predictive and prescriptive      concluded that they were healthier than equally sick White
+power across groups and lead to algorithmic bias (Hu et al.,      patients.
+2019).                                                               In this example, the use of cost as a proxy was partly moti-
+   Although the choice of covariates with differential predic-    vated by the fact that “health needs” is a complex and ambigu-
+tive power is often the result of (harmful) oversight, it has     ously defined concept, thereby difficult to meaningfully
+been noted in the literature that this could also be inten-       quantify as a predictive goal. But even when the outcome of
+tionally used as a mechanism for “algorithmic redlining.”         interest is well defined, it may not be well measured. For
+For example, unfairly limiting access to credit to minority       instance, consider BA used in the public sector to help inform
+applicants could be achieved by basing estimates only on          the allocation of resources. In particular, work focused on
+                                                                                                                                    19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3754                                                                                                            DE-ARTEAGA ET AL.
+        Production and Operations Management
+
+police operations (e. g., Perry et al., 2013) has proposed        platforms are sensitive to societal biases (Dressel & Farid,
+optimizing the allocation of police patrols by predicting         2018). Whenever models are optimizing for “wisdom of the
+which locations are likely to be so-called crime hotspots.        crowd,” the biases of the crowd can also be incorporated into
+Whether something is a crime has, in theory, a very clear         the model.
+legal definition. Yet, we do not always observe whether
+someone committed a crime; instead, we observe arrests
+or victim reports. Researchers have showed that relying on        3.2       Model estimation
+policing data to induce models perpetuates racial biases
+in policing practices and leads to feedback loops in police       3.2.1       Optimization objectives and evaluation
+allocation (Ensign et al., 2018; Lum & Isaac, 2016). Sim-         bias
+ilarly, using victim reporting data to fit the models may
+lead to misallocations of policing resources both in the          Once the data are collected, the next stage of a BA task is
+form of over-policing and under-policing due to differ-           to estimate a model. Here, bias may arise from optimiza-
+ential crime reporting rates across areas (Akpinar et al.,        tion objectives that are too coarse and/or focused on narrowly
+2021).                                                            defined criteria. Most commonly, the standard BA practice
+                                                                  is to optimize for overall or aggregate performance over the
+Human assessments                                                 population may lead the model to disregard minority groups,
+In many OM domains, human assessments are a fundamental           even in the absence of sampling bias. In the context of predic-
+component of the data used in BA (Geva & Saar-Tsechansky,         tive modeling, efforts to avoid overfitting often take the form
+2021). In particular, in the context of predictive model-         of using constrained classes of classifiers or introducing loss
+ing, it is often the case that the outcome variables used         functions that penalize complexity through regularization.
+for estimating a model correspond to human assessments.           Hence, if different subpopulations are represented in differ-
+Three types of human assessments are common: (1) historical       ent proportions, the observations belonging to the majority
+expert assessments available in organizational information        population will be more influential in what functional rep-
+systems, (2) elicited expert assessments collected for the pur-   resentation is estimated, and the model might not generalize
+pose of estimating a model, and (3) crowdsourced labels.          well to the minority population. Consider again the example
+Whenever labels are provided by humans, there is a direct         of presentation of dermatological symptoms across different
+path through which societal biases can be encoded in a            skin colors (Adamson & Smith, 2018). The correlations that
+model.                                                            are predictive of a target of interest may vary across groups;
+   Relying on historical expert assessments can perpetu-          thus, a model that optimizes for overall performance with a
+ate past biases in an organization. For example, in human         complexity constraint might only learn which are predictive
+resource operations, developing a model to predict who is         symptoms for people with light skin color, if this group makes
+likely to be hired for a job, or who is likely to receive pos-    up for a larger proportion of the data. Thus, even if different
+itive managerial reviews, could replicate past prejudices in      subgroups are represented in the data in proportions that are
+hiring and promotion (Dastin, 2018). This problem extends         consistent with the distribution that will be encountered upon
+to domains in which we would like to think that there             deployment, optimizing for overall performance can result in
+exists a “gold standard” or easily acquired “ground truth.”       algorithmic bias.
+For instance, the potential use of automated radiological
+screening has recently made waves in the healthcare indus-
+try (Choy et al., 2018; McKinney et al., 2020). However,          3.2.2     Bias ingrained in the assumptions of the
+artificial intelligence used in radiology rely on experts’        objective
+assessments, who routinely disagree on their interpreta-
+tions, a problem referred to by experts as the lack of a          Bias may sometimes be inherently ingrained in implicit
+histopathological gold standard (Adamson & Welch, 2019).          assumptions. For instance, businesses are increasingly turn-
+From human resource operations to healthcare devices, there       ing to the use of computer vision and facial analysis as
+are many business domains in which trained models rely            part of hiring processes, customer satisfaction, and, most
+on experts’ assessments. Recognizing this, and understand-        recently, COVID-19 safety protocols. Racial and gender bias
+ing the potential biases encoded via this pathway, is a           in these technologies have received widespread attention
+first step toward developing analytics that mitigate human        (Buolamwini & Gebru, 2018). However, services such as
+biases (Ahsen et al., 2019), instead of inadvertently per-        gender recognition, increasingly used in business operations
+petuating them under a veil of “objective” data-driven            as part of marketing and customer-centered efforts, make the
+decisions.                                                        assumption that a person’s gender can be determined from
+   Finally, with a growing industry of crowdwork and dig-         their facial features, which may be inherently exclusionary
+ital labor markets (Allon & Babich, 2020; Gray & Suri,            of transgender individuals (Hamidi et al., 2018). In recent
+2019), BA practitioners have turned their attention to the        years, there has also been a surge in the development and
+potential value of labels provided by crowdworkers. Research      commercialization of technologies that attempt to use facial
+has shown that assessments collected via crowdsourcing            images to predict different personality traits (McFarland,
+                                                                                                                                        19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                       3755
+                                                                             Production and Operations Management
+
+2019), including some traits that are potentially relevant          to analyze potential biases in a given OM task. It is useful to
+for hiring and human resource operations. The practice              note that, in practice, the sources of bias for a given dataset
+of inferring a person’s character from their appearance             or task need not be unique, and instead multiple sources can
+is known as physiognomy, a debunked theory that was                 be present simultaneously.
+used as a basis for scientific racism (Gould, 1996) and has
+seen a revival through facial analysis with computer vision
+(Bowyer et al., 2020; Chinoy, 2019). In cases in which              4    DETECTING ALGORITHMIC
+the task itself makes prejudiced assumptions, the goal of           BIAS IN BA
+mitigating bias is an ill-posed task. Before setting out on
+the goal of mitigating algorithmic bias, it is fundamental to       We now discuss how algorithmic bias can be detected in
+interrogate the implicit assumptions of the task definition and     BA and how fairness is formalized mathematically. This
+identify whether any of these may be inherently biased or           yields so-called algorithmic notions of fairness, which can be
+unethical.                                                          used by researchers and practitioners to measure disparities
+                                                                    in decision-making.
+
+3.3       Deployment
+                                                                    4.1     Mathematical formalizations of
+3.3.1       Bias in BA adoption                                     algorithmic fairness
+In some tasks, such as targeted advertisement, BA is used           By formalizing fairness mathematically, it is possible to quan-
+to make autonomous decisions. In many other settings, such          tify the deviation from an outcome that would be considered
+as hiring, pricing and inventory management, human deci-            fair, and then optimize for solutions that better meet this goal.
+sion makers may retain discretionary power. When and how            However, fairness is an inherently sociolegal concept, with
+experts make use of the information provided by a BA tool,          no universal agreed-upon definition. Interpretations of fair-
+and whether discretionary power improves or harms the qual-         ness may also often be context-specific (Kleinberg, Ludwig,
+ity and fairness of decisions, is conditioned on many factors.      Mullainathan, & Sunstein, 2018) and subject to disagreement.
+In the context of revenue management, empirical research            Moreover, there is no direct mapping of sociolegal notions
+has found that when data-driven models are used to assist           of fairness onto mathematical formulations. While we review
+pricing and merchants’ decisions, discretionary power may           below several common notions of fairness from the litera-
+be effective only for some types of products (Kesavan &             ture, it is necessary to carefully consider the requirements
+Kushwaha, 2020), and when pricing for quotes or clients             of each BA tasks and, where needed, make corresponding
+with unique or complex characteristics (Karlinsky-Shichor &         adaptations. Because of this, an out-of-the-box approach to
+Netzer, 2019). Similarly, in the context of ordering behavior       algorithmic fairness based on which one can audit BA and
+in retail stores, empirical evidence suggests that store man-       call it “fair” is precluded.
+agers can improve upon an automated replenishment system               Algorithmic notions of fairness can be loosely grouped
+by successfully integrating information that is unavailable to      into four categories: (1) notions that define fairness across
+the algorithm (van Donselaar et al., 2010). Broadly speaking,       groups; (2) notions that define fairness using a similar-
+decision makers’ likelihood to adhere to algorithmic rec-           ity measure; (3) notions that define fairness through causal
+ommendations relates to phenomena of algorithm aversion             modeling; and (4) notions that define fairness based on
+(Dietvorst et al., 2018) and automation bias (Skitka et al.,        utility. These are reviewed in the following. At this point,
+2000). Importantly, the probability that a decision maker will      we emphasize that the fairness notions below have been
+accept an algorithmic recommendation is not uniformly dis-          primarily developed for predictive analytics. We highlight
+tributed across all observations. In particular, heterogeneity      exceptions that explicitly consider prescriptive models and
+in adherence to recommendations across sensitive groups can         discuss implications for algorithmic fairness in business
+be a source of increased disparities (e. g., Zhang et al., 2021).   operations.
+In the criminal justice system, differential adherence has been
+shown to exacerbate disparities in incarceration across Black
+and White defendants (Albright, 2019), and across socioe-           4.1.1       Measuring fairness at group level
+conomic brackets (Skeem et al., 2020). Thus, even if an
+algorithmic output does not exhibit bias against a subgroup,        Fairness at group level, also referred to as statistical notions
+variation in humans’ likelihood to update their prior beliefs       of fairness, quantifies statistical disparities across groups,
+or to override the recommendations may result in disparate          where the groups are typically defined in terms of sensitive
+impact of algorithmic-informed decisions. Conversely, it is         attributes, such as gender or race (e. g., Chouldechova,
+also possible that discretionary power of a human-in-the-loop       2017; Hardt & Price, 2016; Kleinberg et al., 2017). Defining
+approach could mitigate bias in BA.                                 fairness at an aggregate level based on a sensitive attribute
+   In this section, we presented a taxonomy of sources of           is in part motivated by legislative frameworks, where such
+bias that aims to provide readers with a lens through which         approaches are common (Barocas & Selbst, 2016). In this
+                                                                                                                                                                     19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3756                                                                                                                                          DE-ARTEAGA ET AL.
+          Production and Operations Management
+
+
+
+
+F I G U R E 2 Illustration of three fairness notions: (a) statistical parity, (b) equalized odds, and (c) predictive parity. Example based on credit risk
+modeling. The gray dotted line represents the decision threshold. Individuals left of it will be declined a loan, while individuals on the right-hand side will be
+offered a loan. In (a), the percentage of people offered a loan is equal (i. e., 50 %) for both groups. Thereby, actual defaults are not considered. In (b),
+equalized odds ensures that positive outcomes are correctly predicted at an equal rate across groups, and that false positive outcomes are made at equal rates
+across both groups. Here, for both groups, 50 % of those who would repay (dark color) are correctly predicted to be creditworthy and are thus offered a loan.
+Moreover, 25 % of those who would default (light color) are incorrectly assumed as creditworthy and thus offered a loan. In (c), predictive parity is ensured,
+as the precision is 50 % for both groups (i. e., 50 % of the loans are repaid).
+
+
+
+section, we provide a review of three commonly used metrics                         ence in selection rates across groups to be a presumption
+of group fairness: statistical parity, equalized odds, and                          of adverse impact. Unlike the other notions below, statistical
+predictive parity.                                                                  parity is based only on the predicted outcome, not considering
+   Importantly, across different contexts, it is useful to appre-                   the actually observed outcome (i. e., whether a hire succeeded
+ciate that discrimination might arise against individuals at                        at a job). This can be a key weakness in practice, as it ignores
+the intersection of multiple (sensitive) attributes, even when                      any possible correlation between Y and A, which might not
+no group characterized by a single attribute experiences dis-                       be desirable in cases of different base rates.
+crimination. Hence, the notion of a sensitive attribute in such                        Equalized odds accounts for the fact that the classifier is
+contexts ought to be defined thoughtfully to reflect these real-                    subject to prediction errors and that the prediction errors
+ities. For instance, at General Motors, hiring practices were                       might be biased against a disadvantaged group. This can hap-
+found to be biased against Black women (Washington Post,                            pen when certain prediction errors (i. e., type-I and type-II
+2015). This discrimination was not visible; however, when                           errors) are over-proportionally frequent for the disadvantaged
+inspecting the hiring of only women (mostly White office                            group; see Figure 2b. For example, in a decision model pre-
+clerks) or of only Black employees (mostly men hired as                             dicting loan default, equalized odds would imply that the
+factory workers).                                                                   same ratio of correct offers/declines is made for each group.
+   NOTATION. Let h denote a model. Based on input X, the                            Formally, this notion corresponds to the metric that ensures
+model makes a prediction Y ∈ {0, 1}, while Y is the actually                        the interdependence between the sensitive attribute and both
+observed outcome. We refer to Y = 1 as the positive outcome                         type-I/II errors (Hardt & Price, 2016). Specifically, this is
+and to Y = 0 as the negative one. Without loss of generality,                       formalized by Y ⟂⟂ A ∣ Y. In practice, equalized odds is par-
+we assume a sensitive attribute A that defines a disadvantaged                      ticularly relevant for decision-making problems in which a
+group, s1 , and a group of individuals not belonging to the                         positive prediction grants a specific benefit to individuals, yet
+disadvantaged group, s2 . We write Z1 ⟂⟂ Z2 if two random                           where errors in granting this benefit should be equal across
+variables are independent.                                                          groups, as disparities are perceived as unfair or place a burden
+   Statistical parity is a common notion of fairness. Some-                         on individuals.
+times also called demographic parity, it entails that the                              Predictive parity stipulates that the precision rates are
+positive outcomes are generated with equal probability across                       equivalent for all subgroups under consideration (see
+groups (see Figure 2a). An example is a decision model                              Figure 2c). It thus ensures that the probability of a correct
+for hiring decisions that should eventually offer jobs with                         prediction is equal for all values of the sensitive attribute,
+equal probability to women and men. Thus, P(Y = 1 ∣ s1 ) =                          regardless of whether an individual belongs to the disadvan-
+P(Y = 1 ∣ s2 ) should hold true. Formally, it ensures Y ⟂⟂ A,                       taged group or not (Chouldechova, 2017). As an example, let
+that is, the prediction is independent of the sensitive attribute                   us consider credit risk modeling for men and women. Under
+A. Notions similar to statistical parity are common in legal                        predictive parity, whenever a model predicts a loan would
+frameworks, in approaches such as the 80% rule (Barocas                             be repaid and thus grants a loan, the rate of default should
+& Selbst, 2016), which considers a sufficiently large differ-                       be the same across groups. Formally, in predictive parity,
+                                                                                                                                         19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                        3757
+                                                                              Production and Operations Management
+
+individuals who receive a predicted probability of p should          known; yet specifying a causal graph is often challenging,
+have a fraction p of positive outcomes regardless of the group       requires domain expertise, and, for many applications, might
+(i. e., Y ⟂⟂ A ∣ Y). Owing to this, such a predictive model is       be subject to debate.
+also referred to as being calibrated across groups. BA appli-           Alternatively, counterfactual notions of fairness define a
+cations where this is often perceived as desirable include risk      model as fair if the model’s estimated outcomes would be the
+assessments provided to human experts in domains such as             same if the individual belonged to a different demographic
+supply chain and health care, as it implies that the estimated       group (Kusner et al., 2017). Importantly, this entails not just
+risk has a similar meaning across all subgroups.                     changing the value of the sensitive attribute, but changing
+                                                                     other information that is causally dependent on that attribute.
+                                                                     Machine learning approaches have been proposed to esti-
+4.1.2   Measuring fairness via a similarity                          mate the unobserved outcome for an individual that would
+measure                                                              hypothetically belong to the other group, that is, the so-
+                                                                     called counterfactual (Kusner et al., 2017). By comparing the
+An alternative is to define fairness at the individual level,        observed and the counterfactual outcome, the causal effect of
+seeking to ensure that individuals with similar properties also      a sensitive attribute on a BA outcome can then be estimated.
+receive similar outcomes (Dwork et al., 2012). This notion of        In the absence of bias, there should be no causal effect of
+fairness makes comparisons among all individuals in the data,        a sensitive attribute on the outcome. However, the validity
+regardless of a group membership. Because of this, an a priori       of such counterfactuals has been brought into question, as
+specification of sensitive attributes is not needed; instead, all    attributes such as gender and race derive their social mean-
+available covariates (or a designated subset thereof) are used       ing from many of the features that such frameworks treat as
+for comparisons. A potential application is automated hiring         their “effects” (Hu & Kohler-Hausmann, 2020).
+processes, where fairness at the individual level ensures that
+two job candidates with similar profiles should have the same
+chance for employment.                                               4.1.4       Measuring fairness based on utility
+   Formally, let d(xi , xj ) define the distance between two indi-
+viduals and let D measure the distance of two distributions.         A different research stream has developed fairness notions
+Then, a decision model h (e. g., a predictive or a prescrip-         that account for the utility to individuals who are subject to
+tive model) should yield similar outcomes for similar input,         a decision. For this, a key prerequisite is a priori knowledge
+that is, D(h(xi ), h(xj )) ≤ d(xi , xj ). For some BA tasks, using   of a utility function U, which describes the preference of an
+a notion of individual-level fairness could yield a flexible         individual toward certain allocation of goods.
+way to formalize nondisparate outcomes. This holds true even            Using a given utility function, an allocation fulfills propor-
+when it is challenging to define a set of sensitive attributes.      tional fairness if, compared to any other feasible allocation
+However, individual-level fairness also has an inherent chal-        of utilities, the aggregate proportional change in the utilities
+lenge: what is a task-relevant way of measuring similarity           is less than or equal to zero (Bertsimas et al., 2011). Intu-
+across individuals? This is challenging—and oftentimes even          itively, an allocation is proportionally fair when any transfer
+impossible—to operationalize in practice (e. g., compar-             of resources would lead to a relative benefit in the utility
+isons across discrete covariates are nontrivial and highly           of one individual but reduce the utility of another individual
+domain-specific).                                                    by the same magnitude. Another notion is max-min fairness,
+                                                                     which seeks to maximize the minimum utility that any indi-
+                                                                     vidual obtains (Bertsimas et al., 2011). Formally, proportional
+4.1.3    Measuring fairness through causal                           fairness can be seen as the generalization of the Nash solu-
+modeling                                                             tion for a two-player problem, and max-min fairness is often
+                                                                     grounded in Rawlsian justice and the Kalai-Smorodinsky
+A different approach toward identifying algorithmic bias             solution in the two-player problem. Both have been used for
+approaches the problem through a causal lens. For this, a pre-       studying the impact of fairness in resource allocation (Bertsi-
+requisite is a causal model that is tailored to the BA task.         mas et al., 2011; Rea et al., 2021) including decision models
+Such a causal model can be obtained in two ways: either              that support, for example, organ transplantation (Bertsimas
+by specifying the underlying causal graph or by learning it          et al., 2013). Of note, Cohen et al. (2022) extend fairness
+from data. Once the causal graph is specified, the presence          notions to pricing. A third notion of utility-based fairness
+of discrimination can be formalized in terms of the pathways         terms allocations envy-free if an individual receives an alloca-
+through which the sensitive covariate has an effect on the out-      tion that has the same (or a higher) utility as the allocation of
+come (Nabi & Shpitser, 2018). For instance, if women are             any other individual (Balcan et al., 2019). One can also adapt
+less likely to be hired as construction workers by a company,        envy-freeness to predictive settings, where it warrants that
+physical strength could be considered an admissible pathway,         predictions are then envy-free with high probability (Balcan
+whereas having kids could be considered an inadmissible one.         et al., 2019).
+Although this is a very intuitive and desirable formulation,            However, the aforementioned fairness notions introduce a
+there is an inherent challenge: the causal graph must be a prior     key challenge for OM research and practice: they require
+                                                                                                                                       19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3758                                                                                                               DE-ARTEAGA ET AL.
+        Production and Operations Management
+
+access to an individuals’ utility function, which, in real-world       bail), concerns over differential false positive rates may
+applications, is typically difficult to infer from historical data     be well-justified. Meanwhile, in a task such as predicting
+or simply unknown.                                                     someone’s occupation to show them relevant job post-
+                                                                       ings, the allocation of a good (e. g., showing a relevant
+                                                                       job) may justify a focus on differential false negative rates
+4.2       On impossibility theorems                                    (De-Arteaga et al., 2019). The metric in use should
+                                                                       focus on the relevant disparities of goods/burdens in a
+A key challenge in research and practice is that not all               given context.
+fairness notions can be fulfilled at the same time. In fact,         ∙ What are the previous harms and injustices that the
+it is mathematically impossible for these to be simultane-             algorithm risks compounding? In lending, for exam-
+ously satisfied. Under certain conditions such as different            ple, historical financial exclusion may be compounded
+base rates, the notions of (i) statistical parity, (ii) equal-         by differential false positive rates in the prediction of
+ized odds, and (iii) predictive parity are mutually exclusive          loan default. Meanwhile, gender discrimination in cer-
+for a well-calibrated classifier (Chouldechova, 2017; Friedler         tain occupations could be compounded if women in
+et al., 2016; Kleinberg et al., 2017; Pleiss et al., 2017). Hence,     such an occupation are less likely to be recruited
+seeking fairness with respect to one fairness metric will nec-         for hiring (higher false negatives) (De-Arteaga et al.,
+essarily increase disparity with respect to the others (Pleiss         2019). Concerns over algorithmic unfairness are grounded
+et al., 2017). Consequently, if more than one fairness notion          on the risk that algorithms may perpetuate societal
+is of importance, one could only attempt to find relaxations           biases and compound historical discrimination (Hellman,
+of fairness guarantees that are the mathematically feasible            2018).
+(Kleinberg et al., 2017; Pleiss et al., 2017).                       ∙ How will the choice of metric affect other desiderata?
+                                                                       Algorithms do not operate in a vacuum, and choices
+                                                                       grounded on fairness considerations may inadvertently
+4.3     Guidance on how to choose fairness                             affect other desiderata. For instance, if the algorithm
+notions                                                                is embedded as a decision support tool that provides
+                                                                       probability estimates to a human expert, then calibration—
+The need for manually choosing a suitable fairness notion              and consequently predictive parity—may be desirable
+can expose tensions in the goals and values of different stake-        (Chouldechova, 2017). Meanwhile, this may be a less
+holders (Coyle & Weller, 2020), as underpinned in the heated           pressing issue for algorithms whose output interpreta-
+debated around the COMPAS system, a criminal risk assess-              tion does not hinge on calibration (e. g., algorithms that
+ment tool deployed in the United States. Some argued that the          “flag” a subset of cases while making no inference on the
+COMPAS system is biased toward Black defendants because                remaining instances), eliminating tensions with equalized
+it was more likely to incorrectly flag Black defendants than           odds.
+White defendants as future offenders (Angwin et al., 2016).
+Mathematically, the tool had a higher false positive rate for
+Black defendants, violating equalized odds. Meanwhile, the
+                                                                     5    MITIGATING ALGORITHMIC
+                                                                     BIAS IN BA
+company that developed the algorithm argued that COM-
+PAS satisfied predictive parity (Chouldechova, 2017). That is,
+                                                                     In this section, we discuss mitigation of algorithmic bias in
+scores had the same calibration across groups, so for a given
+                                                                     BA and conclude with guidance for practitioners on how to
+score threshold, the error rate was the same regardless of race.
+                                                                     choose an effective bias mitigation strategy.
+Importantly, whenever base rates are different (e. g., different
+recidivism rates across groups), equalized odds and predic-
+tive parity cannot be simultaneously satisfied (Chouldechova,        5.1     Why it is ineffective to omit sensitive
+2017).                                                               attributes
+   For both researchers and practitioners, these impossibility
+results have important implications: a choice for a suitable         One might be inclined to think that a naïve approach to
+metric must be made. To help inform this choice, we offer            achieving algorithmic fairness is by simply omitting all
+below a series of questions that provide guidance, as there          attributes deemed sensitive. For instance, to avoid racial
+is no one-size-fits-all solution (Table 2 lists (dis-)advantages     bias, one may want to prevent the model from having
+of the different metrics). Furthermore, it is crucial to under-      access to a variable that contains individuals’ race. How-
+stand that no metric is an end in itself, and its use must be        ever, the inclusion of sensitive attributes need not lead to
+grounded on context-dependent goals and values that it aims          unfairness (Kleinberg, Ludwig, Mullainathan, & Rambachan,
+to operationalize.                                                   2018), and when it does, its exclusion does not necessar-
+                                                                     ily address the problem (Dwork et al., 2012). Access to
+∙ What are the goods and burdens allocated by the pos-               sensitive attributes may improve fairness properties of an
+  sible decisions? If the task entails the allocation of a           algorithm when the predictive relationship between variables
+  burden (e. g., public sector operations such as denying            and outcome varies across subgroups. Consider the task of
+                                                                                                                                                      19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                                     3759
+                                                                                      Production and Operations Management
+TA B L E 2       Guidance for choosing fairness metrics
+
+Fairness metric               Setting                     Use cases                           Advantages/disadvantages
+
+Fairness at group level
+Statistical parity            Predictions or decisions    Hiring or other selections          ⊕ Ensures equal selection rates across groups;
+                                with given sensitive       requiring demographic               straightforward to audit and assess for regulators;
+                                attribute                  parity                              does not require observed outcomes
+                                                                                              ⊖ Considers only the predicted outcome, not the
+                                                                                               actual outcome, hence does not differentiate
+                                                                                               between incorrect and correct
+                                                                                               predictions/decisions; requires a predefined
+                                                                                               sensitive attribute, which may be not
+                                                                                               known/defined
+Equalized odds                Predictions or decisions    Risk assessments (e. g., in         ⊕ Ensures that error rates for different types of
+                                with given sensitive       supply chains and                   errors (e. g., false positives) are similar across
+                                attribute                  health care)                        groups, thus differentiating between types of
+                                                                                               possible harms
+                                                                                              ⊖ Requires a predefined sensitive attribute, which
+                                                                                               may be not known/defined; if base rates are
+                                                                                               different, scores across groups will not be
+                                                                                               calibrated
+Predictive parity             Predictions or decisions    Risk assessments (e. g., in         ⊕ Ensures calibration across groups, so meaning of
+                                with given sensitive       supply chains and                   a risk score can be interpreted similarly across
+                                attribute                  health care)                        groups, which is important when risk scores are
+                                                                                               used for subsequent decision-making
+                                                                                              ⊖ Requires a predefined sensitive attribute, which
+                                                                                               may be not known/defined; it does not
+                                                                                               differentiate between different types of errors
+Fairness via similarity measure
+Individual fairness           Well-defined similarity                                         ⊕ No need for choosing sensitive attributes; works
+                               measure                                                         for predictive and prescriptive models
+                                                                                              ⊖ Computationally challenging, as it allows only
+                                                                                               for approximate solutions; it is hard to define an
+                                                                                               appropriate similarity measure
+Fairness through causal modeling
+Causal graphs                 Causal graph is known       Behavioral research                 ⊕ Powerful for expanding the theoretical
+                                                                                               understanding in behavioral sciences
+                                                                                              ⊖ Causal graph typically unknown and thus
+                                                                                               infeasible
+Counterfactual                Sensitive attribute is      Auditing                            ⊕ Counterfactual reasoning promotes traceability
+ fairness                       known and estimated                                            and accountability of decision logic
+                                counterfactual carries                                        ⊖ Strong mathematical assumptions that, due to the
+                                meaning/significance                                           absence of counterfactual outcomes, cannot be
+                                                                                               validated in practice
+                                                                                              ⊖ Counterfactuals on sensitive attributes often lack
+                                                                                               significance (e. g., if the race/gender of someone
+                                                                                               changed, their whole lived experience would
+                                                                                               change, too)
+Fairness based on utility
+Proportional                  Decision problems with      Allocations (e. g., organ           ⊕ Optimizes considering everyone’s individual
+  fairness                     known utility function      transplantation),                   utility so that, in an allocation, no other solution
+                                                           scheduling, etc.                    could improve utility for an individual without
+                                                                                               reducing utility for others by a greater magnitude
+                                                                                              ⊖ Utility function of individuals is rarely known
+Max-min fairness              Decision problems with      Allocations (e. g., organ           ⊕ Optimizes considering individual utilities and
+                               known utility function      transplantation),                   focusing on those who are worse-off so that, in
+                                                           queuing, etc.                       allocation, no other solution could improve utility
+                                                                                               for some without decreasing utility for those
+                                                                                               receiving lowest utility level
+                                                                                              ⊖ Utility function of individuals is rarely known
+                                                                                                                                      19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3760                                                                                                              DE-ARTEAGA ET AL.
+        Production and Operations Management
+
+algorithmic-assisted hiring based on covariates that capture        Black patients, then it is useful to identify the cause and
+education. As a result of socioeconomic disparities and barri-      improve the underlying reporting practices (Vokinger et al.,
+ers of access to resources, first-generation college graduates      2021).
+with the same potential to succeed at future jobs may graduate         In addition to careful design and documentation, it
+with lower grade average (e. g., GPA). By having access to a        is also possible to make use of algorithmic fairness
+covariate that indicates whether someone is a first-generation      approaches to guide the collection of better data. For
+college graduate, the algorithm may account for this bias           instance, selectively acquiring additional information in
+by identifying that the predictive relationship between GPA         cases where the model lacks predictive power can guide
+and future job performance depends on this socioeconomic            the allocation of a limited budget in a way that improves
+factor.                                                             performance for disadvantaged groups (Cai et al., 2020).
+   Access to sensitive attributes, however, may lead the algo-      Active learning, which corresponds to computational tech-
+rithm to use these as a proxy for the target outcome in ways        niques to identify informative data, can also be adapted
+that compound previous disparities. For instance, if structural     to optimize for a fairness objective, in ways such as
+challenges have made it harder for first-generation students        accounting for the different biases and costs of humans
+to graduate college or succeed at their first job, the algorithm    tasked with labeling the data (Gao & Saar-Tsechansky,
+may learn a negative association between first-generation           2020).
+graduates and job performance, leading it to predict that a            The above approaches to addressing sources of bias dur-
+first-generation graduate is less likely than others to succeed,    ing data collection are important in BA practice, yet often
+even if everything else in their profiles is identical. In such     are insufficient on their own. In what follows, we discuss
+cases, excluding the sensitive attribute is often not enough        mathematical approaches that constrain outcomes of decision
+to address the problem. The reason is that many variables are       models to improve fairness.
+correlated with sensitive attributes and thus act as proxies. For
+instance, students’ zip code or school district may be used
+by the algorithm as a proxy for race. A prominent example           5.3     Mathematical approaches to
+where omitting sensitive attributes was ineffective is Ama-         algorithmic fairness
+zon’s free-same day delivery (Bloomberg, 2016). Amazon
+declared that no data on race were used for deciding where to       Mathematical approaches to mitigating bias in BA can be
+offer free delivery services. Nevertheless, many other covari-      broadly characterized as modifications to the model or the
+ates may act as potential proxies (e. g., the zip code), which      process of estimating a model, with the goal of finding a solu-
+resulted in a service that excluded predominantly Black             tion that has good performance with respect to a specified
+neighborhoods.                                                      notion of algorithmic fairness.
+   In sum, omitting sensitive attributes is neither necessary          EXAMPLE. Let us consider an example from human
+nor sufficient to prevent disparate outcomes in BA. Thus,           resource operations where a predictive model, f : x ↦ y, such
+algorithmic fairness approaches ought to be considered.             as a neural network, is used to select candidates with profile
+                                                                    x ∈ ℝN for hire, that is, y ∈ {0, 1}. A naïve application of
+                                                                    predictive analytics would optimize against historical data,
+5.2    Addressing sources of algorithmic bias                       that is, minf 𝔼[𝓁(y, f (x))] where 𝓁 is a loss function (e. g.,
+during data collection                                              cross-entropy loss). To foster gender equality, assume that
+                                                                    a company wants to ensure statistical parity in the form of
+One approach to mitigating bias in BA practice is to invest         the so-called 80% rule (Barocas & Selbst, 2016), so that
+in “good data.” For this, several approaches can be con-            the selection rate for women and nonbinary candidates is no
+sidered. First, it is important to document how the data            less than 80% of the selection rate for men. Then, one can
+were recorded, including the data composition, collection           adapt the above minimization to further incorporate a fairness
+process, and recommended uses (Gebru et al., 2018). Such            constraint, with 𝜖 = 0.8,
+information can help evaluate whether it is appropriate to
+reuse data for a new task and identify potential sampling bias,          |P(y = 1 ∣ xgender = “man”) − P(y = 1 ∣ xgender
+                                                                         |
+differential subgroup validity, and other sources of bias that
+stem from data collection and representation (as described                                  = “woman or nonbinary”)|| ≤ 𝜖. (1)
+in Subsection 3.1). Second, potential sources of bias in
+the data should be critically assessed by domain experts.              Directly optimizing for the constrained optimization prob-
+This might imply that a BA task is eventually revised.              lem (i. e., in-processing) is one way of ensuring the desired
+For instance, one might need to quantify a business goal            rule is met. Alternatively, one could apply pre-processing
+through a different proxy or to exclude data sources that are       to the data to account for possible biases prior to solv-
+themselves biased. Third, it might be necessary to improve          ing the optimization problem, or apply a transformation to
+the data collection practices (or remedy errors in already          the solution of the unconstrained optimization (i. e., post-
+collected data). For instance, if missing values in electronic      processing). In the following, we discuss approaches to
+health records appear with larger relative frequency for            algorithmic fairness for predictive and prescriptive analytics.
+                                                                                                                                      19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                     3761
+                                                                            Production and Operations Management
+
+5.3.1     Algorithmic fairness in predictive                       decision using a probability threshold (Corbett-Davies et al.,
+analytics                                                          2017). The threshold itself can be subject to optimization
+                                                                   according to properties of the decision process, such as the
+In predictive analytics, approaches to algorithmic fairness        tolerance for false alarms or resource constraints that deter-
+can be generally grouped into how the fairness constraint          mine the volume of cases that can receive a certain treatment
+enters the model. This corresponds to approaches for pre-          or decision.
+processing, in-processing, and post-processing as follows.            Other approaches to algorithmic fairness consider spe-
+   Pre-processing changes the data before the actual model-        cific model classes that are frequently used in OM. For
+ing step, so that the fairness constraint is later ensured. This   instance, fairness constraints have been incorporated into a
+can be done by reweighting, where the frequency of observa-        classic bandit (Joseph et al., 2016). This presents a the-
+tions from the minority group is artificially increased through    oretical framework that can be used by OM researchers
+resampling and thus the observations from both disadvan-           and practitioners to tailor fair bandits to domain applica-
+taged and advantaged group become more balanced (Kamiran           tions (such as bandits in revenue management). Similarly,
+& Calders, 2012). Alternatively, it is possible to learn repre-    fairness constraints have also been considered in Markov
+sentations of the data that exclude information that one does      decision processes (D’Amour, Srinivasan, et al., 2020). How-
+not wish a model to learn from. For instance, one can aim to       ever, the aforementioned works cover classic, unconstrained
+obfuscate any information that correlates with membership to       versions of the models, while more work is needed to adopt
+a disadvantaged group (Zemel et al., 2013).                        these to OM problems (e. g., one could adapt a bandit for
+   In-processing incorporates the fairness goal directly in the    an OM setting by incorporating resource or budget con-
+modeling objective (Kamishima et al., 2012; Wang & Saar-           straints). Finally, several works have studied the impact of
+Tsechansky, 2020; Zafar et al., 2019). This can be achieved        fairness constraints specifically in an OM context. For exam-
+by reformulating the model through an optimization con-            ple, some works incorporate fairness in resource allocation
+straint, which limits the space of acceptable utility-optimizing   (Bertsimas et al., 2011, 2013; Rea et al., 2021), pricing
+solutions to a set that meets certain fairness criteria (e. g.,    (Cohen et al., 2022), appointment scheduling (Qi, 2017),
+modifying the optimization problem in a support vector             and in supply chain coordination (Katok et al., 2014). For
+machine through this additional fairness constraint). Alterna-     future work, we foresee various opportunities to integrate
+tively, one can add the fairness constraint as a regularization    fairness in models that fall under the scope of prescrip-
+term. Although a constrained optimization ensures that the         tive analytics where optimization and machine learning are
+constraint is strictly met, the latter has the advantage that      combined.
+it generally gives a loss function that is differentiable and
+that can thus be solved by gradient-based solvers. Nat-
+urally, one can reformulate a constrained optimization in          5.4     Long-term effects of algorithmic
+terms of a regularized objective via the Lagrangian form           fairness
+(or similar to the Big-M method in optimization). A dif-
+ferent approach is to solve both the original objective and        Many approaches for algorithmic fairness are tailored to
+the fairness constraint through a game-theoretic approach.         static settings in which long-term effects and system-level
+Specifically, one can formulate it as a minimax game that          dynamics are not considered. In contrast to that, dynamic
+can then be estimated via adversarial learning (Zhang et al.,      settings might be characterized by a utility that changes
+2018).                                                             over time (e. g., due to positive or negative externalities) or
+   Post-processing takes an estimated model and changes            due to additional long-term costs that need to be addressed.
+its output in a way that the fairness constraint is post hoc       Whenever decisions at one time step affect data in the next
+ensured. For instance, one can calibrate a model post hoc          time step, both utility and fairness may exhibit complex
+toward equalized odd by applying Platt scaling (Pleiss et al.,     dynamics.
+2017) or by formulating an optimization problem that con-             There are recent efforts to model the long-term impact
+siders the output of the model and transforms it according to      of algorithmic fairness. One stream of the literature adapts
+both overall performance and fairness constraints (Hardt &         the loss function so that it accounts for feedback loops
+Price, 2016).                                                      (Hashimoto et al., 2018). Specifically, the authors employ dis-
+                                                                   tributionally robust optimization to minimize the worst-case
+                                                                   risk over all distributions close to the empirical distribution.
+5.3.2     Algorithmic fairness in prescriptive                     By doing this repeatedly in each time step, the approach con-
+analytics                                                          trols the risk of bias for the disadvantaged group; however,
+                                                                   it assumes that the data are sampled from the same distri-
+The above approaches to bias mitigation focus exclusively          bution. Another stream in the literature models the effect
+on predictive analytics. By contrast, in prescriptive analyt-      of bias through a (sequential) decision-making framework,
+ics, algorithmic fairness is addressed in a way that not only      so that the long-term reward can be captured. For exam-
+the predictions but the actual decisions adhere to the fairness    ple, D’Amour, Srinivasan, et al. (2020) develop a decision
+constraint. A naïve approach is to map a prediction onto a         model in which the actions—with and without algorithmic
+                                                                                                                                                                    19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3762                                                                                                                                         DE-ARTEAGA ET AL.
+            Production and Operations Management
+TA B L E 3          Guidance for choosing a bias mitigation strategy
+
+Source of bias                                              Mitigation recommendations
+
+Data collection and representation
+Sampling bias (Subsection 3.1.1)                            ✓ Revised strategies for data collection to address sampling bias may be most effective
+                                                            ✓ Training models with fairness constraints or post-processing the outcome may be helpful if
+                                                             sampled data has enough signal for inference for undersampled group(s)
+                                                               Additional data collection should be done ethically and with informed consent
+
+Differential subgroup validity                              ✓ Modifications to the algorithm may be most effective to capture cross-group heterogeneity
+ (Subsection 3.1.2)                                            Using different predictive patterns for different groups may constitute disparate treatment and be
+                                                             at odds with some regulation
+Biased observed outcomes                                    ✓ Revisiting problem formulation may be most effective, especially by acknowledging gap between
+ (Subsection 3.1.3)                                          desired outcome and observed outcome
+                                                            ✓ Data collection may be effective if another (less biased) outcome can be collected
+                                                               Training constraints and post-processing approaches may be ineffective and yield misleading
+                                                             results because most of these rely on the assumption that observed outcome is the true outcome
+Model estimation
+Optimization objectives and                                 ✓ Controlling bias through modifications to the algorithm likely most effective
+ evaluation bias (Subsection                                   The ability to appropriately diagnose this may be complicated by an over-reliance on chosen
+ 3.2.1)
+                                                             performance metrics
+Bias ingrained in the assumptions                           ✓ Revisiting the problem formulation is likely necessary
+ of the objective (Subsection                                  Flaws in problem formulation may imply a “nonsolution” and require a substantial restructuring,
+ 3.2.2)
+                                                             which may include deciding that a technology should not be built
+Deployment
+Bias in BA adoption (Subsection                             ✓ Modifications to the algorithm may be effective if they improve human-AI complementarity
+ 3.3)                                                       ✓ Implement post-deployment monitoring to routinely probe for bias and potential feedback loops
+                                                               Appropriately identifying and mitigating bias requires assessing the human-AI team; considering
+                                                             the algorithm in isolation will not suffice
+AI: artificial intelligence
+
+
+
+fairness—are evaluated in a dynamic decision setting. The                            ∙ There is no silver bullet. Instead, a combination of differ-
+authors develop a Markov decision process that explicitly                              ent strategies is oftentimes needed. Consider the example
+accounts for feedback loops in sequential decision-making.                             of clinical trials involving insufficient racial diversity (e. g.,
+In some BA tasks, it might also be necessary to account for                            Warren et al., 2020). As a way forward, it is ethically indi-
+delayed impact (Liu et al., 2018), as there may be a time lag                          cated to conduct clinical trials that are representative of
+until when disparities become quantifiable. For example, the                           multiple races. Nevertheless, it is unfeasible to replace all
+financial impact of discrimination during college admission                            existing clinical trials, and it is thus important to adjust
+can only be measured several years after graduation.                                   for the selection bias through computational approaches
+                                                                                       when using the existing data from previous trials. As a
+                                                                                       rule of thumb, companies should continuously check new
+5.5    Guidance on how to mitigate bias                                                data collection efforts for risk of bias, revisit problem
+in BA practice                                                                         formulations, and critically inspect baked-in assumptions,
+                                                                                       while an appropriate diagnosis of sources of bias can
+Managers have four fundamental ways to address bias in BA                              enable mitigation via mathematical approaches to algo-
+practice: (1) control the source of bias at the problem formu-                         rithmic fairness when appropriate, allowing managers to
+lation stage, (2) control the source of bias at the data level,                        produce data-driven insights from existing data sources
+(3) control the bias through modifications to the algorithms,                          (Subsection 5.3).
+and (4) control the bias by post-processing the output. Which                        ∙ Mitigation strategies need to consider business context.
+mitigation strategies are effective will depend heavily on the                         Here, appropriate domain understanding and engagement
+source of bias, and we thus provide guidance for practition-                           of affected stakeholders is crucial, as this is neces-
+ers in Table 3. Therein, we build upon the sources of bias                             sary to enable the diagnosis—and mitigation—of bias.
+from in Section 3 and, to address them, suggest mitigation                             Consider the example of FinTechs that leverage novel
+strategies.                                                                            data sources for credit scoring. Here, knowledge of the
+                                                                                                                                         19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                        3763
+                                                                              Production and Operations Management
+
+  business model and process is necessary (but may not               of this section, we discuss cases in which fairness is not
+  be sufficient) to assess which data sources are at risk of         at odds with utility, a phenomenon that is not rare but is
+  bias. Complementing domain knowledge with community                frequently underappreciated. In the second part, we discuss
+  engagement via participatory design strategies can help            cases where there is or may be a trade-off, and the business
+  anticipate modes of failure, reshape problem formulation,          implications this has.
+  and guide the implementation of effective bias mitigation
+  strategies.
+∙ Auditing. The different strategies for bias mitigation vary
+  in the extent to which they facilitate auditing. Consider the
+                                                                     6.1       Absence of a fairness-utility trade-off
+  above selection bias example, which a company may want
+                                                                     Characteristics of the utility function, the model’s ability to
+  to mitigate via a new data collection practice. Here, regu-
+                                                                     correctly estimate it, and the dynamics of deployment may
+  lators can assess whether the bias mitigation is successful
+                                                                     all lead to an absence of a fairness-utility trade-off.
+  by inspecting whether the data are now representative. In
+  contrast to that, auditing mathematical approaches to algo-
+                                                                     Nonunique solutions
+  rithmic fairness (Subsection 5.3) can bring challenges by
+                                                                     The solution to an optimization objective is often nonunique.
+  requiring specialized mathematical knowledge and novel
+                                                                     In the context of predictive modeling, this phenomenon
+  auditing strategies when the goal is to audit the pro-
+                                                                     has been studied as underspecification (D’Amour, Heller,
+  cess. A growing number of software tools aim to support
+                                                                     et al., 2020) or predictive multiplicity (Marx et al., 2020).
+  practitioners in this task (we provide an overview in the
+                                                                     In such settings, solutions that are equivalent from a utility-
+  Supporting Information).
+                                                                     maximizing perspective can be very different from a fairness
+                                                                     perspective (Chouldechova & G’Sell, 2017; Marx et al.,
+                                                                     2020). As illustrated in Figure 3, nonunique solutions may
+6       FAIRNESS–UTILITY RELATIONSHIP
+                                                                     arise when the optimization objective is nonconvex, or it is
+                                                                     convex but not strictly convex. In such settings, the utility-
+Conversations about fairness in OM and business applications
+                                                                     fairness Pareto frontier may have multiple solutions that yield
+are often accompanied by a discussion on trade-offs and the
+                                                                     the same utility, but are different from a fairness perspec-
+price of fairness (Bertsimas et al., 2011, 2012, 2013; Cohen
+                                                                     tive. For instance, in the context of automated and targeted
+et al., 2022; Katok et al., 2014; Rea et al., 2021). Typically,
+                                                                     recruiting, researchers have found gender bias in the task of
+it is assumed that fairness constraints will restrict the search
+                                                                     predicting individuals’ occupations from their online pres-
+space of a decision model and will thus come at a cost to
+                                                                     ence. The same research also shows that removing explicit
+utility, where utility is understood as referring to traditional
+                                                                     gender indicators from biographies can mitigate (although
+business goals (e. g., profit, cost). For instance, in the context
+                                                                     not remove) the observed gender gap, while maintaining
+of airline operations and flight rescheduling due to inclement
+                                                                     the overall prediction accuracy (De-Arteaga et al., 2019).
+weather, the cost-minimizing solution incurs higher costs for
+                                                                     The existence of nonunique utility-maximizing solutions has
+some airlines than for others. When one ensures that no air-
+                                                                     two main implications: (1) in such settings, significant gains
+line is disproportionately affected, the total cost from delays
+                                                                     can be made from a fairness perspective without incurring
+becomes larger (Bertsimas et al., 2011). However, in some
+                                                                     a utility loss, and (2) such gains are likely to not be real-
+settings, improving fairness may also lead to an improvement
+                                                                     ized if the optimization objective does not explicitly encode
+in utility. Consider a bank that systematically underestimates
+                                                                     fairness considerations.
+women’s financial standing and likelihood of repaying a loan.
+This misestimation is not only harmful to women, but it
+is also harmful to the bank itself, which is missing out on          Bias in utility estimation
+potential profits associated to these loans.                         As discussed in Section 3, the mechanism through which an
+    The assumption of a trade-off between utility and fairness       algorithm learns a biased solution is often a misestimation of
+is intuitive from an optimization perspective (Bertsimas et al.,     the utility function. Flawed proxies can result in unfair deci-
+2012); but claims of an inherent trade-off implicitly make the       sions, but they may also lead to suboptimal solutions from a
+following four assumptions: (1) the utility function is strictly     utility-maximizing perspective (Bastani, 2021). For instance,
+convex; (2) there is no sampling bias; (3) the optimization          consider the predictive model meant to estimate health needs
+objective corresponds to the business utility and there is no        to target patients for high-risk care management (Obermeyer
+mismeasurement error; and (4) there are no feedback loops            et al., 2019). A utility-maximizing solution would be one that
+between the effects of algorithmic deployment and future val-        correctly predicts who are the high-risk patients. Thus, a bias
+ues of the utility function. Importantly, in many cases, the         mitigation intervention that corrects for the misestimation of
+sources of bias are precisely related to a violation of some of      needs for Black patients has the potential of improving both
+these assumptions.                                                   fairness properties and utility maximization.
+    Understanding the utility-fairness relationship is funda-           Finally, accurate utility estimation also relies on properties
+mental to a successful characterization and incorporation of         of the data distribution. Consider the case of models that
+fairness considerations in business practices. In the first part     are fitted with convenient, yet nonrepresentative samples.
+                                                                                                                                                              19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3764                                                                                                                                      DE-ARTEAGA ET AL.
+          Production and Operations Management
+
+
+
+
+F I G U R E 3 Illustrations of nonunique solutions (left and center), and corresponding Pareto frontier (right), which yields multiple solutions that are
+equivalent from a utility perspective
+
+
+
+During estimation, a utility-maximizing solution may be one                       underestimation of Black patients’ health needs (Obermeyer
+that sacrifices performance for an undersampled population                        et al., 2019), or of women’s ability to repay a loan. In
+in favor of an oversampled one. Yet, this may not maximize                        principle, these are cases in which fairness and utility should
+utility in deployment, when the shift in data distribution                        not be at odds; correcting the misestimation has the potential
+could yield costly errors for the initially undersampled                          to increase the utility. In practice, that is not always the
+population.                                                                       case. A fairness-utility trade-off arises when a solution that
+                                                                                  optimizes overall performance has poor performance for a
+                                                                                  subpopulation, and alternative solutions necessarily reduce
+Unmeasured or dynamic costs
+                                                                                  the overall performance. This may happen for a variety of
+Even within the narrowly defined task of utility maximiza-
+                                                                                  reasons. A constraint in complexity of the model may mean
+tion, there are often unmeasured costs and benefits that may
+                                                                                  that the solution that optimizes for overall performance
+impact the overall utility, such as employee satisfaction.
+                                                                                  underperforms for a subpopulation (Subsection 3.2.1), and,
+Some of this unmeasured component of the utility may be
+                                                                                  under the same complexity constraints, improving perfor-
+directly linked to fairness properties of an optimization prob-
+                                                                                  mance for that subpopulation could harm performance for
+lem. For example, in the context of bias in algorithmic hiring
+                                                                                  the majority population. While alleviating the complexity
+(Raghavan et al., 2020), unmeasured costs of that bias include
+                                                                                  constraint may seem like the obvious solution, this may
+the potential cost of having less diverse teams (Page, 2017).
+                                                                                  involve other trade-offs, such as the risk of overfitting. A
+Moreover, models developed considering a static setup may
+                                                                                  utility-fairness trade-off may also arise if the source of the
+fail to capture dynamic or long-term costs of certain policies.
+                                                                                  bias is differential subgroup validity (see Subsection 3.1),
+If individuals invest rationally, unfairness in an algorith-
+                                                                                  and the available data do not contain information that is
+mic output will impact incentives, and may affect (rational)
+                                                                                  predictive for a subpopulation. In this context, the only way
+investment by affected stakeholders (Liu et al., 2020). Simi-
+                                                                                  of enforcing a fairness metric without collecting new data
+larly, costs to reputation and spillover effects on perceptions
+                                                                                  may be to reduce performance for the majority group.
+of fairness may affect profits (Katok et al., 2014).
+                                                                                     Notably, fairness-utility trade-offs in the context of
+                                                                                  accuracy-affecting injustices often stem from the constraint
+                                                                                  of relying on the same (flawed) data to estimate a model. In
+6.2         Presence of a fairness-utility trade-off                              the context of business operations, this can often be circum-
+                                                                                  vented by making a different choice of data or engaging in
+A fairness-utility trade-off may arise for a number of reasons.                   new data collection efforts. This can naturally help address
+In this context, it is useful to differentiate between accuracy-                  unfairness resulting from sampling bias if the new data are
+affecting injustices and nonaccuracy-affecting injustices                         more representative (Raji & Buolamwini, 2019). Choosing
+(Hellman, 2020). Below, we define each type of injustice, dis-                    a different proxy outcome may also mitigate bias, because
+cuss why the trade-off may arise in each case, and what the                       seemingly reasonable choices of proxy labels that yield sim-
+implications for business operations are.                                         ilar accuracies can have markedly different implications in
+                                                                                  terms of bias, as has been observed in practice (Obermeyer
+Fairness-utility trade-off and accuracy-affecting                                 et al., 2019). Collecting more data may also help mitigate
+injustices                                                                        differential subgroup validity (Cai et al., 2020). As an exam-
+Accuracy-affecting injustices refer to cases in which either                      ple, consider the task of deciding whether to grant applicants
+the data or the output of a model inaccurately estimate                           a loan. If a disadvantaged group is more likely to lack tra-
+a fact about people (Hellman, 2020). Examples include                             ditional lending histories, an algorithm that relies on this
+                                                                                                                                      19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                     3765
+                                                                            Production and Operations Management
+
+information may have lower accuracy for this group. This           of algorithmic bias? Which stakeholders (e. g., customers,
+disparity in performance may be potentially reduced by allo-       suppliers, individuals) have been historically disadvantaged
+cating a limited budget to collect additional information for      and are therefore at higher risk of being impacted by algo-
+selected individuals (e. g., a time-consuming screening of         rithmic disparities? In light of this, we foresee great value
+nontraditional financial histories). While acquiring this infor-   for practitioners by estimating the prevalence of algorithmic
+mation for everyone may be unfeasible, acquiring additional        biases across sectors, domains, and applications. This will
+variables for selected individuals could improve the predic-       eventually help practitioners in prioritizing applications that
+tive accuracy for this subgroup, simultaneously improving the      are especially prone to bias. Here, we hope that our discus-
+bank’s ability to estimate utility and fairness of the decisions   sion on the sources of algorithmic bias in Section 3 provides
+(Cai et al., 2020).                                                a valuable starting point.
+                                                                      Eventually, such empirical evidence could raise awareness
+Fairness-utility trade-off and nonaccuracy-affecting               of the risk of algorithmic discrimination in the BA/OM com-
+injustices                                                         munity and further guide BA practitioners when auditing
+Injustices may also arise when data and models accurately          sources of bias to ensure a fair treatment of customers, sup-
+estimate a fact about people, but these traits themselves result   pliers, and other business stakeholders. This research would
+from injustice (Hellman, 2020). As an example, if racial dis-      also enable the development of domain-specific guidelines
+crimination is in part responsible for a racial pay gap, income    for algorithmic audits in business operations, facilitating the
+would be a trait that results from that injustice. Even if not     robust and responsible deployment of BA technologies.
+necessarily illegal, if racial disparity in allocations can be        The growing adoption of big data among business opera-
+explained by this covariate, using it to inform decisions may      tions (Choi et al., 2018; Cohen, 2018; Feng & Shanthikumar,
+still correspond to a form of indirect discrimination because it   2018) is likely to reinforce the risk of algorithmic bias.
+is informed by and compounds a previous injustice (Hellman,        One reason is that algorithms for big data must be suf-
+2018).                                                             ficiently scalable and will thus operate through heuristics,
+   The methodologies introduced in Section 5 can help              while algorithmic audits also become more computationally
+mitigate these type of injustices. For instance, enforcing         challenging. Companies may be especially prone to algorith-
+demographic parity can ensure that a resource is equally dis-      mic bias when integrating data from social media in their
+tributed across groups. Examples of these type of algorithmic      business decision-making. Such data have many promising
+injustices in the context of business operations include the       applications for businesses and thus offer large operational
+Staples online pricing case (Wall Street Journal, 2012) and        value (Cui et al., 2018; Lau et al., 2018). However, social
+the Amazon same-day delivery case (Bloomberg, 2016). In            media data are user-generated and thus reflect societal biases,
+the case of personalized online pricing, for instance, dispari-    which may affect downstream business decisions that, in turn,
+ties do not cease to be problematic if the willingness to pay      affect customers and suppliers. Moreover, possible biases and
+is accurately estimated. Similarly, the absence of same-day        harms are not always easy to anticipate, as evidenced by Twit-
+delivery in predominantly Black neighborhoods was seen as          ter’s choice to create an “algorithmic bias bounty challenge”3
+a problem even if the company was grounding its decision           as a way to encourage users to uncover and report biases
+based on (accurate) estimation of the volume of customers by       in their system. In the realm of big data and social media,
+zip code.                                                          an interesting path for future research is to explore how the
+                                                                   operational value of social media changes when algorithmic
+                                                                   fairness constraints are introduced.
+7   FUTURE DIRECTIONS FOR BA
+RESEARCH                                                           Measuring gains and losses with respect to status quo
+                                                                   Frequently, BA is meant to assist or automate decisions in
+More work is needed to detect and eventually mitigate bias in      operations previously performed by humans. The efficiency
+BA and thus shape an impactful research agenda around algo-        of algorithms is thus measured with respect to the previous
+rithmic fairness. To provide guidance in this task, we outline     status quo. A similar approach is pertinent when considering
+key research opportunities.                                        the risk of bias (e. g., Kleinberg, Lakkaraju, et al., 2018; Lu,
+                                                                   2019; Yu, 2020). Thus, it is crucial to determine how bias of
+Quantifying the prevalence of algorithmic bias                     a model compares to previous bias embedded in the decision
+As laid out above, algorithmic bias is widespread in BA            process. The nature of BA—learning from historical data—
+practice, and it can arise across a variety of contexts and        means that in many cases previous bias may be replicated and
+for different reasons. Media reports, government audits, and       amplified. However, in other cases, algorithms may exhibit
+academic studies have provided empirical evidence showing          less bias than humans (Ganju et al., 2020).
+instances of this phenomenon, but more research is needed             Crucially, how to measure and compare the bias across
+to identify and document which industries are more at risk         decision frameworks is a nontrivial question. The inconsis-
+of introducing or perpetuating unfairness through the deploy-      tency present in human decisions, while often framed as a
+ment of BA. Such inquiry can benefit from considering:             disadvantage, may also ameliorate the consequences of bias,
+Which operations and specific business decisions are at risk       while the deterministic nature of algorithmic decisions could
+                                                                                                                                        19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3766                                                                                                               DE-ARTEAGA ET AL.
+        Production and Operations Management
+
+systematically exclude and harm people in ways that are                Efforts in BA practice toward reducing algorithmic bias
+mitigated by variance in human decisions. Thus, properly            complement a larger paradigm shift in OM, calling for the
+identifying the dimensions and measures along which to com-         importance of moving beyond profit maximization. Cachon
+pare humans and algorithmic tools is an important question.         et al. (2020) state “We are most comfortable in the paradigm
+In a similar vein, more research is needed that quantifies the      of optimization. But what should be optimized? Traditionally,
+efforts necessary for implementing algorithmic fairness in BA       we focused on costs and profits. But the objective functions
+practices and thus to quantify the operational value. Such          of the future are more nuanced. Ethics, equity and well-
+analysis must consider various different operational dimen-         being are of importance to many.” Thus, for the field of
+sions, including, for example, costs from training personnel        OM, it is important broaden the lens of what is and should
+in algorithmic fairness, and so on.                                 be included in the optimization function as it will offer
+                                                                    significant room for considering the role of business oper-
+Mitigating algorithmic bias                                         ations in mitigating—rather than compounding—historical
+To mitigate algorithmic bias in BA, further research will           injustices.
+be necessary along several directions. First, many of the
+above methods for algorithmic fairness have been developed          Evaluating dynamic effects and incentives
+for predictive analytics and not for prescriptive models.           Most works on algorithmic fairness consider static settings;
+This suggests a substantial gap with exciting opportunities         however, business environments are highly dynamic. Hence,
+for research and practice to expand algorithmic fairness            care is needed for sequential decision-making or when the
+specifically in OM applications. In particular, there is no         underlying population is subject to changes, thereby giving
+general purpose framework to developing such decision               rise to potential feedback loops. To perform such evaluations,
+models. Hence, decision models with mathematical fairness           Kallus and Zhou (2021) propose a model for personalized
+constraints must be tailored to different types of optimiza-        pricing in which the long-run dynamics of fairness and utility
+tion problems and formalized accordingly (e. g., matching           are compared against a myopic revenue maximization. Simi-
+markets, bandits, Markov decision processes). Future work           lar analyses where the dynamic effects of algorithmic fairness
+can propose algorithmic fairness approaches for specific OM         are modeled could also be of interest for other BA tasks.
+problems in areas not yet explored, including in impactful             When considering dynamic effects of interventions, an
+areas such as scheduling and routing. In addition, more             important success factor of algorithmic fairness is compli-
+theoretical analyses are needed, especially in the context          ance (Dai et al., 2021). If some firms adopt a noncompulsory,
+of OM decision models (e. g., by deriving generalization            fairness-conscious policy and others do not, there may be
+bounds). Such theoretical findings will contribute to a             complex interactive effects that affect the overall market.
+better understanding of algorithmic fairness by informing           Similarly, customers might also adapt their behavior in
+decision makers about what are potential (worst-case)               response to how BA arrives at decisions affecting them
+implications.                                                       (Shimao et al., 2019). In this regard, a better understanding
+   In the big data era (e. g., Choi et al., 2018; Cohen,            of equilibrium conditions in the context of multiple firms or
+2018; Feng & Shanthikumar, 2018), bias mitigation needs are         players is important. Regulation may also have unanticipated
+dynamic and can evolve rapidly. As organizations increas-           effects on both utility and fairness if the incentives created by
+ingly rely on high-dimensional and unstructured data and            a policy are not properly understood (cf. Fu et al., 2022; Lam-
+operate in multinational contexts with varied social back-          brecht & Tucker, 2019). Moreover, it is necessary to develop
+grounds, it is important to develop methodologies that help         decision models that are robust to strategic manipulation.
+practitioners discover what biases may be contained in a            For instance, future research could leverage OM research on
+dataset, rather than having to probe for biases hypothesized a      Stackelberg games for this purpose.
+priori. Relatedly, one same product may have different fair-
+ness needs for different contexts in which it will operate,         Designing BA for bias mitigation and human-algorithm
+posing open questions for model training and deployment.            complementarity
+Additionally, many data sources in the big data era of BA/OM        As it has been emphasized, decision makers may be biased
+are user-generated (e. g., social media; Cui et al., 2018; Lau      too. This is increasingly relevant for research and prac-
+et al., 2018) or collected via the Internet-of-Things (IoT),        tice, as the use of BA in some domains is shifting from
+which necessitates a joint consideration of privacy and fair-       automation to human-algorithm collaboration (Bastani et al.,
+ness. The increased use of varied sources of data has also          2021; Senoner et al., 2022; Wang & Saar-Tsechansky, 2020),
+given rise to new data sharing practices and machine learn-         including specifically to benefit fairness goals (Wang & Saar-
+ing paradigms, such as federated learning, opening new              Tsechansky, 2020). Further research on decision-making
+challenges and opportunities for bias mitigation. Mitigation        through human-AI collaborations can help achieve powerful
+strategies will further need to ensure accountability (e. g., for   complementarities, whereby both the limitations of human
+regulators) (Feuerriegel et al., 2022) despite involving high-      biases and of mathematical formalizations of fairness used
+dimensional and unstructured data hosted across locations,          toward fair BA can be alleviated, and where the relative
+which poses computational and methodological challenges             strengths of humans and of algorithmic decision-making
+for auditing practices and policies.                                can be leveraged to yield superior business operations.
+                                                                                                                                           19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                          3767
+                                                                               Production and Operations Management
+
+Ultimately, algorithmic fairness may provide a tool to miti-         and prescriptive analytics, such as models used toward
+gate human bias, but this necessitates empirical research to         selection, scheduling, or resource allocation. Generally,
+better understand how humans uptake algorithmic recom-               discrimination is most likely to arise upstream for suppli-
+mendations and methodological research that integrates these         ers, and downstream for customers and users. Algorithmic
+findings into better algorithmic design.                             fairness thus offers a wealth of opportunities for pro-
+                                                                     found impact in practice, including possible impact on a
+Quantifying fairness-utility relationship and measuring              firm’s competitiveness and reputation for first-movers in
+externalities                                                        particular.
+The above discussions around a potential trade-off are mostly           Moreover, an ongoing discussion in the OM field calls for
+theoretical, while actual evidence from the field that quanti-       an increased focus on objectives beyond profit-maximization.
+fies the costs and benefits of algorithmic fairness is absent.       Algorithmic fairness is also relevant to a growing commu-
+To fill this gap, OM could leverage its strength in perform-         nity of OM researchers and practitioners seeking to align OM
+ing experiments with companies with the goal of measuring            with the United Nations’ Sustainable Development Goals
+the impact of algorithmic fairness in the field. Recent work         (United Nations, 2015), which includes the promotion of
+showing that fairness-accuracy trade-offs can be negligible          equality. Specifically, it calls for promoting equality and for
+(Rodolfa et al., 2021) highlights the importance of empiri-          the social, economic, and political inclusion of all, irrespec-
+cal evidence to guide our understanding of the cost/benefit          tive of age, sex, disability, race, ethnicity, origin, religion, or
+relationship of fairness-oriented efforts. This could not only       economic status. Importantly, equality is not seen only as a
+quantify the financial implications but also allow researchers       basic human right, but also as a multiplier across all areas of
+to study positive externalities such as customer perception,         sustainable development.
+employee satisfaction, firm reputation, or competitive advan-           We expect that managers and researchers will engage
+tages, and measure operational costs of algorithmic fairness         significantly over the next decade in advancing the state-
+efforts. Moreover, the fairness–utility relationship has been        of-the-art toward objective functions in BA that are more
+primarily studied in static settings, yet fairness is likely to      nuanced and which specifically account for fairness. Bias
+have a long-term impact on utility. Hence, a rewarding path          mitigation calls for OM researchers and practitioners to
+for future research is to understand the long-term impact            develop models that are “fair by design.” Mitigating bias
+across organizational, economic, and societal dimensions in          in human decisions has proven to be a formidable chal-
+comparison to the status quo.                                        lenge. Meanwhile, algorithmic fairness provides ways for
+                                                                     incorporating fairness goals into optimization, thereby yield-
+                                                                     ing data-driven decision models that may better approximate
+8       CONCLUSION                                                   fairness goals, especially over human decisions. How-
+                                                                     ever, it is important that OM researchers and practitioners
+The recent dramatic departure of business leadership from the        remain aware of the limitations of mathematical formaliza-
+view of business’ principal responsibility as producing profits      tions to perfectly and comprehensively capture notions of
+for shareholders, to the vision of business as having respon-        fairness and remain vigilant of other injustices that may
+sibility to all stakeholders, has lead to significant strides in     be invisibilized by a purely mathematical treatment of
+the awareness and actions taken by business leaders toward           fairness.
+fair business practices. Simultaneously, the fast integration of        Finally, we argue that OM’s system and process perspec-
+BA across industries has introduced an explosive risk of “bias       tive on business value-creation positions it uniquely as a key
+at scale”: data-driven BA produces consistent business deci-         discipline for advancing fair BA. In this paper, we describe
+sions, while automation of decisions and operations brings           how biased or fair BA can be driven by every element along
+unprecedented scalability to the adverse impact of any bias in       the BA process: from problem formulation, through data
+these actions.                                                       collection and algorithm development, to deployment and
+   To date, meaningful efforts by firms toward algorithmic           evaluation. The nature of the phenomenon calls for an overar-
+fairness in BA practices have been slow and scarce (AI Now           ching system and process perspective to identify, address, and
+Institute, 2019), led primarily by the “big tech” companies,         critically evaluate solutions for challenges involving inter-
+as exemplified by LinkedIn’s deployment of algorithmic fair-         actions of multiple elements in the BA process. Although
+ness as part of their ranking algorithm (Geyik et al., 2019).        algorithmic fairness has received significant attention in other
+Small- to medium-sized enterprises often lack the resources          fields of analytics, including primarily in computer science,
+to make strides in their business operations. Indeed, some           we hope that this paper makes the case for how research in
+works aim at understanding current barriers to a widespread          BA and business operations is both necessary and rewarding.
+deployment of algorithmic fairness in organizations. In par-         We also hope that this paper will help spark interest in fair
+ticular, interviews with analytics practitioners (Holstein et al.,   BA research, facilitate business researchers introduction into
+2019) suggest that, perhaps not unexpectedly, more support is        the fascinating, nontrivial, and impactful challenges this area
+needed to guide practitioners in auditing models.                    of inquiry presents, and inspire future OM research to follow
+   Algorithmic bias can arise across a wide array of OM              the opportunities we outline and to make a positive impact in
+business contexts, plaguing both predictive modeling                 the world.
+                                                                                                                                                                    19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3768                                                                                                                                       DE-ARTEAGA ET AL.
+          Production and Operations Management
+
+AC K N OW L E D G M E N T S                                                         by improving subpopulation calibration. Journal of the American Medical
+Stefan Feuerriegel acknowledges funding from the                                    Informatics Association, 28(3), 549–558.
+                                                                                 Barocas, S., & Selbst, A. D. (2016). Big data’s disparate impact. California
+Swiss National Science Foundation (197485). Maria
+                                                                                    Law Review, 104, 671–732.
+De-Arteaga acknowledges funding from Good Systems                                Bastani, H. (2021). Predicting with proxies: Transfer learning in high
+(http://goodsystems.utexas.edu/), a UT Austin Grand                                 dimension. Management Science, 67(5), 2964–2984.
+Challenge to develop responsible AI technologies.                                Bastani, H., Bastani, O., & Sinchaisri, W. P. (2021). Learning best prac-
+                                                                                    tices: Can machine learning improve human decision-making? https://
+                                                                                    hamsabastani.github.io/tips.pdf
+ORCID                                                                            Bastani, H., Zhang, D. J., & Zhang, H. (2022). Applied machine learning
+Stefan Feuerriegel         https://orcid.org/0000-0001-7856-8729                    in operations management. In V. Babich, J. Birge, & G. Hilary (Eds.),
+                                                                                    Innovative technology at the interface of finance and operations, (pp. 189–
+                                                                                    222). Springer.
+ENDNOTES
+                                                                                 Bertsimas, D., Farias, V. F., & Trichakis, N. (2011). The price of fairness.
+1 The Business Roundtable is the leading business lobby in the United               Operations Research, 59(1), 17–31.
+  States, with CEOs representing approximately 30 % of the US market capi-       Bertsimas, D., Farias, V. F., & Trichakis, N. (2012). On the efficiency-fairness
+  talization. URL: https://www.businessroundtable.org/business-roundtable-          trade-off. Management Science, 58(12), 2234–2250.
+  redefines-the-purpose-of-a-corporation-to-promote-an-economy-that-             Bertsimas, D., Farias, V. F., & Trichakis, N. (2013). Fairness, efficiency,
+  serves-all-americans                                                              and flexibility in organ allocation for kidney transplantation. Operations
+2 A growing stream of research in OM contributes evidence of bias in                Research, 61(1), 73–87.
+  human decision-making. For instance, in bargaining, women consistently         Bloomberg (2016). Amazon doesn’t consider the race of its customers. Should
+  receive outcomes below their productivity level, whereas men are consis-          it? https://www.bloomberg.com/graphics/2016-amazon-same-day/
+  tently overcompensated (Pierce et al., 2021). In the context of the sharing    Bower, K. M., Thorpe, R. J., Rohde, C., & Gaskin, D. J. (2014). The inter-
+  economy, Cui et al. (2020) conducted randomized field experiments with            section of neighborhood racial segregation, poverty, and urbanicity and its
+  1801 hosts at Airbnb. Requests from guests with African American sound-           impact on food store availability in the United States. Preventive Medicine,
+  ing names are 19.2 percentage points less likely to be accepted than              58, 33–39.
+  requests from people with White-sounding names, thus finding evidence          Bowyer, K. W., King, M. C., Scheirer, W. J., & Vangara, K. (2020). The
+  of discrimination.                                                                “criminality from face” illusion. IEEE Transactions on Technology and
+3 Twitter Blog (2021): Introducing Twitter’s first algorithmic bias                 Society, 1(4), 175–183.
+  bounty challenge. URL: https://blog.twitter.com/engineering/en_us/topics/      Buolamwini, J., & Gebru, T. (2018). Gender shades: Intersectional accuracy
+  insights/2021/algorithmic-bias-bounty-challenge, last accessed October            disparities in commercial gender classification. In FAT*.
+  18, 2021.                                                                      Cachon, G. P., Girotra, K., & Netessine, S. (2020). Interesting, important, and
+                                                                                    impactful operations management. Manufacturing & Service Operations
+                                                                                    Management, 22(1), 214–222.
+REFERENCES                                                                       Cai, W., Gaebler, J., Garg, N., & Goel, S. (2020). Fair allocation through
+Adamson, A. S., & Smith, A. (2018). Machine learning and health care                selective information acquisition. In AIES.
+   disparities in dermatology. JAMA Dermatology, 154(11), 1247–1248.             Chinoy, S. (2019). The racist history behind facial recognition.
+Adamson, A. S., & Welch, H. G. (2019). Machine learning and the cancer-             New York Times. https://www.nytimes.com/2019/07/10/opinion/facial-
+   diagnosis problem: No gold standard. New England Journal of Medicine,            recognition-race.html
+   381(24), 2285–2287.                                                           Choi, T.-M., Wallace, S. W., & Wang, Y. (2018). Big data analytics in oper-
+Ahsen, M. E., Ayvaci, M. U. S., & Raghunathan, S. (2019). When algorithmic          ations management. Production and Operations Management, 27(10),
+   predictions use human-generated data: A bias-aware classification algo-          1868–1883.
+   rithm for breast cancer diagnosis. Information Systems Research, 30(1),       Chouldechova, A. (2017). Fair prediction with disparate impact: A study
+   97–116.                                                                          of bias in recidivism prediction instruments. Big Data, 5(2), 153–
+AI Now Institute. (2019). AI Now report 2019. https://ainowinstitute.org/           163.
+   AI_Now_2018_Report.pdf                                                        Chouldechova, A., & G’Sell, M. (2017). Fairer and more accurate, but for
+Akpinar, N.-J., De-Arteaga, M., & Chouldechova, A. (2021). The effect               whom? In FATML.
+   of differential victim crime reporting on predictive policing systems. In     Chouldechova, A., & Roth, A. (2020). A snapshot of the frontiers of fairness
+   FAccT.                                                                           in machine learning. Communications of the ACM, 63(5), 82–89.
+Albright, A. (2019). If you give a judge a risk score: Evidence from Kentucky    Choy, G., Khalilzadeh, O., Michalski, M., Do, S., Samir, A. E., Pianykh, O.
+   bail decisions. Harvard John M. Olin Fellow’s Discussion Paper 85.               S., Geis, J. R., Pandharipande, P. V., Brink, J. A., & Dreyer, K. J. (2018).
+Allon, G., & Babich, V. (2020). Crowdsourcing and crowdfunding in the               Current applications and future impact of machine learning in radiology.
+   manufacturing and services sectors. Manufacturing & Service Operations           Radiology, 288(2), 318–328.
+   Management, 22(1), 102–112.                                                   Cohen, M. C. (2018). Big data and service operations. Production and
+Angwin, J., Larson, J., Mattu, S., & Kirchner, L. (2016). Machine                   Operations Management, 27(9), 1709–1723.
+   bias. ProPublica. https://www.propublica.org/article/machine-bias-risk-       Cohen, M. C., Elmachtoub, A. N., & Lei, X. (2022). Price discrimination with
+   assessments-in-criminal-sentencing                                               fairness constraints. Management Science.
+Ayvaci, M. U. S., Ahsen, M. E., Raghunathan, S., & Gharibi, Z. (2017). Tim-      Corbett-Davies, S., & Goel, S. (2018). The measure and mismeasure of
+   ing the use of breast cancer risk information in biopsy decision-making.         fairness: A critical review of fair machine learning. arXiv:1808.00023.
+   Production and Operations Management, 26(7), 1333–1358.                       Corbett-Davies, S., Pierson, E., Feller, A., Goel, S., & Huq, A. (2017).
+Ayvaci, M. U. S., Alagoz, O., Ahsen, M. E., & Burnside, E. S. (2018).               Algorithmic decision making and the cost of fairness. In KDD.
+   Preference-sensitive management of post-mammography decisions in              Cowgill, B., & Tucker, C. E. (2020). Algorithmic fairness and economics.
+   breast cancer diagnosis. Production and Operations Management, 27(12),           SSRN.
+   2313–2338.                                                                    Coyle, D., & Weller, A. (2020). “Explaining” machine learning reveals policy
+Balcan, M.-F., Dick, T., Noothigattu, R., & Procaccia, A. D. (2019). Envy-free      challenges. Science, 368(6498), 1433–1434.
+   classification. In NeurIPS.                                                   Cui, R., Gallino, S., Moreno, A., & Zhang, D. J. (2018). The operational value
+Barda, N., Yona, G., Rothblum, G. N., Greenland, P., Leibowitz, M., Balicer,        of social media information. Production and Operations Management,
+   R., Bachmat, E., & Dagan, N. (2021). Addressing bias in prediction models        27(10), 1749–1769.
+                                                                                                                                                                     19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+ALGORITHMIC FAIRNESS IN BUSINESS ANALYTICS                                                                                                                   3769
+                                                                                               Production and Operations Management
+
+Cui, R., Li, J., & Zhang, D. J. (2020). Reducing discrimination with reviews        Geyik, S. C., Ambler, S., & Kenthapadi, K. (2019). Fairness-aware ranking
+   in the sharing economy: Evidence from field experiments on Airbnb.                  in search & recommendation systems with application to LinkedIn Talent
+   Management Science, 66(3), 1071–1094.                                               Search. In KDD.
+Dai, J., Fazelpour, S., & Lipton, Z. C. (2021). Fairness under partial              Gould, S. J. (1996). The mismeasure of man. New York, NY: Norton.
+   compliance. In AIES.                                                             Gray, M. L., & Suri, S. (2019). Ghost work: How to stop Silicon Valley
+D’Amour, A., Heller, K., Moldovan, D., Adlam, B., Alipanahi, B., Beutel,               from building a new global underclass. Boston, MA: Houghton Mifflin
+   A., Chen, C., Deaton, J., Eisenstein, J., Hoffman, M. D., Hormozdiari,              Harcourt.
+   F., Houlsby, N., Hou, S., Jerfel, G., Karthikesalingam, A., Lucic, M.,           Hamidi, F., Scheuerman, M. K., & Branham, S. M. (2018). Gender recogni-
+   Ma, Y., McLean, C., Mincu, D., …, Sculley, D. (2020). Underspecifi-                 tion or gender reductionism? The social implications of embedded gender
+   cation presents challenges for credibility in modern machine learning.              recognition systems. In CHI.
+   arXiv:2011.03395.                                                                Hardt, M., & Price, E. (2016). Equality of opportunity in supervised learning.
+D’Amour, A., Srinivasan, H., Atwood, J., Baljekar, P., Sculley, D., & Halpern,         In NIPS.
+   Y. (2020). Fairness is not static: Deeper understanding of long term fairness    Hashimoto, T. B., Srivastava, M., Namkoong, H., & Liang, P. (2018). Fairness
+   via simulation studies. In FAT*.                                                    without demographics in repeated loss minimization. In ICML.
+Danks, D., & London, A. J. (2017). Algorithmic bias in autonomous systems.          Hellman, D. (2018). Indirect discrimination and the duty to avoid compound-
+   In IJCAI.                                                                           ing injustice. In Hugh Collins & Tarunabh Khaitan (Eds.), Foundations of
+Dastin, J. (2018). Amazon scraps secret AI recruiting tool that showed bias            indirect discrimination law (pp. 105–122). Oxford: Hart Publishing.
+   against women. Reuters. https://www.reuters.com/article/us-amazon-               Hellman, D. (2020). Big data and compounding injustice. https://srinstitute.
+   com-jobs-automation-insight-idUSKCN1MK08G                                           utoronto.ca/s/Big-Data-and-Compounding-Injustice2.pdf
+Datta, A., Tschantz, M. C., & Datta, A. (2015). Automated experiments on ad         Helm, J. E., AhmadBeygi, S., & van Oyen, M. P. (2011). Design and analysis
+   privacy settings: A tale of opacity, choice, and discrimination. Proceedings        of hospital admission control for operational effectiveness. Production and
+   on Privacy Enhancing Technologies.                                                  Operations Management, 20(3), 359–374.
+De-Arteaga, M., Romanov, A., Wallach, H., Chayes, J., Borgs, C.,                    Holstein, K., Wortman Vaughan, J., Daumé Ill, H., Dudík, M., & Wallach, H.
+   Chouldechova, A., Geyik, S., Kenthapadi, K., & Kalai, A. T. (2019). Bias in         (2019). Improving fairness in machine learning systems: What do industry
+   bios: A case study of semantic representation bias in a high-stakes setting.        practitioners need? In CHI.
+   In FAT*.                                                                         Hu, L., Immorlica, N., & Vaughan, J. W. (2019). The disparate effects of
+Dietvorst, B. J., Simmons, J. P., & Massey, C. (2018). Overcoming algorithm            strategic manipulation. In FAT*.
+   aversion: People will use imperfect algorithms if they can (even slightly)       Hu, L., & Kohler-Hausmann, I. (2020). What’s sex got to do with machine
+   modify them. Management Science, 64(3), 1155–1170.                                  learning? In FAT*.
+Dolata, M., Feuerriegel, S., & Schwabe, G. (2022). A sociotechnical view of         IBM (2021). Vaccine distribution: Targeted analytics can help prioritize
+   algorithmic fairness. Information Systems Journal, 32(4), 754–818.                  critical populations. https://www.ibm.com/blogs/watson-health/vaccine-
+Dressel, J., & Farid, H. (2018). The accuracy, fairness, and limits of predicting      distribution-critical-populations/
+   recidivism. Science Advances, 4(1), eaao5580.                                    Ibrahim, R., Kucukyazici, B., Verter, V., Gendreau, M., & Blostein, M.
+Dwork, C., Hardt, M., Pitassi, T., Reingold, O., & Zemel, R. (2012). Fair-             (2016). Designing personalized treatment: An application to anticoag-
+   ness through awareness. In Conference on Innovations in Theoretical                 ulation therapy. Production and Operations Management, 25(5), 902–
+   Computer Science (ITCS).                                                            918.
+Ebede, T., & Papier, A. (2006). Disparities in dermatology educational              Joseph, M., Kearns, M., Morgenstern, J. H., & Roth, A. (2016). Fairness in
+   resources. Journal of the American Academy of Dermatology, 55(4),                   learning: Classic and contextual bandits. In NIPS.
+   687–690.                                                                         Kallus, N., Mao, X., & Zhou, A. (2021). Assessing algorithmic fairness with
+Ensign, D., Friedler, S. A., Neville, S., Scheidegger, C., &                           unobserved protected class using data combination. Management Science
+   Venkatasubramanian, S. (2018). Runaway feedback loops in predictive                 (forthcoming).
+   policing. In FAT*.                                                               Kallus, N., & Zhou, A. (2021). Fairness, welfare, and equity in personalized
+Fazelpour, S., & Danks, D. (2021). Algorithmic bias: Senses, sources,                  pricing. In FAccT.
+   solutions. Philosophy Compass, 16(8), e12760.                                    Kamiran, F., & Calders, T. (2012). Data preprocessing techniques for clas-
+Feng, Q., & Shanthikumar, J. G. (2018). How research in production and                 sification without discrimination. Knowledge and Information Systems,
+   operations management may evolve in the era of big data. Production and             33(1), 1–33.
+   Operations Management, 27(9), 1670–1684.                                         Kamishima, T., Akaho, S., Asoh, H., & Sakuma, J. (2012). Fairness-aware
+Feuerriegel, S., Shrestha, Y. R., von Krogh, G., & Zhang, C. (2022).                   classifier with prejudice remover regularizer. In Machine learning and
+   Bringing artificial intelligence to business management. Nature Machine             knowledge discovery in databases.
+   Intelligence, 4, 611–613.                                                        Karlinsky-Shichor, Y., & Netzer, O. (2019). Automating the B2B salesperson
+Friedler, S. A., Scheidegger, C., & Venkatasubramanian, S. (2016). On the              pricing decisions: Can machines replace humans and when? SSRN.
+   (im)possibility of fairness. arXiv:1609.07236.                                   Katok, E., Olsen, T., & Pavlov, V. (2014). Wholesale pricing under mild
+Fu, R., Aseri, M., Singh, P. V., & Srinivasan, K. (2022). “Un”fair machine             and privately known concerns for fairness. Production and Operations
+   learning algorithms. Management Science, 68(6), 3975–4753.                          Management, 23(2), 285–302.
+Fu, R., Huang, Y., & Singh, P. V. (2020). Artificial intelligence and algorithmic   Kesavan, S., & Kushwaha, T. (2020). Field experiment on the profit
+   bias: Source, detection, mitigation, and implications. In C. Druehl, W.             implications of merchants’ discretionary power to override data-driven
+   Elmaghraby, D. Shier, & H. J. Greenberg (Eds.), Pushing the boundaries,             decision-making tools. Management Science, 66(11), 5182–5190.
+   (pp. 39–63). INFORMS.                                                            Kleinberg, J., Lakkaraju, H., Leskovec, J., Ludwig, J., & Mullainathan, S.
+Ganju, K. K., Atasoy, H., McCullough, J., & Greenwood, B. (2020). The                  (2018). Human decisions and machine predictions. The Quarterly Journal
+   role of decision support systems in attenuating racial biases in healthcare         of Economics, 133(1), 237–293.
+   delivery. Management Science, 66(11), 5171–5181.                                 Kleinberg, J., Ludwig, J., Mullainathan, S., & Rambachan, A. (2018).
+Gao, R., & Saar-Tsechansky, M. (2020). Cost-accuracy aware adaptive                    Algorithmic fairness. In AEA P&P.
+   labeling for active learning. In AAAI.                                           Kleinberg, J., Ludwig, J., Mullainathan, S., & Sunstein, C. R. (2018). Dis-
+Gebru, T., Morgenstern, J., Vecchione, B., Wortman, J., Wallach, H., Daumeé,           crimination in the age of algorithms. Journal of Legal Analysis, 10,
+   H., III, & Crawford, K. (2018). Datasets for datasets. In FAT*.                     113–174.
+Geva, T., & Saar-Tsechansky, M. (2021). Who is a better decision maker?             Kleinberg, J., Mullainathan, S., & Raghavan, M. (2017). Inherent trade-offs
+   Data–driven expert ranking under unobserved quality. Production and                 in the fair determination of risk scores. In Conference on Innovations in
+   Operations Management, 30(1), 127–144.                                              Theoretical Computer Science.
+                                                                                                                                                                       19375956, 2022, 10, Downloaded from https://onlinelibrary.wiley.com/doi/10.1111/poms.13839, Wiley Online Library on [20/12/2025]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+3770                                                                                                                                          DE-ARTEAGA ET AL.
+          Production and Operations Management
+
+Kozodoi, N., Jacob, J., & Lessmann, S. (2021). Fairness in credit scoring:          Senoner, J., Netland, T., & Feuerriegel, S. (2022). Using explainable artificial
+   Assessment, implementation and profit implications. arXiv:2103.01907.               intelligence to improve process quality: Evidence from semiconductor
+Kusner, M. J., Loftus, J., Russell, C., & Silva, R. (2017). Counterfactual             manufacturing. Management Science, 68(8), 5557–6354.
+   fairness. In NIPS.                                                               Shimao, H., Komiyama, J., Khern-am nuai, W., & Kannan, K. N. (2019).
+Lambrecht, A., & Tucker, C. (2019). Algorithmic bias? an empirical study of            Strategic best-response fairness in fair machine learning algorithms.
+   apparent gender-based discrimination in the display of STEM career ads.             SSRN.
+   Management Science, 65(7), 2966–2981.                                            Simester, D., Timoshenko, A., & Zoumpoulis, S. I. (2020). Targeting prospec-
+Lau, R. Y. K., Zhang, W., & Xu, W. (2018). Parallel aspect-oriented sentiment          tive customers: Robustness of machine-learning methods to typical data
+   analysis for sales forecasting with big data. Production and Operations             challenges. Management Science, 66(6), 2495–2522.
+   Management, 27(10), 1775–1794.                                                   Skeem, J., Scurich, N., & Monahan, J. (2020). Impact of risk assessment on
+Liu, L. T., Dean, S., Rolf, E., Simchowitz, M., & Hardt, M. (2018). Delayed            judges’ fairness in sentencing relatively poor defendants. Law and Human
+   impact of fair machine learning. In ICML.                                           Behavior, 44(1), 51–59.
+Liu, L. T., Wilson, A., Haghtalab, N., Kalai, A. T., Borgs, C., & Chayes,           Skitka, L. J., Mosier, K., & Burdick, M. D. (2000). Accountability and
+   J. (2020). The disparate equilibria of algorithmic decision making when             automation bias. International Journal of Human-Computer Studies,
+   individuals invest rationally. In FAT*.                                             52(4), 701–717.
+Lu, G. (2019). How machine learning mitigates racial bias in the US housing         United Nations (2015). Sustainable development goals: The sustain-
+   market. SSRN.                                                                       able development agenda. https://www.un.org/sustainabledevelopment/
+Lum, K., & Isaac, W. (2016). To predict and serve? Significance, 13(5), 14–19.         development-agenda/
+Malik, M. M., Lamba, H., Nakos, C., & Pfeffer, J. (2015). Population bias           van Donselaar, K. H., Gaur, V., van Woensel, T., Broekmeulen, R. A. C. M., &
+   in geotagged tweets. In ICWSM Workshop on Standards and Practices in                Fransoo, J. C. (2010). Ordering behavior in retail stores and implications
+   Large-Scale Social Media Research.                                                  for automated replenishment. Management Science, 56(5), 766–784.
+Marx, C., Calmon, F., & Ustun, B. (2020). Predictive multiplicity in                Vokinger, K. N., Feuerriegel, S., & Kesselheim, A. S. (2021). Mitigating bias
+   classification. In ICML.                                                            in machine learning for medicine. Communications Medicine, 1, Article
+McFarland, M. (2019). Terrorist or pedophile? This start-up says it can                25.
+   out secrets by analyzing faces. The Washington Post. https://www.                Wall Street Journal. (2012). Websites vary prices, deals
+   washingtonpost.com/news/innovations/wp/2016/05/24/terrorist-or-                     based       on     users’    information.    https://www.wsj.com/articles/
+   pedophile-this-start-up-says-it-can-out-secrets-by-analyzing-faces/                 SB10001424127887323777204578189391813881534
+McKinney, S. M., Sieniek, M., Godbole, V., Godwin, J., Antropova, N.,               Wang, T., & Saar-Tsechansky, M. (2020). Augmented fairness: An inter-
+   Ashrafian, H., Back, T., Chesus, M., Corrado, G. S., Darzi, A., Etemadi, M.,        pretable model augmenting decision-makers’ fairness. arXiv:2011.08398.
+   Garcia-Vicente, F., Gilbert, F. J., Halling-Brown, M., Hassabis, D., Jansen,     Warren, R. C., Forrow, L., Hodge, D. A., & Truog, R. D. (2020). Trustwor-
+   S., Karthikesalingam, A., Kelly, C. J., King, D., …, Shetty, S. (2020). Inter-      thiness before trust: COVID-19 vaccine trials and the Black community.
+   national evaluation of an AI system for breast cancer screening. Nature,            New England Journal of Medicine, 383(22), e121.
+   577(7788), 89–94.                                                                Washington Post. (2015). Opinion: Why intersectionality can’t wait.
+Mitchell, S., Potash, E., Barocas, S., D’Amour, A., & Lum, K. (2021). Algo-            https://www.washingtonpost.com/news/in-theory/wp/2015/09/24/why-
+   rithmic fairness: Choices, assumptions, and definitions. Annual Review of           intersectionality-cant-wait/
+   Statistics and Its Application, 8, 141–163.                                      White & Case (2020). Regulation of artificial intelligence in Europe
+Nabi, R., & Shpitser, I. (2018). Fair inference on outcomes. In AAAI.                  and Japan. https://www.whitecase.com/publications/insight/regulation-
+Nkonde, M. (2019). Is AI bias a corporate social responsibility issue? Harvard         artificial-intelligence-europe-and-japan
+   Business Review (11). https://hbr.org/2019/11/is-ai-bias-a-corporate-            Yu, S. (2020). Algorithmic outputs as information source: The effects of
+   social-responsibility-issue                                                         Zestimates on home prices and racial bias in the housing market. SSRN.
+Obermeyer, Z., Powers, B., Vogeli, C., & Mullainathan, S. (2019). Dissect-          Zafar, M. B., Valera, I., Gomez-Rodriguez, M., & Gummadi, K. P. (2019).
+   ing racial bias in an algorithm used to manage the health of populations.           Fairness constraints: A flexible approach for fair classification. Journal of
+   Science, 366(6464), 447–453.                                                        Machine Learning Research, 20(75), 1–42.
+Page, S. E. (2017). The diversity bonus: How great teams pay off in the             Zemel, R., Wu, Y., Swersky, K., Pitassi, T., & Dwork, C. (2013). Learning
+   knowledge economy. Princeton University Press.                                      fair representations. In ICML.
+Perry, W. L., McInnis, B., Price, C. C., Smith, S. C., & Hollywood, J. S. (2013).   Zhang, B. H., Lemoine, B., & Mitchell, M. (2018). Mitigating unwanted
+   Predictive policing: The role of crime forecasting in law enforcement               biases with adversarial learning. In AIES.
+   operations. RAND Corporation.                                                    Zhang, S., Mehta, N., Singh, P. V., & Srinivasan, K. (2021). Frontiers: Can an
+Pierce, L., Wang, L. W., & Zhang, D. J. (2021). Peer bargaining and produc-            artificial intelligence algorithm mitigate racial economic inequality? An
+   tivity in teams: Gender and the inequitable division of pay. Manufacturing          analysis in the context of Airbnb. Marketing Science, 40(5), 813–820.
+   & Service Operations Management, 23(4), 933–951.
+Pleiss, G., Raghavan, M., Wu, F., Kleinberg, J., & Weinberger, K. Q. (2017).
+   On fairness and calibration. In NIPS.                                            S U P P O R T I N G I N F O R M AT I O N
+Qi, J. (2017). Mitigating delays and unfairness in appointment systems.             Additional supporting information can be found online in the
+   Management Science, 63(2), 566–583.
+                                                                                    Supporting Information section at the end of this article.
+Raghavan, M., Barocas, S., Kleinberg, J., & Levy, K. (2020). Mitigating bias
+   in algorithmic hiring. In FAT*.
+Raji, I. D., & Buolamwini, J. (2019). Actionable auditing: Investigating the
+   impact of publicly naming biased performance results of commercial AI
+   products. In AIES.                                                                   How to cite this article: De-Arteaga, M.,
+Rea, D., Froehle, C., Masterson, S., Stettler, B., Fermann, G., & Pancioli, A.          Feuerriegel, S., & Saar-Tsechansky, M. (2022).
+   (2021). Unequal but fair: Incorporating distributive justice in operational          Algorithmic fairness in business analytics: Directions
+   allocation models. Production and Operations Management, 30(7), 2304–
+   2320.
+                                                                                        for research and practice. Production and Operations
+Rodolfa, K. T., Lamba, H., & Ghani, R. (2021). Empirical observation of neg-            Management, 31, 3749–3770.
+   ligible fairness–accuracy trade-offs in machine learning for public policy.          https://doi.org/10.1111/poms.13839
+   Nature Machine Intelligence, 3(10), 896–904.
+

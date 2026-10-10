@@ -1,0 +1,2300 @@
+===== PAGE 1 =====
+Boyacı, Tamer; Canyakmaz, Caner; de Véricourt, Francis
+
+
+
+Working Paper
+Human and machine: The impact of machine input on
+decision-making under cognitive limitations
+
+
+ESMT Working Paper, No. 20-02
+
+
+Provided in Cooperation with:
+ESMT European School of Management and Technology, Berlin
+
+
+
+
+Suggested Citation: Boyacı, Tamer; Canyakmaz, Caner; de Véricourt, Francis (2020) : Human and
+machine: The impact of machine input on decision-making under cognitive limitations, ESMT
+Working Paper, No. 20-02, European School of Management and Technology (ESMT), Berlin,
+https://nbn-resolving.de/urn:nbn:de:101:1-2020120215390576685254
+
+
+
+
+This Version is available at:
+https://hdl.handle.net/10419/227467
+
+Standard-Nutzungsbedingungen:                                          Terms of use:
+
+Die Dokumente auf EconStor dürfen zu eigenen wissenschaftlichen        Documents in EconStor may be saved and copied for your personal
+Zwecken und zum Privatgebrauch gespeichert und kopiert werden.         and scholarly purposes.
+
+Sie dürfen die Dokumente nicht für öffentliche oder kommerzielle       You are not to copy documents for public or commercial purposes, to
+Zwecke vervielfältigen, öffentlich ausstellen, öffentlich zugänglich   exhibit the documents publicly, to make them publicly available on the
+machen, vertreiben oder anderweitig nutzen.                            internet, or to distribute or otherwise use the documents in public.
+
+Sofern die Verfasser die Dokumente unter Open-Content-Lizenzen         If the documents have been made available under an Open Content
+(insbesondere CC-Lizenzen) zur Verfügung gestellt haben sollten,       Licence (especially Creative Commons Licences), you may exercise
+gelten abweichend von diesen Nutzungsbedingungen die in der dort       further usage rights as specified in the indicated licence.
+genannten Lizenz gewährten Nutzungsrechte.
+
+===== PAGE 2 =====
+ISSN 1866-3494
+
+
+
+                                                                                                 November 30, 2020
+
+
+
+
+ESMT Working Paper 20-02
+
+
+
+Human and machine: The impact of
+machine input on decision-making
+under cognitive limitations
+Tamer Boyaci, ESMT Berlin
+Caner Canyakmaz, ESMT Berlin
+Francis de Véricourt, ESMT Berlin
+
+
+
+
+Copyright 2020 by ESMT European School of Management and Technology GmbH, Berlin, Germany, https://esmt.berlin/.
+All rights reserved. This document may be distributed for free – electronically or in print – in the same formats as it is
+available on the website of the ESMT (www.esmt.org) for non-commercial purposes. It is not allowed to produce any
+derivates of it without the written permission of ESMT.
+Find more ESMT working papers at ESMT faculty publications, SSRN, RePEc, and EconStor.
+
+===== PAGE 3 =====
+ Human and Machine: The Impact of Machine Input
+  on Decision-Making Under Cognitive Limitations
+                          Tamer Boyacı, Caner Canyakmaz, Francis de Véricourt
+                                                ESMT Berlin, Germany
+                     tamer.boyaci@esmt.org, caner.canyakmaz@esmt.org, francis.devericourt@esmt.org
+
+
+     The rapid adoption of AI technologies by many organizations has recently raised concerns that AI may even-
+     tually replace humans in certain tasks. In fact, when used in collaboration, machines can significantly enhance
+     the complementary strengths of humans. Indeed, because of their immense computing power, machines can
+     perform specific tasks with incredible accuracy. In contrast, human decision-makers (DM) are flexible and
+     adaptive but constrained by their limited cognitive capacity. This paper investigates how machine-based
+     predictions may affect the decision process and outcomes of a human DM. We study the impact of these
+     predictions on decision accuracy, the propensity and nature of decision errors as well as the DM’s cognitive
+     efforts. To account for both flexibility and limited cognitive capacity, we model the human decision-making
+     process in a rational inattention framework. In this setup, the machine provides the DM with accurate but
+     sometimes incomplete information at no cognitive cost. We fully characterize the impact of machine input
+     on the human decision process in this framework. We show that machine input always improves the overall
+     accuracy of human decisions, but may nonetheless increase the propensity of certain types of errors (such as
+     false positives). The machine can also induce the human to exert more cognitive efforts, even though its input
+     is highly accurate. Interestingly, this happens when the DM is most cognitively constrained, for instance,
+     because of time pressure or multitasking. Synthesizing these results, we pinpoint the decision environments
+     in which human-machine collaboration is likely to be most beneficial.
+
+     Key words : machine-learning, rational inattention, human-machine collaboration, cognitive effort
+
+
+
+
+1.     Introduction
+The increasing adoption of smart machines and data-based technologies have questioned the future
+role of human-based decisions in organizations (Kleinberg et al. 2017). While new technologies
+sometimes substitute for labor, a wealth of evidence suggest that they can also complement human
+skills (see Felten et al. 2019 and references therein). Indeed, the purpose of many real-world applica-
+tions of supervised machine learning is not to produce a final decision based solely on an algorithm’s
+output, but rather to provide useful information in the form of automated predictions to a human
+decision-maker (Lipton 2016, Agrawal et al. 2018). Various sectors currently seek to harness such
+human-machine complementarity, including the defense and health care industries (DARPA 2018),
+legal and translation services (Katz 2017) or e-sports (OpenAI 2019) among others.
+  Humans and machines complement each other because machines often substitute for only a subset
+of the different tasks required to perform an activity (Autor 2015). This is typically the case for
+
+                                                           1
+
+===== PAGE 4 =====
+                                                         Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+2
+
+judgment and decision problems. Indeed, human decision-makers rely on their cognitive flexibility
+to integrate information from vastly diverse sources, including the very context in which these
+decisions are made (Diamond 2013, Laureiro-Martı́nez and Brusoni 2018). Machines, by contrast,
+are much more rigid and can only extract a limited subset of this information (Marcus 2018).
+Hence, humans may have access to predictive variables that, for example, a machine-learning (ML)
+algorithm cannot see (Cowgill 2018). However, machine-extracted information can have higher
+accuracy because of the enormous and reliable quantitative capacity of machines. In contrast,
+the cognitive capacity of humans is limited, and hence human decision-makers need to constantly
+balance the quality of their decisions with their cognitive efforts (Payne et al. 1993).
+    For instance, when deciding on which stocks to invest in, mutual fund managers estimate both
+idiosyncratic shocks (for stock picking) and aggregate shocks (for market timing) (Kacperczyk
+et al. 2016). Because of their superior computing capability, ML algorithms identify idiosyncratic
+shocks with greater success, but fail to detect aggregate ones compared to humans (Fabozzi et al.
+2008, Abis 2017). In the medical domain, ML algorithms can easily process large and rich medical
+histories, but may not obtain valuable information from the personal interaction between physicians
+and their patients. Similarly, many HR managers base their hiring decisions on information that
+ML algorithms cannot access (Hoffman et al. 2017).
+    To the extent that data-based technologies improve the provision of certain information, the
+co-production of decisions by humans and machines typically boosts the overall quality of these
+decisions (Mims 2017). For instance, the collaboration between human radiologists and machines
+improves the overall accuracy of diagnoses for pneumonia over the performances of radiologists
+alone, or machines alone (Patel et al. 2019). Effective human-machine collaborations such as these1
+are sometimes coined “centaurs” (half-human, half-machine) in the literature and popular press
+(Case 2018). Yet, the provision of machine-based predictions may not improve all aspects of human
+decisions. For instance, Stoffel et al. (2018) find that when radiologists take into account the
+deep-learning analysis of ultrasound images, the diagnoses of breast tumors significantly improve.
+This is consistent with the claim that human-machine collaboration improves overall performance.
+However, this improvement mainly stemmed from a radical decrease in false negatives, while the
+false positive rate did not significantly change.
+    This impact of machine-based predictions on decision errors, and more generally the time and
+cognitive efforts that humans put into their decisions, remains largely unknown. As a result, the
+participation of machines in human decisions may have unintended consequences. Increasing the
+
+1
+ The idea of human-machine collaborations –or chess centaurs– were popularized by World Chess Champion Gary
+Kasparov following his notorious defeat against IBM Deep Blue in 1997. An online chess tournament in 2005 confirmed
+the superiority of chess centaurs over machines.
+
+===== PAGE 5 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                    3
+
+number of false positive rates, for instance, may exert undue pressure on a health care delivery
+system and put healthy patients at risk. And increasing the cognitive load of a decision-maker may
+slow down the decision process, which may result in delays and congestion.
+  In this paper, we consider the defining characteristics of human and machine intelligence to
+address the following fundamental questions: What is the impact of having machine-based pre-
+dictions on human judgment? In which ways do these predictions influence the decision-making
+process of humans, the extent of their cognitive efforts, and the nature of their decision errors? In
+which decision environments are the collaborations between humans and machines more fruitful?
+  To answer these questions, we consider an elementary decision problem in which an ML algorithm
+(the machine) assists a human decision-maker (the DM) by assessing part of, but not all, the
+uncertainty that the DM faces. We model this problem within the theory of rational inattention
+formalized by Sims (2003, 2006) to capture the most fundamental sources of complementarity
+between machine and human intelligence. Namely, in our setup, the DM leverages her cognitive
+flexibility to integrate various sources of information, including her domain knowledge or specific
+aspects of the context in which the decision is made. Nonetheless, the DM is constrained by her
+limited cognitive capacity, so that assessing information requires exerting cognitive efforts. The
+more effort the DM exerts, the more accurate her assessment is. In contrast, the machine does not
+suffer from this limitation and can provide an accurate assessment of some information at no cost.
+The machine, however, cannot assess all sources of information, the DM’s domain knowledge and
+the decision context in particular.
+  The rational inattention framework, within which we develop our model, enables us to represent
+the DM’s cognitive flexibility and limited capacity in a coherent manner. Indeed, this theory
+assumes that people rationally decide on what piece of information to look for, in what detail,
+and they do so in an adaptive manner. In particular, the framework endogenously accounts for
+people’s scarce resources, such as time, attention and cognitive capacity as well as the nature of
+the decision environment. People are free to use any information source, in any order, to generate
+knowledge at any precision level, but limited cognitive resources lead to information frictions and
+hence, possible mistaken judgments. In other words, the framework does not impose any a priori
+restrictions on people’s search strategy (cognitive flexibility) other than a limit on the amount of
+processed information (limited cognitive capacity). More generally, this theory naturally connects
+the fundamental drivers in human decision-making, such as payoffs, beliefs, and cognitive difficulties
+in a rational learning setup, and is perceived as a bridging theory between classical and behavioral
+economics. There is also a growing body of empirical research that finds evidence of decision-making
+behavior consistent with the theory (Maćkowiak et al. 2018).
+
+===== PAGE 6 =====
+                                                     Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+4
+
+    In this setup, we analytically compare the DM’s choice, error rates, expected payoff, cognitive
+effort, and overall expected utility when the DM decides alone and when she is assisted by a
+machine. Our analysis first confirms the aforementioned superiority of the human-machine col-
+laboration. In particular, we show that accuracy and the DM’s overall expected utility always
+(weakly) improve in the presence of a machine. We further find that the machine always reduces
+false negative errors.
+    Yet, our results also indicate that machine-based predictions can impair human decisions. Specif-
+ically, we find that machine-assisted decisions sometimes increase the number of false positives
+compared to when the DM decides alone. (Incidentally, this finding, along with our result that the
+machine reduces the false negative rates, offers some theoretical foundation for the empirical results
+of Stoffel et al. 2018.) In addition, the machine can induce the DM to exert more cognitive efforts
+in expectation, and make her ultimate choice more uncertain a priori. In other words, the machine
+can worsen certain types of decision errors, and increase both the time and variance involved in
+a decision-making process, which is known to create costly delays and congestion (Alizamir et al.
+2013).
+    We fully characterize the conditions under which these adverse effects occur in our setup. A
+prominent case is when the DM’s prior belief is relatively weak and her cognitive cost of assessing
+information is relatively high (i.e., her cognitive capacity is reduced due to exogenous time pressure,
+or consumed by competitive tasks because of multitasking). Yet, those are conditions under which
+using a machine to offload the DM is most appealing. In other words, improving the efficiency of
+human decisions by relying on machine-based predictions may in fact backfire precisely when these
+improvements are most needed. These results hold at least directionally for any decision setting
+(in terms of payoff and belief structures) and we explain in detail where and why they occur.
+    The rest of the paper is organized as follows. In §2, we relate our work to the existing literature.
+In §3, we introduce our basic model of humans and machines and follow in §4 by characterizing the
+choice behavior and cognitive effort that humans spend, as well as their implied decision errors. In
+§5, we analyze the impact of machines on these and explain our findings. In §6, we discuss further
+extensions to the decision and learning environment and investigate their implications for human
+and machine interaction. Finally, in §7 we present our concluding remarks.
+
+2.     Related Literature
+Over the past decade, researchers in artificial intelligence have repeatedly demonstrated that algo-
+rithmic predictions can match, and at times even outperform, the effectiveness of human decisions
+in many contexts (see, for instance, Liu et al. 2019 for a recent and systematic review on health
+care). More recently, however, an emerging literature has focused on improving the collaboration
+
+===== PAGE 7 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                  5
+
+between machines and humans as opposed to pitching them against each other. For instance, a very
+recent stream of research in computer science aims at optimizing algorithms by letting them auto-
+matically seek human assistance when needed (e.g., Raghu et al. 2019, Wilder et al. 2020, Bansal
+et al. 2019). More generally, the field aims to improve the interpretability of ML-based predictions
+so as to facilitate their integration into a human decision-making process (e.g., Doshi-Velez and
+Kim 2017).
+  Researchers in management science have also started to study the integration of human judg-
+ments into the development of ML algorithms. Ibrahim et al. (2020), for instance, explore how the
+elicitation process of human forecasts boosts the performance of an algorithm in an experimental
+setup. Petropoulos et al. (2018) similarly study how human judgment can be used to improve the
+selection of a forecasting model. Arvan et al. (2019) further provide a literature review on the
+integration of human judgment into quantitative forecasting methods.
+  Overall, these different streams of research focus on improving the interaction between humans
+and machines, either to better train an algorithm or to help humans account for an algorithm’s out-
+put in their decisions. Not much is known, however, about the impact of machine-based predictions
+on the human decision-making process.
+  A few authors have nonetheless analyzed this human-machine interaction in a theoretical
+decision-making framework. Agrawal et al. (2018) in particular postulate that AI and humans
+complement one another in that algorithms provide cheap and accurate predictions while humans
+determine, at a cost, the potential payoffs associated with the decision. Specifically, the authors
+enrich a standard choice model under uncertainty, in which the DM needs to exert effort to learn
+her utility function. Our work addresses a different form of complementarity, in which human cog-
+nition is flexible but of limited capacity while the machine is rigid but has ample capacity. More
+recently, Bordt and von Luxburg (2020) propose representing the human-machine joint decision
+process in a dynamic multi-arm bandit framework. The goal is to study under which conditions
+humans and machines learn to interact over time and dynamically improve their decisions. In con-
+trast, we study the impact of machine-based predictions on human cognition and decisions. Our
+setup is therefore static, but it endogenizes the human cognitive efforts.
+  The rational inattention theory on which our model is based was first introduced by Sims (2003,
+2006) and has since been applied in many different contexts, such as discrete choice and pric-
+ing (Matějka 2015, Boyacı and Akçay 2018), finance (Kacperczyk et al. 2016) or service systems
+(Canyakmaz and Boyaci 2020) among many others. Several empirical and experimental studies
+have further added support to the theory (see, for instance, Bartoš et al. 2016 or Caplin and
+Dean 2015, and Maćkowiak et al. 2018 for a recent survey). Abis (2017), in particular, proposes
+an empirical test for a simple model of financial markets made of rationally inattentive humans
+
+===== PAGE 8 =====
+                                                   Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+6
+
+and machines with unconstrained capacity. While machines and humans decide independently and
+may even compete in this setup, our model considers their complementarity.
+    More generally, our model represents a problem of information acquisition. As such, our work is
+related to the hypothesis testing Bayesian framework, in which the DM runs a sequence of imperfect
+tests and dynamically updates her belief accordingly about which decision is best (DeGroot 1970).
+This approach has been very fruitful for studying a variety of problems, such as the management of
+research projects or diagnostic services (McCardle et al. 2017, Alizamir et al. 2013, 2019). However,
+the framework is less suited to represent the cognitive process of a decision-maker. In particular,
+this Bayesian framework typically assumes that the precision of each test (in the form of false
+positive and false negative rates) or the order in which they are run are exogenously determined.
+In contrast, our rational inattention setup does not put any restrictions such as these, and fully
+endogenizes the level of precision as well as the associated cognitive effort in a tractable way. This
+enables us to properly account for the flexibility of human cognition (Diamond 2013, Laureiro-
+Martı́nez and Brusoni 2018), which is important for our purpose.
+    Finally, our setup assumes that humans assess information from multiple sources, which jointly
+designate the true state of the world. This can also be conceptualized as learning states that are
+characterized by multiple attributes. In this regard, our paper is related to the rich literature on
+search with multiple attributes (see, for instance, Branco et al. 2012, Olszewski and Wolinsky
+2016, Sanjurjo 2017, and references therein). In particular, Huettner et al. (2019) study a multi-
+attribute discrete choice problem in a rational inattention framework. They retrieve the generalized
+multinomial logit choice structure in Matějka (2015) for situations where attributes have different
+information costs. In our model, some attributes are easier to assess when the machine is present,
+as in Huettner et al. (2019), but we specifically investigate the impact of this on human choice, the
+extent of decision errors and cognitive efforts.
+
+3.     A Model of Human and Machine
+In this section, we first present a decision model that captures the flexibility and limited cognitive
+capacity of the human in a rational inattention framework. We then consider the case where the
+DM is assisted by a machine.
+    Consider a human decision-maker (which we will refer to as DM hereon), who needs to correctly
+assess the true state of the world ω ∈ {g, b}, which can be good (ω = g) or bad (ω = b). We denote
+by µ the DM’s prior belief that the state is good (µ = P {ω = g }). The DM can exert cognitive
+efforts to evaluate the relevant information and adjust her belief accordingly. The more effort she
+exerts, the more accurate her evaluation is. When available, a machine-learning algorithm (which
+we simply refer to as “the machine” in the following) assists the DM by accurately evaluating some
+
+===== PAGE 9 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                   7
+
+of this information, at no cognitive cost, to account for its immense computing capabilities. Based
+on her assessment, the DM then announces whether or not the state is good. We denote this choice
+by a ∈ {y, n} (yes/no), where a = y when the DM chooses the good state and a = n otherwise. The
+choice is accurate if she chooses a = y and the true state is ω = g, or if a = n and ω = b. The DM
+enjoys a (normalized) unit of payoff if her decision is accurate, and nothing otherwise. Thus, her
+expected payoff is the probability that she will make an accurate choice, which we define as the
+accuracy of her decision. The DM’s objective is then to maximize the expected accuracy of her
+decision,2 net of any cognitive costs.
+
+3.1.     The Human Decision-Maker
+The DM is constrained by her limited cognitive capacity, so that assessing available
+data/information requires exerting cognitive efforts, a process we formalize within the theory of
+rational inattention. In this framework, the DM is aware of her cognitive limitations and endoge-
+nously optimizes how to allocate her effort accordingly. To do this, the DM elicits informative
+signals about the true state of the world from different sources of information which reduce her
+prior uncertainty.
+    Specifically, the DM can elicit any signal s of any precision level about state ω ∈ Ω = {g, b} from
+any information source. We define an information processing strategy as a joint distribution f (s, ω)
+between signals and states. The DM is free to choose any information processing strategy as long
+                                                         R
+as it is Bayesian consistent with her prior belief (i.e., s f (s, g) ds = µ must hold). This implies
+that choosing a strategy f (s, ω) is equivalent to determining f (ω |s), the DM’s posterior belief that
+the true state is w given signal s. In other words, the DM is free to choose the precision of her
+posterior belief. Thus, the DM may elicit different signals from different information sources in any
+particular sequence, and make her search for new signals contingent on previous ones to determine
+the precision of her posterior belief.3 She may also decide not to process any information at all so
+that f (g |s) = µ or equivalently f (s, g) = µf (s).
+
+    Cognitive Effort. The DM’s belief about the state of the world specifies the prevalent initial
+uncertainty. By generating an informative signal s, the DM updates her prior µ to posterior f (g |s).
+We measure this uncertainty in terms of entropy, which we denote as H(p) for a probability p that
+the world is in the good state, where H(p) = −p log p − (1 − p) log (1 − p).4 Entropy is a widely used
+2
+ In other words, DM’s payoffs are the same whether she correctly identifies the good state (a = y when ω = g) or the
+bad one (a = n when ω = b). This is for the sake of clarity only, though. Our analysis directly extends to a general
+payoff structure, as we discuss in §6.
+3
+  Eliciting informative signals can also be imagined as the DM asking a series of yes-or-no questions and observing
+the outcomes. By choosing an information processing strategy, the DM is effectively choosing what questions to ask
+and in which sequence.
+4                                                                         P
+PFor a general discrete probability distribution function P = {pω ; ω ∈ Ω, ω∈Ω pω = 1}, entropy is defined as H(P ) =
+   ω∈Ω pω log pω .
+
+===== PAGE 10 =====
+                                                          Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+8
+
+measure of uncertainty in the economics literature, because of its different properties and concavity
+structure in particular, and further corresponds to the expected utility loss from not knowing the
+state (Frankel and Kamenica 2019).
+    In our setup, H(µ) measures the prior level of uncertainty that the DM needs to resolve, and
+thus fully captures the difficulty level of the decision task. The task presents no difficulty when
+the DM is fully informed about the state, that is, when µ = 1 or µ = 0 for which H(µ) is null.
+The decision task is most difficult when the DM has no prior information about the states, that is,
+when µ = 1/2 which maximizes H(·). We thus refer to H(µ) as the task difficulty in the following.
+    Similarly, ex-post entropy H(f (g |s)) measures the level of uncertainty upon eliciting signal s and
+thus Es [H(f (g |s))] is the expected level of remaining uncertainty under strategy f , before the DM
+processes any information. We refer to Es [H(f (g |s))] as the residual uncertainty in the following.
+The expected reduction in uncertainty is then equal to H(µ) − Es [H(f (g |s))], which corresponds
+to the mutual information between prior and posterior distributions in information theory and
+specifies the expected amount of elicited information.5 This quantity is always positive, that is,
+information always decreases uncertainty, due to the concavity of entropy H(·).
+    Reducing uncertainty, however, comes at a cognitive cost. The larger the reduction in uncertainty,
+the more information is processed and thus the more cognitive effort is required. Following the
+rational inattention literature, we assume that the DM’s cognitive cost is linear in the expected
+reduction in uncertainty. Formally, the cognitive cost associated with an information processing
+strategy f is equal to
+                                      C (f ) = λ (H (µ) − Es [H (f (g |s))])                                    (1)
+
+where λ > 0 is the marginal cognitive cost of information which we refer to as the information cost
+in the following.
+    Overall, information cost λ determines how constrained the DM is in terms of time, attention,
+and cognitive ability. It may represent the inherent difficulty of assessing a piece of information or
+the extent to which the DM’s cognitive capacity is consumed by competitive tasks, because of time
+pressure or multitasking. In the latter case, λ is the shadow price of the constraint corresponding
+to the DM’s limited cognitive capacity. Thus, the higher the value of λ, the more effort the DM
+needs to exert to elicit signals that reduce uncertainty. In the limit where λ is infinite, the DM
+cannot assess any information and only decides based on her prior belief µ. In contrast, the DM
+does not have any limit on her capacity when λ = 0, and can then perfectly assess the true state
+of the world.
+5
+ Alternatively, the mutual information can be interpreted as the expected number of questions that the DM needs
+to ask to implement her information processing strategy according to coding theory (Cover and Thomas 2012). The
+more questions the DM asks, the more she learns about the true state of the world, which is reflected in the form of
+a tighter posterior belief.
+
+===== PAGE 11 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                       9
+
+    Decisions and Accuracy. The DM chooses information processing strategy f , at cost C(f ),
+to yield updated belief f (g |s). Given this updated belief, the DM then chooses her action a ∈ {y, n}
+to maximize accuracy, such that a = y if f (g |s) > f (b|s) and a = n otherwise (recall that in our
+setup, the expected payoff is equal to the expected accuracy). Thus, the prior probability that the
+DM will choose action a = y before she starts assessing any information6 is equal to
+                                                   Z
+                                         p(f ) ≡       I{f (g|s)≥f (b|s)} f (s) ds,
+                                                   s
+
+
+where I denotes the indicator function, which yields expected accuracy A(f ),
+                    Z                                                        Z
+          A(f ) ≡       max {f (g |s)Ia=y + f (b|s)Ia=n } f (s) ds =              max {f (g |s), f (b|s)} f (s) ds.
+                    s a∈{y,n}                                                 s
+
+
+    The Decision Problem. Anticipating her expected posterior payoff upon receiving signals, the
+DM first decides on her information acquisition strategy, taking into account the cognitive cost
+associated with its implementation. The DM then chooses her action. It follows that given her
+choice of information processing strategy f , the DM enjoys an expected total value of
+
+                                              V (f ) ≡ A(f ) − C(f ).
+
+She determines her information processing strategy by solving the following optimization problem:
+
+                                               max V (f )                                                             (2)
+                                                 f
+                                                    Z
+                                               s.t.   f (s, g) ds = µ,
+                                                       s
+
+
+where the constraint guarantees that the DM’s information processing strategy is Bayesian consis-
+tent with her prior belief.
+    Given prior µ, we denote by V ? (µ), the optimal expected value such that V ? (µ) = V (f ? ), where
+f ? solves (2). Similarly, we define by A? (µ), C ? (µ) and p? (µ) the optimal accuracy, cognitive cost,
+and choice probability, respectively, given prior µ.
+    Taken together, our setup captures both the cognitive flexibility and cognitive limitations of
+humans. In this framework, the DM endogenously decides how to allocate her limited attention
+and how much effort to put into resolving the prevalent uncertainty. In doing so, the DM chooses
+how much error she will tolerate and the precision of her decisions. This framework further allows
+us to account for machine-based predictions in the DM’s decision process, as we show next.
+
+6
+ Note that the DM commits to a decision with certainty ex-post, i.e., after she assesses the available information. But
+because the signals she will obtain are unknown before she starts the process, her final decision is random ex-ante.
+
+===== PAGE 12 =====
+                                                           Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+10
+
+3.2.     Accounting for the Machine
+To assess the state of the world, the DM leverages her cognitive flexibility (Diamond 2013, Laureiro-
+Martı́nez and Brusoni 2018) to integrate information from diverse sources. The machine, by con-
+trast, only extracts a limited subset of this information (Marcus 2018). Thus, we partition the set
+of information sources from which signals s are drawn into two distinct subsets: a first one that
+both the machine and the DM can evaluate, and a second one which is only available to the DM.
+     We represent the aggregate information contained in these two subsets as random variables X1
+and X2 , respectively. In particular, r.v. X2 summarizes the predictive variables that are unobserv-
+able to the ML algorithm. These may include information drawn from the DM’s domain knowledge
+or specific aspects of the context in which the decision is made. To put this setup into perspective,
+consider the medical domain. Random variable X1 may then represent the statistical summary of
+all the tangible information that is observable to the algorithm, such as the patient’s full medical
+history. Random variable X2 , on the other hand, may represent the information that the physician
+obtains through personal interaction with the patient. In contrast to the ML algorithm, the DM
+can elicit signals from both sources. Recall that we do not impose any restriction on the DM’s
+strategy, particularly the order in which she may assess these sources.
+     Realization xi ∈ {−, +} of Xi , i = 1, 2, is such that xi = + (resp. xi = −) is indicative of a good
+(resp. bad) state. The true state of the world is good only if all available information is positive,7
+                                                                                                             2
+that is, ω = g if and only if x1 = x2 = +. We refer to π(x1 , x2 ) > 0 with (x1 , x2 ) ∈ {−, +} as the
+DM’s prior distribution of (X1 , X2 ). Hence, the DM’s prior belief that the state is good is equal to
+µ = π (+, +) . In the absence of a machine, the DM needs to allocate her cognitive effort between
+the assessments of x1 and x2 .
+     In contrast to the human, the machine does not suffer from any cognitive limitations due to its
+virtually unbounded computing capacity. We assume that it can extract the exact value of x1 at no
+cognitive cost, so that the DM can dedicate her effort solely to the assessment of x2 . In the presence
+of the machine, therefore, the DM only assesses x2 so as to update her new belief, which accounts
+for the machine’s evaluation x1 . Specifically, define µx as the DM’s new belief that the state is
+good, given the machine’s evaluation x ∈ {−, +}. We have, using Bayes’ rule with µ = π (+, +),
+                                                              µ
+                                    µ− = 0 and µ+ =                    > µ.                                        (3)
+                                                          µ + π (+, −)
+That is, a negative evaluation by the machine reveals that the true state is bad, while the DM’s
+belief that the state is good increases with a positive evaluation. It follows from Section 3.1 that
+when the machine output is x, the optimal expected value, accuracy, cognitive cost, and choice
+probability, are equal to V ? (µx ), A? (µx ), C ? (µx ) and p? (µx ), respectively.
+7
+ When one positive information suffices to determine the good state, the problem can be made equivalent to the
+current situation by relabeling the good state and the positive information as the bad and negative ones, respectively.
+
+===== PAGE 13 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                    11
+
+4.     Optimal Decisions, Accuracy and Cognitive Cost
+In this section, we characterize optimal choice p? (·) as a function of prior belief µ ∈ (0, 1), from which
+we deduce the optimal expected value, accuracy, and cognitive cost (V ? , A? , and C ? , respectively).
+To that end, we follow Matějka and McKay (2015) who establish that problems of the type (2)
+where the DM chooses strategy f , are equivalent to problems in which she directly selects the
+conditional probabilities of choosing action a given state w.8 The intuition for this equivalence is
+that a one-to-one correspondence exists between actions a and signals s in the optimal solution.
+Indeed, eliciting distinct signals that lead to the same posterior belief (and hence decision) incur
+additional costs without changing the DM’s decision, which is suboptimal. In a discrete choice
+setting, this yields an optimal solution of GMNL (generalized multinomial logit) form where payoffs
+include endogenously determined terms. The next Lemma formalizes this result in our setup.
+
+    Lemma 1. Given prior 0 < µ < 1, the optimal choice probability p∗ (µ) is the unique solution to
+the following equations in p ∈ [0, 1],
+
+                                               p = (1 − µ) pb + µpg                                                (4)
+                                                       pe1/λ
+                                              pg = 1/λ                                                             (5)
+                                                   pe + 1 − p
+                                                          p
+                                              pb =                  .                                              (6)
+                                                   p + (1 − p) e1/λ
+
+Further, we have
+
+                                 A? (µ) = (1 − µ) (1 − pb ) + µpg                                                  (7)
+
+                                 C ? (µ) = λ [H (p) − (1 − µ) H (pb ) − µH (pg )]                                  (8)
+
+Probabilities pg and pb correspond to the optimal conditional probabilities that the DM chooses y
+given that the true state is g and b, respectively. Probability p is then the (unconditional) probability
+of choosing y according to consistency equation (4). Probabilities pg and pb also determine the
+extent of the mistakes the DM tolerates. Specifically, the optimal false positive and false negative
+rates, which we denote as α? and β ? , respectively, are equal to
+
+                                                  α? = (1 − µ)pb                                                   (9)
+
+                                                   β ? = µ(1 − pg )                                               (10)
+
+such that α? + β ? = 1 − A? .
+
+8
+ Note that this is an “as if” result such that the DM is not actually optimizing over choice probabilities but using an
+optimal information processing strategy that is behaviorally equivalent to the induced optimal choice probabilities.
+
+===== PAGE 14 =====
+                                                        Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+12
+
+4.1.     Optimal Decisions
+Lemma 1 states that the optimal choice probability p? (µ) corresponding to problem (2) is the
+solution of a system of equations, which also determines decision accuracy A? (µ), cognitive cost
+C ? (µ), and hence expected value obtained V ? (µ) = A? (µ) − C ? (µ). The next result provides the
+explicit solution to these equations.
+
+     Theorem 1. The optimal choice probability p? (µ) that solves (4) , (5) and (6) is equal to
+                                   
+                                             0          if µ ≤ µ
+                            ?           µ          1−µ
+                          p (µ) = 1−e−1/λ − e1/λ −1 if µ < µ < µ                                (11)
+                                              1          if µ ≥ µ
+                                   
+
+where
+                                          1                   e1/λ
+                                  µ=            < 1/2 < µ =          .
+                                       e1/λ + 1             e1/λ + 1
+Furthermore, p? (µ) is non-decreasing in µ, µ is increasing in λ and µ̄ is decreasing in λ.
+
+     Overall, Theorem 1 characterizes the effect of DM’s prior belief µ on her optimal choice prob-
+ability p? (µ). If the DM’s prior belief about the true state of the world is sufficiently strong (i.e.,
+µ ≥ µ or µ ≤ µ), exerting any effort to learn more about this state is not worth the cognitive cost.
+The DM then makes an immediate decision without assessing any information, based solely on her
+prior (i.e., p? (µ) = 1 or 0). Otherwise, the DM exerts effort to assess the available information until
+her belief about the true state of the word is sufficiently strong, at which point she commits to a
+choice. But, because she does not know what this assessment will reveal a priori, her final decision
+is uncertain ex-ante (i.e., 0 < p? (µ) < 1). Furthermore, the stronger the DM believes a priori that
+the world is in the good state, the more likely she will decide accordingly by choosing a = y (i.e.,
+p? (µ) is non-decreasing in µ).
+     Theorem 1 also enables characterizing the impact of information cost λ on the optimal choice
+probability, which we denote by p? (λ) in the next result with a slight abuse of notation.
+
+     Corollary 1. Given prior 0 < µ < 1, a positive (possibly infinite) threshold λ̄ exists such that
+the optimal choice probability is equal to
+                                        µ       1−µ
+                                  
+                                   1−e−1/λ − e1/λ −1 if λ < λ̄
+                         ?
+                        p (λ) =             0         if λ ≥ λ̄ and µ < 0.5                               (12)
+                                            1         if λ ≥ λ̄ and µ > 0.5,
+                                  
+
+where
+                                            −1
+                                      1−µ
+                        λ̄(µ) = log              if µ 6= 0.5 and λ̄ = +∞ if µ = 0.5.
+                                       µ
+Further, p? (λ) is decreasing (resp. increasing) in λ, and λ̄ increasing (resp. decreasing) in µ when
+µ < 0.5 (resp. µ > 0.5).
+
+===== PAGE 15 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                       13
+
+                                                  8
+                                                                                                     λ
+
+
+
+
+                             Information cost λ
+                                                  6
+
+                                                          Choose n                       Choose y
+                                                  4
+
+
+                                                  2
+                                                                          Acquire
+                                                                        information
+
+                                                  0
+                                                      0      0.2        0.4       0.6        0.8         1
+                                                                       Prior belief µ
+                  Figure 1                        Effect of prior belief µ on DM’s tolerance to information cost λ̄
+
+
+  Hence, the DM exerts effort only if the information cost is not too high, that is, less than a
+threshold. In this case, her probability of choosing the good state increases with the information
+cost if she favors this state a priori (µ > 1/2), and decreases otherwise. Indeed, the higher the
+information cost, the less information the DM assesses and thus the less likely her updated belief
+will significantly change from her prior. Otherwise, she decides a priori that the state is good (resp.
+bad) if her prior is larger (resp. smaller) than 1/2. In this case, the DM jumps to conclusions as
+she relies solely on her prior belief without assessing any information. In this sense, threshold λ̄
+determines the DM’s tolerance to the information cost. Taken together, Corollary 1 states that
+the set of prior beliefs for which the DM processes information is an interval centered at 1/2, that
+shrinks with information cost λ.
+  Figure 1 depicts the impact of prior µ on threshold λ̄. When the DM does not have much prior
+knowledge about the true state of the world (the value of µ is close to 1/2), she is ready to exert
+a lot of cognitive effort to learn more and hence tolerate high information costs (the value of λ̄ is
+high). In particular, the DM always assesses information and exerts effort when the true state is
+perfectly unknown (λ̄ = +∞ for µ = 1/2). As the DM is more certain a priori about the true state
+(µ approaches 0 or 1), she is less willing to exert effort and jumps to conclusions for lower values
+of information costs (λ̄ decreases as µ approaches 0 or 1).
+
+4.2.   Decision Accuracy and Cognitive Effort
+From Lemma 1 and Theorem 1, we obtain A? (µ), C ? (µ) and V ? (µ) in closed forms, as stated by
+the following result,
+
+  Corollary 2. Given prior µ, A? (µ), C ? (µ) and V ? (µ) are equal to
+                               1 − µ if      µ≤µ
+                             
+                             
+                              1
+                   A? (µ) =      eλ
+                                 1    if µ < µ < µ                                                                    (13)
+                              +1
+                              e λ
+                                  µ if       µ≥µ
+
+===== PAGE 16 =====
+                                                      Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+14
+
+
+                                     
+                             ?           λ [H (µ) − ϕ (λ)]    if     µ<µ<µ
+                           C (µ) =                                                                      (14)
+                                                0          otherwise
+                                  
+                                   h  1 − µ
+                                                       i if  µ≤µ
+                            ?              1
+                           V (µ) = λ log e λ + 1 − H (µ) if µ < µ < µ                                   (15)
+                                  
+                                              µ           if  µ≥µ
+                                  
+
+where
+                                                 1      1 e λ1
+                                     ϕ (λ) ≡ log e λ + 1 −            .                                 (16)
+                                                           λ e λ1 + 1
+Further, ϕ (λ) is increasing in λ, with ϕ(0) = 0 and limλ→∞ ϕ (λ) = H (0.5) = log 2.
+
+     Function ϕ (λ) is the residual uncertainty Es [H(f (g |s))] (see Section 3.1) at optimality. The
+higher the information cost, the less precise the elicited signals are, and thus the less uncertainty
+is reduced. Per Corollary 2, residual uncertainty ϕ (λ) is fully determined by the information cost
+and is independent of the prior. In fact, as long as the DM chooses to process information (i.e.,
+µ < µ < µ), the expected accuracy of her decision depends solely on the information cost and
+not on her prior belief. Figure 2a illustrates this for a fixed λ. Here, the red dotted curve given
+by max(µ, 1 − µ) corresponds to the decision accuracy level the DM obtains when she bases her
+decision solely on her prior belief (i.e., λ → ∞). The solid blue curve is the accuracy function A(µ)
+for a finite information cost value, which is constant when the DM chooses to process information.
+The difference between these two curves precisely corresponds to the gain in accuracy the DM
+enjoys due to cognitive effort. When the decision task is the most difficult (i.e., when the DM is
+most uncertain with µ = 0.5), the DM obtains the highest accuracy gain, while the magnitude of
+this gain depends on the information cost.
+     In contrast, the DM’s prior affects expected value V ? through task difficulty H(µ), if she chooses
+to exert effort. Specifically, the task difficulty increases the reduction in uncertainty H(µ) − ϕ(λ)
+that the DM’s effort brings about. Thus, Corollary 2 implies that the expected uncertainty reduc-
+tion and hence the optimal expected cost increase, while the expected value decreases with the
+task difficulty (i.e., as µ approaches 1/2) which is illustrated in Figure 2b. Similar to Figure 2a, the
+dotted curve corresponds to the expected value the DM obtains when there is no cognitive effort,
+in which case it is equal to the expected accuracy. The difference between these two curves gives
+the value gain the DM enjoys due to her cognitive effort, which is itself the difference between
+expected value and decision accuracy.
+     The structure of optimal cost C ? in Corollary 2 sheds further light on thresholds µ and µ̄.
+Indeed, these thresholds determine when the task difficulty is exactly equal to the optimal reduced
+uncertainty, that is, H(µ) = H(µ̄) = ϕ(λ). If µ < µ or µ > µ̄, the level of task difficulty is already
+
+===== PAGE 17 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                                            15
+
+                     1                                                                              1
+
+
+                    0.8                                                                            0.8
+Decision accuracy
+
+
+
+
+                                                                                  Expected value
+                    0.6                                                                            0.6
+
+
+                    0.4                    accuracy gain                                           0.4                 value gain
+                                            due to effort                                                             due to effort
+
+                    0.2                                                                            0.2
+                                   accuracy for λ = 0.5                                                      value for λ = 0.5
+                                   accuracy for λ → ∞                                                        value for λ → ∞
+                     0                                                                              0
+                          0        0.2     0.4       0.6    0.8      1                                   0   0.2     0.4       0.6    0.8    1
+                                           Prior belief µ                                                            Prior belief µ
+                                  (a) Decision accuracy                                                      (b) Expected value
+                              Figure 2   DM’s accuracy and value functions, and corresponding gains due to cognitive effort
+
+
+lower than the reduced uncertainty that any cognitive effort would achieve in optimality, that is,
+H(µ) < ϕ(λ), and the DM prefers to decide a priori, without assessing any information.
+                    That the optimal accuracy is independent of the prior stems from a well-known property of
+rationally inattentive choice and the fact that the DM maximizes accuracy (net of cognitive costs).
+Indeed, when some information is processed at optimality, rationally inattentive agents always
+form the same posterior belief regardless of their prior (see Caplin and Dean 2013). In fact, these
+optimal posteriors correspond exactly to the belief thresholds that define whether it is economically
+attractive for the DM to process information (µ and µ), which depend only on the payoffs and
+information cost λ. Intuitively speaking, this means that the DM sharpens her belief by processing
+costly information, up until the point beyond which it is no longer justified. More specifically, in
+our context, the DM’s optimal posterior belief that the state is good given the aggregate signals
+that lead to the action a = y (resp. a = n) is precisely µ (resp. µ) when she processes information.
+Additionally, since the payoff structure is symmetric in the states, these thresholds (hence, the
+optimal posteriors) are also symmetric. That is, the DM’s posterior belief that the state is good
+given action a = y (i.e., µ) is equal to her posterior belief that state is bad given a = n (i.e., 1 − µ).
+In our setup, these are also equal to the accuracy, as it is just the expectation of these over the
+choice (action) probabilities.
+
+4.3.                          Decision Errors
+Being constrained on cognitive capacity, the decision-maker is bound to make choices based on
+partial information. Indeed, eliminating all uncertainty is never optimal (ϕ(λ) > 0 for λ > 0). This
+
+===== PAGE 18 =====
+                                                                              Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+16
+
+implies that accuracy is strictly less than one and thus the DM may make false positive and false
+negative errors, with rates α? and β ? , respectively. From Theorem 1, we obtain these error rates
+in closed form in the following corollary.
+
+     Corollary 3. Given prior µ, error rates α? (µ) and β ? (µ) are equal to
+                                     
+                                     
+                                             0       if µ ≤ µ
+                             ?
+                            α (µ) =        1−µ        if    µ≥µ                                                                 (17)
+                                           1/λ
+                                      µ(e +1)−1
+                                     
+                                                          otherwise
+                                            2/λ
+                                      e −1
+                                     
+                                               µ        if µ ≤ µ
+                             ?
+                            β (µ) =             0        if    µ≥µ                                                              (18)
+                                         1/λ      1/λ
+                                      e −µ(e +1)
+                                     
+                                                             otherwise.
+                                             e2/λ −1
+
+     If the DM is confident enough that the state is bad (µ ≤ µ), she chooses a = n without any
+cognitive effort, preventing her from making a false positive error (α? = 0) but maximizing her
+chance of making a false negative one (β ? = µ). The reverse is true (a = y, α? = 1 − µ and β ? = 0)
+when the DM is sufficiently confident that the state is good (µ ≥ µ̄). Otherwise, DM processes
+some information and the error rates depend on both the prior and the information cost (with
+0 < α? < 1 − µ and 0 < β ? < µ).
+
+                                            0.3
+                                                                                                       α⋆
+                                                                                                       β⋆
+                          Decision Errors
+
+
+
+
+                                            0.2
+
+
+
+                                            0.1
+
+
+
+                                             0
+                                                  0          0.2        0.4         0.6        0.8          1
+                                                                         Prior belief µ
+                       Figure 3                       Error rates α? and β ? as a function of prior µ for λ = 1.
+
+
+
+     Figure 3 illustrates the effect of the DM’s prior on the error rates. Both α? and β ? are piecewise
+linear and unimodal functions of µ. In particular, when the DM exerts effort (µ < µ < µ̄), the false
+positive rate decreases, while the false negative one increases as the prior increases. Note that an
+increase in prior µ has two conflicting effects on the false positive rate. On one hand, the world
+is more likely to be in the good state, which decreases the chance of a false positive error. On
+the other hand, the DM is more likely to choose action a = y for a higher level of µ per Theorem
+1, which increases the chance of a false positive error. In essence, Corollary 3 indicates that the
+second effect always dominates the first one. A similar result holds for the false negative rate.
+
+===== PAGE 19 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                     17
+
+5.     Impact of Machine Input on Human Decisions
+Thus far, we have considered a rationally inattentive DM that decides alone. We now investigate
+how the DM’s decision process and its outcomes change when she is assisted by a machine-based
+assessment. In particular, we compare the DM’s decisions, the extent of errors she makes, and the
+amount of effort she expends with and without the machine.
+
+5.1.   Machine-Assisted Decision-Making
+In the presence of a machine, the DM first observes the machine’s output x1 , which determines her
+new belief µx , x ∈ {+, −}, according to (3). The DM then dedicates all her cognitive capacity to
+evaluating x2 . We denote by p?m (µ) the resulting ex-ante probability that the DM chooses a = y as
+                                                               ?
+a function of her initial prior belief µ. Similarly, A?m (µ), Cm                ?
+                                                                 (µ), Vm? (µ), αm          ?
+                                                                                  (µ) and βm (µ) denote
+decision accuracy, cognitive cost, expected value, and error rates, respectively, that the DM achieves
+in the presence of the machine. The following (immediate) lemma characterizes these different
+metrics.
+
+  Lemma 2. Given prior µ, we have
+
+                               µ ? +                   µ ? +                   µ ? +
+                  p?m (µ) =      p µ ,       ?
+                                            αm (µ) =      α µ         ?
+                                                                     βm (µ) =      β µ
+                              µ+                       µ+                       µ+
+                        µ   µ ? +                         µ ? +                   µ   µ ? +
+       A?m (µ) = 1 −      +   A µ ,           ?
+                                             Cm (µ) =        C µ ,     Vm? = 1 −      +   V µ .
+                       µ+ µ +                             µ+                       µ+ µ +
+  Thus, given information cost λ, the decision’s outcomes in the presence of the machine can be
+described with two free parameters (µ, µ+ ) ∈ S ≡ {(x, y) ∈ [0, 1]2 , s.t. x < y }; prior µ, and updated
+prior µ+ when the machine gives a positive signal on X1 .
+
+5.2.   Impact on Decision Accuracy and Value
+Since the machine provides accurate information at no cognitive cost, the machine always improves
+the expected accuracy and total value of the DM, as stated by the following result.
+
+  Proposition 1. For all λ ≥ 0 and (µ, µ+ ) ∈ S , we have A?m ≥ A? and Vm? ≥ V ? .
+
+  Figure 2 illustrates Proposition 1. The accuracy levels that can be achieved with a machine for
+all combinations of (µ, µ+ ) ∈ S correspond to the convex hull of the accuracy curve in Figure 2a
+(solid blue curve) without the machine. All these points lie above the curve and hence provide
+greater accuracy. Similarly, the convex hull of the value curve in Figure 2b depicts the set of all
+possible expected values that the DM can achieve with a machine, showing that it always increases
+the DM’s expected value.
+  This result provides theoretical support for the growing empirical literature, which shows that
+human-machine collaborations boost overall accuracy. Interestingly, Proposition 1 is partly driven
+
+===== PAGE 20 =====
+                                                          Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+18
+
+by our premise that human cognition is flexible. This feature corresponds in our setup to the
+unrestricted feasible set of information processing strategies (other than the Bayesian consistency
+requirement). Indeed, when a priori restrictions are imposed on this feasible set, and hence human
+cognition is less flexible, accuracy can be shown to sometimes decrease in the presence of the
+machine.
+
+5.3.     Impact on Decisions
+The machine improves the expected accuracy and total value of the decision by influencing the
+DM’s choice. The next result determines how the presence of the machine affects this choice as a
+function of prior µ and posterior belief µ+ .
+
+     Theorem 2. Given information cost λ, we have
+     i) If µ+ ≤ µ, then p?m = p? = 0.
+                                 
+     ii) If µ ≤ µ and µ+ ∈ µ, µ , then p?m > p? = 0.
+     iii) If µ ≤ µ and µ+ ≥ µ, then p?m > p? = 0.
+     iv) If µ < µ < µ+ < µ, then p?m > p? .
+                    
+     v) If µ ∈ µ, µ and µ+ ≥ µ, then threshold µ̂c exists such that p?m > p? if µ < µ̂ and p?m ≤ p?
+otherwise.
+     vi) If µ ≥ µ, then 1 = p? > p?m .
+Further, threshold µ̂c is equal to
+                                                                   −1
+                                                        e1/λ − 1
+                                         
+                                              1/λ
+                                    µ̂c = e         +1−                  ≥ 1/2                              (19)
+                                                           µ+
+
+and is decreasing in µ+ .
+
+     Overall, Theorem 2 identifies necessary and sufficient conditions under which the presence of
+the machine decreases the DM’s probability of choosing a = y. This happens when the DM’s prior
+belief is strong enough (µ̂c < µ), and a positive assessment by the machine boosts this belief to a
+sufficiently high level (µ+ ≥ µ̄). In particular, threshold µ̂c is the value of the prior µ, at which the
+direction of the impact of the machine changes.
+     Figure 4 illustrates this result in parameter space S , for a given λ. The partition of parameter
+space S in six different subsets corresponds to cases i-vi in the theorem. Cases i, ii and iii depict
+situations in which the DM does not exert any effort in the absence of the machine and chooses
+a = n as a result. This happens when her prior is sufficiently low (i.e., µ ≤ µ) per Theorem 1.
+Similarly, case vi corresponds to situations in which the DM chooses a = y a priori because her
+prior is sufficiently high (i.e., µ ≥ µ). In cases iv and v, however, the DM always exerts effort to
+assess information in the absence of the machine. The figure demonstrates that threshold µ̂c divides
+
+===== PAGE 21 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                             19
+
+                                                                                 0.5
+                                                  1
+                                                                                       p⋆m ≤ p⋆
+                                                           iii                    v           vi
+
+                                                  µ
+
+
+
+
+                           Posterior belief µ+
+                                                                 p⋆m ≥ p⋆
+                                                 0.5       ii               iv
+
+
+
+
+                                                  µ
+
+                                                           i
+
+                                                                                                   µ̂c
+                                                  0
+                                                       0            µ            0.5      µ              1
+                                                                        Prior belief µ
+             Figure 4    Impact of the machine on DM’s decision in parameter space S, for λ = 1.
+
+
+space S into two (top-right and bottom-left) areas, such that the presence of the machine decreases
+the DM’s probability of choosing the good state (i.e., p?m ≤ p? ), when (µ, µ+ ) lies in the top-right
+area, and increases the choice probability otherwise.
+  This result stems from the fact that the machine sometimes dispenses the DM from exerting any
+effort as well as the impact of the information cost on the DM’s choice. To see why, consider the
+effect of the machine on the DM’s choice probability as a function of the information cost, which
+we characterize next.
+
+  Corollary 4. We have the following:
+  • If µ ≤ 0.5, then p?m ≥ p? .
+  • If µ > 0.5, then threshold λ∗ exists such that p?m ≥ p? if λ < λ∗ and p?m ≤ p? otherwise.
+Further, threshold λ∗ is decreasing in prior belief µ with,
+                                            +              −1
+                                    ∗         µ µ + µ − µ+
+                                   λ = log                      .
+                                                µ (1 − µ+ )
+
+In other words, when the DM believes a priori that the good state is more likely (µ > 1/2),
+the presence of the machine reduces her probability of choosing a = y if the information cost is
+sufficiently high (λ > λ∗ ) and increases this probability otherwise. Figure 5 illustrates the result
+and depicts threshold λ∗ as a function of prior µ.
+  Without the machine, probability p? is increasing in the information cost when the DM favors
+the good state a priori, that is, µ > 1/2 (per Corollary 1). This is because the higher the information
+
+===== PAGE 22 =====
+                                                                       Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+20
+
+                                               6
+                                                       λ∗
+                                               5
+                                                                                    p⋆m ≤ p⋆
+
+
+
+                          Information cost λ
+                                               4
+
+
+                                               3
+                                                       p⋆m ≥ p⋆
+                                               2
+
+
+                                               1
+
+
+                                               0
+                                                   0        0.2        0.4          0.6          0.8
+                                                                  Prior belief µ
+Figure 5    Impact of the machine on DM’s decision as a function of information cost λ and prior µ, for µ+ = 0.8
+
+
+cost, the less information the DM assesses and thus the less likely it is that she will deviate from her
+prior choice. In the presence of the machine, a positive assessment by the machine boosts the DM’s
+belief, further amplifying this effect. In fact, when information cost λ is greater than threshold
+λ(µ+ ) defined in Corollary 1, a positive assessment by the machine prompts the DM not to exert
+any additional effort and immediately choose a = y upon receiving the machine’s assessment (since
+0.5 < µ < µ+ ). Thus, probability p?m , the ex-ante probability of choosing the good state, corresponds
+exactly to the chance of a positive result by the machine. And since the machine does not exert
+any cognitive effort, this probability is independent of the information cost. Hence, probability
+p? increases, while probability p?m remains constant and the former dominates the later when the
+information cost is sufficiently large.9
+     In other words, a DM without machine sticks to her ex-ante choice with high probability under
+high information cost. In contrast, a DM assisted by a machine exclusively relies on the machine’s
+result under high information cost. If the machine is not sufficiently likely to confirm the DM’s
+prior, the presence of the machine reduces the DM’s chance of choosing the good state. It increases
+this probability otherwise. In effect, the machine may increases the variability of the DM’s decision.
+
+5.4.     Impact on Decision Errors
+From Proposition 1, we know that the machine always improves accuracy and hence reduces the
+overall probability of making a mistake. But Theorem 2 indicates that the machine changes the
+ex-ante probability of choosing an action. This, in turn, should affect the nature of errors that the
+DM is likely to make. The next result characterizes this effect.
+9
+  By the same token when µ < 1/2, the choice probability is non-increasing in the information costs which explains
+why we have p? < p?m in this case.
+
+===== PAGE 23 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                         21
+
+                                        ?
+  Theorem 3. Given information cost λ, βm ≤ β for all µ ∈ [0, 1]. Further, we have
+                      ?
+  i) If µ+ ≤ µ, then αm = α? = 0.
+                                      ?
+  ii) If µ ≤ µ and µ+ ∈ (µ, µ), then αm > α? = 0.
+                                  ?
+  iii) If µ ≤ µ and µ+ ≥ µ, then αm > α? = 0.
+                                                ?
+  iv) If µ < µ < µ+ < µ, and µ+ ∈ (µ, µ), then αm > α? .
+                                                                         ?
+  v) If µ ∈ µ, µ and µ+ ≥ µ, then threshold µ̂f p < µ̂c exists such that αm > α? if µ < µ̂f p , and
+ ?
+αm ≤ α? otherwise.
+                      ?
+  vi) If µ ≥ µ, then αm < α? .
+Further, threshold µ̂f p is equal to
+                                                                                                      −1
+                                                                                           e2/λ − 1
+                                                                  
+                                                                        2/λ        1/λ
+                                                            µ̂f p = e         +e         −                              (20)
+                                                                                              µ+
+
+and is decreasing in µ+ .
+
+
+                                                                                     0.5
+                                                   1
+
+                                                                                             αm
+                                                                                              ⋆
+                                                                                                ≤ α⋆
+
+                                                   µ
+                            Posterior belief µ+
+
+
+
+
+                                                                 αm
+                                                                  ⋆
+                                                                    ≥ α⋆
+
+                                                  0.5
+
+
+
+
+                                                   µ
+
+
+                                                                                                            µ̂f p
+                                                                                                            µ̂c
+                                                   0
+                                                        0             µ              0.5          µ                 1
+                                                                              Prior belief µ
+      Figure 6    Impact of the machine on DM’s false positive error rate in parameter space S, for λ = 1.
+
+
+
+  Overall, Theorem 3 states that the machine always improves the false negative rate and thus
+decreases the DM’s propensity of choosing a = n when the state is actually good. This happens
+even when the machine induces the DM to choose a = n more a priori (i.e., p?m ≤ p? when µ ≥ µ+
+                                                                                             c
+
+per Theorem 2). However, the machine sometimes boosts the false positive rate and thus increases
+the chance that the DM will choose a = y while the state is actually bad. This happens if the DM’s
+prior belief is not too strong (µ < µ̂f p ). The machine decreases the false positive rate otherwise.
+
+===== PAGE 24 =====
+                                                      Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+22
+
+In fact this may happen even when the machine raises the possibility of making this mistake by
+increasing the overall probability of choosing the good state (i.e., when µ̂f p < µ < µ̂c per Theorem
+2).
+     Figure 6 illustrates this result in parameter space S , for a given λ. It demonstrates that threshold
+µ̂f p divides space S into two (top-right and bottom-left) areas, such that the presence of the
+                                                                                     ?
+machine decreases the DM’s probability of making a false positive type error (i.e., αm ≤ α? ), when
+(µ, µ+ ) lies in the top-right area, and increases otherwise. The effect of information cost λ on DM’s
+error rates, however, is more subtle as the next corollary shows.
+
+     Corollary 5. Given prior µ and posterior µ+ > 0.5, we have
+                         1−µ+
+     • If µ ≤ µ∗ = 4µ+                 ?    ?
+                             2 , then αm ≥ α .
+                      (2−µ+ )
+     • If µ∗ < µ < 0.5, there exists two thresholds λf p and λf p such that αm
+                                                                             ?
+                                                                               ≥ α? if λ < λf p and
+                      ?
+λ > λf p . Otherwise αm ≤ α? .
+                    ?
+     • If µ ≥ 0.5, αm                               ?
+                      ≥ α? if λ < λf p . Otherwise αm ≤ α? .
+                       ?
+For µ+ ≤ 0.5, we have αm ≥ α? .
+
+     Corollary 5 establishes that regardless of the cost of information, if the DM’s prior is sufficiently
+low, the machine always increases the DM’s propensity of making a false positive error which is
+consistent with Theorem 3. This is because when the DM sufficiently favors the bad state, she
+chooses a = n more often, which greatly reduces her chance of making a false positive error. In
+fact, when µ < µ, she never makes a false positive error. On the other hand, a positive machine
+assessment may render the DM more uncertain (when µ+ is close to 0.5) or may greatly favor the
+good state, prompting her to make more false positive errors.
+     When the DM’s prior is too low, the information cost plays a central role in determining the
+machine’s impact on the DM’s decision errors. To understand this effect, first consider the case
+where the DM initially favors the good state (i.e., µ > 0.5). When the information cost is sufficiently
+low, it is easier for the DM to distinguish the states and less likely that she will make a decision
+error. However, the machine can increase the DM’s chances of making a false positive error by
+increasing her prior to a sufficiently high level where she chooses a = y directly without acquiring
+further information. On the other hand, when the information cost is high, the DM without the
+machine is likely to make a false positive error as she is inclined to choose a = y based on her prior
+belief (see Corollary 1). The machine, however, can decrease this chance by completely revealing
+the bad states.
+     A more subtle effect of the information cost emerges when the DM is sufficiently uncertain, but
+favors the bad state initially (µ is close but strictly less than 0.5). Again, when the information
+cost is sufficiently low, she makes fewer false positive errors without the machine as she can still
+
+===== PAGE 25 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                              23
+
+distinguish the states, and the machine may induce her to choose a = y directly without acquiring
+further information. However, contrary to the previous case, she also makes fewer false positive
+errors without the machine when the information cost is sufficiently high, as she is inclined to choose
+a = n based on her prior belief. Thus, the machine only helps the DM to reduce her false positive
+errors for moderate information cost levels. Figure 7 illustrates this. The figure plots information
+cost thresholds λf p and λf p as functions of prior belief µ for the case where µ+ > 0.5. The prior
+belief µ at which the two curves meet precisely corresponds to µ∗ . We provide the closed-form
+characterizations of the two information cost thresholds in the Appendix.
+
+                                              10
+
+
+
+                                              8
+                         Information cost λ
+
+
+
+
+                                              6
+                                                               αm
+                                                                ⋆
+                                                                  ≥ α⋆                    αm
+                                                                                           ⋆
+                                                                                             ≤ α⋆
+                                              4
+
+
+
+                                              2
+                                                       λf p
+                                                       λf p
+                                              0
+                                                   0          0.2   µ∗           0.5        0.7     0.9
+                                                                         Prior belief µ
+ Figure 7    Impact of the machine on DM’s false positive error in information cost λ and prior µ, for µ+ = 0.9
+
+
+
+5.5.   Impact on Cognitive Effort
+The machine improves the expected value of human decisions, V ? = A? − C ? , by increasing accuracy
+A? (Proposition 1) due to a decrease in decision errors, but also a change of error types (Theorem
+3). An additional and perhaps more intuitive channel by which the machine might improve this
+expected value is cognitive cost C ? . Indeed, the machine provides information at no cost and may
+partially relieve the DM of her cognitive effort. This, in turn, should improve the decision’s expected
+value. Yet, the following result, one of our main findings, shows that this is not always the case. In
+                                                                    ?
+fact, the machine sometimes increases the DM’s cognitive cost with Cm > C ?.
+
+  Theorem 4. Given information cost λ we have,
+                      ?
+  i) If µ+ ≤ µ, then Cm = C ? = 0.
+                                    ?
+  ii) If µ ≤ µ and µ+ ∈ µ, µ , then Cm > C ? = 0.
+                                  ?
+  iii) If µ ≤ µ and µ+ ≥ µ, then Cm = C ? = 0.
+
+===== PAGE 26 =====
+                                                                              Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+24
+
+                                                                       ?
+     iv) If µ < µ < µ+ < µ, then threshold µ̂e ≤ 1/2 exists such that Cm                       ?
+                                                                         > C ? if µ < µ̂e and Cm ≤ C?
+otherwise.
+                                         ?
+     v) If µ ∈ µ, µ and µ+ ≥ µ, then 0 = Cm < C ?.
+                         ?
+     vi) If µ ≥ µ, then Cm = C ? = 0.
+Furthermore, threshold µ̂e is the unique value of µ, for µ < µ < µ+ < µ, that satisfies
+                                                                      µ                µ
+                                                            H(µ) −     +
+                                                                         H(µ+ ) = (1 − + )ϕ(λ)                                  (21)
+                                                                     µ                µ
+and is decreasing in µ+ .
+
+                                                   1
+
+
+
+                                                                            ⋆
+                                                                           Cm < C⋆
+                                                   µ
+                            Posterior belief µ+
+
+
+
+
+                                                  0.5         ⋆
+                                                             Cm > C⋆
+
+
+
+                                                   µ
+
+
+
+                                                                                                   µ̂e
+                                                   0
+                                                        0             µ        0.5         µ             1
+                                                                          Prior belief µ
+            Figure 8   Impact of the machine on DM’s cognitive effort in parameter space S, for λ = 1
+
+
+     Theorem 4 identifies the necessary and sufficient conditions under which the machine induces
+the DM to exert more effort. This happens when the DM sufficiently favors the bad state a priori
+(µ < µ̂e ≤ 1/2), which is illustrated in Figure 8. In this case, the task difficulty increases with a
+positive machine output and the DM needs to exert more effort.
+     More generally, the machine affects the DM’s cognitive cost via the task difficulty and the residual
+uncertainty (H(µ) and ϕ(λ), respectively, with C ? = H(µ) − ϕ(λ)) but in opposite directions. On
+one hand, the machine always provides additional information and thus always reduces the task
+difficulty in expectation (H (µ) > EX1 H(µX1 )). This task simplification contributes to reducing the
+DM’s cognitive effort. Note that the effect is ex ante. The DM expects the machine to reduce the
+difficulty before obtaining the machine assessment. Ex post, a positive result of the machine can
+increase the task difficulty (i.e., H(µ) < H(µ+ )). On the other hand, the machine assessment is
+
+===== PAGE 27 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                25
+
+precise and hence always decreases the residual uncertainty. In particular, the state is known when
+the machine’s result is negative and, thus, the machine always reduces the residual uncertainty in
+expectation (ϕ (λ) > P (X1 = 1) ϕ (λ)). This gain in precision contributes to increasing the DM’s
+cognitive effort.
+  Hence, the machine induces the DM to exert more effort when the precision gain dominates the
+task simplification that the machine brings about. This happens when the prior is sufficiently small
+and the information cost is large enough, as stated by the following corollary.
+
+  Corollary 6. If µ+ ≥ 0.5 and µ > 1 − µ+ , then Cm
+                                                  ?
+                                                    ≤ C ? . Otherwise, a unique threshold λ∗e
+                  ?
+exists such that Cm > C ? if λ > λ∗e and Cm
+                                          ?
+                                            ≤ C ? otherwise. Furthermore, threshold λ∗e satisfies
+                                                          H (µ) − µµ+ H (µ+ )
+                                                                                = ϕ(λ∗e )                      (22)
+                                                                  1 − µµ+
+and is increasing in prior belief µ.
+
+                                              1.5
+                         Information cost λ
+
+
+
+
+                                                         ⋆
+                                               1        Cm ≥ C⋆
+
+                                                                               ⋆
+                                                                              Cm ≤ C⋆
+
+                                              0.5
+
+
+
+
+                                                                                                   λ∗e
+                                               0
+                                                    0   0.1   0.2      0.3     0.4     0.5   0.6         0.7
+                                                                      Prior belief µ
+   Figure 9    Impact of the machine on DM’s cognitive effort in information cost λ and prior µ, for µ+ = 0.7
+
+
+  In other words, if the DM sufficiently believes that the state is good (µ > 1 − µ+ ), the machine
+always decreases her cognitive costs in expectation. Otherwise, the machine increases the cognitive
+cost when the information cost is sufficiently large (λ > λ∗e ). This means, perhaps surprisingly, that
+a machine induces more cognitive efforts when the DM is not sure about the good state and is
+already experiencing a high level of cognitive load (i.e., for a high λ), but reduces these efforts
+when she is relatively sure about the good state or has already ample cognitive capacity (i.e., for
+a low λ). Figure 9 illustrates this. The figure depicts λ∗e as a function of prior belief µ for the case
+where µ+ = 0.7. Note that λ∗e is defined only for belief values that are less than 1 − µ+ = 0.3 and
+determines whether the machine increases the DM’s cognitive effort or not.
+
+===== PAGE 28 =====
+                                                    Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+26
+
+6.      Generalized Payoffs
+Our base model assumes that the DM’s payoff corresponds to the overall accuracy of her decisions.
+Accuracy is indeed the main performance metric of interest in the empirical literature on machine-
+assisted decisions. However, our framework can also account for a general payoff structure of the
+form u(a, ω), for (a, ω) ∈ {y, n} × {g, b}. An analysis similar to our basic case can show that our
+results and insights continue to hold in this more general setup. Nonetheless, this general payoff
+structure creates an asymmetry in the DM’s incentives that our previous analysis does not capture.
+Specifically, a DM who cares only about accuracy does not prefer one state over the other. By
+contrast, an asymmetric payoff structure may induce the DM to allocate more effort toward a
+specific state at the expense of the other. This has implications for her choices and decision errors.
+For instance, if identifying the bad state is more important (as is perhaps the case in a medical
+setting where it corresponds to a sick patient), the DM may tolerate false negatives more and
+choose a = n more often.
+     More specifically, we can normalize any payoff structure u(a, ω) such that u (y, g) = 1 and
+u (n, g) = 0 without loss of generality (see Appendix). To avoid any trivial solution, we assume
+that u(n, b) > u(y, b) (otherwise, the payoff of a = y dominates the payoff of a = n in all states of
+the world and the DM directly chooses the former without processing information). In this setup,
+difference δ = u(n, b) − u(y, b) denotes the net value of correctly identifying the bad state. (The
+net value of correctly identifying the good state is always equal to one.) Thus, the DM prefers to
+correctly identify the bad state over the good state if and only if δ > 1. In our base model, δ = 1
+with u(n, b) = 1 and u(y, b) = 0, so that the DM is indifferent between identifying the good and the
+bad states.
+     Figure 10 depicts the impact of the machine on the DM’s decision (analogous to Figure 4) for
+δ < 1 and δ > 1. The figures demonstrate that the structure of our result continues to hold for
+more general payoffs. In addition, the figure reveals that the set of values of beliefs µ and µ+ for
+which p?m ≥ p? widens as δ increases. Indeed, increasing δ decreases the likelihood that the DM will
+choose a = y as this option becomes a less attractive alternative. Accordingly, the threshold level
+µ on the DM’s prior belief that warrants immediate ex-ante a = y decision increases. That is, the
+DM needs to be more confident about the good state to choose a = y without the need to spend
+further cognitive effort. According to Theorem 2, we already know that the machine induces the
+DM to choose a = y when her posterior is less than µ.
+     Similar results hold for the false positive error rate and expected cognitive effort that the DM
+                                                                                      ?
+exerts. The set of prior values for which the machine induces fewer false positives (αm ≤ α? ) and
+                           ?
+reduces cognitive effort (Cm ≤ C ? ) shrinks as δ increases (see Appendix). And as in our base case,
+the machine consistently reduces the false negative rate regardless of the incentive structure across
+states.
+
+===== PAGE 29 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                                                             27
+
+                                             δ = 0.5                                                                              δ = 1.5
+                      1                                                                                       1
+                                                                                                                                                p⋆m ≤ p⋆
+
+                                                 p⋆m ≤ p⋆                                                     µ
+Posterior belief µ+
+
+
+
+
+                                                                                       Posterior belief µ+
+                                                                                                                       p⋆m ≥ p⋆
+
+                      µ        p⋆m ≥ p⋆                                                                      0.5
+
+
+
+                                                                                                              µ
+
+                      µ
+
+                                                                    µ̂c                                                                                µ̂c
+                      0                                                                                       0
+                          0      µ              µ                         1                                        0       µ        0.5            µ          1
+                                          Prior belief µ                                                                       Prior belief µ
+
+                                            Figure 10       Impact of incentive structures on DM’s decision (λ = 1)
+
+
+7.                            Concluding Remarks
+Humans have always been interested in harnessing technology and machine capabilities for com-
+petitive advantage. With the advent of data-based technologies and AI, the collaboration between
+humans and machine has moved even more to the forefront. This stems from the increasing recog-
+nition that human and machines can complement each other in performing tasks and making
+decisions. In this paper, we develop an analytical model to study the impact of such collaborations
+on human judgment and decision-making. Our model incorporates the quintessential distinguishing
+features of human and machine intelligence in a primary decision-making setting under uncertainty:
+the flexibility of humans to attend to information from diverse sources (and, in particular, the
+human domain knowledge and the decision context), but under limited cognitive capacity, and in
+contrast, the rigidity of machines that only process a limited subset of this information, but with
+great efficiency and accuracy.
+                      We integrate these features endogenously utilizing the rational inattention framework, and ana-
+lytically characterize the decisions as well as the cognitive effort spent. Comparing the case when
+the human decides alone to the case with machine input, we are able to discern the impact of
+machine-based predictions on decisions and expected payoff, accuracy, error rates, and cognitive
+effort. To put these results in perspective, consider a generic medical assessment setup, in which
+machine-based predictions (e.g., ML algorithm processing digital images) provide diagnostic input
+to the physician. The physician can conduct more assessments and tests with the patient. When
+both assessments are positive, then the patient is “sick.” The prior reflects the true nature of the
+disease’s incidence within the patient population (probability of patient being sick).
+
+===== PAGE 30 =====
+                                                    Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+28
+
+     Our findings suggest that the machine improves overall diagnostic accuracy (Proposition 1) by
+decreasing the number of misdiagnosed sick patients (Theorem 3). The machine further boosts
+the physician’s propensity to diagnose patients as healthy when the disease’s incidence is high
+(Theorem 1), and to misdiagnose healthy patients more often when the incidence is low. The
+physician also exerts less cognitive efforts with the machine, when the disease’s incidence is high
+(Theorem 4). In contrast, the machine induces the physician to exert more cognitive effort when
+the disease’s incidence is low and the physician is under significant time pressure (Corollary 6).
+     In this example, the patient is sick when both assessments are positive, which corresponds to our
+basic setup. Other information structures, however, are possible. For instance, consider a generic
+judicial ruling task, in which machine-based predictions (e.g., ML algorithm checking evidence
+authenticity, or lie-detection test) provide evidence to the judge. The judge can analyze additional
+data relevant to the case. When any assessment is positive, then the suspect is “guilty.” The prior
+reflects the true nature of the crime level within the suspect population (probability of suspect
+being guilty). As we briefly mention in Section 3.2, our basic setup can account for this situation by
+relabeling the good state and the positive information in our model as the bad and negative ones,
+respectively. This also reverses the effect in our results, as Table 1 depicts. This table provides a
+flavor of the different implications that could arise from our findings in two hypothetical settings
+fitting to our context.
+
+
+     Medical assessment & diagnostic accuracy        Judicial ruling & conviction accuracy
+     • Overall diagnostic accuracy is improved       • Overall conviction accuracy is improved
+     • Fewer misdiagnosed sick patients              • Fewer acquitted guilty suspects
+     • More patients declared healthy when the       • More suspects declared guilty when crime
+     disease incidence is high                       level is low
+     • More misdiagnosed healthy patients when       • More convicted non-guilty suspects when
+     the disease incidence is low                    crime level is high
+     • Physician spends less cognitive effort to     • Judge spends less cognitive effort to assess
+     diagnose when the incidence is high             evidence when crime level is low
+     • Physician spends more cognitive effort to • Judge spends more cognitive effort to
+     diagnose when the incidence is low and time assess evidence when the crime level is high
+     is constrained                              and time is constrained
+
+        Table 1: Impact of the machine on human decisions for two generic settings
+
+As the above examples highlight, the incorporation of machine-based predictions on human deci-
+sions is not always beneficial, neither in terms of the reduction of errors nor the amount of cognitive
+effort. The theoretical results we present underscore the critical impact machine-based predic-
+tions have on human judgment and decisions. Our analysis also provides prescriptive guidance on
+
+===== PAGE 31 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                     29
+
+when and how machine input should be considered, and hence on the design of human-machine
+collaboration. We offer both hope and caution.
+  On the positive side, we establish that, on average, accuracy improves due to this collaboration.
+However, this comes at the cost of making certain decision errors more and increased cognitive
+effort, in particular when the prior belief (on the “good” state) is relatively weak. Consequently,
+applications of machine-assisted decision-making is certainly beneficial when there is a priori suffi-
+cient confidence in the good state to be identified. In this case, the machine input has a tendency
+toward “confirming the rather expected,” and this provably decreases all error rates and improves
+the “efficiency” of the human by reducing cognitive effort. In sharp contrast, caution is advised for
+applications that involve searching and identifying a somewhat unlikely good state, especially when
+the human is significantly constrained in cognitive capacity due to limited time or multitasking. In
+this case, a positive indication by the machine has a strong effect of “falsifying the expected.” The
+resulting increase in task difficulty not only deteriorates the efficiency of the human by inducing
+more cognitive effort, but also increases her propensity to incorrectly conclude that the state is
+good. Hence, human-machine collaboration may fail to provide the expected efficiency gain (and
+to some extent accuracy) precisely when they are arguably most desirable.
+  As a final remark, this paper focuses on tasks for which human cognitive flexibility complements
+machine accuracy. In particular, the machine only processes a subset of the relevant information. If
+the situation is reversed and the DM’s domain knowledge, for instance, is a subset of the information
+that the machine has access to, this complementarity is mute. This corresponds to tasks for which
+machine predictions can substitute for and even outperform human decision-making.
+
+References
+Abis S (2017) Man vs. machine: Quantitative and discretionary equity management, working paper, Columbia
+     University.
+
+Agrawal AK, Gans JS, Goldfarb A (2018) Prediction, judgment and complexity: A theory of decision making
+     and artificial intelligence. Technical report, National Bureau of Economic Research.
+
+Alizamir S, de Véricourt F, Sun P (2013) Diagnostic accuracy under congestion. Management Science
+     59(1):157–171.
+
+Alizamir S, de Véricourt F, Sun P (2019) Search under accumulated pressure. Operations Research .
+
+Arvan M, Fahimnia B, Reisi M, Siemsen E (2019) Integrating human judgement into quantitative forecasting
+     methods: A review. Omega 86:237–252.
+
+Autor DH (2015) Why are there still so many jobs? the history and future of workplace automation. The
+     Journal of Economic Perspectives 29(3):3–30.
+
+===== PAGE 32 =====
+                                                         Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+30
+
+Bansal G, Nushi B, Kamar E, Weld DS, Lasecki WS, Horvitz E (2019) Updates in human-ai teams: Under-
+     standing and addressing the performance/compatibility tradeoff. Proceedings of the AAAI Conference
+     on Artificial Intelligence, volume 33, 2429–2437.
+
+Bartoš V, Bauer M, Chytilová J, Matějka F (2016) Attention discrimination: Theory and field experiments
+     with monitoring information acquisition. American Economic Review 106(6):1437–75.
+
+Bordt S, von Luxburg U (2020) When humans and machines make joint decisions: A non-symmetric bandit
+     model. arXiv preprint arXiv:2007.04800 .
+
+Boyacı T, Akçay Y (2018) Pricing when customers have limited attention. Management Science 64(7):2995–
+     3014.
+
+Branco F, Sun M, Villas-Boas JM (2012) Optimal search for product information. Management Science
+     58(11):2037–2056.
+
+Canyakmaz C, Boyaci T (2020) Queueing systems with rationally inattentive customers. ESMT Berlin
+     Working Paper .
+
+Caplin A, Dean M (2013) Behavioral implications of rational inattention with shannon entropy. Technical
+     report, National Bureau of Economic Research.
+
+Caplin A, Dean M (2015) Revealed preference, rational inattention, and costly information acquisition.
+     American Economic Review 105(7):2183–2203.
+
+Case N (2018) How to become a centaur. Journal of Design and Science .
+
+Cover TM, Thomas JA (2012) Elements of information theory (John Wiley & Sons, Hoboken, NJ).
+
+Cowgill B (2018) The impact of algorithms on judicial discretion: Evidence from regression discontinuities.
+     Technical report, Technical Report. Working paper.
+
+DARPA M (2018) Darpa announces $2 billion campaign to develop next wave of ai technologies. URL
+     www.darpa.mil/news-events/2018-09-07, accessed: 2019-09-20.
+
+DeGroot M (1970) Optimal Statistical Decisions (McGraw-Hill, New York).
+
+Diamond A (2013) Executive functions. Annual review of psychology 64:135–168.
+
+Doshi-Velez F, Kim B (2017) Towards a rigorous science of interpretable machine learning. arXiv preprint
+     arXiv:1702.08608 .
+
+Fabozzi FJ, Focardi SM, Jonas CL (2008) On the challenges in quantitative equity management. Quantitative
+     Finance 8(7):649–665.
+
+Felten EW, Raj M, Seamans R (2019) The variable impact of artificial intelligence on labor: The role of
+     complementary skills and technologies. Available at SSRN 3368605 .
+
+Frankel A, Kamenica E (2019) Quantifying information and uncertainty. American Economic Review
+     109(10):3650–80.
+
+===== PAGE 33 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                             31
+
+Hoffman M, Kahn LB, Li D (2017) Discretion in hiring. The Quarterly Journal of Economics 133(2):765–800.
+
+Huettner F, Boyacı T, Akçay Y (2019) Consumer choice under limited attention when alternatives have
+       different information costs. Operations Research 67(3):671–699.
+
+Ibrahim R, Kim SH, Tong J (2020) Eliciting human judgment for prediction algorithms. Available at SSRN
+       .
+
+Kacperczyk M, Van Nieuwerburgh S, Veldkamp L (2016) A rational theory of mutual funds’ attention
+       allocation. Econometrica 84(2):571–626.
+
+Katz       M    (2017)   Welcome     to   the   era    of    the   ai   coworkera.   URL   www.wired.com/story/
+       welcome-to-the-era-of-the-ai-coworker/, accessed: 2019-09-20.
+
+Kleinberg J, Lakkaraju H, Leskovec J, Ludwig J, Mullainathan S (2017) Human decisions and machine
+       predictions. The quarterly journal of economics 133(1):237–293.
+
+Laureiro-Martı́nez D, Brusoni S (2018) Cognitive flexibility and adaptive decision-making: Evidence from a
+       laboratory study of expert decision makers. Strategic Management Journal 39(4):1031–1058.
+
+Lipton ZC (2016) The mythos of model interpretability. arXiv preprint arXiv:1606.03490 .
+
+Liu X, Faes L, Kale AU, Wagner SK, Fu DJ, Bruynseels A, Mahendiran T, Moraes G, Shamdas M, Kern
+       C, et al. (2019) A comparison of deep learning performance against health-care professionals in detect-
+       ing diseases from medical imaging: a systematic review and meta-analysis. The lancet digital health
+       1(6):e271–e297.
+
+Maćkowiak B, Matejka F, Wiederholt M (2018) Rational inattention: A disciplined behavioral model. Goethe
+       University Frankfurt mimeo .
+
+Marcus G (2018) Deep learning: A critical appraisal. arXiv preprint arXiv:1801.00631 .
+
+Matějka F (2015) Rigid pricing and rationally inattentive consumer. Journal of Economic Theory 158:656–
+       678.
+
+Matějka F, McKay A (2015) Rational inattention to discrete choices: A new foundation for the multinomial
+       logit model. American Economic Review 105(1):272–98.
+
+McCardle KF, Tsetlin I, Winkler RL (2017) When to abandon a research project and search for a new one.
+       Operations Research .
+
+Mims C (2017) Without Humans, Artificial Intelligence Is Still Pretty Stupid. Wall Street Journal ISSN
+       0099-9660.
+
+Olszewski W, Wolinsky A (2016) Search for an object with two attributes. Journal of Economic Theory
+       161:145–160.
+
+OpenAI         (2019)    Openai    five   defeats     dota   2     world   champions.   URL    openai.com/blog/
+       openai-five-defeats-dota-2-world-champions/, accessed: 2020-08-20.
+
+===== PAGE 34 =====
+                                                               Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+32
+
+Patel BN, Rosenberg L, Willcox G, Baltaxe D, Lyons M, Irvin J, Rajpurkar P, Amrhein T, Gupta R, Halabi
+         S, et al. (2019) Human–machine partnership with artificial intelligence for chest radiograph diagnosis.
+         NPJ digital medicine 2(1):1–10.
+
+Payne JW, Payne JW, Bettman JR, Johnson EJ (1993) The adaptive decision maker (Cambridge university
+         press).
+
+Petropoulos F, Kourentzes N, Nikolopoulos K, Siemsen E (2018) Judgmental selection of forecasting models.
+         Journal of Operations Management 60:34–46.
+
+Raghu M, Blumer K, Corrado G, Kleinberg J, Obermeyer Z, Mullainathan S (2019) The algorithmic automa-
+         tion problem: Prediction, triage, and human effort. arXiv preprint arXiv:1903.12220 .
+
+Sanjurjo A (2017) Search with multiple attributes: Theory and empirics. Games and Economic Behavior
+         104:535–562.
+
+Sims CA (2003) Implications of rational inattention. Journal of monetary Economics 50(3):665–690.
+
+Sims CA (2006) Rational inattention: Beyond the linear-quadratic case. American Economic Review
+         96(2):158–163.
+
+Stoffel E, Becker AS, Wurnig MC, Marcon M, Ghafoor S, Berger N, Boss A (2018) Distinction between
+         phyllodes tumor and fibroadenoma in breast ultrasound using deep learning image analysis. European
+         Journal of Radiology Open 5:165–170, URL http://dx.doi.org/10.1016/j.ejro.2018.09.002.
+
+Wilder B, Horvitz E, Kamar E (2020) Learning to complement humans. arXiv preprint arXiv:2005.00582 .
+
+Appendix A:              Proofs of Results
+Proof of Lemma 1              (5) and (6) follow from Theorem 1 in Matějka and McKay (2015) which are obtained
+for action a = y. A? and C ? are by definition.
+                                                                                               1/λ
+                                                                 p              pe
+Proof of Theorem 1 By (4), (5) and (6), we have p = (1 − µ) p+(1−p )e1/λ
+                                                                         + µ pe1/λ +1−p
+                                                                                        which gives
+
+                                                           µ      1−µ
+                                                  p=            −         .
+                                                       1 − e−1/λ e1/λ − 1
+                                                                     1/λ
+                                                              e
+Choice probability is 1 when p ≥ 1, or equivalently, µ ≥ µ = e1/λ +1
+                                                                     . Similarly, choice probability is 0 when p ≤
+0 or equivalently µ ≤ µ = e1/λ1 +1 . As p is linearly increasing in µ with first order derivative 1−e1−1/λ + e1/λ1 −1 >
+                                                                                1
+0, p? is increasing in µ. Finally, µ is decreasing in λ as dµ
+                                                           dλ
+                                                              = − λ12 e  1 λ 2 < 0 and µ is increasing in λ as
+                                                                              e λ +1
+                1
+dµ       1  eλ 
+dλ
+     =   λ2   1    2   > 0.
+            e λ +1
+
+                                                     − 1
+Proof of Corollary 1       µ ≤ µ = e1/λ1 +1 ⇔ log 1−µ
+                                                   µ
+                                                           ≤ λ which yields an a = n decision by Theorem 1.
+                                                                                    −1
+                                                                e1/λ
+Note that log 1−µ
+               µ
+                  is positive when µ < 0.5. Similarly, µ ≥ µ = e1/λ +1
+                                                                                  µ
+                                                                       ⇔ λ ≥ log 1−µ     which leads to a = y
+decision and the log term is positive when µ > 0.5. Therefore, for any µ 6= 0.5, λ can be written in absolute
+                                   −1                                                          −1
+terms, that is, λ = log 1−µ
+                         µ
+                                                                             p (λ) = λ12  −e1 λ 2 (2µ − 1) which is
+                                                                           d ?
+                                        . Then (12) follows. Furthermore, dλ
+                                                                                           e   λ −1
+
+positive when µ > 0.5 and negative when µ < 0.5. Hence the monotonicity result follows.
+
+===== PAGE 35 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                          33
+
+Proof of Corollary 2 We can write the DM’s accuracy in (7) in terms of optimal posterior beliefs that
+she constructs as
+                                 A? = (1 − µ) (1 − pb ) + µpg = γ(b|n) (1 − p? ) + γ(g|y)p?
+
+where γ(ω|a) denotes the optimal posterior that the state is ω given action a. When µ < µ, A? = 1 − µ
+as p? = 0 and γ(b|n) = 1 − µ. Similarly, when µ > µ, A? = µ as p? = 1 and γ(g|y) = µ. For the case where
+        
+µ ∈ µ, µ , we use the optimal posterior characterizations that are given in Lemma 3 (in Appendix C) for
+                                          1/λ
+                                  e
+δ = 1, which yields γ(g|y) = µ = e1/λ +1
+                                         and γ(g|n) = µ = e1/λ1 +1 . Note that γ(g|y) = γ(b|n) and we have
+              1/λ
+          e
+A? = µ = e1/λ +1
+                 .
+  Using the symmetry of mutual information (see Cover and Thomas 2012), we can write (8) as
+
+                                   C ? = λ [H (µ) − pH (γ(g|y)) − (1 − p) H (γ(g|n))] .
+                   
+Assume that µ ∈ µ, µ . Then, as γ(g|y) = 1 − γ(g|n) we have H (γ(g|y)) = H (γ(g|n)) from the symmetry of
+the entropy function H in [0, 1] . Then, C ? becomes
+                              1/λ 
+                                                          e1/λ         e1/λ
+                                                                                                  
+           ?                     e                                                 1           1
+         C = λ H (µ) − H                  = λ H (µ) + 1/λ         log 1/λ    +          log 1/λ
+                               e1/λ + 1                 e +1          e + 1 e1/λ + 1        e +1
+                          1 e1/λ
+                                                    
+                                     − log e1/λ + 1 .
+                                                   
+             = λ H (µ) +
+                          λ e1/λ + 1
+               
+When, µ ∈/ µ, µ , C ? = 0, as γ(g|y) = γ(g|n) = µ. Finally, V ? is found by taking the difference A? − C ? .
+
+Proof of Corollary 3 When µ ≤ µ, pb = pg = 0, hence α? = 0 and β ? = µ by (9) and (10) . Similarly, when
+                                                                    
+µ > µ, pb = pg = 1, hence α? = 1 − µ and β ? = 0. Now assume µ ∈ µ, µ . Writing (9) and (10) in terms of
+optimal posteriors in Lemma 3 for δ = 1 and plugging in optimal choice in (11) , we obtain
+                                                                                       
+                                                                           µ e1/λ + 1 − 1
+                                                                     
+         ?                                   1        µ        1−µ
+        α = (1 − µ) pb = (1 − γ(g|y)) p = 1/λ               −            =
+                                          e + 1 1 − e−1/λ e1/λ − 1              e2/λ − 1
+                                                                                                 
+                                                                                e1/λ − µ e1/λ + 1
+                                                                          
+         ?                                   1            µ        1−µ
+        β = µ (1 − pg ) = γ(g|n) (1 − p) = 1/λ    1−           +             =                     .
+                                          e +1        1 − e−1/λ e1/λ − 1              e2/λ − 1
+Proof of Lemma 2            Using µ− = 0, the result follows by (11) , (17) , (18) , (13) , (14) and (15) for p? , α? , β ? ,
+A? , C ? , V ? , respectively.
+
+Proof of Proposition 1 Accuracy A? in (13) is convex in µ for [0, 1] . Then, by Jensen’s inequality,
+                                     
+                   µ       µ +          µ               µ                   µ     µ
+                        −
+                                ≤ 1 − + A? (µ− ) + + A? µ+ = 1 − + + + A? µ+ = A?m (µ) .
+  ?        ?
+                                                                                           
+ A (µ) = A      1−     µ + +µ
+                   µ      µ            µ               µ                   µ     µ
+Similarly, the value function (15) is also convex in µ. To see this, note first that V (µ) is linearly decreasing in
+                    
+ 0, µ , convex in µ, µ (since the entropy function H is concave) and linearly increasing in [µ, 1] . Furthermore,
+               h                    i
+                       1
+the slope of λ log e λ + 1 − H (µ) is the same at both of these cutoff points. More specifically,
+                                                                                  1
+                      d       h  1              i          µ                  1/λ
+                             λ log e λ + 1 − H (µ) = λ log            = λ log e +1        = −1.
+                     dµ |µ=µ                               1 − µ |µ=µ        1 − e1/λ1 +1
+                  µ
+Similarly, λ log 1−µ = 1. Since the slope is increasing in µ, V (µ) is convex in µ for µ ∈ [0, 1] . By Jensen’s
+inequality V ? (µ) ≤ Vm? (µ).
+
+===== PAGE 36 =====
+                                                             Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+34
+
+Proof of Theorem 2 Note that i), ii), iii) and vi) follow by the optimal choice probability in (11) and
+the fact that p?m = µ/µ+ p? (µ+ ) .
+     iv) Using (11) and µµ+ < 1, we have
+                                                               µ
+                             µ+        1 − µ+                     −µ
+                                             
+                     µ                              µ         µ+       µ        1−µ
+              p?m = +               −           =          −         >        − 1/λ = p?
+                    µ     1−e − 1/λ   e −1
+                                       1 /λ       1−e −1/λ   e −1 1−e
+                                                              1 /λ      − 1/λ  e −1
+                                    1−µ
+     v) p?m > p? µµ+ > 1−eµ−1/λ − e1/λ −1
+                                          which can equivalently be written as
+                                                                              
+                                        1        +       1          1       1
+                                              >µ              +          −       .                                (23)
+                                     e1/λ − 1        1 − e−1/λ e1/λ − 1 µ+
+                                                           1/λ
+The right hand side is always positive since µ+ > e1/λ
+                                                   e
+                                                       +1
+                                                          . That is,
+                                    1          1   1           e1/λ − 1
+                                           + 1/λ − + < 0 ⇔ µ+ > 1/λ
+                                  1−e −1/λ  e −1 µ             e +1
+                                      1/λ
+which is always true since µ+ > e1/λ
+                                 e
+                                     +1
+                                        . Then, (23) can be written as
+                                          1                                     −1
+                                                                       e1/λ − 1
+                                                         
+                                      e1/λ −1
+                        µ+ <     1                     =   e 1/λ
+                                                                 + 1 −               bc .
+                                                                                    =µ
+                              1−e−1/λ
+                                       + e1/λ1 −1 − x1                   µ+
+          bc is decreasing in µ+ and for µ+ = 1, µ
+Note that µ                                                     bc ≥ 0.5.
+                                                 bc = 0.5. Then µ
+                                         
+Proof of Corollary 4 Assume µ ∈ µ, µ for a fixed λ. By Theorem 2, since µ bc ≥ 0.5, p?m ≥ p? for µ ≤ 0.5.
+For µ < µ, p?m ≥ p? by i, ii and iii. This proves the first part. When µ > 0.5, p?m ≤ p? if µ ≥ µ
+                                                                                                bc for a fixed λ.
+Using (19) , we have
+                                                                 +                             +   !−1
+                  1             e1/λ − 1   µ+ + 1 − µµ                   µ+ + 1 − µµ
+              bc ⇔ ≤ e1/λ + 1 −
+            µ≥µ                          ⇔             ≥ e 1/λ
+                                                               ⇔ λ ≥ log                                 = λ∗ .
+                  µ               µ+         1 − µ+                        1 − µ+
+Proof of Theorem 3 i), ii), iii) and vi) follow directly by the optimal error probability functions α? (µ)
+                                                               ?
+and β ? (µ) in (17) and (18) , respectively and the fact that αm = µ/µ+ α? (µ+ ) and βm
+                                                                                      ?
+                                                                                        = µ/µ+β? (µ+ ) .
+     iv) Using (17), (18) and µµ+ < 1 we have
+                                                     
+                                              1/λ
+                                                       − µµ+
+                                                                         
+                             ?   µ  ? +
+                                         µ e     + 1          µ e1/λ + 1 − 1
+                            αm = + α µ =                     >                = α?
+                                µ              e2/λ − 1           e2/λ − 1
+and                                         µ   1/λ
+                                                                  
+                                                      − µ e1/λ + 1
+                                                                                         
+                           µ        µ+ e                               e1/λ − µ e1/λ + 1
+                       β = + β ? µ+ =
+                        ?
+                        m                                             <                    = β?.
+                          µ                       e2/λ − 1                   e2/λ − 1
+         ?
+     v) αm > α? when
+                                              
+                                 µ e1/λ + 1 − 1
+                                                                  
+                      µ       +                             1               1          1
+                        1 − µ    >                   ⇔ µ      −  1   > µ 1/λ      −
+                     µ+               e2/λ − 1             µ+             e − 1 e2/λ − 1
+                                                         
+                                          1          1             1
+                                 ⇔ µ 1/λ        − + + 1 < 2/λ
+                                      e −1 µ                   e −1
+                                                1                                    −1
+                                                                            e2/λ − 1
+                                                           
+                                             e2/λ −1          2/λ     1/λ
+                                 ⇔µ< 1                   = e +e −                         bf p .
+                                                                                         =µ
+                                       e1/λ −1
+                                               − µ1+ + 1                      µ+
+Furthermore,
+                                                  −1                        −1
+                                         e2/λ − 1                    e1/λ − 1
+                         
+                   bf p = e2/λ + e1/λ −
+                   µ                                   < e 1/λ
+                                                               + 1 −              =µ
+                                                                                   bc
+                                           µ+                           µ+
+                                     e2/λ − 1 e1/λ − 1                 e1/λ           e1/λ
+                        ⇔ e2/λ − 1 >     +
+                                              −      +
+                                                         ⇔ e1/λ + 1 > + ⇔ µ+ > 1/λ         =µ
+                                       µ           µ                    µ          e +1
+which is always true by assumption. For the false negative, since β ? (µ+ ) = 0, we have βm
+                                                                                          ?
+                                                                                            = 0 < β?.
+
+===== PAGE 37 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                               35
+
+Proof of Corollary 5           Solving the belief threshold µ̂f p in (20) for λ, we obtain the following two roots;
+                                                                      1
+                                   λ1 =         h                   q                         i
+                                                1      1               µ(2−µ+ )2 −4(1−µ+ )µ+
+                                          log   2     1−µ+
+                                                             −1+            µ(1−µ+ )2
+
+                                                                      1
+                                   λ1 =         h                   q                         i
+                                                1      1               µ(2−µ+ )2 −4(1−µ+ )µ+
+                                          log   2     1−µ+
+                                                           −1−              µ(1−µ+ )2
+
+Note that these roots are real valued when expression inside the square root is positive, that is, when µ >
+              +
+4µ+ (21−µ
+       −µ                                              ?    ?
+         + )2 . Otherwise there are no real roots and αm ≥ α . Assume that this condition holds and consider
+
+λ1 . It is positive when
+                           s                                     !                        s
+      1          1             µ(2 − µ+ )2 − 4(1 − µ+ )µ+                   1                  µ(2 − µ+ )2 − 4(1 − µ+ )µ+
+                     −1−                                             >1⇔        −3>                                       .
+      2       1 − µ+                  µ(1 − µ+ )2                        1 − µ+                       µ(1 − µ+ )2
+Note that first µ+ > 2/3 should hold so that the left hand side is positive. Then, it can be shown that (after
+some elementary mathematical operations) µ < 1/2 should hold as well. Similarly, it can be shown that for
+λ1 is positive, either when µ+ > 2/3 or when both µ+ < 2/3 and µ > 1/2 are satisfied. This means that
+since µ < µ+ by default, when µ+ < 1/2, there are no positive real-valued roots, and hence αm
+                                                                                            ?
+                                                                                              ≥ α? . Let us
+                  +
+define λf p = λ1 and λf p = λ+        +                     +
+                             1 where x = max{0, x}. Assume µ > 2/3. Then when µ < 1/2, λf p = λ1 and
+
+λf p = λ1 . Taking the first order derivative of the belief threshold µ̂f p in (20) with respect to λ, we see that it
+is positive when µ+ − 2e1/x (1 − µ+ ) > 0, that is, when the two roots λ1 and λ1 exist, µ̂f p is first decreasing
+                              ?
+than increasing. Then, since αm ≥ α? when µ ≤ µ̂f p , it is true also when λ ≤ λf p or λ ≥ λf p . Assume now
+that 1/2 < µ+ < 2/3. Then, when µ < 1/2, λf p = λf p = 0, that is, αm
+                                                                    ?
+                                                                      ≥ α? for λ > λf p . When µ > 1/2, λf p = 0
+                     ?
+and λf p = λ1 , and αm ≥ α? for λ < λf p .
+Proof of Theorem 4             i, ii, iii, v and vi correspond to cases where either DM’s prior belief µ or posterior
+          +
+belief µ induces DM to spend no cognitive effort. In this case, total cognitive cost is zero in at last one of the
+                                                                                                      ?
+cases and the results follow. For case iv where the DM processes information in both of these cases, Cm > C?
+when µµ+ (H (µ+ ) − ϕ (λ)) > H (µ) − ϕ (λ). Note that the left hand side is a positive increasing function of µ
+while the right hand side is a concave function that takes its maximum at µ = 0.5. At µ =µ, right hand side
+is zero and left hand side is positive. At the other extreme when µ = µ+ , both sides are equal. This means
+                                                                            
+that for µ+ ≥ 0.5, the two functions cross at a single point between µ, µ+ . For µ+ < 0.5, both functions
+are increasing. Hence, they cross only if slope of the right hand side function at µ+ is less than the slope of
+the left hand side function. The slopes are equal when
+                                H (µ+ ) − ϕ (λ)       1 − µ+ +
+                                                = log                             b+
+                                                            µ ⇔ µ+ = 1 − e−ϕ(λ) = µ e .
+                                     µ+                 µ+
+                b+
+Hence, for µ+ ≤ µ                   ?
+                  e < 0.5, we have Cm ≥ C
+                                          ?
+                                            for all µ < µ+ . When µ+ ∈ (b
+                                                                        µ+
+                                                                         e , µ) , the unique threshold µ
+                                                                                                       be
+satisfies
+                                   µbe
+                                        H µ+ − ϕ (λ) = H (b
+                                                      
+                                                              µe ) − ϕ (λ) .                                                  (24)
+                                   µ+
+Furthermore, left hand side of (24) is decreasing in µ+ since
+                           +                                 +
+             +   1−µ       +   +   1−µ    +     +        +            +
+    H (µ+ ) µ log µ+ − H (µ ) µ log µ+ + µ log µ + (1 − µ ) log (1 − µ ) log (1 − µ+ )
+           =            2    =                     2                    =         2    < 0.
+     µ+           (µ+ )                       (µ+ )                         (µ+ )
+                                                           be is decreasing in µ+ . Lastly, as the concave right
+Therefore the crossing point that satisfies (24) and hence µ
+                                                                                                       be ≤ 0.5.
+hand side function in (24) takes its maximum at 0.5, the crossing point is less than that point, i.e., µ
+
+===== PAGE 38 =====
+                                                                   Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+36
+
+Proof of Corollary 6 Assume µ+ ≥ 0.5 and µ > 1 − µ+ . Then H (µ) > H (µ+ ) since H is symmetric
+around µ = 0.5. Then
+                              µ                µ
+                                H µ+ − ϕ (λ) < + (H (µ) − ϕ (λ)) < H (µ) − ϕ (λ) = C ? .
+                       ?
+                                           
+                      Cm =
+                             µ+               µ
+                                          H (µ)− µ+ H µ+(   )
+                        ?
+Assume otherwise. Then Cm > C ? if              µ
+                                               1− µ+
+                                                                < ϕ (λ). We show that the left hand side is increasing in
+                                                    µ
+µ. To see this take the first order derivative;
+                                                           
+                                                    H (µ+ )
+                                                                                                 
+                                              1−µ                    µ      1             µ     +
+                           µ      +       log     −            1 −       +       H (µ) −  + H (µ )
+               d H (µ) − µ+ H (µ )              µ     µ+            µ+     µ +           µ
+                                   =                                    2                         .
+              dµ
+                                                                 
+                        1 − µµ+                                    1 − µ+        µ
+
+Simplifying the numerator, we have
+                            1 − µ H (µ+ ) H (µ)
+                      
+                     µ                                              1−µ
+                                            + + = µ+ − µ log              + H (µ) − H µ+
+                                                                                          
+                 1 − + log        −
+                    µ         µ       µ+        µ                    µ
+               = µ+ − µ log (1 − µ) − µ+ − µ log µ − µ log µ − (1 − µ) log (1 − µ) − H µ+
+                                                                                        
+
+               = − 1 − µ+ log (1 − µ) − µ+ log µ − H µ+ .
+                                                       
+
+                                                                        +
+This is decreasing in µ as the first order derivative is µ−µ
+                                                          1−µ
+                                                              < 0. Evaluating at µ = µ+ (which is the largest
+possible µ) we obtain zero, that is, − (1 − µ+ ) log (1 − µ+ ) − µ+ log µ+ − H (µ+ ) = 0. This means the first
+order derivative of the left hand side is positive. Note also that the right hand side is increasing in λ
+with limλ→∞ ϕ (λ) = log 2 while the left hand side is constant. To see this, take the first order derivative
+                1
+ϕ0 (λ) = λ13  1e λ 2 > 0. Now, when µ is at its maximum, µ = µ+ , we have
+             e λ +1
+
+                                                                      
+                        H (1 − µ+ ) − µµ+ H (µ+ )               1 − µµ+ H (µ+ )
+                                                                                  = H µ+ < ϕ (λ) .
+                                                                                        
+                                          µ             =                µ
+                                    1−   µ+
+                                                                   1−   µ+
+
+The maximum value entropy function H can take is log 2 and for µ < µ+ , the maximum value that the left
+hand side can get is less than log 2. Then this means there exists a unique λ that satisfies (22) .
+Appendix B:           General Payoff Structure
+B.1.   Normalizing the Payoffs
+                                            b(a, ω) with a ∈ {y, n} and ω ∈ {g, b} by first subtracting u
+One can transform any general payoff matrix u                                                           b (n, g)
+                                               u (y, g) − u
+from each payoff, and then scaling each by 1/ (b          b (n, g)) . Then, the new payoff structure becomes
+                                                                                b (y, g) − u
+                                                                                u          b (n, g)
+                                  b (n, g) − u
+                       u (n, g) = u          b (n, g) = 0           u (y, g) =                      =1
+                                                                                b (y, g) − u
+                                                                                u          b (n, g)
+                                    b (y, b) − u
+                                    u          b (n, g)                         b (n, b) − u
+                                                                                u          b (n, g)
+                       u (y, b) =                       =a           u (n, b) =                     = c.
+                                    b (y, g) − u
+                                    u          b (n, g)                         b (y, g) − u
+                                                                                u          b (n, g)
+Information cost parameter λ, should then be scaled by 1/ (u (y, g) − u (n, g)) , to arrive at an identical
+behavioral structure. That is, the new information cost should be λ0 = u(y,g)−u
+                                                                             λ
+                                                                               (n,g )
+                                                                                      . The reason is that
+            b (n, g) from each payoff does not change the DM’s problem since the payoff differences (i.e.,
+subtracting u
+incentives) stay the same. Therefore, there is no need to change λ. However scaling each payoff by a constant
+also scales the differences between them which creates a different incentive structure. To avoid this, one
+needs to scale the information cost also by the same constant.
+
+===== PAGE 39 =====
+Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+                                                                                                                                                                        37
+
+B.2.                          Impact of Machine on DM’s Decision Errors and Cognitive Costs for General Payoffs
+
+When DM’s incentives change, the machine’s impact on the extent of errors that the DM makes does not
+structurally change. In particular, as in our baseline model, when the machine assists the DM with some
+accurate information, the DM’s false negative error always decreases as it completely eliminates the possibility
+of bad state in some cases. Similarly, the machine can increase the DM’s propensity to make false positive
+errors in some cases. In particular, there still exists a unique threshold µ̂f p on the DM’s prior belief that
+determines whether the DM makes more or fewer false positive errors with the machine. Furthermore, the
+larger the net value of correctly identifying bad state δ, the larger the parameter space where the DM makes
+more false positive errors with the machine. This is because the region where the DM is inclined to choose
+a = y more with the machine is larger (see Figure 10). The effect of δ on DM’s propensity to make false a
+positive error is illustrated in Figure 11.
+
+
+                                           δ = 0.5                                                                                      δ = 1.5
+                      1                                                                                             1
+                                                                                                                                                  αm
+                                                                                                                                                   ⋆
+                                                                                                                                                     ≤ α⋆
+                                                                                                                    µ
+                                          αm
+                                           ⋆
+                                             ≤ α⋆
+                                                                                             Posterior belief µ+
+Posterior belief µ+
+
+
+
+
+                                                                                                                             αm
+                                                                                                                              ⋆
+                                                                                                                                ≥ α⋆
+
+                      µ                                                                                            0.5
+                              αm
+                               ⋆
+                                 ≥ α⋆
+
+                                                                                                                    µ
+
+                      µ
+
+                                                                µ̂f p                                                                                           µ̂f p
+                      0                                                                                             0
+                          0     µ             µ                         1                                                0       µ        0.5               µ            1
+                                        Prior belief µ                                                                               Prior belief µ
+
+                                    Figure 11        Impact of incentive structures on DM’s false positive error rate (λ = 1)
+
+
+
+                      Changing incentives also has a significant effect on the amount of cognitive cost that the DM incurs. In
+particular, the more at stake, the more cognitive effort the DM tolerates expending. As in our baseline case,
+the machine can only increase the DM’s ex-ante effort when both her prior and posterior with the machine-
+supplied information induce the DM to exert cognitive effort (i.e., µ, µ < µ+ , µ). Therefore, as δ increases,
+the parameter region where the DM induces the DM to exert more cognitive effort increases as the difference
+µ − µ becomes larger. This is illustrated in Figure 12.
+
+Appendix C:                               Invariance of Accuracy to Prior Belief
+We show this property by writing the DM’s decision accuracy in terms of the optimal posteriors the DM
+constructs. The following lemma gives the characterization of these posteriors in the general payoff case.
+
+===== PAGE 40 =====
+                                                                                           Boyacı, Canyakmaz, and de Véricourt: Human and Machine
+38
+
+                                            δ = 0.5                                                                                                  δ = 1.5
+                      1                                                                                                        1
+
+
+                                                                                                                               µ
+                                                                                                                                                        ⋆
+                                                                                                                                                       Cm < C⋆
+                                       ⋆
+                                      Cm < C⋆
+
+
+
+
+                                                                                                        Posterior belief µ+
+Posterior belief µ+
+
+
+
+
+                                                                                                                                         ⋆
+                                                                                                                                        Cm > C⋆
+                      µ                                                                                                       0.5
+
+
+                               ⋆
+                              Cm > C⋆                                                                                          µ
+
+                      µ
+
+                                                                     µ̂e                                                                                                        µ̂e
+                      0                                                                                                        0
+                          0       µ              µ                         1                                                        0         µ        0.5                  µ         1
+                                         Prior belief µ                                                                                           Prior belief µ
+
+                                         Figure 12           Impact of incentive structures on DM’s cognitive effort (λ = 1)
+
+                                                                          
+                      Lemma 3. DMs optimal posterior beliefs when µ ∈ µ, µ are
+                                                                                     1 − e−δ/λ
+                                                                           γ (g|n) =
+                                                                                    e1/λ − e−δ/λ
+                                                                                     1 − e−δ/λ 1/λ
+                                                                           γ (g|y) = 1/λ         e
+                                                                                    e − e−δ/λ
+with γ(b|y) = 1 − γ(g|y) and γ(b|n) = 1 − γ(g|n).
+
+                      Proof We first find the optimal probability p? of choosing a = y for the general payoff case. By Theorem
+1 in Matějka and McKay (2015), the DM’s conditional probability of selecting a = y given ω = g and ω = b
+                                                      1/λ                            a/λ
+                          pe                     pe                 p
+are respectively, Pg = pe1/λ +1−p
+                                  and Pb = pea/λ +(1 −p)ec/λ
+                                                             = p+(1−p )eδ/λ
+                                                                            . Her unconditional choice probability
+p is then
+                                                                                      p                 pe1/λ
+                                                              p = (1 − µ)                       + µ               .                                                             (25)
+                                                                               p + (1 − p) eδ/λ     pe1/λ + 1 − p
+                                                                                                                                                                       −δ
+Solving (25) yields p =                               µ
+                                                    −1δ
+                                                             − 11−µ . Then, similar to the baseline model, p? ≤ 0 ⇔ µ ≤ µ = 11−e −λδ and
+                                               1−e λ          e λ −1                                                                                             e λ −e   λ
+                                            1      −δ
+                                          e λ  1−e  λ
+
+p? ≥ 0 ⇔ µ ≥ µ =                             1       −δ
+                                                            . When µ ∈ [µ, µ], p? = p. Using Bayes’ rule, we have γ (g|y) = pg µ/p? for the
+                                            e λ −e    λ
+
+posterior belief that the state is good given a = y. Plugging in p? and pg , we arrive at γ (g|y) . Further we have
+γ (b|y) = 1 − γ (g|y) . The others are found similarly; γ (g|n) = (1 − pg ) µ/ (1 − p? ) and γ (b|n) = 1 − γ (g|n) .
+Q.E.D.
+                      Writing the decision accuracy in terms of optimal posteriors A (µ) = γ (b|n) (1 − p? ) + γ (g|y) p? , we see
+that when γ (b|n) = γ (g|y) , decision accuracy A (µ) does not depend on prior belief µ. Otherwise, it depends
+on µ through p? . By Lemma 3, γ (b|n) = γ (g|y) if only if
+                                                               e1/λ − 1             1 − e−δ/λ
+                                                                               =                  e1/λ ⇔ e−(δ−1)/λ = 1
+                                                             e1/λ − e−δ/λ          e1/λ − e−δ/λ
+which is only possible when δ = 1. Here note that 1 refers to u (y, g) − u (n, g), which is the gain from
+making the right decision in good state. Therefore when payoff gains across states are equal (i.e., symmetric),
+accuracy does not depend on prior belief µ.
+
+===== PAGE 41 =====
+Recent ESMT Working Papers
+
+                                                                                     ESMT No.
+
+
+   Contracting, pricing, and data collection under the AI flywheel effect           20-01 (R1)
+
+   Huseyin Gurkan, ESMT Berlin
+   Francis de Véricourt, ESMT Berlin
+
+   Queueing systems with rationally inattentive customers                           18-04 (R1)
+
+   Caner Canyakmaz, ESMT Berlin
+   Tamer Boyaci, ESMT Berlin
+
+   The impact of EU cartel policy reforms on the timing of settlements in private   19-03 (R1)
+   follow-on damages disputes: An empirical assessment of cases from 2001 to 2015
+   Hans W. Friederiszick, ESMT Berlin and E.CA Economics
+   Linda Gratz, E.CA Economics
+   Michael Rauber, E.CA Economics
+
+   Beyond retail stores: Managing product proliferation along the supply chain      19-02 (R1)
+
+   Işık Biçer, Schulich School of Business, York University
+   Florian Lücker, Cass Business School, City, University of London
+   Tamer Boyaci, ESMT Berlin
+
+   Marginality, dividends, and the value in games with externalities                  19-01
+   Frank Huettner, ESMT Berlin
+   André Casajus, HHL Leipzig Graduate School of Management
+

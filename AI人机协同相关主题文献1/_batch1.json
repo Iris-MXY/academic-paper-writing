@@ -1,0 +1,112 @@
+[
+  {
+    "file": "01 AI Oversight and Human Mistakes：Evidence From Centre Court.pdf",
+    "title": "AI Oversight and Human Mistakes: Evidence from Centre Court",
+    "research_question": "当人类的决策可能被 AI 推翻（AI 监督）时，人会如何调整自己的行为？核心问题是 AI 监督带来的心理成本（被推翻的羞耻感、解脱感）是否会改变决策质量，而非仅仅纠正错误。",
+    "method": "基于网球赛事的田野证据。利用 Hawk-Eye（视频 AI）引入前后对比，结合两套独特数据并审看比赛视频，构建覆盖 35 项赛事、474,102 次落点中 16,812 次贴近边线（±100mm）的裁判失误数据集；并用理性疏忽模型进行结构性估计（下限）。",
+    "theory": "行为经济学、理性疏忽（rational inattention）、心理成本（被 AI 推翻的羞耻/解脱）。",
+    "contributions": "1）首篇关于 AI 监督（而非 AI 辅助）如何改变人类决策行为的田野证据；2）揭示被 AI 推翻的心理成本可驱动行为扭曲；3）说明 AI 监督存在激励错配风险，在医疗、司法等场景需谨慎。",
+    "key_findings": "引入 Hawk-Eye 后裁判总体失误率下降 8%（1.1 个百分点），但在最接近边线（<20mm）的高难度判罚中失误率反而上升 22.9%（7.3 个百分点）：因害怕叫“出界”被推翻，裁判转为更倾向判“界内”，由 II 类错误转向 I 类错误。",
+    "limitations": "仅考察网球裁判单一高可见度场景；未观察到明显的“搭便车”动机（原文称在其他以结果为导向的场景更可能显著）；外部推广性（尤其医疗/司法）需谨慎。",
+    "pages": "研究问题/理论 p.1；方法与数据 p.2；关键发现 p.2-3（图1）；讨论与局限 p.3（全文为3页扩展摘要，完整版见 arXiv:2401.16754）"
+  },
+  {
+    "file": "02 The Impacts of Algorithmic Work Assignment on fairness perceptions and productivity：Evidence from field experiments.pdf",
+    "title": "The Impacts of Algorithmic Work Assignment on Fairness Perceptions and Productivity: Evidence from Field Experiments",
+    "research_question": "相较人工任务分配，算法（vs. 人工）任务分配流程如何改变任务接收者的公平感知与生产力？",
+    "method": "两项与阿里巴巴合作的随机田野实验：主实验 15 天、50 名仓库拣货临时工，随机分到“算法分配组”或“人工分配组”，收集 4,486 个拣货单与 108 份每日问卷；复制实验用非重叠样本；并用在线实验（美国 MTurk 201 人）验证。含工具变量法估计公平感知对生产力的因果效应。",
+    "theory": "行为运作管理（behavioral operations）、程序公平、平等动机（equality motive，相对私人特征关切）。",
+    "contributions": "1）首篇在实际职场用田野实验考察算法分配对公平感知与生产力的影响；2）挑战“算法厌恶”主流结论，显示在重视平等的情境下算法反而更受青睐；3）揭示公平感知提升生产力的下游机制（IV 显示公平感知每升 1 个标准差，拣货效率升 12.97–16.98%）。",
+    "key_findings": "在分配规则相同下，工人认为算法分配比人工分配更公平 0.94–1.02 个标准差；算法分配使拣货效率提升 15.56%–17.86%；效应在实验后期持续；美国样本同样偏好算法分配的公平性。",
+    "limitations": "多数主实验工人仅参与≤2 天，难考察长期效应；仅用临时工，未考察正式工既有经验是否调节；为聚焦公平机制刻意弱化运作透明度，未来需变动透明度水平。",
+    "pages": "研究问题/摘要 p.1；引言 p.2-4；文献与理论贡献 p.4-6；方法（田野实验）p.7-13；关键发现 p.13-27；综合讨论 p.28；局限与未来研究 p.29-30"
+  },
+  {
+    "file": "03 Human-Algorithm Collaboration with Private Information.pdf",
+    "title": "Human-Algorithm Collaboration with Private Information: Naïve Advice Weighting Behavior and Mitigation",
+    "research_question": "当人类掌握算法所没有的私有信息时，如何帮助人有效利用并调整算法建议？为何人-算法协作常未达最优？",
+    "method": "构建信息聚合数学模型（定义 NAW 启发式与最优基准），并开展三项在线实验：Study 1 让参与者对 20 个产品做需求预测并可见算法预测，操控私有信息价值高低与混合；Study 2 测试“特征透明度”干预；Study 3 测试“仅用私有信息调整”的助推干预。",
+    "theory": "判断与决策（judgment and decision making）、建议加权（advice weighting）、人类-算法接口、行为运作。",
+    "contributions": "1）提出并验证“朴素建议加权（NAW）”偏差理论；2）揭示 NAW 导致过/欠依从（依私有信息价值而定），预测误差增 20–61%；3）设计“特征透明度”使误差降 25%，再加助推再降 21%，提供可落地缓解方案。",
+    "key_findings": "人在混合情境下对算法采取恒定加权，导致高价值私有信息时过度依从、低价值时欠依从；特征透明度帮助识别何时偏离（误差降 25%）；让其仅基于私有信息调整（而非加权）再降 34%。",
+    "limitations": "原文未单列“局限”章节，但结论指出：特征透明度与助推仅在人能合理判断自己是否拥有有价值私有信息、并能转化为有效调整时才有效；若特征与公开特征高度相关易被误导，或私有特征关系过于复杂而难以转化，则干预失效。",
+    "pages": "摘要 p.1；引言与理论 p.2-4；贡献 p.4-5；方法与实验 p.5-31；结论（含局限性讨论）p.32（第7节）"
+  },
+  {
+    "file": "04 Can Artificial Intelligence Improve Gender Equality.pdf",
+    "title": "Can Artificial Intelligence Improve Gender Equality? Evidence from a Natural Experiment",
+    "research_question": "在教师性别构成与观念短期内难改变时，AI 能否创造性别中立的学习环境、缩小既有性别差距？",
+    "method": "自然实验：因 COVID-19 隔离，某围棋培训机构随机以 AI 教师替代部分人类教师。对比纯人类教师组（控制组）与接受 AI 教师组（处理组）；数据含对弈记录、问卷与师生互动录像；用机器学习分析教师面部/声音/语言情绪（量化歧视性情绪）。",
+    "theory": "性别歧视与教育公平（DEI）、机器学习情绪分析、社会学习。",
+    "contributions": "1）据称首篇检验用 AI 提升课堂性别平等的研究；2）提出低成本（AI 教师）缩小性别差距的新方案；3）用 ML 系统量化师生沟通情绪，拓展人际沟通研究。",
+    "key_findings": "AI 教师对男女生的学习效果均有提升，并缩小了原有性别差距；问卷显示 AI 的信息优势、友好外观与互动性是主因；录像显示 AI 教师无歧视性情绪是关键机制。",
+    "limitations": "所有培训均为线上进行，推广至面对面教学需谨慎；外部效度取决于 AI 能力、输入、任务性质与人-AI 互动等情境特征；仅围棋这一男性主导领域，推广至其他 AI 项目需验证。",
+    "pages": "摘要 p.1；引言 p.2-5；数据与识别（自然实验）p.5-12；关键结果（含性别差距）p.13-28；稳健性 p.28-29；外部效度与未来研究 p.29（第5/6节附近）"
+  },
+  {
+    "file": "05 Improving Human Sequential Decision-Making.pdf",
+    "title": "Improving Human Sequential Decision-Making with Reinforcement Learning",
+    "research_question": "能否用强化学习从追踪数据（trace data）中自动挖掘“最佳实践”并以可解释的“提示（tips）”传达给人，从而提升其在序贯决策中的表现？",
+    "method": "提出可解释强化学习算法（基于模型蒸馏，搜索 if-then-else 规则以桥接人类策略与最优策略的差距）；在 MTurk 上开展大规模随机对照实验，用自研“虚拟厨房”序贯决策游戏（含正常与中断两种配置），比较算法提示、同伴反馈、描述性统计等条件。",
+    "theory": "行为运作、可解释强化学习、模型蒸馏、序贯决策、人-AI 接口。",
+    "contributions": "1）设计能从追踪数据提炼可操作提示的算法框架；2）大规模行为实验证明提示显著提升人类表现且优于直觉基线；3）发现人并非盲从提示，而是结合自身经验探索额外改进策略，对算法接口设计有启示。",
+    "key_findings": "算法生成的提示显著提升表现；参与者会结合自身体验而非盲目依从；人类同伴提示的依从度反而高于算法提示；针对瓶颈定制的提示能改善长期表现。",
+    "limitations": "实验为确定性虚拟游戏（外部效度受限），未设独立“结论/局限”章节；现实任务含随机需求等更复杂挑战，结论推广需谨慎；依赖同伴反馈受同伴能力局限。",
+    "pages": "摘要 p.1；引言与问题 p.2-4；算法与游戏设计 p.4-6；实验与发现 p.7-13；稳健性/附录 p.13-15（文末为附录，无独立结论章）"
+  },
+  {
+    "file": "06 Interacting with Man or Machine When Do Humans Reason Better.pdf",
+    "title": "Interacting with Man or Machine: When Do Humans Reason Better?",
+    "research_question": "人类推理质量是否因互动对象是“人”还是“算法”而不同？在何种任务难度下与谁协作更优？",
+    "method": "实验经济学方法：设计“红帽谜题/脏脸博弈”逻辑题，分为“与人协作”与“与（永远正确的）AI 协作”两版（界面相同），设 4 个难度等级（反事实推理步数）；附加“与专家人协作”实验以分离“正确性知识”与“非人类”两种解释。",
+    "theory": "实验经济学、人-AI 交互、心智模型理论（mental-model theory）、推理质量。",
+    "contributions": "1）首次干净度量“协作对象”对人类推理质量的影响；2）发现难度调节效应（简单任务与人协作更优、困难任务与 AI 更优）；3）证明差异源于“知 AI 推理正确”而非“AI 非人类”。",
+    "key_findings": "简单任务（2 步推理）中，与人类协作推理更好；困难任务（4 步）中，与 AI 协作推理更好；与专家人协作的推理质量近似 AI 条件、显著异于普通人条件，故效应由“AI 正确性知识”驱动。",
+    "limitations": "原文未单列局限章；AI 被设定为“永远正确”，与现实不完美算法有别；实验为受控逻辑谜题，推广至真实复杂协作任务需谨慎。",
+    "pages": "摘要 p.1；引言与文献 p.2-3；实验设计/方法 p.3-11；结论 p.12（第8节）；附录 p.13-15"
+  },
+  {
+    "file": "07 Behavioral externalities of process automation.pdf",
+    "title": "Behavioral externalities of process automation",
+    "research_question": "流程自动化对与自动化任务协作的人类工人绩效有何行为外部性？哪些行为因素驱动人对机器人的反应？",
+    "method": "构建两工人序贯完成任务的理论模型（随机动态规划、逆向归纳求子博弈完美均衡），并设计激励相容的行为实验：对比“人-人”基线（两任务皆人）与“人-机器人”处理（第二任务由恒定无延迟的机器人完成），并增设仅降低不确定性的对照处理。",
+    "theory": "行为运作管理、随机动态规划、社会偏好（social preferences）、行为外部性。",
+    "contributions": "1）揭示流程自动化是“双刃剑”：提升项目完成率/缩短时长，却降低协作人类自身努力；2）发现工人与机器人协作时反而更拖延（违背原假设）；3）指出社会偏好是核心驱动，亲社会者对人同事更快、对机器人更慢。",
+    "key_findings": "工人普遍偏离最优策略（拖延）；自动化提高项目完成率、缩短时长；但与人-机器人协作的工人完成自身任务更慢；降低后续任务不确定性的收益在“人-人”情境优于“人-机器人”情境，社会偏好解释该差异。",
+    "limitations": "为简化实验室实验，仅自动化第二项任务；未考察早期任务自动化、部分自动化及多工人复杂情境；结论从受控实验推广至真实多工人流程需进一步验证。",
+    "pages": "摘要 p.1；引言与模型 p.2-5；实验与发现 p.5-25；结论与管理启示（含局限/未来）p.26（第6节）"
+  },
+  {
+    "file": "08 Using AI and behavioral finance to cope with limited attention and reduce overdraft fees.pdf",
+    "title": "Using AI and Behavioral Finance to Cope With Limited Attention and Reduce Overdraft Fees",
+    "research_question": "能否用 AI 算法识别易透支用户并发送提醒，以降低透支费？提醒的措辞简化与正负框架如何影响效果？",
+    "method": "随机田野实验：基于美国/加拿大个人理财平台 Mint 的“透支预测（ODP）”机器学习算法筛选高危用户，39,607 名用户分为四组（控制组、提醒组、简化提醒组、负向/正向框架组）；采用参数识别与时间-事件半参数分析。",
+    "theory": "行为金融、有限注意（limited attention）、鸵鸟效应（ostrich effect）、理性疏忽。",
+    "contributions": "1）将 AI 预测与行为干预结合降低金融行为成本；2）证明提醒本身有效，且“简化消息”显著增强效果；3）发现负向框架优于正向框架，并关联中高收入群体的有限注意与低收入群体的鸵鸟行为。",
+    "key_findings": "发送提醒有效；简化消息大幅增强效果；简化版的负向框架引发更高参与度、比正向框架更能降低透支费；显著效应主要出现在中高收入用户，低收入用户打开率低（更似鸵鸟行为）。",
+    "limitations": "实验仅持续约 4 个月（短期，原文称短期性局限被部分抵消）；效应集中在中高收入群体，对低收入者效果有限；个性化消息与更长期影响留待未来研究。",
+    "pages": "摘要 p.1；引言与理论 p.2-4；实验设计 p.3-?；结果与框架效应 p.中（第7节）；结论与局限 p.37（第9节，含短期性局限 p.13附近）"
+  },
+  {
+    "file": "09  Human-robot interactions in investment decisions.pdf",
+    "title": "Human-Robot Interactions in Investment Decisions",
+    "research_question": "当机器人仅提供投资建议而保留投资者最终控制权时，人-机器人交互如何影响投资者注意力、再平衡行为与组合收益？",
+    "method": "实证分析：利用法国大型资产管理机构（Amundi）2017 年 8 月在雇员储蓄计划中引入的 robo-advising 服务；账户级月度数据（2016.1–2021.6），比较采纳者、感兴趣未采纳者（robo-curious）、拒绝者、未暴露者，并构建“若全自动再平衡”的反事实情景。",
+    "theory": "机器人投顾、人-机器人交互、行为金融、金融能力（financial capability）。",
+    "contributions": "1）在“保留控制权”而非“全自动化”的真实设定下刻画人-机器人动态交互；2）证明机器人通过提醒（alerts）提升注意力与再平衡，使组合更贴近目标、收益更高；3）反事实显示全自动再平衡收益仅略高，保留控制权的财务成本不大，且可能促进金融素养。",
+    "key_findings": "采纳 robo-advisor 后投资者访问平台更频繁（+0.3 次/月）、交易与再平衡增加；跟随机器人 alert 使组合更贴近目标、风险暴露更适时，组合收益更高；全自动反事实收益仅略高。",
+    "limitations": "数据无法与“完全自动化机器人”直接对比，亦难考察保留控制权对金融能力的长期后果；静态与动态效应分离困难；样本为法国雇员储蓄计划，推广性有限。",
+    "pages": "摘要 p.1；引言与数据 p.2-5（局限说明见 p.3注脚）；实证发现 p.5-22；结论 p.23（第7节）"
+  },
+  {
+    "file": "10 Humans' Use of AI Assistance The Effect of Loss Aversion on Willingness to Delegate Decisions.pdf",
+    "title": "Humans’ Use of AI Assistance: The Effect of Loss Aversion on Willingness to Delegate Decisions",
+    "research_question": "如何用简单策略缓解“算法厌恶”？将任务结果框架由“收益”改为“损失”是否会影响人把决策委托给 AI 的意愿？",
+    "method": "多项在线实验研究：操纵激励框架（收益框架=表现好得奖；损失框架=表现差从禀赋中扣钱），考察参与者在“无辅助/委托给人/委托给 AI”间的选择；跨不同任务复杂度与激励规模重复验证；用 IS 委托框架与情境意识（situational awareness）作为机制解释。",
+    "theory": "算法厌恶、损失厌恶（前景理论/Tversky & Kahneman）、信息系统（IS）委托框架（Baird & Maruping 2021）、情境意识。",
+    "contributions": "1）提出以“损失框架”缓解算法厌恶的低成本方案（无需重构 AI 系统）；2）证明收益框架下人偏好人类辅助（即使 AI 表现更优），损失框架下人-AI 委托率趋同；3）揭示损失框架通过提升情境意识削弱算法厌恶偏好。",
+    "key_findings": "收益框架（奖励好表现）下，参与者强烈偏好人类而非 AI 辅助，即便 AI 已证明更优；损失框架（为差表现扣钱）下该偏好消失，人委托给人或 AI 的速率相近；效应跨任务复杂度与激励规模稳健；损失框架提升情境意识并驱动该效应。",
+    "limitations": "原文未设独立“局限”章节；基于多组在线实验，外部效度与真实组织场景推广性未充分讨论；主要测度“委托意愿”而非实际任务绩效结果。",
+    "pages": "摘要 p.1；引言与理论 p.2-5；实验与机制 p.5-18；结论 p.19（第6节）"
+  }
+]

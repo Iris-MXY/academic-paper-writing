@@ -1,0 +1,1583 @@
+===== PAGE 1 =====
+ Artificial Intelligence and the Rents of Finance Workers∗
+
+                          Jean-Edouard Colliard† and Junli Zhao‡
+
+
+                                            June 27, 2025
+
+
+
+                                                Abstract
+
+         This paper studies how artificial intelligence (AI) affects the finance labor market when
+         humans and AI perform different tasks in investment projects, and workers earn agency
+         rents that grow with project size. We identify two key effects of AI improvement: A free-
+         riding effect raises worker rents by increasing the probability of successful investment
+         when the worker shirks; A capital reallocation effect shifts investment toward workers
+         with higher or lower rents, depending on which tasks AI improves. Contrary to standard
+         predictions, AI can raise both worker rents and labor demand. We derive implications
+         for capital allocation, labor demand, compensation, and welfare.
+
+
+       Keywords: Artificial intelligence, labor market, automation, rents in finance.
+       JEL classification: D21, G20, O33.
+
+
+
+
+   ∗
+      We are grateful to seminar participants at INSEAD for helpful comments and feedback. Part of this
+research was conducted while Colliard was visiting INSEAD and Sciences Po. Their hospitality is gratefully
+acknowledged.
+    †
+      HEC Paris, Department of Finance, 1 rue de la Libération, 78351 Jouy-en-Josas, France. Email: col-
+liard@hec.fr
+    ‡
+      Bayes Business School, City University of London, 106 Bunhill Row, London, EC1Y 8TZ, United King-
+dom. Email: junli.zhao@city.ac.uk
+
+===== PAGE 2 =====
+Introduction
+Since the public release of ChatGPT in November 2022, the number of tasks that artificial
+intelligence (AI) can complete as well as high-skilled humans has grown rapidly. Finance
+features spectacular examples of AI capabilities, including forecasting earnings on par with
+human analysts (Cao et al., 2024), predicting stock price movements (Lopez-Lira and Tang,
+2024), and even making corporate finance decisions (Campello et al., 2025). These are only
+the latest developments in a longer trend towards automation in finance, which previously
+relied on large datasets and machine learning.1
+       An extent literature in economics has relied on a “task-based approach” to study the
+impact of automation on the labor market (e.g., Acemoglu and Restrepo (2018b)). Under
+this approach, production requires the completion of different tasks, allocated to human
+“workers” or to “machines”. In a competitive economy, workers’ wages and jobs are hurt
+by improvements in the machine if they work on tasks that are substitutes to the machine.
+Conversely, wages and jobs increase for complementary occupations.2 Under this approach,
+the future looks bleak for finance workers: a recent report by Accenture ranks banking as
+the sector of the economy as the sector with the highest share of working hours with “higher
+potential for automation” (54% of hours), followed by insurance second (48%) and capital
+markets fourth (40%).3
+       However, a competitive model may not be sufficient to explain the outcomes on the finance
+labor market. Indeed, Philippon and Reshef (2012) document a premium for finance jobs
+after 1990 that cannot be explained by standard factors. This unexplained component is
+likely an agency rent, due to the widespread use of incentive pay in finance. Célérier and
+Vallée (2019) confirm this hypothesis, and also point out the role of high complementarity
+   1
+      See, e.g., Abis and Veldkamp (2023) for the case of asset management, and Bonelli (2025) for venture
+capital. For an industry view, see for instance “We have ‘surrendered more to the machines’, says quant fund
+titan Cliff Asness”, Financial Times, 4 June 2025.
+    2
+      Some substitution may have already occurred during the “big data” wave of the 2010s. Abis and Veld-
+kamp (2023) show that over 2010-2018 the production function of the asset management industry has changed
+in a way that requires fewer workers to analyze a given stock of data, which reduced the labor share of income
+by 5%.
+    3
+      Bick et al. (2024) report that the use of AI at work was already widespread in the U.S. financial sector
+in August 2024, with 38.1% of respondents in “Business / Finance” occupations reporting using AI at least
+once a week.
+
+
+
+
+                                                      1
+
+===== PAGE 3 =====
+between talent and project size as an explanation of the finance wage premium.
+   In this paper, we ask how the finance labor market is impacted by the development of
+“machines” that are substitutes to workers, taking into account that workers are paid for
+performance, and that their rents increase with project size.
+   To answer this question, we consider a model in which investors optimally allocate capital
+to heterogeneous “financiers” (e.g., banks or active mutual funds) and to a risk-free asset.
+Each financier has access to an investment project, with a marginal cost increasing in project
+size. The success of the project depends on the completion of a continuum of tasks, which
+can be performed by either a worker or a machine. The worker and the machine are perfectly
+substitutable on a given task, and tasks are perfectly substitutable to each other. The
+machine is free to use, while the worker is subject to moral hazard. The worker is more
+productive than the machine at least on some “high-level” tasks. We interpret AI as a
+machine that is also productive on many high-level tasks. The financier has to decide which
+tasks to allocate to the machine and to the worker, and what contract she offers to the worker.
+The market for capital is competitive, so that financiers need to maximize the expected return
+they offer to investors.
+   We obtain that machines impact the labor market very differently from what would hap-
+pen in a competitive model. Two important effects are at play. First, as long as the financier
+decides to use the worker, machine improvement has a “free-riding effect”: the worker is paid
+conditionally on success, and a better machine increases the probability of success even when
+the worker shirks. This leads to higher rents for the worker. Second, machine improvement
+leads to a reallocation of capital across financiers, a “capital reallocation effect”. This effect
+can be positive or negative, depending on which tasks are affected by machine improvement.
+   Overall, we find that under many configurations these two effects lead to larger total
+rents for workers in the financial sector (sometimes, shared across fewer workers). In fact,
+there are only two cases when machine improvement can be negative for workers: (i) if
+the machine improves so much that it is no longer necessary to incentivize workers; (ii) if
+machine improvement disproportionately affects tasks already allocated to machines, which,
+according to our interpretation, is not the case of generative AI for instance. Thus, our
+conclusion is that current developments in AI in finance may in large part be appropriated
+
+
+                                                2
+
+===== PAGE 4 =====
+by workers, contrary to what a standard competitive model would predict. More broadly,
+our results suggest that empirical research on the consequences of automation on the labor
+market should look into the moral hazard component of occupations in addition to the tasks
+involved.4
+       Our model delivers several additional insights and predictions.
+       First, if a financier uses a worker in equilibrium, then too many tasks are allocated to the
+worker relative to a benchmark without moral hazard. Indeed, the worker earns a rent based
+on the success of the project, and is not rewarded for the marginal disutility of work. Hence,
+allocating a marginal task to the worker is free, from the financier’s perspective. This result
+implies that the machine is under-used at the intensive margin.5 Hence, it is possible that
+the potential for automating finance tasks will not be fully realized, because the efficiency
+gains would be captured by workers.6
+       Second, if capital is scarce in the economy, so that investors allocate all of it to the
+financiers, the result above implies that total labor demand is higher in equilibrium than in
+the absence of moral hazard. Hence, finance workers both earn more rents and are more
+numerous, due to the presence of moral hazard. If capital is abundant instead, investors
+allocate some of their capital to the risk-free asset. Without moral hazard the financiers
+would offer higher returns, attract more capital, and this would create a need for more
+workers.
+       Third, we can study different forms of machine improvement, which will have different
+consequences via the reallocation effect. More specifically, our model assumes two types
+of financiers: high types financiers have access to a more productive worker, and low type
+financiers to a less productive worker. Low type financiers optimally use the machine more
+than high types. An improvement in the machine will thus tend to benefit the low types more.
+However, there is a second effect: because project failure is a less informative signal of shirking
+for low type workers, they actually earn higher rents. When the machine improves, such
+   4
+      This could be done across industries/plants using measures of management practices (Bloom et al., 2019).
+In the case of finance, Efing et al. (2022) have employee-level data on bonuses in banks.
+    5
+      There is a less surprising effect at the extensive margin: agency rents make the worker more expensive,
+and if they are too high the financier may decide to not rely on the worker at all. The machine is then
+over-used.
+    6
+      In fact, a hypothesis for why the potential for automation is high in finance is precisely that the presence
+of rents has slowed down the adoption of previous waves of automation.
+
+
+                                                        3
+
+===== PAGE 5 =====
+workers capture a higher fraction of the surplus created by machine improvement. Depending
+on the balance between these two effects, machine improvement may have a stronger impact
+on the performance of high type financiers, or low type financiers. This impact in turn will
+lead investors to reallocate capital from one type to the other.
+   To understand the balance between these two effects, we consider two special cases of
+machine improvement:
+   In the case of a “core” improvement, only tasks that both types of financiers allocate to
+the machine improve. An example would be advances in data analysis. Then the success
+probability increases by the same amount for both types of financiers, but high types leave a
+lower fraction of the surplus as rents to the worker. As a result, capital is reallocated towards
+high type financiers. As high type financiers use more labor and have lower rents, the capital
+reallocation effect is positive for labor and negative for rents.
+   In the case of a “frontier” improvement, only tasks that low type financiers allocate to the
+machine improve. An example would be advances in the use of AI for tasks usually allocated
+to humans. Then the success probability increases only for low type financiers, who attract
+more capital. The capital reallocation effect is then negative for labor but positive for rents.
+   Finally, we compute total welfare in our model as the sum of payoffs to investors, fi-
+nanciers, and workers. Despite machine improvement expanding the production set, this is
+not necessarily welfare improving in the presence of rents. We show in particular that welfare
+decreases if a machine improvement leads some financiers to stop using the worker. Indeed,
+if the machine improves sufficiently, a financier can offer a better return to investors by rely-
+ing only on the machine and reducing the worker’s rents to zero. However, the total return
+of the financier’s project, which includes the part appropriated by the worker, inefficiently
+decreases. In fact, in the absence of moral hazard, it is never optimal to use the machine
+only.
+   The last section of the paper develops two extensions.
+   First, we modify the production function of the financier so that the machine and the
+worker are perfect complements on every task. We show that the free-riding effect still
+obtains in that setup, implying that substitutability is not a necessary condition for ma-
+chine improvement to increase workers’ rents. However, we also show that complementarity
+
+
+                                                4
+
+===== PAGE 6 =====
+makes rents lower, which diminishes the impact of machine improvement. Indeed, agency
+rents derive from the worker being able to shirk and still succeed with a high probability.
+Under complementarity, not exerting effort also decreases the productivity of the machine,
+which decreases the success probability more than under subtitutability. This suggests that
+machine improvement can increase workers’ rents more under substitutability than under
+complementarity, the opposite of what happens in the absence of moral hazard.
+    Second, we consider an extension in which the allocation of tasks is controlled by the
+worker, and is not observable by the financier. This would correspond for instance to a
+covert use of generative AI by employees. In this case, workers earn even higher rents,
+because they need to be incentivized to work on tasks instead of only relying on the machine.
+We show that the free-riding effect is still present, so that machine improvement can still
+increase workers’ rents. However, there is also a second effect: as the machine improves,
+it is in the financier’s interest that the machine is used on more tasks. Hence, it is less
+necessary to disincentivize the worker’s covert use of the machine, so that his compensation
+and rents decrease. This result suggests that empirical research should ideally separate tasks
+and occupations where the use of machines is controlled by the firm from cases where it is
+not.
+    The remainder of this paper is organized as follows. Section 1 positions our paper in
+the literature. Section 2 describes the model, which we then solve in Section 3, both in the
+baseline version and in a benchmark version without moral hazard. Section 4 compares these
+two versions to identify the impact of moral hazard and Section 5 derives comparative statics
+results on machine improvement. Section 6 develops the two extensions mentioned above.
+Section 7 concludes. The figures and proofs omitted from the main text are in the appendix.
+
+
+
+1      Literature Review
+Our paper contributes to the theoretical literature on the determinants of pay in the financial
+sector, more specifically models relating the finance wage premium to the severity of moral
+hazard problems in finance (in particular Axelson and Bond (2015), Biais and Landier (2020),
+and Hoffmann et al. (2022)). Other explanations for high remunerations include the screening
+
+
+                                              5
+
+===== PAGE 7 =====
+of the most talented workers (Bond and Glode, 2014), and excessive competition to attract
+talent into an industry with negative externalities (Thanassoulis, 2012) or fixed-sum surplus
+(Glode and Lowery, 2016).
+       We are aware of only two papers in this literature that consider the impact of technology.
+In Glode and Ordoñez (2024), firms can use technology either to create more surplus or
+to appropriate the surplus created by other firms. Surprisingly, as technology improves,
+more resources will (inefficiently) be allocated to appropriation, regardless of the type of
+improvement. We share the result that even a surplus-improving technology can increase
+rents, but our mechanism is different and gives predictions on the impact of technological
+change within a given activity. Tena (2020) studies a dynamic model of moral hazard and
+shows that the mere anticipation of future automation forces the principal to give high rents
+to the agent ex ante. These rents then decrease when automation becomes feasible. Our
+model does not have these interesting dynamics, but it has several tasks and firms. In
+particular, we show that partial automation can increase rents ex post, which is not possible
+in a single-task model.
+       At a broader level, our paper contributes to a growing literature that studies the au-
+tomation of tasks and its impact on labor market outcomes. We refer the reader to, e.g.,
+Autor (2015), Acemoglu and Restrepo (2018a), and Agrawal et al. (2019) for overviews of
+this literature. A common theme is that machines can substitute humans on some tasks,
+but humans then become more productive in complementary tasks.7 Assuming standard
+competitive markets for goods and labor, whether workers benefit from automation depends
+on the relative strengths of the substitution and complementarity effects.8 Our contribution
+to this literature is to integrate moral hazard and capital allocation in an otherwise simple
+task-based model of automation.9 We obtain very different predictions for the impact of ma-
+   7
+     Brynjolfsson et al. (2018) measure the task content of occupations and point out that few occupations
+only consist in tasks suitable to machine learning.
+   8
+     Empirically, the evidence is mixed. Gregory et al. (2021), Babina et al. (2024), and Aghion et al. (2025)
+report evidence consistent with a positive impact of machines or specifically AI on aggregate labor demand.
+However, Acemoglu et al. (2022), Kogan et al. (2023), Bonfiglioli et al. (2024), or Eisfeldt et al. (2025) also
+provide evidence of a strong substitution effect. In line with our point that a competitive framework may
+not tell the whole story, Jiang et al. (2025) show empirically that even in the case of complementarity, AI
+does not necessarily benefit workers, who work longer and are not compensated in proportion. Part of the
+explanation is market power on the firm’s side, and the possibility to use AI to monitor workers and reduce
+their agency rents.
+   9
+     Acemoglu (2021) allows for a simpler form of worker rents in a task framework by assuming the presence
+
+
+                                                      6
+
+===== PAGE 8 =====
+chine improvement, suggesting that it may be worthwhile for empirical research to separate
+occupations not only according to their task content, but also to the extent of moral hazard
+they are exposed to.
+   Our paper also relates to a growing literature on how technological advancements affect
+the asset management industry. Farboodi and Veldkamp (2020) explore how new technologies
+shift asset managers’ effort allocation between acquiring information about fundamental val-
+ues and anticipating others’ demand. Dugast and Foucault (2025) and Bonelli and Foucault
+(2025) examine how big data influences quantitative and discretionary managers dispropor-
+tionately. Sheng et al. (2024) show that hedge funds have started adopting generative AI,
+with a positive impact on their performance.10 Zhang (2024) shows that AI adoption can
+help fund managers identify investment opportunities. Much of this literature either ab-
+stracts from agency considerations, which are central to our paper, or focuses on specialized
+technologies (e.g., alternative data) accessible only to a subset of managers.
+   A growing literature documents the impact of AI and more broadly technological change
+on other segments of the financial industry.11 Bertomeu et al. (2025) provide evidence that
+financial analysts use ChatGPT, which makes them more accurate. Grennan and Michaely
+(2020) show that, several years before, analysts were already displaced by AI, with some ex-
+iting the industry and others focusing on different tasks. Dessaint et al. (2024) find evidence
+that analysts allocate more effort to tasks where they are more complementary with new
+technology. Jiang et al. (Forthcoming) provide evidence of reallocation for finance jobs most
+exposed to innovations in the FinTech sector. Finally, Eisfeldt and Schubert (2025) system-
+atically measure the exposure of all finance occupations to generative AI. Our model offers
+new predictions, more specific to finance, that can be tested in this literature. In particular,
+an important prediction is that workers should earn higher rents when technology improves,
+provided that they are not entirely displaced by AI.
+   Finally, while the main application of our model is the financial industry, our insights
+can be applied to other sectors and more broadly to any employees or managers who earn
+of a binding minimum wage.
+  10
+     Interestingly, non hedge funds are not impacted and the disparity in returns between the two groups
+increases. In our model this would lead to a capital reallocation effect.
+  11
+     Central banks and financial regulators are impacted too, see Aldasoro et al. (2024).
+
+
+
+                                                   7
+
+===== PAGE 9 =====
+rents due to moral hazard. This relates our paper to a broader literature in economics and
+management on how to organize the collaboration between humans and machines. Boyacı
+et al. (2024) and de Véricourt and Gurkan (Forthcoming) for example explore theoretically
+how a human decision-maker can best exploit a machine on a prediction task. This literature
+in general does not consider moral hazard frictions. An important exception is Athey et al.
+(2020), who study a delegation game in which a principal can delegate a decision to either a
+human agent or an AI, but cannot use transfers to align incentives with the agent. A better
+machine increases the agent’s rent and is thus not always preferred by the principal.12 With
+transfers and heterogeneous agents, we show that the principal always benefits from machine
+improvement, while total rents may decline due to capital reallocation.
+       Several papers in this literature use experiments (conducted either in the laboratory or
+in actual firms) to study the impact of machines on employee performance and the potential
+obstacles to adoption (e.g., Fugener et al. (2020), Allen and Choudhury (2022), Wang et al.
+(2024), Brynjolfsson et al. (2025)). A recurrent empirical result is that some employees, in
+particular more senior ones, are more skeptical of the benefits of AI and more reluctant to
+use it. Our model suggests a rational explanation based on the concern of losing existing
+rents.13 Organizing work and compensation in a way that alleviates such concerns could then
+lead to quicker AI adoption.
+  12
+      Zhong (2025) extends the problem of Athey et al. (2020) to a multi-stage decision problem, focusing on
+the optimal design of the decision process that integrates humans and AI to minimize decision errors. In
+a competitive framework with hierarchical labor structures, Ide and Talamas (2024) and Ide and Talamas
+(Forthcoming) show that, due to the complementarity between the knowledge of solvers (more knowledge-
+able) and workers (less knowledgeable), AI and its improvement with different capabilities have different
+implications for labor outcomes. In contrast, the heterogeneous effect results in our model arises from dif-
+ferences in informational rents, a feature common in many knowledge-intensive occupations. Also but less
+related is Alonso and Câmara (2024), who consider the problem of a firm having to take a decision based on
+data analysis, when the manager in charge of the analysis has the possibility to tamper with the results.
+   13
+      An interesting paper in this direction is Ye (2025), which shows that AI assistance has made it more
+difficult for programmers to signal their skills by sharing their code, prompting programmers to reallocate
+their effort towards other tasks with a higher signaling content.
+
+
+
+
+                                                     8
+
+===== PAGE 10 =====
+2        Setup
+
+2.1       Economic environment
+
+We consider a two-period economy with a risk-free asset, risky projects, a continuum of
+investors, and a continuum of financiers who can invest in the projects on the investors’
+behalf.
+       Investors have one unit of capital each, and form a continuum of total mass K, the total
+capital in this economy. At t = 1, each investor can either invest his capital in a risk-free
+asset or allocate it to a financier, according to a contract defined below. The risk-free asset
+pays a net return normalized to zero in t = 2.
+       There is a continuum [0, NL + NH ] of financiers. The total capital allocated to financier
+n is denoted kn . Each financier invests her capital kn in a project at t = 1, and incurs some
+management costs kn χ(kn ), with χ′ (kn ) ≥ 0, χ(0) = 0, and            lim χ(kn ) = +∞. Thus, the
+                                                                      kn →+∞
+total management costs are an increasing and convex function of kn . The project can either
+succeed or fail in t = 2. A successful investment brings a gross payoff of R > 1 per unit of
+capital invested, whereas a failed investment brings a gross payoff of 0.
+       The probability that the investment is successful depends on the completion of a con-
+tinuum x ∈ [0, 1] of tasks. The weight of task x is f (x), where f is an integrable function,
+       Rx
+F (x) = 0 f (z)dz, and F (1) = 1.
+       Each task can be performed by a human (the “worker”) working for the financier, or by
+a machine, where an (x) denotes the fraction of the task allocated the machine, hn (x) the
+fraction allocated to the worker, and an (x) + hn (x) ≤ 1. The productivity of the machine
+on task x is qM (x). The worker associated with financier n has a productivity equal to en qn ,
+where en ∈ {0, 1} is the financier’s effort. The worker associated with financier n has qn = qL
+if n ∈ [0, NL ] (“type L” financiers and workers), and qn = qH if n ∈ [NL , NL + NH ] (“type
+H” financiers and workers). We assume 0 < qL < qH < 1.14
+       These ingredients determine the probability yn (en ) that financier n’s investment is suc-
+  14
+   Our modeling of the financial sector is close to Bond and Glode (2014), with the addition of tasks and a
+machine, but the limitation that workers’ allocation to financiers is fixed.
+
+
+
+
+                                                    9
+
+===== PAGE 11 =====
+cessful, with:                              Z 1
+                     yn (an , hn , en ) =         [an (x)qM (x) + hn (x)en qn ] f (x)dx.     (1)
+                                             0
+
+                                           ′
+Without loss of generality we assume that qM (x) ≤ 0: tasks are ranked from more to less
+machine-friendly. In particular, we think of AI as a machine such that qM decreases slowly
+and is thus high for many tasks. In contrast, the worker is equally good at all tasks. Moreover,
+we assume qM (0) > qH (the machine is more productive than the worker for the first task),
+and qM (1) = 0 (the machine is useless on the last task). Finally, we denote QM (x̄) the
+average productivity of the machine for tasks below x̄:
+                                                     Z x̄
+                                                            qM (x)f (x)
+                                     QM (x̄) =                          dx.                  (2)
+                                                      0        F (x̄)
+
+The success probability cannot be larger than 1. Moreover, we assume that the financier
+could offer a positive net return equal to RQM (1) − 1 by using the machine only:
+
+                                                 1
+                                                   < QM (1) < 1.                             (3)
+                                                 R
+                                               R1
+Exerting effort costs C(en , hn , kn ) = ckn en 0 hn (x)f (x)dx to the worker: it is proportional
+to the number of tasks allocated to him and to the total capital allocated. The cost of using
+the machine is assumed to be zero, or negligible relative to the cost of effort. We assume
+that effort is economically efficient:
+                                                    c < RqL .                                (4)
+
+All agents in the economy are risk-neutral. Each investor wants to maximize the expected
+return on his savings, and each financier wants to maximize the total profit of her project,
+net of the worker’s compensation and the return offered to investors. A financier can choose
+to not receive any capital and obtain a utility of zero. Similarly, a worker can choose to not
+work for the financier and obtain a utility of zero.
+
+
+
+
+                                                          10
+
+===== PAGE 12 =====
+2.2    Contracting environment
+
+Financiers competitively offer contracts to investors. An investor who accepts a contract
+allocates his unit of capital to the financier, the financier invests this capital into her project,
+and will then return the proceeds of the investment to the investor, minus a compensation
+for the worker and a fee for the financier.
+   We assume that the type of each financier is known to investors. Moreover, in the baseline
+model the allocation of tasks (the functions an and hn ) is observable too. However, the
+worker’s effort is not, which creates a moral hazard or agency problem, in which the financier
+is the principal and the worker is the agent.
+   As contracts are offered competitively, in equilibrium they need to maximize the return
+to the investor (under constraints) and the financiers’ fees are zero. As the worker is risk-
+neutral, standard arguments imply that to solve the moral hazard problem it is sufficient to
+look at contracts specifying a payment wn kn to the worker if the project is successful, and
+the worker receives no payment in case of failure.
+   Thus, the contract offered by financier n is fully characterized by Cn = {qn , an , hn , wn }.
+The investor accepting this contract knows that the financier is of type qn , allocates a fraction
+an (x) of task x to the machine and hn (x) to the worker, and the worker will receive a
+compensation wn per unit of capital in case the project is successful.
+
+
+2.3    Equilibrium definition
+
+An equilibrium of the model is fully characterized by the contracts Cn = {qn , an , hn , wn }
+offered by each financier and the capital kn allocated to her by the investors, for n ∈ [0, NL +
+NH ]. The contracts and the capital allocation form an equilibrium if and only if the following
+conditions are satisfied: (i) incentive compatibility constraints of workers; (ii) participation
+constraints of workers; (iii) each contract maximizes the return to investors; (iv) investors’
+capital allocation is privately optimal.
+   (i) If the worker exerts effort, he suffers a disutility C(1, hn , kn ) and receives wn kn with
+probability yn (an , hn , 1), whereas if he does not he suffers no disutility but receives wn kn with
+
+
+
+
+                                                 11
+
+===== PAGE 13 =====
+probability yn (an , hn , 0) only. This gives us the incentive compatibility constraint:
+
+
+              en = 1 only if kn yn (an , hn , 1)wn − C(1, hn , kn ) ≥ kn yn (an , hn , 0)wn .     (IC)
+
+
+(ii) If the worker exerts effort, the contract has to give him a positive utility. This gives the
+following participation constraint:
+
+
+                        en = 1 only if kn yn (an , hn , 1)wn − C(1, hn , kn ) ≥ 0.               (PC)
+
+
+(iii) The return per unit of capital allocated to financier n writes as:
+
+
+                            αn (kn , a, h, e, w) = rn (a, h, e, w) − χ(kn ),                       (5)
+
+                          with rn (a, h, e, w) = yn (a, h, e)(R − w) − 1.                          (6)
+
+
+Note that we decompose the total return to the investor αn as a return gross of management
+costs rn , minus management costs χ(kn ). This decomposition will be useful below.
+   The contract offered by the financier needs to maximize αn , which gives:
+
+
+  (an , hn , en , wn ) ∈ arg max αn (kn , a, h, e, w) s.t. (IC), (P C), ∀x ∈ [0, 1], a(x) + h(x) ≤ 1.
+                          a,h,e,w
+                                                                                                (MAX)
+(iv) Denote ᾱ = max αn (kn , an , hn , en , wn ) the maximum return offered across all financiers.
+                    n
+Optimal allocation by the investors implies that all financiers receiving a positive amount
+of capital must offer the same return. Moreover, if investors allocate some capital to the
+risk-free asset in equilibrium, then this return has to be zero. This gives us the following
+optimal allocation conditions:
+
+
+
+
+         ∀n ∈ [0, NL + NH ], kn > 0 only if                αn (kn , an , hn , en , wn ) = ᾱ,
+
+                           and kn = 0 only if              αn (kn , an , hn , en , wn ) ≤ ᾱ,   (OA1)
+                                                                  Z NL +NH
+                                    ᾱ > 0 only if                             kn dn = K.       (OA2)
+                                                                    0
+
+
+
+
+                                                     12
+
+===== PAGE 14 =====
+3     Equilibrium
+
+3.1    Complete information benchmark
+
+As a benchmark, we first solve the model assuming that the worker’s effort is observ-
+able, so that there is no moral hazard and we remove the constraint (IC). We denote
+Cn∗ = {qn , a∗n , h∗n , wn∗ } the equilibrium contracts in this benchmark model, and kn∗ the equilib-
+rium capital allocation.
+    We conjecture that any financier n with kn > 0 will choose en = 1, so that the worker
+exerts effort and the participation constraint (PC) will be binding. We can then solve for
+the worker’s compensation as:
+                                                 R1
+                                            ∗   c 0 h∗n (x)f (x)dx
+                                           wn =                      .                              (7)
+                                                  yn (a∗n , h∗n , 1)
+
+Financier n will then maximize the return for investors, and (MAX) becomes:
+                                      Z 1                                       Z 1
+           (a∗n , h∗n ) ∈ arg max R         [a(x)qM (x) + h(x)qn ]f (x)dx − c         h(x)f (x)dx   (8)
+                               a,h     0                                         0
+
+                                 s.t. ∀x ∈ [0, 1], a(x) + h(x) ≤ 1.
+
+
+This program has a simple solution. Define x∗n the threshold task such that using the worker
+or the machine is equally profitable:
+
+
+                                           R[qM (x∗n ) − qn ] + c = 0.                              (9)
+
+
+The solution to (8) is then to choose a∗n (x) = 1 and h∗n (x) = 0 if x ≤ x∗n , and a∗n (x) = 0
+and h∗n (x) = 1 otherwise. Note that our assumptions on qM and qn guarantee the existence
+of a unique x∗n in (0, 1). Moreover, as a solution with en = 0 would be equivalent to setting
+x∗n = 1, the result that x∗n < 1 validates our conjecture that en = 1. We can then compute
+
+
+
+
+                                                       13
+
+===== PAGE 15 =====
+the probability of success and the return gross of management costs as:
+                                         Z x∗n                     Z 1
+                               yn∗   =           qM (x)f (x)dx +          f (x)dx
+                                          0                         x∗n
+                                     = F (x∗n )QM (x∗n ) + [1 − F (x∗n )]qn ,                            (10)
+
+                               rn∗ = Ryn∗ − c[1 − F (x∗n )] − 1.                                         (11)
+
+
+We now turn to the optimal allocation of capital by investors. First, note that rn∗ will be
+the same for all n with the same type. Second, as αn∗ = rn∗ − χ(kn∗ ), (OA1) implies that
+all financiers of a given type receive the same capital, possibly null. Hence, we denote
+                                                                   ∗
+rn∗ = rL∗ , kn∗ = kL∗ , and αn∗ = αL∗ for n ∈ [0, NL ], and rn∗ = rH , kn∗ = kH , and αn∗ = αH for
+n ∈ [NL , NL + NH ].
+                                      ∗
+       Note that we necessarily have rH                                ∗
+                                        > rL∗ . Hence, we cannot have kH < kL∗ , since this
+                   ∗
+would imply αL∗ < αH and yet kL∗ > 0, contradicting (OA1). This implies that there are
+three possible types of equilibrium allocation by investors: (i) they allocate K to the type
+H financiers only; (ii) they allocate K to the type L and type H financiers only; (iii) they
+allocate less than K to the type H and type L financiers, and the rest to the risk-free asset.15
+Which type of equilibrium obtains depends on the total supply of capital as follows:
+
+Proposition 1. Define the following thresholds:
+
+
+                             K0 (rL , rH ) = NH χ−1 (rH − rL )                                           (12)
+
+                             K1 (rL , rH ) = NH χ−1 (rH ) + NL χ−1 (rL ).                                (13)
+
+                       ∗
+We have 0 < K0 (rL∗ , rH                ∗
+                         ) < K1 (rL∗ , rH                               ∗
+                                          ) and: (i) for K < K0 (rL∗ , rH ), all capital is allo-
+                                ∗
+cated to type H financiers, NH kH                    ∗
+                                  = K, kL∗ = 0, and αH > αL∗ > 0; (ii) for K ∈
+            ∗
+[K0 (rL∗ , rH               ∗
+              ), K1 (rL∗ , rH                                                               ∗
+                              )), all capital is allocated to both types of financiers, NH kH +NL kL∗ = K,
+and αL∗ = αH
+           ∗                               ∗
+             > 0; (iii) for K ≥ K1 (rL∗ , rH ), capital is allocated to both types of financiers
+                                ∗
+and to the risk-free asset, NH kH + NL kL∗ < K, and αL∗ = αH
+                                                           ∗
+                                                             = 0.
+
+       Figure 1 below plots the different equilibrium regions as a function of c and K. When
+  15
+     It is easy to see that investors cannot allocate to type H financiers and the risk-free asset, but not to
+                                                                    ∗       ∗
+type L financiers. If this were the case, (OA2) would imply that rH   − χ(kH  ) = 0. Type L financiers would
+                 ∗     ∗
+offer a return αL = rL − χ(0) > 0, which contradicts (OA1).
+
+
+                                                      14
+
+===== PAGE 16 =====
+there is little capital K to allocate, all of it can be allocated to the type H financiers, and they
+can offer a higher return than the type L. As K increases, this return is diminished by the
+         ∗
+costs χ(kH ), and at some point the type L financiers can offer an equally good return if kL∗ is
+sufficiently small, so that both types receive capital. As K increases further, the management
+costs increase and eventually both types of financiers can only offer a zero return. Any extra
+capital is then allocated to the risk-free asset.
+
+                                          [Insert Figure 1 here.]
+
+
+3.2    Equilibrium with moral hazard
+
+We now turn to the main model with moral hazard, and solve for the equilibrium contract
+Cn∗∗ = {qn , a∗∗   ∗∗   ∗∗                          ∗∗
+              n , hn , wn } and capital allocation kn .
+
+   For a given contract {qn , a, h, w} and capital k, denote Un (a, h, w, e) the worker’s util-
+ity from exerting effort e for financier n, per unit of capital, so that his total utility is
+kUn (a, h, w, e). We have:
+                                 Z 1                                         Z 1
+           Un (a, h, w, e) = w         [qM (x)a(x) + qn eh(x)]f (x)dx − ce         h(x)f (x)dx.   (14)
+                                  0                                           0
+
+
+The worker will optimally exert effort if and only if Un (a, h, 1, w) ≥ Un (a, h, 0, w), which
+reduces to w ≥ w̃n , with:
+                                                          c
+                                                 w̃n =      .                                     (15)
+                                                         qn
+Hence, the optimal contract will be to either offer w̃n , or to not rely on the worker at all. In
+this section, for any variable of interest X, we denote X̃n its value at the optimal solution
+under the assumption that financier n uses the worker. Similarly, X̃M denotes the value at
+the optimal solution under the assumption that the worker is not used, where “M” stands
+for “machine only” (note that this solution does not depend on the financier’s type). Finally,
+Xn∗∗ ∈ {X̃n , X̃M } denotes the value at the actual optimal solution.
+
+
+
+
+                                                    15
+
+===== PAGE 17 =====
+   If financier n relies on the worker, she maximizes the return for investors according to:
+                                            Z 1
+                                           c
+               (ãn , h̃n ) ∈ arg max R −         [a(x)qM (x) + h(x)qn ]f (x)dx              (16)
+                                   a,h    qn   0
+
+                                    s.t. ∀x ∈ [0, 1], a(x) + h(x) ≤ 1.
+
+
+The solution is to choose ã(x) = 1, h̃(x) = 0 for x ≤ x̃n and ã(x) = 0, h̃(x) = 1 otherwise,
+with x̃n such that:
+                                         qM (x̃n ) = qn .                                    (17)
+
+This gives us the probability of success and return gross of management costs:
+
+
+                           ỹn = F (x̃n )QM (x̃n ) + [1 − F (x̃n )]qn ,                      (18)
+                                           
+                                          c
+                           r̃n =   R−         ỹn − 1.                                       (19)
+                                         qn
+
+Alternatively, financier n can choose to not use the worker. In that case, given that using
+the machine is free, it is optimal to choose ãM (x) = 1 for every x ≤ x̃M = 1. Thus:
+
+
+                                     ỹM = QM (1),                                           (20)
+
+                                     r̃M = RQM (1) − 1.                                      (21)
+
+
+Financier n finds it optimal to use the worker if and only if r̃n ≥ r̃M , which writes as:
+                   Z 1
+                                                               c
+                R     [qn − qM (x)]f (x)dx ≥ c[1 − F (x̃n )] + F (x̃n )QM (x̃n ) .           (22)
+                                                              qn
+                | x̃n       {z           } |      {z       } |       {z       }
+                 Worker’s added value         Effort cost         Rents
+
+This equation states that it is optimal to use the worker rather than only the machine if
+the value of increasing the success probability (on the left-hand side) is larger than the
+total expected compensation given to the worker, which is the sum of his effort cost and
+informational rents due to moral hazard. Note that, due to assumption (4), in the absence
+of rents, (22) would always hold, as it does in the complete information benchmark. Instead,
+in the presence of moral hazard, whether it is optimal to use the worker will depend on the
+
+
+
+                                               16
+
+===== PAGE 18 =====
+cost of incentivizing him. To see that, define:
+                                    R1
+                                     x̃n
+                                           [qn − qM (x)]f (x)dx                ỹn − QM (1)
+                   ĉn = Rqn                                           = Rqn                .   (23)
+                               qn [1 − F (x̃n )] + F (x̃n )QM (x̃n )                ỹn
+
+It is easy to see that ĉH > ĉL , which corresponds to the fact that the type H worker is more
+productive than the type L. We then deduce from (22) the following result:
+
+Lemma 1. Type H and type L financiers allocate tasks as follows: (i) if c < ĉL , x∗∗
+                                                                                   n = x̃n for
+
+any n ∈ [0, NL + NH ]: both types of financiers use the worker; (ii) if c ∈ [ĉL , ĉH ), x∗∗
+                                                                                           n = 1 for
+
+n ∈ [0, NL ] and x∗∗
+                  n = x̃n for n ∈ [NL , NL + NH ]: only type H financiers use the worker; (iii)
+
+if c ≥ ĉH , x∗∗
+              n = 1 for any n ∈ [0, NL + NH ]: both types of financiers use only the machine.
+
+
+    We can finally solve for the equilibrium capital allocation. The reasoning is the same as
+in the complete information benchmark (Proposition 1). It also has to be the case that kn∗∗
+                                                                    ∗∗
+is equalized for all n ∈ [0, NL ] and denoted kL∗∗ , and similarly kH  for all n ∈ [NL , NL + NH ].
+Only the definition of the returns offered by the financiers is different:
+
+Proposition 2. For n ∈ {L, H}, we have rn∗∗ = r̃n if c < ĉn and rn∗∗ = r̃M otherwise. Define
+                   ∗∗
+K0∗∗ = K0 (rL∗∗ , rH                           ∗∗
+                      ) and K1∗∗ = K1 (rL∗∗ , rH  ).
+                                                                             ∗∗
+    Then (i) for K < K0∗∗ all capital is allocated to type H financiers, NH kH  = K, kL∗∗ = 0,
+ ∗∗
+αH  > αL∗∗ > 0; (ii) for K ∈ [K0∗∗ , K1∗∗ ), all capital is allocated to both types of financiers,
+    ∗∗
+NH kH                             ∗∗
+       + NL kL∗∗ = K, and αL∗∗ = αH  > 0; (iii) for K ≥ K1∗∗ , capital is allocated to both types
+                                              ∗∗
+of financiers and to the risk-free asset, NH kH                             ∗∗
+                                                 + NL kL∗∗ < K, and αL∗∗ = αH  = 0.
+
+                                                        ∗∗
+    Note that in the case where c > ĉH we have rL∗∗ = rH                              ∗∗
+                                                           = r̃M and hence K0 (rL∗∗ , rH  ) = 0.
+Thus, in the case where c is so high that even type H financiers do not use the worker, both
+types necessarily receive capital in equilibrium (since they offer the same returns). Also note
+that ĉL < RqL but ĉH can be higher than RqL , in which case Assumption (4) implies that
+the case c > ĉH is empty. Figure 2 below plots the different equilibrium regions as a function
+of c and K.
+
+                                             [Insert Figure 2 here.]
+
+
+
+                                                       17
+
+===== PAGE 19 =====
+4     Equilibrium Impact of Moral Hazard
+The motivation for our model is that the extent of moral hazard makes finance occupations
+special, which may change how they are affected by new technologies. To better understand
+the impact of moral hazard in the model, this section compares the outcomes obtained in
+the equilibrium with moral hazard and in the complete information benchmark.
+    We first derive a simple observation from Sections 3.1 and 3.2:
+
+Corollary 1. For a given capital kn allocated to financier n: (i) if c < ĉn , x∗∗   ∗
+                                                                                n < xn < 1:
+
+moral hazard leads to under-using the machine; (ii) if c ≥ ĉn , x∗n < x∗∗
+                                                                        n = 1: moral hazard
+
+leads to over-using the machine.
+
+    Two different forces are at play in these two cases. When c is small, tasks are allocated
+both to the worker and to the machine in the presence of moral hazard. The worker derives
+rents, shown in (22), and is compensated based on success and not based on the effort spent,
+as the participation constraint is slack. This implies that the worker does not need additional
+compensation for working on a marginal task. Hence, from the perspective of the financier,
+allocating more tasks to the worker is free at the margin, whereas under complete information
+the cost of effort c would be taken into account. This implies that the worker will be allocated
+tasks x he is better at (qn > qm (x)), but not tasks on which he is more efficient (which would
+be Rqn − c > Rqm (x)). Hence, the worker is allocated too many tasks in the presence of
+moral hazard, and the machine too few.
+    The second force at play is more obvious: moral hazard makes the worker more expensive
+overall, and more so when c is higher. For a high enough c, the financier prefers to not
+use the worker at all and to rely on the machine only. While this necessarily decreases the
+success probability yn , the financier saves on the rents she would have to give to incentivize
+the worker.
+    Second, we analyze how moral hazard affects the equilibrium allocation of capital. This
+depends in turn on how the returns offered by both types of financiers are affected. We derive
+an important preliminary result:
+
+                                                         ∗∗
+Proposition 3. There exists c̃ ∈ (ĉL , ĉH ) such that rH            ∗
+                                                            − rL∗∗ ≥ rH − rL∗ if and only if c ≤ c̃.
+
+
+                                                18
+
+===== PAGE 20 =====
+   This Proposition states that, when the cost of effort c is low, moral hazard makes the
+performance of both types of financiers more unequal. This is true in particular when both
+types of financiers use the worker. Conversely, when c is high, moral hazard makes the
+performance of both types of financiers more equal. This is true in particular when no type
+of financier uses the worker.
+   The intuition for the case c > ĉH is clear: in that case both types of financiers use the
+machine only and offer exactly the same return. For the opposite case c < ĉL , note that
+ ∗∗
+rH            ∗
+    − rL∗∗ ≥ rH                                      ∗
+                − rL∗ is equivalent to rL∗ − rL∗∗ ≥ rH    ∗∗
+                                                       − rH  . The latter condition means that type
+L financiers are more negatively affected by moral hazard than type H financiers. This is
+true when both types use the worker: by exerting effort on task x a type L worker increases
+the success probability by qL f (x)dx, against qH f (x)dx for a type H, with qH > qL . Hence,
+success is a less informative signal about effort for a type L worker, and incentivizing this
+type is more expensive. Mathematically, (15) shows that w̃n decreases in qn .
+   We can use Proposition 3 to study how moral hazard affects which types of financiers
+receive capital in equilibrium:
+
+                                           ∗∗
+Corollary 2. Suppose χ(k) is linear in k. kH            ∗
+                                              − kL∗∗ ≥ kH − kL∗ if and only if c ≤ c̃: moral
+hazard makes the allocation of capital more unequal between type H and type L financiers for
+low c, and more equal otherwise.
+
+   When c is low, the two types of financiers offer more different returns under moral hazard,
+which leads to a more unequal capital allocation. The opposite is true when c is high. The
+condition that χ(k) is linear is required only when K > K1∗∗ .
+   We conclude this section by studying how moral hazard affects the equilibrium level of
+labor. For a given set of contracts Cn = {qn , an , hn , wn } and capital allocations kn , we define
+total labor L as the total effort exerted by workers across all n:
+                                  Z NL +NH           Z 1              
+                           L=                kn en          hn (x)f (x)dx dn.                  (24)
+                                   0                   0
+
+
+We denote L∗ the total labor in equilibrium under complete information, and L∗∗ under moral
+
+
+
+
+                                                     19
+
+===== PAGE 21 =====
+hazard. We have:
+
+                                ∗
+                       L∗ = NH kH [1 − F (x∗H )] + NL kL∗ [1 − F (x∗L )],                    (25)
+                                 ∗∗
+                       L∗∗ = NH kH  [1 − F (x∗∗         ∗∗         ∗∗
+                                             H )] + NL kL [1 − F (xL )].                     (26)
+
+
+The difference between L∗ and L∗∗ is driven by three effects: (i) x∗∗   ∗
+                                                                   n ≤ xn : each financier uses
+                                                                               ∗∗
+the worker for more tasks in the presence of moral hazard (Corollary 1); (ii) kH           ∗
+                                                                                  −kL∗∗ ≥ kH −kL∗
+if and only if c ≤ c̃: for a given total capital allocated to financiers, moral hazard shifts the
+allocation towards the more labor-intensive type H financiers if c is low, and towards the less
+                                                                     ∗∗
+labor-intensive type L financiers otherwise (Corollary 2); (iii) NH kH                 ∗
+                                                                        +NL kL∗∗ ≤ NH kH +NL kL∗ :
+there is weakly less capital allocated to the financiers under moral hazard.
+    The combination of these three effects can in general go in either direction. In particular,
+there is a case in which (i) and (ii) go in the same direction, and (iii) is null, such that
+counter-intuitively the presence of moral hazard leads to more labor in equilibrium:
+
+Corollary 3. Assume c < ĉL and K < K1∗∗ . Then equilibrium labor is higher under moral
+hazard than under complete information: L∗∗ > L∗ .
+
+    The corollary implies more generally that workers can benefit from the existence of moral
+hazard. Not only the workers earn rents, which they do not under complete information,
+but despite labor being more costly the demand for labor can actually be higher. When this
+happens, both the number of employees and their remuneration increase due to the presence
+of moral hazard.
+
+
+
+5     Machine Improvement
+We now study how an improvement in the machine affects the equilibrium in the presence of
+moral hazard. We assume that machine productivity can be written as:
+
+
+                            qM (x) = q̃M (x) + ϵη(x), with η(x) ≥ 0.                         (27)
+
+
+
+
+                                               20
+
+===== PAGE 22 =====
+We will focus on marginal improvements, that is, a small increase of ϵ from a starting value
+of 0.16 This specification allows us to consider a wide range of possible improvements, pa-
+rameterized by the function η. For some results, we will focus on two special cases:
+
+
+                          Core improvement        : η(x) > 0 ⇔ x < x∗∗
+                                                                    H,                                (28)
+
+                      Frontier improvement        : η(x) > 0 ⇔ x∗∗       ∗∗
+                                                                H < x < xL .                          (29)
+
+
+A machine improvement is “core” if it only affects tasks that both H and L financiers are
+already allocating to the machine. In reality, this may be the case of improvements in
+standard datasets, in computing power (e.g., cloud services), in statistical methodologies
+(e.g., adoption of machine learning). In contrast, a machine improvement is “frontier” if it
+affects tasks that some financiers, but not all, are allocating to the machine. Improvements
+in general purpose AI may belong to that category.17
+       It is immediate that an improvement in the machine (weakly) leads to some tasks being
+reallocated from the worker to the machine. Moreover, using (17), we have:
+
+                                       ∂ x̃n         η(x̃n )
+                                             |ϵ=0 = ′          ≥ 0.                                   (30)
+                                        ∂ϵ         |qM (x̃n )|
+
+Note in particular that the impact may be stronger for H financiers or for L financiers.
+Moreover, in the special cases of a “core” or “frontier” improvement, there is no impact on
+task allocation, as η(x̃n ) = 0.
+       We can use (16) and the envelope theorem to study how machine improvement affects
+the returns that different financiers can offer to investors:
+                                                    Z x̃n
+                              ∂r̃n                c
+                                   |ϵ=0 =   R−              η(x)f (x)dx,                              (31)
+                              ∂ϵ                 qn    0
+                                            Z 1
+                             ∂r̃M
+                                   |ϵ=0 = R     η(x)f (x)dx.                                          (32)
+                              ∂ϵ             0
+  16
+    Note that this implies that q̃M satisfies the same same properties as qM .
+  17
+    More generally, we will see below that the impact of machine improvement can depend on the distribution
+of this improvement across tasks. This distribution can be measured empirically. In particular, Hampole
+et al. (2025) measure the dispersion of AI exposure of tasks within an occupation. In our model, a higher
+dispersion would mean that η(x) is more flat over [0, 1].
+
+
+
+
+                                                    21
+
+===== PAGE 23 =====
+We deduce from these expressions the following Lemma:
+
+Lemma 2. The relative impacts of machine improvement on returns are as follows:
+                                                       
+                ∂r̃M               ∂r̃H        ∂r̃L
+                     |ϵ=0 > max         |ϵ=0 ,      |ϵ=0 ≥ 0,                             (33)
+                 ∂ϵ                 ∂ϵ         ∂ϵ
+                                        Z x̃H                       Z x̃L
+    ∂r̃H        ∂r̃L           c     c                              c
+         |ϵ=0 >      |ϵ=0 ⇔      −               η(x)f (x)dx > R −            η(x)f (x)dx.(34)
+     ∂ϵ          ∂ϵ           q L qH       0                       qL    x̃H
+
+
+In particular, (34) is true in the case of a core improvement, and false for a frontier im-
+provement.
+
+   Condition (34) decomposes the relative impact of machine improvement on r̃H and r̃L
+into two effects. On the left-hand side, we have the machine improvement on core tasks.
+Such improvement increases success probability in the same way for both type H and type
+L financiers. However, type L financiers are more exposed to the worker’s moral hazard
+and their investors capture less of the surplus, so that improvements on core tasks benefit
+the type H financiers more. On the right-hand side, we have the machine improvement on
+frontier tasks. As type H financiers do not use the machine for such tasks, such improvement
+only benefits type L financiers. Finally, the impact of machine improvement on the return
+that can be offered by only using the machine is always the highest: all tasks are allocated
+to the machine so the improvement benefits all tasks, and there is no moral hazard since the
+worker is not used, so none of the surplus is dissipated into rents.
+   An implication of the first part of Lemma 2 is that a small increase in ϵ can lead either
+type L or type H financiers to switch from a solution with worker involvement to a solution
+without, but not the opposite. Formally, differentiating (23) shows that ĉL and ĉH are both
+decreasing in ϵ. In what follows, we first study the consequences of machine improvement
+when both types of financiers use the worker. We then briefly discuss the other cases,
+including when the improvement leads one type to switch to a solution with the machine
+only.
+
+
+
+
+                                              22
+
+===== PAGE 24 =====
+5.1    Both types of financiers use the worker: c < ĉL
+
+We first study the case c < ĉL , in which both types of financiers use the worker in parallel with
+                                                         ∗∗
+the machine and offer returns gross of management costs rH  = r̃H and rL∗∗ = r̃L , respectively.
+We assume that c is sufficiently far from ĉL and K from K0∗∗ and K1∗∗ so that machine
+improvement does not change the type of equilibrium. The impact of machine improvement
+on returns then has the following implication:
+
+Proposition 4. When c < ĉL , an infinitesimal increase in ϵ from ϵ = 0 affects capital
+                                          ∗∗
+allocation as follows: (i) If K < K0∗∗ , kH  = K/NH and kL∗∗ = 0 are unaffected; (ii) If
+                                        ∗∗
+K ∈ (K0∗∗ , K1∗∗ ), if (34) holds then kH  increases and kL∗∗ decreases, otherwise the opposite
+                                   ∗∗
+obtains; (iii) If K > K1∗∗ , both kH  and kL∗∗ increase.
+
+   Cases (i) and (iii) are straightforward: when K < K0∗∗ all capital is allocated to type
+H financiers already, so that machine improvement does not change the allocation. When
+K > K1∗∗ some capital is allocated to the risk-free asset. When the machine improves, both
+types of financiers can offer higher gross returns and hence capital flows from the risk-free
+asset to the financiers.
+   Case (ii) is more subtle: capital is only allocated to both types of financiers, and machine
+improvement leads to a reallocation between them. Both types of financiers can offer a
+higher gross return after the machine improves, so capital flows from the financiers with the
+lower increase in returns to the financiers with the higher increase. Which type of financier
+benefits more is then given by Lemma 2. In particular, type H financiers can surprisingly
+attract more capital, for instance in the case of a core improvement, even though they use the
+machine less than type L financiers. This is because moral hazard is less severe for type H
+financiers, so that less of the machine improvement goes to rents for the worker. Conversely,
+for a frontier improvement, capital flows from type H to type L financiers.
+   We can now study how the machine improvement affects the total labor in equilibrium
+L∗∗ . Using (26), we have:
+
+
+
+
+                                                23
+
+===== PAGE 25 =====
+               ∂L∗∗          ∂x∗∗                        ∂x∗∗
+                    |ϵ=0 = − H |ϵ=0 f (x∗∗ H )N   k
+                                                H H
+                                                    ∗∗
+                                                       −    L
+                                                              |ϵ=0 f (x∗∗
+                                                                       L )NL kL
+                                                                               ∗∗
+                ∂ϵ            ∂ϵ                          ∂ϵ
+                              ∗∗
+                           ∂kH                            ∂kL∗∗
+                         +       |ϵ=0 NH [1 − F (x∗∗
+                                                  H  )] +       |ϵ=0 NL [1 − F (x∗∗
+                                                                                  L )].         (35)
+                            ∂ϵ                             ∂ϵ
+
+The first line is necessarily negative due to (30): as the machine improves, necessarily each
+financier uses the machine more and fewer tasks are allocated to the worker. However, it
+cannot be the case that both types of financiers lose capital, so the sign of the second line is
+ambiguous. There are several cases in which we can sign the total impact on labor:
+
+Corollary 4. When c < ĉL , an infinitesimal increase in ϵ from ϵ = 0 has a negative impact
+on total labor L∗∗ if K < K0∗∗ or if K ∈ (K0∗∗ , K1∗∗ ) and (34) is false. Moreover:
+Following a core improvement, L∗∗ decreases if K < K0∗∗ and increases otherwise.
+Following a frontier improvement, L∗∗ decreases if K < K1∗∗ and increases otherwise.
+
+   In particular, this corollary shows that machine improvement can surprisingly lead to a
+total increase in labor, despite the machine and the worker being substitutes. This happens
+when the negative effect due to the reallocation of tasks is dominated by the allocation of
+more capital to financiers. When K > K1∗∗ , investors reallocate capital from the risk-free
+asset to both types of financiers. If the reallocation of tasks is limited (it is null in the case of
+core or frontier improvements), then total labor increases. When K ∈ (K0∗∗ , K1∗∗ ) and (34) is
+true, capital is reallocated from the less labor-intensive type L financiers to the more labor-
+intensive type H. Again, with little reallocation of tasks, total labor increases. If instead
+(34) is false, then all effects go towards less labor.
+   We can go further and analyze whether machine improvement benefits workers. Using
+(14), we derive the equilibrium utility of the worker associated with financier n as:
+
+                                                               ∗∗      ∗∗
+                        ∗∗       ∗∗   ∗∗   ∗∗ ∗∗        ∗∗ F (xn )QM (xn )
+                       Un = Un (an , hn , wn , en ) = cen                  .                    (36)
+                                                                  qn
+
+We then define the total workers’ rents in equilibrium as:
+
+                                             ∗∗ ∗∗
+                                  U ∗∗ = NH kH UH + NL kL∗∗ UL∗∗ ,                              (37)
+
+                                                 24
+
+===== PAGE 26 =====
+so that the impact of machine improvement on rents is:
+                                          Z x∗∗
+         ∂U ∗∗           ce∗∗
+                           H kH
+                               ∗∗
+                                      ∗∗
+                                              H
+                                                                                   ∗∗ ∂xH
+                                                                                          ∗∗
+               |ϵ=0 = NH          F (xH )       η(x)f (x)dx + NH ce∗∗    k
+                                                                       H H
+                                                                           ∗∗
+                                                                              f (x H )       |ϵ=0
+          ∂ϵ                qH             0                                            ∂ϵ
+                                          Z x∗∗
+                         ce∗∗
+                           L kL
+                               ∗∗
+                                      ∗∗
+                                             L
+                                                                                  ∗∗ ∂xL
+                                                                                         ∗∗
+                    + NL          F (xL )       η(x)f (x)dx + NL ce∗∗   k
+                                                                      L L
+                                                                          ∗∗
+                                                                             f (x L )       |ϵ=0
+                           qL              0                                           ∂ϵ
+                         ce∗∗ ∂k ∗∗                              ce∗∗
+                                                                   L ∂kL
+                                                                        ∗∗
+                    + NH H H |ϵ=0 F (x∗∗     H )Q M (x ∗∗
+                                                       H  ) + NL            |ϵ=0 F (x∗∗           ∗∗
+                                                                                       L )QM (xL ). (38)
+                          qH ∂ϵ                                   qL ∂ϵ
+
+The first and second lines are the impact of machine improvement on workers’ rents for a given
+capital allocation, and they consist only of positive terms. Machine improvement increases
+the probability of success, so that the worker is more likely to receive payment. This “free-
+riding effect” is the main difference between a moral hazard model and a competitive model:
+effort is not paid at the worker’s marginal productivity. Instead, the worker is rewarded for
+success, even if the success mostly comes from the machine. This explains that rents can
+surprisingly increase when the machine improves.
+      The third line is a capital reallocation effect. It is clear from (36) that rents per unit of
+capital are higher for type L workers than for type H. This is because the effort of type H
+workers has a bigger impact on success probability, and hence success is a stronger signal
+that effort was provided. As a result, if both types of financiers attract more capital, or if
+capital is reallocated from type H to type L, then machine improvement also increases rents
+via the capital reallocation effect. If instead capital is reallocated from type L to type H
+financiers, then the capital reallocation effect reduces rents and the total impact of machine
+improvement is ambiguous. The next corollary summarizes these results:
+
+Corollary 5. When c < ĉL , an infinitesimal increase in ϵ from ϵ = 0 has a positive impact
+on total workers’ rents U ∗∗ , unless K ∈ (K0∗∗ , K1∗∗ ) and (34) holds, in which case the impact
+has the sign of (38), which is ambiguous.
+
+      We can finally study the impact of machine improvement on total welfare, which we
+denote W ∗∗ . Total welfare is the sum of gains for investors and workers’ rents,18 which
+writes:
+                                       ∗∗
+                            W ∗∗ = NH kH    ∗∗
+                                          (αH  + UH∗∗ ) + NL kL∗∗ (αL∗∗ + UL∗∗ ).                  (39)
+ 18
+      Financiers are competitive and always earn zero surplus in the model.
+
+
+                                                     25
+
+===== PAGE 27 =====
+Similarly to what we did for workers’ rents, we can decompose the impact of machine im-
+provement on welfare into an efficiency gain effect and a capital reallocation effect:
+
+                ∂W ∗∗                  ∗∗     ∗∗
+                                 ∗∗ ∂[αH + UH ]
+                                                                  ∗∗     ∗∗
+                                                            ∗∗ ∂[αL + UL ]
+                      |ϵ=0 = NH kH               |ϵ=0 + NL kL               |ϵ=0
+                 ∂ϵ                      ∂ϵ                         ∂ϵ
+                                ∂k ∗∗      ∗∗              ∂k ∗∗
+                           + NH H |ϵ=0 [αH    + UH∗∗ ] + NL L |ϵ=0 [αL∗∗ + UL∗∗ ].             (40)
+                                 ∂ϵ                         ∂ϵ
+
+On the first line we have the impact of machine improvement via a higher efficiency for a
+given capital allocation. We already know that Un∗∗ increases after the machine improves,
+and it is easy to see that αn∗∗ does too, so this impact is always positive.
+                                                                               ∗∗
+   On the second line we have a capital reallocation effect. Remember that if kH  and kL∗∗
+                        ∗∗
+are both positive then αH                                               ∗∗
+                           = αL∗∗ . As UH∗∗ < UL∗∗ , this implies that αH  + UH∗∗ < αL∗∗ + UL∗∗ : if
+both are active, a type H financier offers the same return as a type L financier, but creates
+less total surplus. Hence, when capital flows from type H to type L financiers the capital
+reallocation effect increases welfare, but otherwise it decreases welfare. We thus obtain a
+corollary similar to Corollary 5:
+
+Corollary 6. When c < ĉL , an infinitesimal increase in ϵ from ϵ = 0 has a positive impact
+on total welfare W ∗∗ , unless K ∈ (K0∗∗ , K1∗∗ ) and (34) holds, in which case the impact has
+the sign of (40), which is ambiguous.
+
+
+5.2    Other cases
+
+We now briefly consider the cases where c ≥ ĉL , so that type L financiers no longer use the
+worker.
+   The case c > ĉH is straightforward: both types of financiers use the machine only, and
+offer the same return to investors. When the machine improves, this return increases, and all
+financiers weakly attract more capital. Workers are never used, hence their total labor and
+their rents are unaffected. Total welfare weakly increases when the machine improves, but
+the effect is null if K > K1 (r̃M , r̃M ), as the productivity increase is compensated by higher
+costs χ(kn ).
+   The case c ∈ (ĉL , ĉH ) is qualitatively similar to the case c < ĉL when only type H
+
+
+                                                26
+
+===== PAGE 28 =====
+financiers are active, or when investors allocate capital to the risk-free asset. The only
+case that is slightly different is when both financiers are active and share K, that is, K ∈
+            ∗∗               ∗∗
+(K0 (r̃M , rH  ), K1 (r̃M , rH  )). Indeed, we know from Lemma 2 that machine improvement in-
+                       ∗∗
+creases r̃M more than rH  . Thus, a reasoning similar to the one of Proposition 4 implies that
+ ∗∗
+kH  decreases and kL∗∗ increases. The capital reallocation effect then implies that total labor
+L∗∗ decreases. Contrary to the case c < ĉL , rents are now higher in type H financiers than
+in type L financiers (where they are null). Hence, the impact on workers’ rents and on total
+welfare is ambiguous.
+   Finally, we can consider what happens if c is just below ĉn , so that machine improvement
+leads type n financiers to stop using the worker, for n ∈ {L, H}. Importantly, as the threshold
+is crossed, rn∗∗ changes from r̃n to r̃M , but there is no discontinuity. As a result, kn∗∗ and
+αn∗∗ move continuously too. In contrast, the labor of type n workers and their rents jump
+discontinuously downwards. We deduce the following:
+
+Corollary 7. For n ∈ {L, H}, consider a machine improvement from ϵ = 0 to ϵ = dϵ, such
+that c < ĉn before improvement and c > ĉn after. Then, for dϵ small enough, improving the
+machine discontinuously decreases total labor L∗∗ , rents U ∗∗ , and welfare W ∗∗ .
+
+   This corollary reflects the fact that the switch to no longer using the worker depends
+on a maximization program that aims at maximizing returns for investors, but neglects the
+worker’s rents. At ĉn , an infinitesimal increase in returns is obtained at the cost of a discrete
+decrease in rents for the worker. This implies that machine improvement leads to a drop in
+total welfare.
+
+
+5.3    Discussion
+
+Machine improvement affects workers’ rents and total welfare via multiple effects, the direc-
+tions of which depend on the type of improvement and on the sign of the capital reallocation
+effect. Table 1 summarizes all the possibilities studied in this section. Moreover, Figure 3
+                                                                    ∗∗
+shows in a numerical example the regions in the (K, c) space where kH  − kL∗∗ , L∗∗ , U ∗∗ , and
+W ∗∗ are affected positively or negatively.
+
+                              [Insert Table 1 and Figure 3 here.]
+
+                                                27
+
+===== PAGE 29 =====
+   We briefly summarize and discuss the results that are specific to our setup with moral
+hazard, and would typically not obtain in a traditional competitive setup.
+   First, machine improvement can sometimes lead to a higher demand for labor, despite
+labor and machines being perfect substitutes. Note that, for a given capital allocation, each
+financier uses the worker on fewer tasks when the machine improves, which is due to the
+substitutability. However, there is an additional capital allocation effect. When capital is
+abundant, all financiers receive more capital as the machine improves, and this increases the
+total demand for labor. More surprisingly, when capital is less abundant and all capital is
+allocated to type H and type L financiers, machine improvement can benefit the type H
+more than the type L financiers, despite type H financiers using the machine less. This is
+due to the presence of moral hazard: type L financiers use the machine more but also need
+to leave a higher proportion of the surplus as rents to the workers. Then, capital can flow
+from type L financiers to the type H financiers, which increases the total demand for labor.
+   Second, machine improvement can actually increase the total utility (rents) of workers,
+and this even when the demand for labor decreases. The reason is that moral hazard implies
+that workers have to be paid conditionally on success. When the machine improves, success
+is more likely, independently of whether the worker exerts effort. Thus, the worker is paid
+not only for his own marginal productivity, but also for the productivity of the machine.
+This is no longer true when the machine becomes so productive that the financier no longer
+uses the worker, in which case rents fall to zero.
+   This last effect implies that a machine improvement, which expands the technical possi-
+bilities of the economy, can actually decrease welfare. Moral hazard creates rents for workers,
+but competition between financiers is based on returns offered to investors, net of the worker’s
+compensation. An improvement in the machine can lead financiers to completely stop using
+the worker, which reduces welfare. Under complete information, it is instead never optimal
+to stop using the worker.
+   Finally, the type of machine improvement matters. It is natural to interpret the develop-
+ment of general-purpose AI as a “frontier improvement”, as it affects tasks that are currently
+done by workers at least in some firms. An interesting prediction from the model is that
+such an improvement will benefit more the financiers that are already more machine-oriented
+
+
+                                              28
+
+===== PAGE 30 =====
+(the L types), so that they will attract more capital. However, these financiers are also those
+whose workers earn the largest rents. The result of reallocating capital from more worker-
+oriented to more machine-oriented financiers is then that total labor decreases, but the rents
+of the remaining workers increase, and total rents increase as well. The prediction here is
+thus one of fewer jobs in the financial sector, but larger rents for each job.
+
+
+
+6     Robustness to Extensions
+In this section we consider two variations of the model: (i) the worker and the machine are
+complements instead of substitutes; (ii) the worker chooses how much to use the machine,
+and this choice is unobservable to the financier.
+    In both cases we focus on studying whether machine improvement still increases the
+worker’s rents in those cases. We abstract away from the capital reallocation effect, which we
+already studied in Section 5, and thus set kn = 1. This also allows us to simplify notations
+and drop the subscript n.
+
+
+6.1     Worker and machine are complements
+
+We modify the model by assuming that the worker and the machine are perfect complements
+instead of perfect substitutes. Formally, we replace (1) with:
+                                Z 1
+                 y(a, h, e) =         min{a(x)qM (x), h(x)[(1 − γ) + γe]q}f (x)dx.             (41)
+                                 0
+
+
+Notice that we also allow the worker to be productive even without exerting effort: the
+worker’s total productivity is still q, and shirking reduces this productivity by a factor γ ≤ 1.
+The previous specification (1) was assuming γ = 1. The reason for this assumption will
+become clear below.
+    If the worker exerts effort (e = 1), it is trivial that for any x it is optimal to have:
+
+
+                                          ã(x)qM (x) = q h̃(x).                               (42)
+
+
+
+
+                                                   29
+
+===== PAGE 31 =====
+The worker’s incentive compatibility constraint is then:
+                   Z 1                         Z 1                       Z 1
+               w         q h̃(x)f (x)dx − c          h̃(x)f (x)dx ≥ w          (1 − γ)q h̃(x)f (x)dx   (43)
+                    0                           0                          0
+                                                                                c
+                                                          ⇔ w ≥ w̃ =              .                    (44)
+                                                                               γq
+
+It is immediate to check that if w ≥ w̃ then the worker’s participation constraint is also
+satisfied. The financier chooses h̃ so as to maximize the return rn to investors, which gives:
+                                Z 1
+                              c
+        h̃ = arg max    R−              qh(x)f (x)dx − 1                                     (45)
+                  h(·)       γq      0
+               s.t.    ∀x ∈ [0, 1], a(x)qM (x) = qh(x), 0 ≤ a(x), 0 ≤ h(x), a(x) + h(x) ≤ 1.
+
+
+We obtain that h̃(x) is characterized by ã(x)qM (x) = q h̃(x) and ã(x) + h̃(x) = 1, which gives:
+
+                                             qM (x)
+                                h̃(x) =                                                                (46)
+                                           q + qM (x)
+                                                   Z 1
+                                                  c       qqM (x)
+                                 r̃n     =   R−                    f (x)dx − 1.                        (47)
+                                                 γq   0 q + qM (x)
+
+
+An alternative solution for the financier is to offer w = 0, so that the worker does not exert
+effort. Denoting this solution with a subscript M , a similar reasoning to the above gives us
+that h̃M (x) is characterized by ãM (x)qM (x) = q(1 − γ)h̃M (x) and ãM (x) + h̃M (x) = 1, so
+that:
+
+                                                  qM (x)
+                                h̃M (x) =                                                              (48)
+                                            (1 − γ)q + qM (x)
+                                              Z 1
+                                                   (1 − γ)qqM (x)
+                                   r̃M    = R                      f (x)dx − 1.                        (49)
+                                               0 (1 − γ)q + qM (x)
+
+
+The financier chooses a solution with positive effort by the worker if and only if r̃ ≥ r̃M ,
+which is equivalent to c ≤ ĉ with:
+
+                                               R1          qM (x)2
+                                           2    0 (q+qM (x))((1−γ)q+qM (x))
+                                                                            f (x)dx
+                                  ĉ = γ qR           R 1 qM (x)                    .                  (50)
+                                                       0 q+qM (x)
+                                                                   f (x)dx
+
+Note that necessarily ĉ > 0. From now on, we focus on the case c < ĉ so that the worker
+
+                                                          30
+
+===== PAGE 32 =====
+exerts effort and receives a positive wage. The worker’s rent in that case is:
+                                       Z 1                    Z 1
+                           ∗∗
+                       U        = w̃  q h̃(x)f (x)dx − c    h̃(x)f (x)dx
+                                        0                 0
+                                        Z 1
+                                  1−γ          qM (x)
+                                =     c                f (x)dx.                          (51)
+                                   γ      0 q + qM (x)
+
+
+We can finally compute the impact of a marginal improvement in the machine:
+                                             Z 1
+                     ∂U ∗∗        1−γ                  qη(x)
+                           |ϵ=0 =     c                          η(x)f (x)dx > 0.        (52)
+                      ∂ϵ           γ          0    [q + qM (x)]2
+
+Thus, our result that machine improvement increases the worker’s rents is robust to a setting
+in which the worker and the machine are complements. This is for two reasons. First, as in the
+case with substitutability, when the machine improves the success probability increases, even
+if the worker shirks. Second, as would happen also on a competitive market without moral
+hazard, the improvement in the machine increases the demand for labor and h̃ increases.
+   Finally, note that the rents and how much they increase when the machine improves
+are scaled by 1−γ
+               γ
+                  . In particular, if γ = 1 as in the baseline model of Section 2, then
+the rents are null. Indeed, in that case, complementarity implies that if the worker shirks,
+then the success probability is zero. This logic extends to lower values of γ: in the case of
+complementarity, when the share of the worker’s output that is subject to shirking increases,
+success becomes more correlated with effort, and the worker’s rents decrease. This suggests
+that, for occupations affected by moral hazard, machine improvement may be less favorable to
+workers complementary to machines than to workers that are substitutes (but not replaced).
+This is in sharp contrast to the competitive case without moral hazard.
+
+
+6.2    Unobservable use of the machine
+
+We now consider a variant of the setup of Section 2 in which the task allocation is chosen
+by the worker rather than by the financier, and the worker’s choice is not observable. This
+reflects current concerns in companies that workers may use AI to perform certain tasks
+
+
+
+
+                                                    31
+
+===== PAGE 33 =====
+without the approval of their management.19
+       The worker’s utility is still given by (14). For a given wage w, the worker will choose a,
+h, and e so as to maximize this quantity. This program is similar to the financier’s program,
+except that the worker receives w in case of success instead of R. Assuming that the worker
+chooses e = 1, the optimal allocation of tasks is to choose ã(x) = 1 if x < x̃ and h̃(x) = 1 if
+x ≥ x̃, with:
+                                           w̃[qM (x̃) − q] + c = 0.                                   (53)
+
+Inverting this expression, if the financier wants the worker to complete tasks x ≥ x̄, she will
+have to offer a wage w̃(x̄) equal to:
+
+                                                           c
+                                            w̃(x̄) =               .                                  (54)
+                                                       q − qM (x̄)
+
+Note that it is impossible to incentivize the worker to complete tasks x < x∗∗ , as qM (x∗∗ ) = q
+(equation (17)). Implementing the same task allocation as in the case where this allocation
+is observable is infinitely costly. Instead, the financier will trade off letting the worker use
+the machine too much (relative to x∗∗ ) against the cost of incentivizing him to complete the
+tasks himself.
+       A second constraint the financier needs to satisfy is that the worker must be better off
+exerting effort than not exerting effort and letting the machine complete all the tasks. This
+incentive compatibility constraint writes:
+
+
+                     w[F (x̄)QM (x̄) + (1 − F (x̄))q] − c(1 − F (x̄)) ≥ wQM (1).                      (55)
+
+
+This condition can be rewritten as:
+                                  Z 1
+                              w         [q − qM (x)]f (x)dx ≥ c(1 − F (x̄)).                          (56)
+                                   x̄
+  19
+   See Yang et al. (2025) for experimental evidence on the “covert” use of generative AI, and the impact of
+companies’ disclosure policies on AI use.
+
+
+
+
+                                                       32
+
+===== PAGE 34 =====
+Using (54), if we replace w by w̃(x̄) in this expression we obtain:
+                               Z 1
+                                      [q − qM (x)]
+                                                   f (x)dx ≥ q − qM (x̄),                      (57)
+                                 x̄     1 − F (x̄)
+
+which is true as qM (.) is decreasing. Hence, if the financier chooses w = w̃(x̄) then the worker
+necessarily exerts effort. The financier’s problem then reduces to choosing the optimal x̄ to
+maximize the return r̃, which we denote:
+
+
+                    x̃ = arg max
+                               ∗∗
+                                  (R − w̃(x̄)) [F (x̄)QM (x̄) + (1 − F (x̄))q].                (58)
+                               x̄≥x
+
+
+
+Solving this program gives us the following result:
+                            ′ (x)
+                           qM
+Proposition 5. Assume       f (x)
+                                  is increasing, and c < ĉ, where ĉ > 0 is defined in Appendix
+A.2.14. Then, the wage optimally offered by the financier is w̃(xu ) > 0, with xu ∈ (x∗∗ , 1).
+The worker completes tasks x > xu and exerts effort, eu = 1.
+                            ′ (x)
+                           qM
+   The assumption that      f (x)
+                                  is increasing is sufficient to ensure the existence of a unique
+solution, whereas c < ĉ ensures that the financier asks the worker to exert effort instead
+of allocating all tasks to the machine. From now on, we focus on the solution derived in
+Proposition 5. We can compute the worker’s rents as:
+
+                       c
+           Uu =                  [F (xu )QM (xu ) + (1 − F (xu ))qM (xu )] − c[1 − F (xu )].   (59)
+                  q − qM (xu )
+
+We want to study whether machine improvement has a positive impact on the worker’s rents.
+             u
+Denoting ∂U
+          ∂ϵ
+             the derivative of U u with respect to ϵ but keeping xu constant, we have:
+
+                                 dU u        ∂U u ∂xu        ∂U u
+                                      |ϵ=0 =          |ϵ=0 +      |ϵ=0 .                       (60)
+                                  dϵ         ∂xu ∂ϵ           ∂ϵ
+
+We can sign the different terms as follows:
+
+                           u                     u         u
+Corollary 8. We have ∂U  |
+                      ∂ϵ ϵ=0
+                             ≥ 0 and ∂U
+                                     ∂xu
+                                         ≤ 0. ∂x  |
+                                               ∂ϵ ϵ=0
+                                                      is positive if and only if η ′ (xu ) ≤ η̂,
+where η̂ > 0 is defined in the Appendix A.2.15.
+
+   The improvement of the machine has several effects on the worker’s rents. The first one
+
+                                                     33
+
+===== PAGE 35 =====
+     u
+is ∂U  |
+    ∂ϵ ϵ=0
+           ≥ 0: this is again the free-riding effect, which is thus robust to the task allocation
+being unobservable.
+    However, there is now a second effect. When the machine improves, and unless η ′ (xu ) is
+too large, the financier targets a task allocation with more tasks allocated to the machine.
+This is intuitive, since the machine is more efficient. However, when machine use is not
+observable, the worker’s rents derive from the financier having to incentivize the worker to
+exert effort instead of free-riding on the machine. As the financier needs the worker less, his
+compensation and rents are lower.
+    This Corollary implies that, perhaps surprisingly, machine improvement is expected to
+increase the worker’s rents less when the worker has full discretion on how to improve the
+machine. His rents are higher than if the use of the machine were observable, but they are
+less sensitive to machine improvement. Figure 4 gives an example in which this happens.
+Intuitively, as the machine improves, the financier wants to use it more, which is exactly what
+the worker is tempted to do. Hence, the conflict between the two decreases, and incentive
+pay decreases.
+
+                                     [Insert Figure 4 here.]
+
+    This result suggests that empirical studies on which occupations are more affected by
+machine improvement should not only distinguish occupations according to how much they
+are exposed to moral hazard (as the comparison between the complete information benchmark
+and the model with moral hazard suggests), but also according to whether the deployment
+of the machine is controlled, or at least observed, by the management.
+
+
+
+7        Conclusion
+A striking feature of recent advances in automation is that they are affecting well-paid knowl-
+edge workers, whereas previous waves of automation typically affected manual workers (Ko-
+gan et al., 2023). Such workers are more likely to receive agency rents. Thus, models designed
+to analyze the automation of manual work and relying on competitive labor markets may not
+tell the whole story. Indeed, our model shows that workers’ rents can actually increase with
+
+
+                                               34
+

@@ -1,0 +1,181 @@
+                                                                                                           PDF Download
+                                                                                                           3670865.3673481.pdf
+                                                                                                           18 December 2025
+                                                                                                           Total Citations: 2
+                                                                                                           Total Downloads: 500
+    .
+    .
+        Latest updates: hps://dl.acm.org/doi/10.1145/3670865.3673481
+
+
+
+
+                                                                                                           .
+                                                                                                           .
+                                                                                                   Published: 08 July 2024
+        .
+        .
+                                                                                                   .
+    EXTENDED-ABSTRACT
+
+
+
+
+                                                                                                   .
+                                                                                                   Citation in BibTeX format
+    AI Oversight and Human Mistakes: Evidence from
+
+
+
+
+                                                                                                   .
+                                                                                                   .
+                                                                                                   EC '24: 25th ACM Conference
+    Centre Court                                                                                   on Economics and
+                                                                                                   Computation
+    DAVID ALMOG, Northwestern University, Evanston, IL, United States                              July 8 - 11, 2024
+                                                                                                   CT, New Haven, USA
+    .
+    ROMAIN GAURIOT, Deakin University, Geelong, VIC, Australia
+
+
+
+
+                                                                                                   .
+                                                                                                   .
+                                                                                                   Conference Sponsors:
+    .
+    LIONEL PAGE, The University of eensland, Brisbane, QLD, Australia                             SIGECOM
+    .
+    DANIEL MARTIN, University of California, Santa Barbara, Santa
+    Barbara, CA, United States
+    .
+    .
+    .
+    Open Access Support provided by:
+    .
+    The University of eensland
+    .
+    Northwestern University
+    .
+    Deakin University
+    .
+    University of California, Santa Barbara
+    .
+                                      EC '24: Proceedings of the 25th ACM Conference on Economics and Computation (July 2024)
+                                                                                        hps://doi.org/10.1145/3670865.3673481
+                                                                                                           ISBN: 9798400707049
+.
+AI Oversight and Human Mistakes:
+Evidence from Centre Court
+DAVID ALMOG, Northwestern University, USA
+ROMAIN GAURIOT, Deakin University, AUS
+LIONEL PAGE, University of Queensland, AUS
+DANIEL MARTIN, University of California, Santa Barbara, USA and Northwestern University, USA
+
+CCS Concepts: • Applied computing → Economics;
+Additional Key Words and Phrases: human-AI interaction, AI oversight, behavioral economics, rational
+inattention
+ACM Reference Format:
+David Almog, Romain Gauriot, Lionel Page, and Daniel Martin. 2024. AI Oversight and Human Mistakes:
+Evidence from Centre Court. In The 25th ACM Conference on Economics and Computation (EC ’24), July 8–11,
+2024, New Haven, CT, USA. ACM, New York, NY, USA, 3 pages. https://doi.org/10.1145/3670865.3673481
+
+Powered by the increasing predictive capabilities of machine learning algorithms, artificial intelli-
+gence (AI) systems have acquired the ability to improve outcomes by overruling human mistakes.
+However, to assess the full impact of adding AI oversight, we must understand whether its presence
+alters human decision-making. While a large amount of research has focused on how humans
+respond when being assisted by AI, very little is known about how humans respond when their
+decisions might be overruled by AI. Because being overruled can carry psychological costs (e.g.,
+shame and embarrassment of being overruled) and psychological benefits (e.g., relief at having
+their mistakes fixed), individuals might alter their decision-making under AI oversight. We pro-
+vide the first field evidence that AI oversight carries psychological costs that can impact human
+decision-making.
+   We investigate one of the highest visibility settings in which AI oversight has occurred: Hawk-
+Eye review of umpires in top tennis tournaments. The introduction of Hawk-Eye, a video-based
+AI system, paved the way for professional tennis players to challenge umpire calls of whether a
+ball had bounced in or out of bounds. When challenged, the umpire’s decision was overturned (or,
+in some cases, the point was replayed) if it differed from the prediction of the highly accurate AI.
+Additionally, the AI’s prediction of the final landing location of the ball was displayed on a large
+screen in the stadium for the umpire, players, and crowd to observe.
+   We compare umpire decisions in tournaments before and after the introduction of Hawk-Eye. Our
+context offers several empirical advantages, including a testing period during which the technology
+was used solely for broadcast and data recording purposes, without a challenge system in place. By
+combining two unique data sources and auditing match videos, we construct a novel dataset to
+identify umpires’ mistakes across 35 tournaments. Out of the 474,102 bounces registered, we focus
+on the 16,812 (3.5%) within 100 mm of the line, where most umpire mistakes occur.
+
+Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and
+the full citation on the first page. Copyrights for third-party components of this work must be honored. For all other uses,
+contact the owner/author(s).
+EC ’24, July 8–11, 2024, New Haven, CT, USA
+© 2024 Copyright held by the owner/author(s).
+ACM ISBN 979-8-4007-0704-9/24/07
+https://doi.org/10.1145/3670865.3673481
+
+
+
+                                                           103
+EC ’24, July 8–11, 2024, New Haven, CT, USA            David Almog, Romain Gauriot, Lionel Page, and Daniel Martin
+
+
+
+
+Fig. 1. Impact of AI oversight on the incorrect call rate by proximity to the line. Each dot represents the
+estimated effect (in percentage points) on the umpires’ mistake rate for different distance bins, after controlling
+for point and match characteristics.
+
+
+
+   We find that umpires lowered their overall mistake rate by 8% (1.1 p.p.), in line with rational
+inattention given psychological costs to being overruled by AI. This improvement is concentrated in
+distant calls (20-100 mm) and situations where the umpire is more prone to distraction (non-serves).
+In the most demanding cases, where umpires were likely to be close to their attention limit (serves
+within 20 mm of the line), the mistake rate actually increased by 22.9% (7.3 p.p.). This puzzling
+result is explained by a behavioral distortion that occurs with AI oversight.
+   This behavioral distortion is a sensible outcome of the asymmetric psychological costs of AI
+oversight in this setting. For umpires, improperly stopping a point (calling a ball out when it was
+actually in) became a new cause of concern with the introduction of Hawk-Eye. Even if a player
+successfully challenges such a call, there is no way to return the point to its previous state, so the
+rules dictate that the umpire must decide whether to replay the point or award it to the challenger,
+placing the chair umpire in a tough and undesired position. When we restrict our analysis to
+the closest calls (<20 mm), Type II errors (calling a ball out when it was actually in) decreased
+by 4.1 percentage points, while Type I errors (calling a ball in when it was out) increased by 8.6
+percentage points, and both changes are statistically significant. We find that for the closest calls,
+umpires increased the rate at which they called balls in by 12.6% (6.2 percentage points) after the
+introduction of Hawk-Eye, leading to the shift from making Type II errors to Type I errors observed
+in Figure 1.
+   We structurally estimate a lower bound on the psychological costs being overruled by AI using a
+model of rational inattentive umpires. We employ a two-stage approach in which we use decisions
+before Hawk-Eye was introduced to recover the perceptual costs of making correct calls, and then
+decisions after Hawk-Eye was introduced to determine the psychological costs of being overruled
+by AI. The resulting estimates suggest that these psychological costs lead umpires to care much
+more about Type II errors (calling a ball out when in) after the introduction of Hawk-Eye review.
+   Our results highlight the fact that while introducing an AI system to overrule apparent human
+mistakes seems promising in principle, especially since it might motivate higher effort from workers,
+there are two primary reasons to approach this with caution. First, there is a free-riding motive in
+which the technology can dissuade decision-makers from contributing effort under the belief that
+
+
+                                                       104
+AI Oversight and Human Mistakes: Evidence from Centre Court    EC ’24, July 8–11, 2024, New Haven, CT, USA
+
+
+important mistakes will be recognized and corrected by the technology. In our empirical application,
+we do not find evidence of this force, but it would likely carry more weight in contexts where
+decision-makers prioritize the ultimate outcome over their own performance. The second reason,
+which appears to play a significant role in the context we study, is an incentive-misalignment
+motive. The implementation guidelines of the oversight mechanism can shift the incentives for the
+decision-maker in a way that deteriorates the overall quality of their decisions from the perspective
+of the social planner. While distorting the relative costs of errors in tennis may not be deemed
+highly consequential from a welfare perspective, there are other contexts, such as medical diagnoses
+and judicial courts, where this distortion can carry great importance.
+
+  Full paper available at: https://arxiv.org/pdf/2401.16754
+
+
+
+
+                                                     105
+

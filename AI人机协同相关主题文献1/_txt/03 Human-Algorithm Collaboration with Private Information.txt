@@ -1,0 +1,1390 @@
+Human-Algorithm Collaboration with Private Information:
+   Naı̈ve Advice Weighting Behavior and Mitigation
+                                                      Maya Balakrishnan
+                                     University of Texas at Dallas, maya.balakrishnan@utdallas.edu
+
+                                                     Kris Johnson Ferreira
+                                              Harvard Business School, kferreira@hbs.edu
+
+                                                           Jordan Tong
+                                         Wisconsin School of Business, jordan.tong@wisc.edu
+
+
+                                                          July 8, 2024
+
+     Even if algorithms make better predictions than humans on average, humans may sometimes have private information
+     which an algorithm does not have access to that can improve performance. How can we help humans effectively use
+     and adjust recommendations made by algorithms in such situations? When deciding whether and how to override an
+     algorithm’s recommendations, we hypothesize that people are biased towards following naı̈ve advice weighting (NAW)
+     behavior: they take a weighted average between their own prediction and the algorithm’s, with a constant weight across
+     prediction instances, regardless of whether they have valuable private information. This leads to humans over-adhering
+     to the algorithm’s predictions when their private information is valuable and under-adhering when it is not. In an online
+     experiment where participants are tasked with making demand predictions for 20 products while having access to an
+     algorithm’s predictions, we conﬁrm this bias towards NAW and ﬁnd that it leads to a 20-61% increase in prediction error.
+     In a second experiment, we ﬁnd that feature transparency – even when the underlying algorithm is a black box – helps
+     users more effectively discriminate how to deviate from algorithms, resulting in a 25% reduction in prediction error. We
+     make further improvements in a third experiment via an intervention designed to move users away from advice weighting
+     and instead use only their private information to inform deviations, leading to a 34% reduction in prediction error.
+
+     Key words: human-algorithm interaction, forecasting, behavioral operations, algorithm transparency, advice taking
+
+
+
+
+1.    Introduction
+Organizations are seeking to incorporate data-driven algorithms into their decision making pro-
+cesses. PricewaterhouseCoopers (2022) reports that 86% of executives consider AI algorithms a
+“mainstream technology,” with 74% believing these algorithms would add value to their companies
+by, for example, improving operations, marketing, and HR decisions. However, despite the promise
+of algorithms and their widespread adoption, implementations are not always successful. In fact,
+only 10% of companies that adopted advanced algorithms like AI report seeing signiﬁcant ﬁnan-
+cial gains, according to Ransbotham et al. (2020). When algorithms show signiﬁcant promise in
+
+                                                                  1
+2                                         Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+simulations and on historical data, but have disappointing performance once implemented, blame
+is commonly aimed at the humans that use the algorithms. This blame is sometimes warranted:
+people often have the power to override algorithm recommendations, and there are many examples
+of such overrides degrading performance (see §2.1).
+    Given such disappointing examples, it can be tempting to take the perspective that humans are
+a barrier to achieving the beneﬁts of algorithms: If algorithm aversion causes people to override
+superior algorithms, shouldn’t the goal be to get people to trust algorithms more, or even remove
+them from the process? Indeed, ﬁnding ways to increase people’s adherence to and trust in algo-
+rithms has been the focus of much research (see §2.3). While this response is appropriate in some
+cases, we take a different and more collaborative perspective. Namely, we start with the premise
+that humans are not merely barriers, but that humans and algorithms have relative strengths and
+weaknesses. Even when algorithms are superior to humans on average, theoretically, their collab-
+oration should be able to outperform either on its own. In settings where this is possible: What is
+it about human overriding behavior that causes them to miss this opportunity? How can we design
+the interaction between humans and algorithms such that their collaboration is more successful?
+    To investigate these questions, we focus on prediction tasks (e.g., forecasting demand) where
+human decision makers are given recommendations in the form of predictions from an algorithm,
+which they are freely able to override to make a ﬁnal prediction. We consider key relative strengths
+of humans and algorithms. Prediction algorithms advance in accuracy and sophistication every
+year, so we simplify their strength by assuming an algorithm uses its available information opti-
+mally. Relative to algorithms, humans are noisy and more limited in information processing power,
+so what advantages do humans have? One of their most important relative strengths is that humans
+sometimes have access to private information: any information with predictive value that the algo-
+rithm does not take into account. There are many examples: A fashion retail manager may know
+from social media that a product is trending, but such information may not be used by the com-
+pany’s forecasting algorithm (Cui et al. 2018); a doctor may know a patient’s surgery is unusually
+complicated based on how it looks, even if such information is not in the hospital’s information
+system (Ibrahim et al. 2021, Kim and Song 2022); HR managers making hiring decisions interview
+candidates, though a scoring algorithm may be based only on test scores and resumes (Hoffman
+et al. 2018). In such examples, companies often cite private information as one of the key reasons
+why ﬁnal decision authority is given to employees (Davenport and Miller 2022). Of course, having
+valuable private information does not necessarily mean humans will make override decisions that
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information          3
+
+improve upon the algorithm’s performance. But, eliminating humans from the process precludes
+being able to take advantage of such private information.
+   Focusing our attention on these relative strengths allows us to approach our research questions
+in the context of an information aggregation problem, which allows us to leverage existing decision
+analysis and judgment and decision making literature to better theorize how and why overriding
+behaviors tend to be biased. To develop our theory, we construct a mathematical model that deﬁnes
+the information setting, algorithm’s predictions, and best prediction benchmark. We then examine
+the impact of certain behavioral assumptions about how people make ﬁnal predictions after seeing
+an algorithm’s recommendation. We theorize that due to cognitive limitations, people are biased
+towards following a predictable heuristic we call naı̈ve advice weighting (NAW). A person who
+follows NAW arrives at a ﬁnal prediction by taking a constant weighted average between what
+the algorithm recommends and what their own prediction would have been without the algorithm.
+Although such an advice weighting strategy is natural and commonly-recommended as an effec-
+tive way to aggregate advice from multiple sources, we show that NAW is typically suboptimal
+when providing an algorithm’s predictions to a human with private information. Namely, NAW is
+overly constant: it causes people to over-adhere to the algorithm when they have highly valuable
+private information and under-adhere to the algorithm when they do not. Moreover, it is subop-
+timal because the best prediction may not even lie between the algorithm’s recommendation and
+the person’s own initial prediction; the person’s initial prediction may be lower than the algorithm
+even when their private information suggests predicting higher than the algorithm.
+   We further conduct a controlled online experiment that seeks to test the over- and under-
+adherence pattern predicted by our theory. In Study 1, following training and feedback about the
+algorithm’s and their own performances, participants predict demand for 20 products with the algo-
+rithm’s recommendations. The only difference between conditions is that some participants always
+have high-impact (very valuable) private information, some always have low-impact private infor-
+mation, and some face a mixed set of the two instances. We ﬁnd that participants who always have
+low-impact private information generally adhere to the algorithm, while those who always have
+high-impact private information generally do not. However, consistent with NAW, participants see-
+ing a mixed set adhere to the algorithm to a similar degree across high- and low-impact private
+information instances, resulting in the predicted over- and under-adherence pattern. This leads to
+a 20 - 61% increase in prediction error relative to the non-mixed conditions. In summary, partic-
+ipants in the mixed set condition failed to use their private information to collaborate effectively
+with the algorithm because they couldn’t differentiate when their private information was valuable.
+4                                            Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+     Based on these results, we design and test a type of algorithm transparency aimed at mitigating
+the underlying driver of bias. Speciﬁcally, we hypothesize that feature transparency – explicit
+training on the variables that the algorithm takes into account – helps participants address the
+core problems of NAW by making it easier for them to identify what their private information is,
+when it warrants a substantial deviation from the algorithm, and in which direction. In Study 2, we
+compare feature transparency to no transparency. Using the same mixed set condition from Study
+1, Study 2 shows that feature transparency indeed helps people detect when they should adhere
+more or less to the algorithm, resulting in a 25% reduction in prediction error. In Study 3, we design
+an intervention aimed at increasing the effectiveness of feature transparency by nudging people
+away from advice weighting strategies altogether, thus making it more likely that they adjust the
+algorithm’s predictions solely using their key relative strength: their private information. We ﬁnd
+that this intervention is highly effective, improving the rate of adjustments in the right direction
+and leading to an additional 21% reduction in prediction error over feature transparency alone.
+     We summarize our main contributions as follows:
+    1. We deﬁne and examine new theory that describes algorithm overriding behavior when peo-
+       ple have private information. We propose and ﬁnd empirical evidence that people are biased
+       towards a naı̈ve advice weighting heuristic.
+    2. We analyze how NAW degrades human-algorithm collaborative performance, ﬁnding both
+       theoretically and empirically an over- and under-adherence pattern that depends on the value
+       of people’s private information. We illustrate that the cost of these biases can be signiﬁcant.
+    3. We design and experimentally test feature transparency as an implementable mitigation
+       approach that can help people better identify and use their private information. We achieve
+       further improvements by nudging people away from advice weighting heuristics and instead
+       towards using only their private information to adjust algorithmic recommendations.
+
+2.     Literature Review
+2.1.    Algorithm Overriding
+Do human overrides to algorithm predictions help or hurt in practice? Field evidence from a variety
+of business contexts provides several examples of overriding degrading performance: doctor over-
+rides of task-scheduling algorithms decreased productivity (Ibanez et al. 2018), retail store man-
+ager overrides of price markdown algorithms decreased revenue (Caro and Saez de Tejada Cuenca
+2022), and auto-part manager overrides of SKU phase-out algorithms decreased proﬁts (Kesavan
+and Kushwaha 2020). Laboratory experiments provide further examples (e.g., see Snyder et al.
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information            5
+
+2022, Lehmann et al. 2022). Of course, human overrides don’t always degrade performance. For
+example in Fildes et al. (2009), forecaster overrides improved accuracy on average in 3 out of 4
+supply chain companies investigated. Moreover, even in settings where human overrides degrade
+performance on average, they may improve performance on predictable subsets of situations.
+For example, in Kesavan and Kushwaha (2020), although overrides hurt proﬁts on average, they
+improve proﬁts for growth-stage products. Similarly, for demand forecasters in Khosrowabadi et al.
+(2022), algorithm overrides didn’t improve accuracy on average, but did help for expensive and
+non-fresh products. In general, these ﬁeld studies point to the importance of understanding how
+people make override decisions so that we can help humans override in such a way that consistently
+yields improvement over the algorithm alone.
+   Relatedly, there is diverse research that suggests a variety of possible psychological factors con-
+tributing to why people override algorithms. For example, even if an algorithm performs well,
+people may be averse to using something they don’t understand (Yeomans et al. 2019). They might
+feel like the task is too subjective for an algorithm (Castelo et al. 2019). People may be more tol-
+erant of their own mistakes than an algorithm’s (Dietvorst et al. 2015). They may also perceive an
+algorithm as too simple or too complex (Lehmann et al. 2022). In contrast to this body of work
+on psychological reasons for overriding, we focus on a setting with a purely rational reason for
+overriding: people may have access to private information that the algorithm does not use.
+
+2.2.    Aggregation Strategies
+How should one aggregate an algorithm’s predictions with a human who has private information?
+Such a prescriptive question belongs to a broader area of research on judgment aggregation strate-
+gies, which has addressed this question primarily in the context of aggregating multiple human
+judgments. A main ﬁnding is that simple averaging strategies work surprisingly well (e.g., Clemen
+1989, Blattberg and Hoch 1990, Surowiecki 2005, Larrick and Soll 2006). However, substan-
+tial improvements over simple averaging can be achieved when people have shared information.
+Recent research has developed strategies for combining judges’ predictions to address this shared
+information problem, for example by asking an additional question that can help an algorithm
+infer the amount of shared information (e.g., Palley and Soll 2019). Other strategies include strate-
+gic identiﬁcation of experts and upweighting their predictions (e.g., Soule et al. 2023). Our work
+similarly seeks to understand and address the shared information problem. However, unlike most
+of the above papers, it addresses the problem between an algorithm and a human, importantly
+considering the relative strengths and weaknesses of each.
+6                                          Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+    In a review paper, Arvan et al. (2019) outline two paradigms of how human and algorithm
+forecasts can be combined to produce superior forecasts. In one paradigm, an algorithm makes the
+ﬁnal forecast after receiving a human’s prediction as an input. Several papers study how best to
+elicit forecasts and/or private information from humans and how to use them as inputs to algorithms
+(e.g., Ball and Ghysels 2018, Flicker 2018, Ibrahim and Kim 2019, Ibrahim et al. 2021, Brau
+et al. 2023). An alternate paradigm, which we study, is when a human makes the ﬁnal forecast
+(e.g., Luong et al. 2020, though their focus is on binary – rather than continuous – prediction
+tasks). Such a human-oversight policy is common in practice as it allows humans to override the
+algorithm’s recommendation when they have private information (Davenport and Miller 2022). It
+is even required across many settings for legal or ethical reasons (Green 2022).
+    This second paradigm is related to a broader stream of literature on how people make ﬁnal deci-
+sions when they receive a recommended prediction from an external advisor. A common model
+used to study this question is a Judge-Advisor System (JAS), which can be applied to human advi-
+sors (e.g., Bonaccio and Dalal 2006, Soll et al. 2021) and algorithmic advisors (Logg et al. 2019,
+Lehmann et al. 2022). In JAS, a human judge ﬁrst forms their initial prediction, then they receive
+a prediction from an advisor, and then they make a ﬁnal prediction. The Weight on Advice (WOA)
+metric refers to where the ﬁnal prediction lies on the interval between the initial prediction and
+the advice; a WOA of 0 represents ignoring the advice, while a WOA of 1 represents completely
+taking the advice. Many papers report on various factors that impact WOA, but all typically report
+very high rates (often over 95%) of what we call “advice weighting” behavior, where people’s ﬁnal
+predictions are a weighted average of their initial prediction and the advice (e.g., Soll and Larrick
+2009, Gino and Moore 2007, Logg et al. 2019). This is for good reason: in cases without clear pri-
+vate information, it can be difﬁcult to identify a strategy that will outperform advice weighting. We
+examine how people take the advice of an algorithm and also report WOA measurements. How-
+ever, unlike most papers in this stream of work, we examine settings in which the participant has
+objective and measurable reasons to deviate from the algorithm’s advice – namely, valuable private
+information – that may vary across instances. Moreover, we examine how participants can improve
+their performance by deviating from an advice weighting approach using their private information.
+    Beyond the aggregation strategies detailed above, delegation strategies have also been proposed
+for settings where humans sometimes have valuable private information (Ross and Taylor 2021);
+such strategies typically implement a heuristic that delegates prediction instances to either a fully-
+automated algorithm or to the employee (Fügener et al. 2022). Naturally, in order for delegation
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                7
+
+strategies to work well, the system designer must be able to predict when the employee has valuable
+private information often without observing it, which – as in our experiments – is not always
+possible. Furthermore, ﬁnal decision-making authority should or must stay with a human in some
+situations for a variety of other reasons (e.g., due to regulatory, ethical, or oversight considerations).
+
+2.3.    Algorithm Transparency
+How do you design algorithms to mitigate end-user biases? Though there are a variety of strate-
+gies, our paper focuses on providing ex ante algorithm transparency, where aspects of the model
+are described to the user. There are many such types of transparency. Comprehensive ex ante trans-
+parency allows people to fully simulate the algorithm’s predictions (Lage et al. 2019). One can also
+provide transparency into certain components, such as how the model was trained (Anik and Bunt
+2021, Gebru et al. 2021); these types of component transparency have been advocated and imple-
+mented by industry leaders like Google and IBM (Hind et al. 2020, Gebru et al. 2021, Mitchell
+et al. 2019). However, unlike the above papers, we make precise predictions about how private
+information interacts with human cognitive biases to make different types of transparency help or
+hurt in predictable circumstances.
+     Commonly, algorithm transparency is provided along with a pro-algorithm nudge in an attempt
+to increase end-user trust, which can be subjectively measured (e.g., Likert scale as in Cadario et al.
+2021) or observed (e.g., algorithm use rate as in Yin et al. 2019). Nevertheless, there is not uniform
+evidence that algorithm transparency and nudging people to follow the algorithm increases trust
+(Lehmann et al. 2022, Bolton et al. 2022). Also, increased trust does not always lead to better
+outcomes, as people may suffer from information overload (Poursabzi-Sangdeh et al. 2021) or
+overly trust the algorithm when they shouldn’t (Lakkaraju and Bastani 2020). We contribute to
+these papers by identifying a type of transparency and corresponding nudge that increases trust
+when the algorithm should be superior and decreases trust otherwise.
+
+3.     Theory Development
+3.1.    Model Setting, Deﬁnitions, and Assumptions
+Consider a setting where outcome Yi is a function of public feature vector Xipub , private feature
+vector Xipriv , and mean-zero random noise i for each instance i = 1, 2, ..., n, i.e.,
+
+                                                   Yi = factual (Xipub , Xipriv ) + i .              (1)
+
+We assume {(Xipub , Xipriv , i )}i=1,..,n are independent and identically distributed. (However, Xipub
+and Xipriv can be dependent.)
+8                                                Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+    The human decision-maker is tasked with predicting outcome Yi given a realization of the feature
+vector (xpub  priv
+         i , xi    ). We model human j’s prediction without seeing an algorithm, which we call
+their initial prediction, for instance i as:
+
+                                     Ŷijinit = finit,j (Xipub , Xipriv ) + ηij .                                                   (2)
+
+Here, finit,j may differ from factual , reﬂecting the idea that humans may use feature information
+in a systematically incorrect manner. Also, ηij is a zero-mean, random variable, reﬂecting the idea
+that even given identical information, humans may be noisy (e.g., Su 2008, Kahneman et al. 2022).
+    We consider the situation where the decision-maker has access to an algorithm that they can use
+to help predict Yi . The algorithm uses only public features as inputs. Its prediction is:
+
+                                              Ŷialg = falg (Xipub ) .                                                              (3)
+
+    Finally, we can deﬁne the best prediction benchmark as:
+
+                                          Yi∗ = factual (Xipub , Xipriv ).                                                          (4)
+
+The gap between the best prediction benchmark Yi∗ and the algorithm’s prediction Ŷialg represents
+the potential improvement that the human could theoretically make over the algorithm’s prediction,
+which could come from either (i) the use of private features Xipriv for which the algorithm does not
+have access, and/or (ii) better use of public features Xipub . For ease of exposition and in line with
+our experiments, we assume that the algorithm optimally uses Xipub when making its predictions,
+and thus any improvement that the human can make over the algorithm’s prediction is due to their
+use of Xipriv . With this in mind, we deﬁne the impact of private features as follows:
+Deﬁnition 1. The impact of private features for feature vector (Xipub , Xipriv ) is
+
+                          Vi  Yi∗ − Ŷialg = factual (Xipub , Xipriv ) − falg (Xipub ).
+
+    Since realization vi can be positive or negative, we will use the squared impact of private features
+(Vi )2 as a measure of the impact in an absolute sense. The following two assumptions are sufﬁcient,
+but not always necessary for our results.
+Assumption 1. The human’s initial prediction and the algorithm’s forecasts are unbiased, i.e.,
+E[Ŷiinit − Yi ] = E[Ŷialg − Yi ] = 0.
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information             9
+
+   Note that the expectation is over random variables Xipub , Xipriv , ηij , and i . It does not imply
+that the human and algorithm are unbiased for every instance i; rather, it implies that the human
+and algorithm will not be systematically too high or low over a large number of instances.
+Assumption 2. The human’s initial prediction error Ŷiinit − Yi and the algorithm’s prediction
+error Ŷialg − Yi are independent.
+   Assumption 2 states that the human’s initial prediction accuracy does not provide information
+about the algorithm’s accuracy, and vice versa.
+
+3.2.    Behavioral Model of Advice Weighting
+
+How do humans with access to an algorithm’s prediction make a ﬁnal prediction? Following the
+advice weighting literature (see §2.2), we hypothesize that humans tend to take a weighted average
+of their initial prediction and the algorithm’s prediction to make a ﬁnal prediction:
+
+
+                                                 Ŷijf inal = λij Ŷialg + (1 − λij )Ŷijinit ,    (5)
+
+
+where λij ∈ [0, 1] is the weight that human j places on the algorithm’s prediction. For brevity, we
+omit subscript j when the context is clear. A larger (smaller) value of λi means that the human
+places more (less) weight on the algorithm’s prediction.
+   One can see that the human’s ﬁnal prediction accuracy depends, in part, on how they choose the
+value of λi . We believe humans tend to be biased towards naı̈ve advice weighting (NAW), which
+we deﬁne as placing the same weight on the algorithm’s prediction, regardless of feature vector
+(xpub  priv
+  i , xi    ), i.e. λi = λ for each instance i. Naı̈ve advice weighting is suboptimal for two reasons:
+   • First, differential weights are not applied across instances with different impacts of pri-
+       vate features. We examine this driver of suboptimality in §3.3. To do so, we contrast naı̈ve
+       advice weighting with sophisticated advice weighting – where differential weights are applied
+       depending on feature vector (xpub  priv
+                                     i , xi    ).
+   • Second, advice weighting in general – even the best possible sophisticated advice weighting
+       strategy – is suboptimal when Yi∗ cannot be characterized as a convex combination of Ŷiinit
+       and Ŷialg ; we examine this driver of suboptimality in §3.4. Importantly, the human could use
+       their private information to identify when advice weighting is suboptimal.
+Our results will guide our experimental designs and hypotheses which we preview in §3.5.
+10                                                   Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+3.3.    Naı̈ve Advice Weighting is Suboptimal Because the Weights are Overly Constant
+We now show that a sophisticated advice weighting strategy that implements non-constant weights
+can outperform even the best possible naı̈ve advice weighting strategy, found by solving
+                                                                         2 
+                              N AW : min E Yi − (λŶialg + (1 − λ)Ŷiinit ) .                                                           (6)
+                                           λ∈[0,1]
+
+N AW ﬁnds the constant weight on algorithm that minimizes the expected squared error of the
+ﬁnal prediction, Ŷif inal . Practically, it could be approximated by solving for the λ that minimizes
+the sum of squared errors over a large historical dataset of realizations ŷi , ŷialg , ŷiinit .
+Proposition 1. Under naı̈ve advice weighting, the optimal weight on algorithm λN AW is
+
+                                                          E[(Yi − Ŷiinit )2 ]
+                                    λN AW =                                                       .
+                                               E[(Yi − Ŷiinit )2 ] + E[(Yi − Ŷialg )2 ]
+     The optimal weight on algorithm under NAW is intuitively appealing: it puts more weight on
+the algorithm if it has smaller expected squared errors relative to the human’s initial forecasts.
+Empirical evidence also suggests that humans generally weight advice in a similar manner: they
+increase their weight on advice as the advisor’s accuracy increases (Harvey and Fischer 1997,
+Yaniv and Kleinberger 2000, Sniezek and Van Swol 2001, Sah et al. 2013, Soll et al. 2021).
+     Although intuitive, naı̈ve advice weighting is suboptimal in part because the weight is constant,
+but the algorithm’s accuracy is not, when the impact of private features varies. Intuitively, the
+human could use (xpub  priv
+                  i , xi    ) to predict when the algorithm will be more (less) accurate and
+put more (less) weight on the algorithm. To formalize this intuition, we deﬁne a sophisticated
+advice weighter as one who ﬁrst categorizes feature vectors into groups with different average
+impacts of private features, and then calculates a different weight on algorithm for each group. (We
+consider only 2 groups, but the analyses could be extended to more.) Let S denote the domain of
+(Xipub , Xipriv ). A sophisticated advice weighter can partition S into sets SL , SH such that
+
+                       E[(Vi )2 |(Xipub , Xipriv ) ∈ SL ] < E[(Vi )2 |(Xipub , Xipriv ) ∈ SH ].
+
+Thus, SL has a lower expected squared impact of private features, while SH has a higher expected
+squared impact of private features. Given such partitions, a sophisticated advice weighter can solve
+the following problem to determine the optimal weights, λSAW
+                                                         L   and λSAW
+                                                                  H   , in each partition:
+                                                                  2                      
+SAW :         min                  E Yi −(λk Ŷialg +(1−λk )Ŷiinit ) |(Xipub , Xipriv ) ∈ Sk P((Xipub , Xipriv ) ∈ Sk ).
+           λL ,λH ∈[0,1]
+                           k=L,H
+                                                                                                                                        (7)
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information              11
+
+Proposition 2. Under sophisticated advice weighting, the optimal weights λSAW
+                                                                          L   and λSAW
+                                                                                   H   satisfy
+λSAW
+ H   < λN AW < λSAW
+                L   . Furthermore, OP T SAW ≤ OP T N AW , where OP T SAW and OP T N AW
+represent the optimal squared errors of SAW and N AW , respectively.
+   The ﬁrst part of Proposition 2 shows that the sophisticated advice weighter adheres more to
+the algorithm in the partition where the expected squared impact of private features is low and
+adheres less where it is high. Moreover, the naı̈ve advice weighter’s optimal weight falls between
+the sophisticated advice weighter’s optimal weights for the two sets. The second part of Proposition
+2 states that the naı̈ve advice weighter’s failure to differentiate amongst instances where there is
+less versus more impact of private features degrades its performance. Putting the two parts together,
+we conclude that the naı̈ve advice weighter under-weights the algorithm when the impact of private
+features is small, and over-weights the algorithm when the impact of private features is large.
+
+3.4.    Naı̈ve Advice Weighting is Suboptimal Because the Best Prediction is Often Outside the
+        Advice-Weighting Region
+In addition to being suboptimal due to overly-constant weights, naı̈ve advice weighting – like any
+advice weighting strategy – is suboptimal because the best prediction may not be in the advice-
+weighting region. We deﬁne the advice-weighting region as the interval between the algorithm’s
+prediction and the human’s initial prediction, which corresponds to λi ∈ [0, 1]. When the best
+prediction benchmark, yi∗ , does not lie within the advice-weighting region, no choice of λi ∈ [0, 1]
+can achieve the best prediction benchmark.
+   In what follows, we explore how often the best prediction falls in the advice-weighting region.
+Deﬁnition 2. Prediction Ẑi is median-unbiased if P[Ẑi > Yi∗ ] = P[Ẑi < Yi∗ ].
+Proposition 3. Let Ŷiinit and/or Ŷialg be median-unbiased and assume P[Ŷiinit = Yi∗ ] = P[Ŷialg =
+Yi∗ ] = 0. Then, Yi∗ is within the advice-weighting region with probability 1/2, i.e.,
+                                                                                         1
+                                  P min{Ŷialg , Ŷiinit } ≤ Yi∗ ≤ max{Ŷialg , Ŷiinit } = .
+                                                                                           2
+   The median-unbiased and zero-probability of perfect predictions assumptions are required to
+obtain a result of precisely 1/2. Figure 1 illustrates the general intuition behind the proof. For the
+best prediction to be inside the advice-weighting region, ŷ alg and ŷ init must lie on opposite sides
+of y ∗ . If Ŷ init and Ŷ alg are equally likely to err high versus low (and assuming the two errors are
+independent from Assumption 2), then it is equally likely for them to err on opposite sides as it is
+for them to err on the same side. Thus, Proposition 3 demonstrates that often it is impossible for
+humans to achieve the best prediction via any advice weighting strategy. Importantly, the human
+could use their private information to identify when advice weighting is suboptimal.
+12                                           Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+
+
+                Figure 1   Depiction of when the advice-weighting (AW) region contains y ∗ .
+
+3.5.   Hypotheses & Preview of Experiments
+Our ﬁrst study, presented in §4, is designed to test the key intuition developed from Propositions
+1 and 2. To do this, we use three conditions in which participants experience (i) only instances
+with a low impact of private features (analogous to SL ), (ii) only instances with a high impact
+of private features (analogous to SH ), and (iii) a mixture of instances that contain both low and
+high impact of private features (analogous to S). In practice, the third condition – where humans
+occasionally have access to valuable private features – is most common, and we aim to empirically
+study whether participants in this condition are biased towards naı̈ve advice weighting, and ulti-
+mately whether this leads to degradation in prediction accuracy. We give all participants access to
+historical instances consisting of (xpub  priv   alg                               init
+                                     k , xk ), ŷk , and yk , and then we elicit ŷi    and ŷif inal for a
+series of new instances; this allows us to estimate participants’ weight on the algorithm.
+Hypothesis 1. Relative to humans who experience instances of only high impact private features
+or only low impact private features, humans who experience a mix of both cases place a lower
+weight on the algorithm when the impact of private features is low, and place a higher weight on
+the algorithm when the impact of private features is high.
+Hypothesis 2. Relative to humans who experience instances of only high impact private features
+or only low impact private features, humans who experience a mix of both cases have worse ﬁnal
+prediction accuracy for both cases.
+     We hypothesize that one way to mitigate the overly-constant weights problem of NAW would
+ideally be to tell decision makers which of the information available to them is public vs. private.
+We study the impact of a practical intervention: providing feature transparency – telling humans
+which features the algorithm does take into account, i.e., which features are public. We believe that
+feature transparency will mitigate naı̈ve advice weighting behavior by helping humans recognize
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                           13
+
+when they have impactful private features that warrant a substantial deviation from the algorithm,
+leading to the following two hypotheses that we test in a second study presented in §5.
+Hypothesis 3. Feature transparency increases humans’ weight on algorithm when the impact of
+private features is low, but decreases it when the impact of private features is high.
+Hypothesis 4. Feature transparency improves human’s ﬁnal prediction accuracy both when the
+impact of private features is low and when it is high.
+     Finally, Proposition 3 suggests that humans often need to deviate from the entire class of advice
+weighting strategies altogether to achieve the best performance. We hypothesize that if – instead
+of advice weighting – humans anchor on the algorithm’s prediction and make an adjustment to
+speciﬁcally account for only their private features, they may increase their likelihood of going
+outside the advice-weighting region in a way that improves performance; effectively, they can
+use their private features to predict when the advice-weighting region is suboptimal and correctly
+adjust in the other direction. We test this hypothesis in a third study presented in §6.
+Hypothesis 5. Nudging humans to follow a strategy in which they anchor on the algorithm and
+adjust based on their private features improves their ﬁnal prediction accuracy.
+
+4.      Study 1: Uncovering a Naı̈ve Advice Weighting Bias
+Study 1 tests Hypotheses 1 and 2 in a controlled online experiment1 .
+
+4.1.     Design
+     4.1.1.   Participant Experience Participants are tasked with predicting demand for new products.
+Each new product i is characterized by two features – “Feature A” and “Feature B” – where Feature
+A corresponds to xpub
+                  i   and Feature B corresponds to xpriv
+                                                    i    . The outcome, Yi , is the actual demand for
+product i. The following sequence of steps details the participant’s experience; select screenshots
+are included in Appendix E.
+    1. Instructions & Comprehension Checks. Participants are introduced to the demand prediction
+        task and objective of minimizing absolute prediction error, and are tested for comprehension.
+    2. Historical Data Review. Participants view historical data for 20 products, with the option to
+        continue to view more historical data for as many products as they wish. For each product i,
+        they observe xpub  priv
+                      i , xi    , and realized (actual) demand yi .
+
+1
+ We pre-registered our sample size, treatment conditions, data exclusion criteria, and planned analyses (see https://
+aspredicted.org/CN9_KTK). All statistical tests reported in the results are pre-registered unless otherwise indicated.
+14                                                   Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+    3. Demand Predictions without Algorithm. Sequentially for each of i = 1, ..., 20 new products
+       not seen in Step 2, participants are given xpub
+                                                   i   and xpriv
+                                                            i    and are asked for their demand predic-
+       tion, ŷiinit . After predicting demand for product i, the participant is given the actual demand,
+       yi , and their absolute prediction error, |ŷiinit − yi |.
+    4. Algorithm Introduction. Participants are informed that an algorithm has been developed to
+       help them predict demand; they are not given falg (·) or told that the algorithm only uses xpub
+                                                                                                   i .
+
+       To give participants experience with the algorithm, they are shown a summary table consisting
+       of the following data for each of the 20 products from Step 3: xpub  priv
+                                                                       i , xi    , yi , ŷialg , and both
+       the algorithm’s and their absolute prediction errors, |ŷialg − yi | and |ŷiinit − yi |.
+    5. Demand Predictions with Algorithm. Sequentially for each of i = 1, ..., 20 new products not
+       seen in Steps 2 or 3, participants are ﬁrst given only xpub
+                                                               i   and xpriv
+                                                                        i    and are asked for their
+       demand prediction, ŷiinit . Then the participant is given the algorithm’s demand prediction, ŷialg ,
+       and asked for their ﬁnal demand prediction, ŷif inal . Finally, they are told the actual demand, yi ,
+       as well as both the algorithm’s and their absolute prediction errors, |ŷialg − yi | and |ŷiinit − yi |.
+     Participants’ demand predictions in Step 3 (ŷiinit ) and Step 5 (ŷif inal ) were incentivized for accu-
+racy: participants received $7 for completing the experiment (as in Study 2 and 3) plus an additional
+bonus of $7 – $0.15 × (Root Mean Squared Error). A majority of our analyses focuses on Step 5,
+where participants have access to an algorithm to make their ﬁnal demand predictions.
+
+    4.1.2.   Behind the Scenes: Data Generation For product i, actual demand is generated as
+
+                                      Yi = 131 + 1.6Xipub + 0.75Xipriv + i ,                                                           (8)
+
+where i is drawn from a normal distribution with mean 0 and standard deviation 4, Xipub is drawn
+from a discrete uniform distribution with support {20, 80}, and Xipriv is drawn from zero-mean
+distributions that differ across our three conditions, which will be described in §4.1.3; for all three
+conditions, Xipub and Xipriv are independent.
+     The algorithm’s demand prediction is generated as
+
+                                                Ŷialg = 131 + 1.6Xipub .                                                               (9)
+
+     From Deﬁnition 1, the impact of private feature is Vi  Yi∗ − Ŷialg = 0.75Xipriv .
+     Participants are not explicitly given equations (8) and (9), nor are told how i , Xipub , and Xipriv
+are generated. That said, because participants have unlimited access to historical data in Step 2, a
+participant could theoretically recover (8) and achieve the best prediction benchmark2 .
+2
+ The data generating processes was chosen so that demand was positive, varied enough to observe sufﬁcient variation in partici-
+pants’ forecasts, and low enough so we could cap participants’ maximum forecast. In the mixed impact condition, low and high
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                                         15
+
+   4.1.3.     Conditions Participants are randomly assigned to one of the following three conditions,
+where the only difference across conditions is the distribution used to generate Xipriv , or equiv-
+alently, the impact of private feature, Vi . With slight abuse of language, we use “low” (“high”)
+impact of private feature to describe products with small (large) |vi |.
+  1. Always Low Impact of Private Feature (Always Low |vi |). The values of Xipriv are drawn from
+       a discrete uniform distribution with support {-10, 10}. The impact of private feature is low
+       relative to the other conditions, with |vi | ∈ [0, 7.5]; this leads to strong algorithm performance.
+  2. Always High Impact of Private Feature (Always High |vi |). The values of Xipriv are drawn
+                                                                   
+     from a discrete uniform distribution with support {-150, -50}   {50, 150}. The impact of
+       private feature is high relative to the other conditions, with |vi | ∈ [37.5, 112.5]; this leads to
+       poor algorithm performance.
+  3. Mixed Impact of Private Feature (Mixed |vi |). Each value of Xipriv is drawn from a discrete
+       uniform distribution with support {-10, 10} with probability 0.5, and from a discrete uniform
+                                             
+       distribution with support {-150, -50} {50, 150} with probability 0.5. In expectation, this
+       leads to half of the products being identical to products in the ﬁrst condition where the impact
+       of private feature is low, and the other half of the products being identical to products in the
+       second condition where the impact of private feature is high.
+   It is helpful to cast our experimental design as a 2 × 2 mixed design (see Table 1). The ﬁrst
+dimension is the impact of private feature, which is either low or high. The second dimension is
+the participant’s exposure set: whether the participant is exposed to a mixture of products with low
+and high impact of private feature (“mixed” exposure set) or is exposed to only a single impact of
+private feature – either always low or always high (“single” exposure set).
+     Table 1         How our 3 conditions achieve a 2 × 2 mixed design. Note that instances from the Mixed |vi |
+condition are divided between two cells depending on the instance’s impact of private feature, and these cells
+                 will be evaluated separately despite coming from participants in the same condition.
+
+                                                                  Exposure Set
+                                                         Mixed                  Single
+                                           Low Mixed |vi | Always Low |vi |
+ Impact of Private Feature
+                                           High Mixed |vi | Always High |vi |
+
+   We are most interested in studying participants’ predictions in the Mixed |vi | condition, as this is
+reﬂective of practice where humans occasionally have access to valuable private features. We use
+impact private feature products had an equal probability of appearing to maximize sample sizes for separate analyses. Low (high)
+impact of private feature products were calibrated such that the algorithm had a relatively high (low) accuracy vs. human forecasts.
+16                                                 Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+participants in the other two conditions to represent benchmarks for sophisticated advice weighters
+– humans who make ﬁnal predictions based on impact of private features – since, by construction,
+all of their predictions are based on a single exposure set. Note that these benchmarks are valid
+regardless of the sophistication of participants in these two conditions, since for a single exposure
+set, naı̈ve and sophisticated advice weighting behaviors are approximately equivalent. By compar-
+ing across the columns in Table 1, we can identify whether humans experiencing a mixed exposure
+set can sufﬁciently distinguish instances with low and high impact of private features (i.e., behave
+as sophisticated advice weighters) vs. have a bias towards naı̈ve advice weighting.
+     4.1.4.   Dependent Variables We use median weight on algorithm (MedWOA) as our dependent
+variable for Hypothesis 1. We ﬁrst deﬁne participant j’s weight on algorithm for product i =
+1, ..., 20 in Step 5 as
+                                                ŷ f inal − ŷ init
+                                                    ij          ij
+                         W OAij = min max             alg      init
+                                                                      ,0 ,1 .                (10)
+                                                   ŷi − ŷij
+We note that W OAij is an estimate for λij deﬁned for advice weighting behavior in (5). Following
+the advice weighting literature, we note that W OAij is a winsorized value between zero and one,
+and we exclude W OAij if ŷialg = ŷijinit . Subsequently, we deﬁne
+
+                       M edW OALj = median(W OAij ∀i s.t. xpriv
+                                                           i    ∈ {−10, 10});                                                       (11)
+                                                  priv
+               M edW OAH
+                       j = median(W OAij ∀i s.t. xi    ∈ {−150, −50} ∪ {50, 150}).                                                  (12)
+M edW OALj (M edW OAH
+                    j ) can be interpreted as participant j’s median value of W OAij for all
+
+products with low (high) impact of private feature. We note that only participants in the Mixed |vi |
+condition will have values for both M edW OALj and M edW OAH
+                                                           j , since participants in the other
+
+conditions only experience products in a single exposure set.
+     We use root median squared error (RMedSE) as our dependent variable for Hypothesis 2. For
+each participant j and considering products i = 1, ..., 20 in Step 5, we deﬁne
+
+
+                   RM edSEjL =           median([ŷijf inal − yi ]2 ∀i s.t. xpriv
+                                                                             i    ∈ {−10, 10});                                     (13)
+
+         RM edSEjH =         median([ŷijf inal − yi ]2 ∀i s.t. xpriv
+                                                                 i    ∈ {−150, −50} ∪ {50, 150}).                                   (14)
+
+4.2.     Results
+Our analyses include data from 359 participants from Mechanical Turk who passed two compre-
+hension checks and completed the study3 . By randomly assigning participants across conditions,
+3
+ 534 MTurkers attempted the study, each with a 99%+ approval rating and 1000+ approvals. 360 participants then passed the
+comprehension checks, of which only one did not complete the study. Among the 359 participants, 208 were male, 256 had a
+Bachelor’s or advanced degree, 315 were White, and 185 had a yearly household income of $50,000 or more.
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                     17
+
+we had 119 participants in the Always Low |vi | condition, 121 in the Always High |vi | condition,
+and 119 in the Mixed |vi | condition. The mean time to complete the study was 31.55 minutes, and
+the mean bonus payment was $1.75. In what follows, we report our core results in Sections 4.2.1
+and 4.2.2, and present supplementary analyses in Appendix B, as outlined in Section 4.3.
+
+   4.2.1.     Weight on Algorithm Results Figure 2 summarizes the results on participants’ median
+weight on algorithm. Recall that participants in the Always Low |vi | and Always High |vi | con-
+ditions represent benchmarks for sophisticated advice weighters – humans who make predictions
+based on impact of private features – since, by construction, all of their predictions are for a single
+exposure set. As expected, these participants place more weight on the algorithm when they are
+only exposed to products with a low impact of private feature compared to when they are only
+exposed to products with a high impact of private feature, since the algorithm performs consider-
+ably better for products with a low impact of private feature (t(237.92) = −12.72, p = 0.00).
+
+
+
+
+ Figure 2        Median weight on algorithm results are averaged (mean) by exposure set, separately for low and
+                                 high impact of private feature; standard error bars are shown.
+
+
+
+   Our primary interest is studying behavior of participants in the Mixed |vi | condition. As detailed
+in Hypothesis 1, we hypothesize that participants in this condition would be unable to sufﬁciently
+distinguish between instances with low and high impact of private features and would instead be
+biased towards naı̈ve advice weighting. We perform two, one-sided t-tests comparing mean values
+18                                           Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+of MedWOA across each row in Table 1. For convenience, let CL , CH , and CM be the set of partici-
+pants assigned to the Always Low |vi |, Always High |vi |, and Mixed |vi | conditions, respectively.
+     For the ﬁrst part of Hypothesis 1, we test whether
+                                            L                               L
+                               j∈CM M edW OAj                  j∈CL M edW OAj
+                                                      ≤                                    ,                                  (15)
+                                     |CM |                             |CL |
+i.e., considering only products with a low impact of private feature, whether participants exposed
+to a mixed exposure set place less weight on the algorithm than participants exposed to a single
+exposure set. As shown in the left two bars in Figure 2, for low impact of private feature products,
+participants in the Mixed |vi | condition had a signiﬁcantly smaller mean MedWOAL compared to
+participants in the Always Low |vi | condition (t(230.83) = −6.33, p = 0.00).
+     For the second part of Hypothesis 1, we test whether
+                                            H                              H
+                               j∈CM M edW OAj                 j∈CH M edW OAj
+                                                      ≥                                    ,                                  (16)
+                                    |CM |                              |CH |
+i.e., considering only products with a high impact of private feature, whether participants exposed
+to a mixed exposure set place more weight on the algorithm than participants exposed to a single
+exposure set. As shown in the right two bars in Figure 2, for high impact of private feature products,
+participants in the Mixed |vi | condition had a signiﬁcantly larger mean MedWOAH compared to
+participants in the Always High |vi | condition (t(227.53) = 4.72, p = 0.00).
+     In addition to conducting t-tests that study behavior on products with low and high impact of
+private features separately, we can also test how the difference in average M edW OA between
+products with low and high impact of private features compares across participants who experience
+a mixed vs. single exposure set. A bias towards naı̈ve advice weighting should result in a smaller
+difference in average M edW OA for participants experiencing a mixed exposure set, i.e.,
+                    L                       H                               L                                    H
+       j∈CM M edW OAj          j∈CM M edW OAj                  j∈CL M edW OAj                       j∈CH M edW OAj
+                          −                            ≤                                   −                                    .
+            |CM |                    |CM |                             |CL |                                |CH |
+                                                                                                                              (17)
+When we regress the MedWOA for each participant on impact of private feature interacted with
+exposure set, clustering standard errors by participant, we ﬁnd a signiﬁcant positive coefﬁcient
+on the interaction term (β = 0.49, p = 0.00). In other words, the difference in average MedWOA
+between products with low vs. high impact of private feature is larger when participants experience
+a single exposure set than a mixed set; see Appendix B.1 for details. In fact, we ﬁnd that for partic-
+ipants who experience a mixed exposure set, their average MedWOA is not signiﬁcantly different
+for products with a low vs. high impact of private feature (t(235.44) = −0.46, p = 0.34).
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                     19
+
+   Our results conﬁrm Hypothesis 1 by showing that participants who experience a mixed expo-
+sure set under-weight the algorithm when the impact of private feature is low and over-weight the
+algorithm when the impact of private feature is high, compared to participants who experience a
+single exposure set (representing hypothetical sophisticated advice weighters who fully differen-
+tiate between the sets). This provides empirical evidence supporting our proposed conjecture that
+humans are biased towards naı̈ve advice weighting, insufﬁciently distinguishing when they should
+place more/less weight on an algorithm as a function of the impact of private features.
+
+   4.2.2.     Prediction Error Results Figure 3 summarizes results showing the impact of the naı̈ve
+advice weighting bias on participants’ root median squared error (RMedSE). As expected, partici-
+pants in the Always High |vi | condition have larger prediction error compared to participants in the
+Always Low |vi | condition, since the algorithm provides considerably less value when the impact
+of private feature is high (t(238.00) = 5.74, p = 0.00). Similarly, participants in the Mixed |vi |
+condition have larger prediction error on products with high impact of private feature compared to
+their prediction error on products with low impact of private feature (t(235.66) = 4.73, p = 0.00).
+
+
+
+
+ Figure 3         Root median squared error results are averaged (mean) by exposure set, separately for low and
+high impact of private feature; standard error bars are shown. Additionally, the mean RMedSE is reported for
+                                         the algorithm and the best prediction benchmark.
+
+   Our primary interest is studying the prediction error of participants in the Mixed |vi | condition
+to understand how their bias towards naı̈ve advice weighting impacts their prediction error. As
+detailed in Hypothesis 2, we hypothesize that these participants will perform worse compared to
+20                                           Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+sophisticated advice weighter benchmarks for both subsets of products with low and high impact
+of private feature. We perform two, one-sided t-tests comparing mean values of RMedSE across
+each row in Table 1. First considering only products with a low impact of private feature, we
+test whether participants who experience a mixed exposure set have larger prediction error than
+participants who experience a single exposure set; speciﬁcally, we test whether
+                                           L                               L
+                               j∈CM RM edSEj                   j∈CL RM edSEj
+                                                      ≥                                  .                                    (18)
+                                    |CM |                             |CL |
+As shown in the left two bars in Figure 3, participants in the Mixed |vi | condition had a signiﬁcantly
+larger mean RMedSEL vs. those in the Always Low |vi | condition (t(229.08) = 1.94, p = 0.03).
+     Next considering only products with a high impact of private feature, we test whether partic-
+ipants who experience a mixed exposure set have larger prediction error than participants who
+experience a single exposure set; speciﬁcally, we test whether
+                                           H                              H
+                               j∈CM RM edSEj                  j∈CH RM edSEj
+                                                      ≥                                   .                                   (19)
+                                    |CM |                             |CH |
+As shown in the right side of Figure 3, participants in the Mixed |vi | condition had a signiﬁcantly
+larger RMedSEH vs. those in the Always High |vi | condition (t(233.67) = 1.76, p = 0.04).
+     Together, our results conﬁrm Hypothesis 2 by showing that participants who experience a mixed
+exposure set perform worse for both subsets of products with low and high impact of private fea-
+tures, compared to sophisticated advice weighter benchmarks. Thus, our results provide empirical
+evidence that a bias towards naı̈ve advice weighting negatively impacts prediction accuracy.
+
+4.3.    Additional Analyses and Discussion
+We report several supplementary analyses in Appendix B. These include (1) replicating results at
+the task-level, (2) observing minimal learning effects over time, (3) verifying robustness to unwind-
+sorized WOA, (4) studying drivers of WOA, (5) conducting mediation analysis, (6) describing the
+performance of participants’ demand predictions without the algorithm (in Step 3) to show how
+it compares to the algorithm, (7) examining participants’ initial predictions that precede seeing
+the algorithm (in Step 5) to show that their accuracy is not signiﬁcantly different from predictions
+without the algorithm (in Step 3), (8) reporting task completion time statistics, and (9) examining
+how participants’ variance in their observed WOA across all products compares to the variance in
+their optimal WOA if they were fully sophisticated advice-weighters.
+     Study 1 provides evidence supporting a bias towards naı̈ve advice weighting as opposed to
+sophisticated advice weighting behavior: people take an overly-constant weighted average of the
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information            21
+
+algorithm’s predictions with their initial predictions, not differentiating enough based on their pri-
+vate features. As outlined in the theory presented in §3.3, our empirical results conﬁrm that this
+bias leads to predictable patterns of over- and under-adherence to the algorithm and degrades per-
+formance when people face a mixed exposure set.
+     Although this study was designed to test the theory presented in §3.3, recall from §3.4 that the
+naı̈ve advice weighting strategy is suboptimal not only because the weight on advice is overly
+constant, but also the best prediction benchmark (Yi∗ ) may not be in the advice-weighting region
+(see, e.g., Figure 1). Similar to what Proposition 3 predicted, we ﬁnd that in Study 1, the best
+prediction benchmark falls within participants’ advice-weighting regions in 55% of instances. In
+contrast, participants’ actual ﬁnal predictions ŷif inal fall within their advice-weighting regions in
+84% of instances in the Always Low |vi | condition, 83% in Always High |vi |, and 87% in Mixed |vi |;
+these large differences illustrate that people are advice weighting much more than they should be,
+regardless of condition. Importantly, people could use their private features to realize that some-
+times yi∗ is not in the advice-weighting region; in our following studies, we aim to focus people on
+their private features in hopes to move away from naı̈ve advice weighting behavior.
+
+5.     Study 2: The Impact of Transparency on Naı̈ve Advice Weighting
+What can system designers do to mitigate naı̈ve advice weighting behavior? Study 1 demonstrates
+that extensive algorithm performance feedback is not enough for people to ﬁgure out when their
+private information warrants a large or small deviation from the algorithm. How can system design-
+ers help people with bounded cognitive ability with this issue? Of course, by its very nature, system
+designers often do not know peoples’ private information. However, as detailed in Hypotheses 3
+and 4, providing feature transparency (training humans about which features the algorithm does
+take into account) may help mitigate naı̈ve advice weighting behavior by improving their ability to
+recognize when they have impactful private features, leading to improved performance accuracy
+for both products with low and high impact of private features. Note that such a feature trans-
+parency intervention can be readily implemented across a wide variety of algorithms and industries,
+since it only requires communicating the algorithm’s input features and is independent of the com-
+plexity of the underlying algorithm. In practice, if system designers were aware of private features,
+communicating this information would likely be even more helpful.
+     We contrast this insight-inspired feature transparency intervention with another unrelated train-
+ing data transparency intervention, in which we describe in more detail how much data the algo-
+rithm uses in its training process. Similar types of transparency have been shown to increase overall
+22                                                    Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+trust in algorithms (e.g., see Anik and Bunt 2021 and Balayn et al. 2022). However, we hypothesize
+that it will not be effective in mitigating naı̈ve advice weighting because it is not designed to help
+participants effectively discriminate between situations where they should vs. should not adhere
+to the algorithm. We include this training data transparency manipulation as an additional control
+condition to disentangle the effect of providing people with knowledge of public information from
+the effect of providing people with more knowledge of the algorithm in general, which may also
+cause them to more carefully use the algorithm’s forecasts.
+
+5.1.    Design
+The participant experience, data generation, and dependent variables are identical to the Mixed |vi |
+condition in Study 1, except for the additions outlined in the three treatment conditions deﬁned
+below.4 Notably, these conditions only differ by information shared when introducing the algo-
+rithm; thus, both the algorithm and best prediction benchmark each have identical performance
+across all conditions.
+    1. No Transparency. This condition is identical to the Mixed |vi | condition in Study 1.
+    2. Feature Transparency. We add the following language when introducing the algorithm in Step
+       4: “The company has informed you that the algorithm uses only Feature A to make its demand
+       predictions”. Recall that Feature A corresponds to xpub
+                                                           i   in our model.
+    3. Training Data Transparency. We add the following language when introducing the algorithm
+       in Step 4: “The company has informed you that the algorithm was trained on a dataset of
+       9,834 products”.
+In both the Feature Transparency and Training Data Transparency conditions, we add a compre-
+hension check question verifying that participants understood the transparency description. We also
+remind participants of the transparency description when predicting demand with the algorithm for
+each of the 20 products in Step 5; screenshots are included in Appendix F. For convenience, we
+deﬁne CN T , CF T , and CT DT to be the set of participants assigned to the No Transparency, Feature
+Transparency, and Training Data Transparency conditions, respectively.
+
+5.2.    Results
+Our analyses include data from 521 Proliﬁc participants who passed the comprehension check
+criteria by answering at least three of ﬁve questions correctly on their ﬁrst try5 . By randomly
+4
+ We pre-registered our sample size, treatment conditions, data exclusion criteria, and planned analyses (see https://
+aspredicted.org/6KL_L8F). All statistical tests reported in the results are pre-registered unless otherwise indicated.
+5
+ 525 workers were recruited to complete the study, each with a 99%+ approval rating, 25+ previous submissions, and English listed
+as a ﬂuent language. Among the 521 participants, 229 were male, 307 had a Bachelor’s or advanced degree, 412 were White, and
+291 had a yearly household income of $50,000 or more.
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                                23
+
+assigning participants across conditions, we had 172 participants in the No Transparency condition,
+171 in the Feature Transparency condition, and 178 in the Training Data Transparency condition.
+The mean study completion time was 30.80 minutes, and the mean bonus payment was $1.54.
+Supplementary analyses can be found in Appendix C, as outlined in Section 5.3.
+
+
+
+
+Figure 4         Median weight on algorithm results are averaged (mean) by transparency type, separately for low
+                              and high impact of private feature; standard error bars are shown.
+
+
+
+
+   5.2.1.     Weight on Algorithm Results Figure 4 summarizes the results on participants’ median
+weight on algorithm (MedWOA). We are most interested in how the difference in average
+M edW OA between products with low and high impact of private features compares across par-
+ticipants who are provided feature transparency vs. no transparency. If feature transparency indeed
+mitigates the bias towards naı̈ve advice weighting, we should see a larger difference in average
+M edW OA for participants provided feature transparency, i.e.,
+                   L                                      H                                      L                      H
+    j∈CF T M edW OAj                       j∈CF T M edW OAj                       j∈CN T M edW OAj       j∈CN T M edW OAj
+                                  −                                       ≥                          −                      .
+            |CF T |                                |CF T |                                 |CN T |           |CN T |
+                                                                                                                       (20)
+When we regress the MedWOA for each participant on impact of private feature interacted with
+transparency type, clustering standard errors by participant, we ﬁnd a signiﬁcant coefﬁcient on
+24                                              Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+         Table 2   Regression Analyses of MedWOA by Impact of Private Feature and Transparency Type
+
+
+Dependent Variable:                                                      M edW OA
+Model:                                   Feature vs. No Transp Feature vs. Training Data Training Data vs. No Transp
+Variables
+(Intercept)                                   0.2786∗∗∗                         0.3038∗∗∗                            0.2786∗∗∗
+                                               (0.0234)                          (0.0249)                             (0.0234)
+Low |vi |                                     0.0953∗∗∗                         0.0902∗∗∗                            0.0953∗∗∗
+                                               (0.0205)                          (0.0231)                             (0.0205)
+Feature Transparency                          -0.0967∗∗∗                       -0.1219∗∗∗
+                                               (0.0319)                          (0.0330)
+Low |vi | × Feature Transparency              0.1727∗∗∗                         0.1778∗∗∗
+                                               (0.0352)                          (0.0368)
+Training Data Transparency                                                                                             0.0252
+                                                                                                                      (0.0342)
+Low |vi | × Training Data Transparency                                                                                -0.0050
+                                                                                                                      (0.0309)
+Fit statistics
+Observations                                      686                              698                                   700
+R2                                              0.09028                          0.08604                               0.02153
+Adjusted R2                                     0.08627                          0.08209                               0.01732
+
+Clustered (Participant) standard-errors in parentheses
+Signif. Codes: ***: 0.01, **: 0.05, *: 0.1
+
+
+the interaction term (β = 0.17, p = 0.00), supporting Hypothesis 3. Similarly, we ﬁnd that fea-
+ture transparency mitigates naı̈ve advice weighting behavior more than training data transparency;
+namely, we repeat the same analysis as above replacing no transparency with training data trans-
+parency (β = 0.18, p = 0.00). Finally (as an ex post test), we ﬁnd that training data transparency
+does not signiﬁcantly mitigate NAW behavior (β = −0.01, p = 0.87); see Table 2 for details.
+     Our results conﬁrm Hypothesis 3 by showing that feature transparency mitigates naı̈ve advice
+weighting behavior by helping humans recognize when they have vs. don’t have impactful private
+features that warrant a substantial deviation from the algorithm. This is in contrast to many of the
+interventions in the transparency literature – like training data transparency – which do not aim to
+help people discriminate between situations where they should vs. shouldn’t adhere to the algo-
+rithm; indeed, we ﬁnd that training data transparency is not effective in mitigating NAW behavior.
+
+     5.2.2.   Prediction Error Results Figure 5 summarizes results showing the impact of transparency
+type on participants’ root median squared error. As expected, within each condition, participants
+have larger prediction error on products with high impact of private feature vs. low impact, since
+the algorithm provides considerably less value when the impact of private feature is high.
+     Our primary interest is studying how the prediction error of participants who are provided fea-
+ture transparency compares to participants given no transparency. As detailed in Hypothesis 4, we
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                     25
+
+
+
+
+ Figure 5        Root median squared error results are averaged (mean) by transparency type, separately for low
+and high impact of private feature; standard error bars are shown. Additionally, the mean RMedSE is reported
+                                       for the algorithm and the best prediction benchmark.
+hypothesize that feature transparency will lead to smaller prediction error for both subsets of prod-
+ucts with low and high impact of private feature. We ﬁrst consider only products with a low impact
+of private feature, and we use a one-sided t-test to test whether participants provided with feature
+transparency have smaller prediction error than participants provided with no transparency:
+                                                           L                                    L
+                                             j∈CF T RM edSEj                      j∈CN T RM edSEj
+                                                                          ≤                          .     (21)
+                                                    |CF T |                                |CN T |
+As shown in Figure 5, participants in the Feature Transparency condition had a signiﬁcantly
+smaller mean RMedSE compared to participants in the No Transparency condition for products
+with low impact of private feature (t(340.99) = 2.72, p = 0.00).
+   We next repeat this analysis on products with a high impact of private feature; we test whether
+                                                          H                                     H
+                                            j∈CF T RM edSEj                       j∈CN T RM edSEj
+                                                                          ≤                          .     (22)
+                                                    |CF T |                                |CN T |
+As shown in Figure 5, participants in the Feature Transparency condition had a signiﬁcantly
+smaller RMedSE compared to participants in the No Transparency condition for products with high
+impact of private feature (t(339.98) = 3.54, p = 0.00). When considering overall RMedSE across
+products with both low and high impact of private feature, we also ﬁnd that participants in the
+Feature Transparency condition had a signiﬁcantly smaller RMedSE compared to participants in
+the No Transparency condition (t(334.38) = 4.11, p = 0.00).
+26                                           Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+     Similarly, we can compare prediction errors across participants who are provided feature trans-
+parency vs. training data transparency. We ﬁnd that participants in the Feature Transparency con-
+dition had a smaller mean RMedSE compared to participants in the Training Data Transparency
+condition for products with low impact of private feature (t(303.85) = 1.33, p = 0.09), as well as
+for products with high impact of private feature (t(342.58) = 3.19, p = 0.00); considering over-
+all RMedSE, we ﬁnd that feature transparency leads to signiﬁcant improvements (t(283.66) =
+2.55, p = 0.01). As expected, training data transparency is less effective in mitigating naı̈ve advice
+weighting behavior because it is not designed to help participants effectively discriminate between
+situations where they should vs. should not adhere to the algorithm.
+     Together, our results conﬁrm Hypothesis 4 by showing that participants who are provided feature
+transparency perform better for both subsets of products with low impact and high impact of private
+features, compared to participants given no transparency or training data transparency.
+
+5.3.    Additional Analyses and Discussion
+We report supplementary analyses in Appendix C, including showing robustness of our ﬁndings
+using an alternative dependent variable and no differences in completion times across conditions. In
+addition, we included an open-ended question at the end of the study asking participants to explain
+their decision-making process. Ex post text analysis indicates that Feature Transparency causes
+people to be 32% less likely to mention “averaging” but 31% more likely to mention “adjusting.”
+Moreover, regression analysis reveals that people who mention “adjusting” had an 18% lower pre-
+diction error and suffered signiﬁcantly less from NAW than participants who mention “averaging”.
+     Study 2 shows that providing feature transparency helps to mitigate NAW behavior more effec-
+tively than other types of algorithm transparency (e.g., training data transparency) that may uni-
+formly increase humans’ adherence to the algorithm. That said, similar to Study 1, the best pre-
+diction benchmark fell outside the advice-weighting region 52% of the time, yet participants’ ﬁnal
+predictions fell within their advice-weighting regions in 92% of instances under No Transparency,
+93% of instances under Training Data Transparency, and 86% of instances under Feature Trans-
+parency. This suggests that our Feature Transparency intervention only modestly helps humans
+move away from advice weighting strategies; rather, the beneﬁt of the intervention seems to pri-
+marily be driven by helping humans move away from applying overly constant weights.
+
+6.     Study 3: Improving Feature Transparency
+Due to our ﬁndings in Study 2, we are motivated to improve upon feature transparency by helping
+humans move away from advice weighting strategies. We hypothesize that – in addition to feature
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                           27
+
+transparency – nudging humans to follow a strategy in which they anchor on the algorithm and
+adjust based only on their private features may further improve their use of algorithmic predictions.
+Although encouraging (nudging) employees to follow algorithmic advice is common in practice
+(Sanders and Wood 2020), our nudge is novel in that it speciﬁcally builds upon feature transparency
+to nudge humans to differentially use the algorithm across instances with different impacts of
+private features. Just like our feature transparency intervention, the addition of the nudge can be
+readily implemented across a wide variety of algorithms and industries since it is agnostic to the
+underlying algorithm (other than its inputs) and does not require any speciﬁc knowledge of private
+features. Study 3 tests this improved feature transparency intervention in an online experiment.
+    We additionally use Study 3 to generalize some of our prior results to an experimental setup with
+several key differences from Studies 1 and 2. In Study 3, we situate participants in a naturalistic
+setting where they make demand forecasts for clothing items using information they have intuition
+around (e.g., price and advertising spend). We use a more realistic demand model that cannot
+easily be intuited, and we increase the complexity of the structure of the private feature (ad spend),
+generating it according to a non-negative random variable with a non-zero mean. Finally, we do
+not elicit participants’ initial predictions when making predictions with the algorithm.
+6.1.    Design
+All participants encounter data generated according to a mixed impact of private feature, with three
+treatment conditions that differ by information shared when introducing the algorithm.6
+    6.1.1.    Conditions
+    1. No Transparency. This is similar to the No Transparency condition in Study 2.
+    2. Feature Transparency. This is similar to the Feature Transparency condition in Study 2. Par-
+       ticipants are informed the algorithm uses only price to make its demand predictions.
+    3. Feature Transparency with Adjusting Nudge (Adjusting Nudge). Identical to the Feature
+       Transparency condition, plus participants are additionally nudged towards using a strategy of
+       anchoring on the algorithm’s predictions and adjusting them using only private features.
+    6.1.2.    Behind the Scenes: Data Generation For clothing item i, actual demand is generated as
+                        ⎧
+                        ⎪
+                        ⎪ 1250(Xipub − 25)−0.3 + 70 + 1.2Xipriv + i                       Xipub ≤ 99
+                        ⎪
+                        ⎪
+                        ⎨
+                    Yi = 1250(Xipub − 70)−0.3 − 45 + 1.2Xipriv + i                        99 < Xipub ≤ 149
+                        ⎪
+                        ⎪
+                        ⎪
+                        ⎪
+                        ⎩1250(X pub − 120)−0.3 − 160 + 1.2X priv +                        149 < Xipub
+                                i                             i      i
+
+6
+ We pre-registered our sample size, treatment conditions, data exclusion criteria, and planned analyses (see https://
+aspredicted.org/P7T_1WC). All statistical tests reported in the results are pre-registered unless otherwise indicated.
+28                                            Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+
+where i is drawn from a normal distribution with mean 0 and standard deviation 5, Xipub repre-
+sents price and is randomly sampled from {54, 59, 64, 69, ..., 194, 199} reﬂecting common prices
+for clothing items. Here, Xipriv represents advertising spend and is drawn from a discrete uniform
+                                                                     
+distribution with support {90, 110} with probability 0.5 and {0, 50} {150, 200} with probability
+0.5. An example of this type of disjoint ad spend is an inﬂuencer marketing budget, with nano-
+inﬂuencers charging $10 - $100, mid-tier inﬂuencers charging $500 - $5000, and mega-inﬂuencers
+charging $10,000+ per sponsored post (Hitchcock 2024). The demand model mimics a constant
+elasticity demand function where demand exponentially decreases as price increases, with discon-
+tinuities leading to larger drops in demand as price increases from $99 to $100 and $149 to $150.
+     The algorithm’s demand prediction is generated by the equation:
+                              ⎧
+                              ⎪
+                              ⎪ 1250(Xipub − 25)−0.3 + 190 Xipub ≤ 99
+                              ⎪
+                              ⎪
+                              ⎨
+                      Ŷialg = 1250(Xipub − 70)−0.3 + 75 99 < Xipub ≤ 149
+                              ⎪
+                              ⎪
+                              ⎪
+                              ⎪
+                              ⎩1250(X pub − 120)−0.3 − 40 149 < X pub
+                                       i                             i
+
+
+Since the algorithm does not observe Xipriv in its historical training data, the algorithm essentially
+subsumes the average impact of Xipriv on demand, 1.2 ∗ E[Xipriv ] = 1.2 ∗ 100, in its constant term.
+In fact, the constant terms in Ŷialg (+190, +75, and −40, depending on the value of Xipub ) can be
+written as +70 + 1.2 ∗ 100, −45 + 1.2 ∗ 100, and −160 + 1.2 ∗ 100, respectively. Thus, the impact
+of private feature is Vi = 1.2(Xipriv − 100). For our analyses, we will consider clothing items to
+have a “low impact of private feature” if their Xipriv is between $90 to $110, while clothing items
+with a “high impact of private feature” are those with Xipriv between $0 to $50 or $150 to $200.
+
+     6.1.3.   Participant Experience Study 3 follows a similar participant experience as in Study 2 but
+with the following key changes; screenshots are included in Appendix G.
+     In Step 4: Algorithm Introduction, all participants are shown a row below the summary table
+with the average value for each displayed column (e.g., average price, average ad spend, etc.). Par-
+ticipants in the Feature Transparency and Feature Transparency with Adjusting Nudge conditions
+are told, “The company has informed you that the algorithm uses only Price to make its demand
+forecasts. It doesn’t have access to any other information.” Participants in the Feature Transparency
+with Adjusting Nudge condition are also told, “The algorithm optimally uses the price information,
+but you may have extra information beyond price that the algorithm doesn’t have access to. The
+algorithm assumes an average value of any extra information when making a forecast; therefore
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                                          29
+
+the algorithm makes great forecasts when your extra information is close to its average value, but
+not when your extra information is far from its average value. Therefore, we recommend you col-
+laborate with the algorithm using the following strategy: Follow the algorithm when your extra
+information is close to its average value. Only override the algorithm if your extra information
+is far from its average value. If you override, focus on using your extra information to adjust the
+algorithm up or down.”
+     In Step 5: Demand Predictions with Algorithm, participants are not asked for an initial demand
+prediction ŷiinit . We made this choice in order to try to prevent people in the Feature Transparency
+with Adjusting Nudge condition from anchoring on their initial prediction, and we chose to make
+this consistent across all three conditions to ensure that any differences we see across conditions
+are not due to the absence of eliciting ŷiinit . For participants in the Feature Transparency with
+Adjusting Nudge condition, before asking for ŷif inal , we ask “Do you have any extra information
+that is far from its average value?” If they select “No, I’ll use the algorithm,” then the algorithm’s
+demand prediction, ŷialg , is recorded as their ﬁnal demand prediction, ŷif inal . If they select “Yes, my
+extra information is far from its average value and I’d like to override the algorithm,” then they are
+asked for their ﬁnal demand prediction, ŷif inal . Here, participants are prompted with the strategy
+to, “Use only your extra information to adjust the algorithm’s forecast up or down.”
+
+6.2.      Results
+Our analyses include data from 549 Proliﬁc participants who successfully passed the comprehen-
+sion check criteria by answering at least three of four questions correctly on their ﬁrst try7 . By
+randomly assigning participants across conditions, we had 183 participants in each condition. The
+mean study completion time was 29.39 minutes, and the mean bonus payment was $1.378 .
+     We ﬁrst present results showing the impact of transparency type on participants’ root median
+squared error (Figure 6). Our primary interest is studying how the prediction error of participants
+who are provided with feature transparency paired with an adjusting nudge compares to partic-
+ipants given either no transparency or feature transparency alone. Using a one-sided t-test, we
+ﬁnd that participants in the Feature Transparency with Adjusting Nudge condition had a signiﬁ-
+cantly smaller RMedSE compared to participants in the No Transparency condition (t(273.60) =
+
+7
+ 600 workers were recruited to complete the study who had not previously completed Study 2, each with a 99%+ approval rating,
+25+ previous submissions, and English listed as a ﬂuent language. Among the 549 participants, 275 were male, 321 had a Bachelor’s
+or advanced degree, 382 were White, and 342 had a yearly household income of $50,000 or more.
+8
+    Participants received a bonus of $7 – $0.08 × (Root Mean Squared Error) based on their demand predictions in Steps 3 and 5.
+30                                           Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+
+
+Figure 6    Root median squared error results are averaged (mean) by transparency type; standard error bars
+are shown. Additionally, the mean RMedSE is reported for the algorithm and the best prediction benchmark.
+
+3.85, p = 0.00). Additionally, using a one-sided t-test, we ﬁnd that participants in the Feature
+Transparency with Adjusting Nudge condition had a signiﬁcantly smaller RMedSE compared to
+participants in the Feature Transparency condition (t(361.44) = 3.11, p = 0.00). Together, these
+results conﬁrm Hypothesis 5, showing that participants who are provided with the adjusting nudge
+have lower prediction error compared to participants given no transparency or feature transparency
+alone. Furthermore, we replicate our results in Section 5.2.2 across a contextual setting and differ-
+ent data generation process: participants who are provided with feature transparency have a lower
+prediction error compared to participants given no transparency (t(260.90) = 1.94, p = 0.03).
+     To understand how the adjusting nudge drives further improvement in decreasing participants’
+prediction error relative to feature transparency alone, we ﬁrst examine whether participants pro-
+vided with the adjusting nudge have a lower prediction error for clothing items with low impact of
+private feature. Since our nudge explains that adjustments should only be made when the private
+feature is far from its average value, we would expect smaller adjustments – and therefore better
+predictions – when the impact of private features is low. Using a one-sided t-test, we indeed ﬁnd
+that participants in the Feature Transparency with Adjusting Nudge condition had a signiﬁcantly
+smaller RMedSE on low impact of private feature clothing items (RMedSE = 9.4) compared to
+participants in the Feature Transparency condition (RMedSE = 19.3) (t(293.25) = 6.78, p = 0.00).
+The graph of results split by low and high impact of private features is included in Appendix D.1.
+     We next examine whether under the adjusting nudge, participants more frequently adjust the
+algorithm’s predictions in the correct direction, indicating they are no longer advice weighting and
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                        31
+
+instead using only private features to adjust the algorithm. We deﬁne a participant’s adjustment of
+the algorithm’s prediction as being in the correct direction iff the following holds:
+
+                                 (ŷialg ≥ ŷif inal ∧ ŷialg ≥ yi∗ ) ∨ (ŷialg ≤ ŷif inal ∧ ŷialg ≤ yi∗ ).
+
+Participants provided with No Transparency and Feature Transparency have an average rate of
+making adjustments to the algorithm in the correct direction of 71.5% and 74.4%, respectively.
+Similar to what we observed in Study 2, this suggests that feature transparency only modestly
+helps humans move away from advice weighting heuristics. In contrast, participants provided with
+the Feature Transparency with Adjusting Nudge have an average rate of adjustments in the correct
+direction of 93.5%, suggesting that the additional nudge successfully gets people to move away
+from advice weighting. A one-sided t-test reveals this improvement over Feature Transparency
+alone is signiﬁcant (t(302.53) = −14.30, p = 0.00). See Appendix D.2 for more details.
+     Study 3 conﬁrms our hypothesis that feature transparency can be improved by encouraging
+humans to use a strategy of anchoring on algorithmic predictions and adjusting based only on their
+private features. Our results suggest that our intervention – pairing feature transparency with this
+adjusting nudge – helps humans overcome both reasons why naı̈ve advice weighting is suboptimal.
+Namely, it helps them better differentiate when they should adhere more or less to the algorithm,
+and helps them adjust in the right direction more often than advice weighting heuristics in general.
+
+7.     Conclusion
+This paper proposes and provides experimental evidence that people’s algorithm overrides are
+biased towards naı̈ve advice weighting, taking a constant weighted average of the algorithm’s pre-
+diction and their own initial prediction without accounting for the impact of private features. This
+causes people to over-adhere to the algorithm when they have highly valuable private information
+and under-adhere to the algorithm when they do not, as well as frequently adjust the algorithm in
+the incorrect direction. However, providing people with feature transparency and pairing it with
+education on adjusting algorithmic predictions based only on private information can help mitigate
+their bias towards NAW and improve predictive performance.
+     Our results generate insights for managers seeking to design algorithms and how they interface
+with humans. First, we help identify when human-algorithm collaborative performance is most
+hurt by NAW: when humans sometimes have valuable private information. In these settings, inter-
+ventions that uniformly increase people’s trust in the algorithm do not help address the underlying
+32                                                  Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+issue. Instead, interventions such as feature transparency – which help people discern when they
+have more or less valuable private information – are more appropriate. Because there are a plethora
+of types of algorithm transparency each with their own goals in changing how people interact with
+the algorithm, it is important for system designers to understand when they are in a situation which
+warrants addressing NAW rather than a different fundamental issue (e.g., incentive or trust issues).
+     Second, by illuminating why feature transparency and education on adjusting strategies helps,
+our results provide some guiding objectives for algorithm developers, interface designers, and user
+trainers. Speciﬁcally, these activities should clearly communicate what features the algorithm uses,
+help people recognize when they have private information that warrants deviation, and facilitate
+adjustments based on such private information. These guidelines also correspond to natural lim-
+itations for feature transparency and our adjusting nudge: one should not expect them to work if
+– even with them – people cannot reasonably determine whether they have private information
+that warrants deviations, or cannot make adjustments that improve performance even when they
+do know they have such private information. For example, a person encountering features that are
+highly correlated with public features may be tricked into thinking they have important private
+information even when they do not. Or, a person may have access to a theoretically-valuable pri-
+vate feature, but its relationship to the target is so convoluted that they are unable to translate it into
+adjustments that improve performance.
+     Finally, our results shed light on when system designers should let humans override algorithms
+in general. Giving humans this authority subjects the system to human cognitive limitations and
+noise, which leads some experts to suggest avoiding this setup (e.g., Kahneman et al. 2022). How-
+ever, even when the organizational setting does not require a human to have ﬁnal decision authority,
+our results suggest that we should still consider letting humans have override authority when they
+may have access to valuable private information. In such settings, letting humans override the algo-
+rithm can potentially add more value through incorporating their private information than harm
+by exposing the system to their noise and other biases. We also recommend that system designers
+work to identify, collect, and codify private information if possible. In general, we see research
+opportunity in improving our understanding of how to develop systems in which humans and algo-
+rithms focus and hone their relative strengths to enhance their long-run collaborative performance.
+
+Acknowledgments
+We sincerely thank the entire review team, whose thoughtful comments signiﬁcantly helped improve our research.
+This research also beneﬁted from discussions during and after numerous seminars and with our colleagues; we thank
+all of the participants and appreciate their feedback.
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                        33
+
+References
+Anik AI, Bunt A (2021) Data-centric explanations: Explaining training data of machine learning systems to promote
+       transparency. CHI Conference on Human Factors in Computing Systems.
+
+Arvan M, Fahimnia B, Reisi M, Siemsen E (2019) Integrating human judgement into quantitative forecasting methods:
+       A review. Omega, 86:237–252.
+
+Balayn A, Rikalo N, Loﬁ C, Yang J, Bozzon A (2022) How can explainability methods be used to support bug
+       identiﬁcation in computer vision models? CHI Conference on Human Factors in Computing Systems.
+
+Ball RT, Ghysels E (2018) Automated earnings forecasts: Beat analysts or combine and conquer? Management Sci-
+       ence, 64(10):4936–4952.
+
+Blattberg RC, Hoch SJ (1990) Database models and managerial intuition: 50% model + 50% manager. Management
+       Science, 36(8):887–899.
+
+Bolton GE, Katok E, Stangl T (2022) Failures in the communication of risk: Decisions and numeracy. Production and
+       Operations Management.
+
+Bonaccio S, Dalal RS (2006) Advice taking and decision-making: An integrative literature review, and implications
+       for the organizational sciences. Organizational Behavior and Human Decision Processes, 101(2):127–151.
+
+Brau R, Aloysius J, Siemsen E (2023) Demand planning for the digital supply chain: How to integrate human judgment
+       and predictive analytics. Journal of Operations Management, 69(6):965–982.
+
+Cadario R, Longoni C, Morewedge CK (2021) Understanding, explaining, and utilizing medical artiﬁcial intelligence.
+       Nature Human Behaviour.
+
+Caro F, Saez de Tejada Cuenca A (2022) Believing in analytics: Managers’ adherence to price recommendations from
+       a DSS. Manufacturing & Service Operations Management.
+
+Castelo N, Bos MW, Lehmann DR (2019) Task-dependent algorithm aversion. Journal of Marketing Research,
+       56(5):809–825.
+
+Clemen RT (1989) Combining forecasts: A review and annotated bibliography. International journal of forecasting,
+       5(4):559–583.
+
+Cui R, Gallino S, Moreno A, Zhang DJ (2018) The operational value of social media information. Production and
+       Operations Management, 27(10):1749–1769.
+
+Davenport TH, Miller SM (2022) What Machines Can’t Do (Yet) in Real Work Settings. Sloan Management Review.
+
+Dietvorst BJ, Simmons JP, Massey C (2015) Algorithm aversion: People erroneously avoid algorithms after seeing
+       them err. Journal of Experimental Psychology: General, 144(1):114–126.
+
+Fildes R, Goodwin P, Lawrence M, Nikolopoulos K (2009) Effective forecasting and judgmental adjustments: An
+       empirical evaluation and strategies for improvement in supply-chain planning. International Journal of Fore-
+       casting, 25(1):3–23.
+
+Flicker BA (2018) Managerial insight and ”optimal” algorithms. Working Paper.
+34                                                Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+Fügener A, Grahl J, Gupta A, Ketter W (2022) Cognitive challenges in human–artiﬁcial intelligence collaboration:
+      Investigating the path toward productive delegation. Information Systems Research, 33(2):678–696.
+
+Gebru T, Morgenstern J, Vecchione B, Vaughan JW, Wallach H, III HD, Crawford K (2021) Datasheets for datasets.
+      Communications of the ACM, 64(12):86–92.
+
+Gino F, Moore DA (2007) Effects of task difﬁculty on use of advice. Journal of Behavioral Decision Making, 20(1):21–
+      35.
+
+Green B (2022) The ﬂaws of policies requiring human oversight of government algorithms. Computer Law & Security
+      Review, 45:105681.
+
+Harvey N, Fischer I (1997) Taking advice: Accepting help, improving judgment, and sharing responsibility. Organi-
+      zational Behavior and Human Decision Processes, 70(2):117–133.
+
+Hind M, Houde S, Martino J, Mojsilovic A, Piorkowski D, Richards J, Varshney KR (2020) Experiences with improv-
+      ing the transparency of AI models and services. CHI Conference on Human Factors in Computing Systems.
+
+Hitchcock J (2024) Inﬂuencer Pricing: The Cost of Inﬂuencers in 2024. URL https://www.shopify.com/
+      blog/influencer-pricing.
+
+Hoffman M, Kahn LB, Li D (2018) Discretion in hiring. The Quarterly Journal of Economics, 133(2):765–800.
+
+Ibanez MR, Clark JR, Huckman RS, Staats BR (2018) Discretionary task ordering: Queue management in radiological
+      services. Management Science, 64(9):4389–4407.
+
+Ibrahim R, Kim SH (2019) Is expert input valuable? The case of predicting surgery duration. Seoul Journal of Business,
+      25(2):1–34.
+
+Ibrahim R, Kim SH, Tong J (2021) Eliciting human judgment for prediction algorithms. Management Science,
+      67(4):2314–2325.
+
+Kahneman D, Sibony O, Sunstein C (2022) Noise (HarperCollins UK).
+
+Kesavan S, Kushwaha T (2020) Field experiment on the proﬁt implications of merchants’ discretionary power to
+      override data-driven decision-making tools. Management Science, 66(11):5182–5190.
+
+Khosrowabadi N, Hoberg K, Imdahl C (2022) Evaluating human behaviour in response to AI recommendations for
+      judgemental forecasting. European Journal of Operational Research, 303(3):1151–1167.
+
+Kim SH, Song H (2022) How digital transformation can improve hospitals’ operational decisions. Harvard Business
+      Review.
+
+Lage I, Chen E, He J, Narayanan M, Kim B, Gershman SJ, Doshi-Velez F (2019) Human evaluation of models built
+      for interpretability. AAAI Conference on Human Computation and Crowdsourcing, 7(1):59–67.
+
+Lakkaraju H, Bastani O (2020) ”How do I fool you?”: Manipulating user trust via misleading black box explanations.
+      AAAI/ACM Conference on AI, Ethics, and Society, 79–85.
+
+Larrick RP, Soll JB (2006) Intuitions About Combining Opinions: Misappreciation of the Averaging Principle. Man-
+      agement Science, 52(1):111–127.
+Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information                         35
+
+Lehmann CA, Haubitz CB, Fügener A, Thonemann UW (2022) The risk of algorithm transparency: How algorithm
+       complexity drives the effects on the use of advice. Production and Operations Management.
+
+Logg JM, Minson JA, Moore DA (2019) Algorithm appreciation: People prefer algorithmic to human judgment. Orga-
+       nizational Behavior and Human Decision Processes, 151:90–103.
+
+Luong A, Kumar N, Lang KR (2020) Algorithmic decision-making: Examining the interplay of people, technology,
+       and organizational practices through an economic experiment. Working Paper.
+
+Mitchell M, Wu S, Zaldivar A, Barnes P, Vasserman L, Hutchinson B, Spitzer E, Raji ID, Gebru T (2019) Model cards
+       for model reporting. Proceedings of the Conference on Fairness, Accountability, and Transparency, 220–229.
+
+Palley AB, Soll JB (2019) Extracting the wisdom of crowds when information is shared. Management Science,
+       65(5):2291–2309.
+
+Poursabzi-Sangdeh F, Goldstein DG, Hofman JM, Wortman Vaughan JW, Wallach H (2021) Manipulating and mea-
+       suring model interpretability. CHI Conference on Human Factors in Computing Systems.
+
+PricewaterhouseCoopers (2022) PwC 2022 AI business survey. Technical report, PricewaterhouseCoopers.
+
+Ransbotham S, Khodabandeh S, Kiron D, Candelon F, Chu M, LaFountain B (2020) Expanding AI’s impact with
+       organizational learning. Technical report, MIT Sloan Management Review and Boston Consulting Group.
+
+Ross M, Taylor J (2021) Managing AI Decision-Making Tools. Harvard Business Review.
+
+Sah S, Moore DA, MacCoun RJ (2013) Cheap talk and credibility: The consequences of conﬁdence and accuracy on
+       advisor credibility and persuasiveness. Organizational Behavior and Human Decision Processes, 121(2):246–
+       255.
+
+Sanders NR, Wood JD (2020) The Secret to AI is People. Harvard Business Review, 24.
+
+Sniezek JA, Van Swol LM (2001) Trust, conﬁdence, and expertise in a judge-advisor system. Organizational Behavior
+       and Human Decision Processes, 84(2):288–307.
+
+Snyder C, Keppler S, Leider S (2022) Algorithm reliance under pressure: The effect of customer load on service
+       workers, working paper.
+
+Soll JB, Larrick RP (2009) Strategies for revising judgment: How (and how well) people use others’ opinions. Journal
+       of Experimental Psychology: Learning, Memory, and Cognition, 35(3):780–805.
+
+Soll JB, Palley AB, Rader CA (2021) The bad thing about good advice: Understanding when and how advice exacer-
+       bates overconﬁdence. Management Science, 68(4):2377–3174.
+
+Soule D, Grushka-Cockayne Y, Merrick J (2023) A heuristic for combining correlated experts when there are few data.
+       Management Science.
+
+Su X (2008) Bounded rationality in newsvendor models. Manufacturing & Service Operations Management,
+       10(4):566–589.
+
+Surowiecki J (2005) The wisdom of crowds (Anchor).
+36                                             Balakrishnan, Ferreira, and Tong: Human-Algorithm Collaboration with Private Information
+
+
+Yaniv I, Kleinberger E (2000) Advice taking in decision making: Egocentric discounting and reputation formation.
+     Organizational Behavior and Human Decision Processes, 83(2):260–281.
+
+Yeomans M, Shah A, Mullainathan S, Kleinberg J (2019) Making sense of recommendations. Journal of Behavioral
+     Decision Making, 32(4):403–414.
+
+Yin M, Wortman Vaughan J, Wallach H (2019) Understanding the effect of accuracy on trust in machine learning
+     models. CHI Conference on Human Factors in Computing Systems, 1–12.
+

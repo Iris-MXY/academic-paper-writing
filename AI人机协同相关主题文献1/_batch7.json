@@ -1,0 +1,112 @@
+[
+  {
+    "file": "62 Collusion by algorithm- Does better demand prediction facilitate coordination between sellers.pdf",
+    "title": "Collusion by Algorithm: Does Better Demand Prediction Facilitate Coordination Between Sellers?",
+    "research_question": "在重复定价博弈中，算法带来的更优需求预测（预测技术成本下降）如何影响卖方之间合谋（collusion）的可持续性以及对消费者福利的影响？",
+    "method": "博弈论理论模型（无限重复定价博弈，双寡头、完美监控、需求信号精度ρ），解析推导，无实证数据。",
+    "theory": "合谋的重复博弈理论（Rotemberg & Saloner 1986; Haltiwanger & Harrington 1991）；“预测技术成本下降”框架（Agrawal et al. 2018）。",
+    "contributions": "1) 首个正式分析改进需求预测如何影响合谋结果的经济模型；2) 揭示两条作用渠道（更好定制垄断价格 vs. 高需求期更大背离诱惑）；3) 对反垄断监管持较乐观态度：更好预测反而可能降低价格、提高消费者剩余。",
+    "key_findings": "更好预测既提高合谋联合利润，又增加高预测需求期降价背离的诱惑；为阻止背离，卡特尔在高需求期设定低于垄断价格（“价格战”）；净效应可能是更低价格与更高消费者福利。",
+    "limitations": "高度简化模型；假设完美监控；单一市场；需求状态i.i.d.；未考虑不完全监控下预测可能产生的其他合谋增强效应。",
+    "pages": "摘要 p.2；引言 p.1；模型 p.4；原文无独立结论章（核心发现见引言 p.1 与模型 p.4）"
+  },
+  {
+    "file": "63 Digital lyrebirds- Experimental evidence that voice-based deepfakes influence trust..pdf",
+    "title": "Digital Lyrebirds: Experimental Evidence that Voice-based Deep Fakes Influence Trust",
+    "research_question": "生成式语音克隆（声音深伪）在多大程度上诱导个体对语音智能体产生信任？披露其自主/AI性质能否削弱这种信任诱导效应？",
+    "method": "系列受控实验（投资博弈变体）：被试（A方）与自主智能体（B方）配对；语音为随机合成声或克隆被试本人声音；部分被试随机进入AI披露条件。数据来自在线招募被试。",
+    "theory": "相似吸引/同质性（homophily）与社会感知；“超助推”(hypernudge)概念（Yeung 2019; Camerer 2018）；人类对算法接受度文献。",
+    "contributions": "1) 首次实证考察音频深伪技术应用；2) 拓展算法接受与个性化信息系统文献，揭示AI审美特征如何影响信任；3) 对政策/实践表明AI披露无法消除克隆声音的信任诱导效应。",
+    "key_findings": "当自主伙伴被赋予被试本人声音克隆时，个体信任显著更高；AI披露未能减弱该效应；机制部分源于感知同质性，且效果随生成音频清晰度/质量增强。",
+    "limitations": "仅考察信任（投资博弈意愿），未涵盖实际行为后果；样本与场景有限；未验证长期或重复互动下的效应；深伪效果依赖技术质量。",
+    "pages": "摘要 p.1；引言/研究问题 p.3；实验设计 p.4起；结果 p.18；讨论 p.23；局限与结论 p.26"
+  },
+  {
+    "file": "64 Using explainable artificial intelligence to improve process quality- Evidence from semiconductor manufacturing..pdf",
+    "title": "Using Explainable Artificial Intelligence to Improve Process Quality: Evidence from Semiconductor Manufacturing",
+    "research_question": "如何将可解释AI（SHAP）引入质量管理，以处理高维非线性制造数据、识别质量变动来源并指导改进行动？",
+    "method": "数据驱动决策模型（结合SHAP值与非线性建模，提出“流程重要性”度量）；基于Hitachi ABB功率半导体历史制造数据（晶体管芯片）应用；并开展现场实验验证所选改进行动；后续规模化推广。",
+    "theory": "质量管理理论（识别并消除质量变动来源；Taguchi 1986; Shewhart 1926; Zantek et al. 2002）。",
+    "contributions": "1) 提出可处理高维非线性制造数据的决策模型及“流程重要性”度量；2) 为可解释AI提升质量的实证运营管理学提供实验证据；3) 展示传统线性方法可能遗漏关键质量驱动因素。",
+    "key_findings": "现场实验使目标封装的良率损失降低21.7%；后续推广至另一产品良率损失降低51.3%；可解释AI能发现传统方法忽视的关键驱动。",
+    "limitations": "聚焦单一制造场景（半导体）；依赖特定数据质量；SHAP解释本身存在近似误差；外部效度受限。",
+    "pages": "摘要 p.2；引言 p.2；决策模型 p.3；现场实验设计 p.13；讨论/结论 p.18（参考文献 p.21）"
+  },
+  {
+    "file": "65 Algorithm reliance, fast and slow..pdf",
+    "title": "Algorithm Reliance, Fast and Slow",
+    "research_question": "在排队服务系统中，当工人拥有决策权时，他们如何使用算法管理系统负荷（是否遵循、多快遵循）？这对服务质量与速度有何影响？",
+    "method": "实验室实验。被试扮演M/G/1排队系统工人，向每位顾客提供笑话推荐并得到算法支持；变化系统负荷（高/低到达率）与算法质量（无/优/劣）；并设干预实验。",
+    "theory": "行为运营；算法厌恶（Dietvorst et al. 2015）；自动化偏见（automation bias, Goddard 2012）；排队系统文献。",
+    "contributions": "1) 揭示算法在服务质量与速度上均有潜在收益；2) 速度收益取决于“快/慢”两种依赖方式（默认vs.深思），质量收益主要来自依赖决策；3) 算法质量与系统负荷互为强化因素，需二者结合才实现提速。",
+    "key_findings": "高系统负荷与更优算法质量均提升算法依赖；优质算法下推荐质量最高、劣质最低；仅在高负荷+优质算法下吞吐时间显著快于无算法基线；高负荷优质组后期愈发默认算法；干预可同时提升依赖率与快速依赖。",
+    "limitations": "实验室设定（笑话推荐）外部效度有限；激励以质量为主、速度为次；未涵盖真实客服全部复杂因素；仅两类算法质量。",
+    "pages": "摘要 p.1；引言 p.1；实验设计 p.6；结果 p.13；讨论 p.26；结论 p.29"
+  },
+  {
+    "file": "66 Predicting human discretion to adjust algorithmic prescription- A large-scale field experiment in warehouse operations.pdf",
+    "title": "Predicting Human Discretion to Adjust Algorithmic Prescription: A Large-Scale Field Experiment in Warehouse Operations",
+    "research_question": "仓库打包工人为何及何时偏离算法装箱指令？能否通过预测人类偏离来重新设计“以人为中心”的算法，从而降低偏离、提升运营效率？",
+    "method": "分析阿里巴巴超100万包裹历史数据（2018.7），识别两类偏离（信息型/复杂型）；用机器学习（43个特征）预测“目标包裹”；在4个仓库开展大规模随机现场实验（2018.8-9，约每仓日均1.4万包裹），处理组新算法、对照组原算法。",
+    "theory": "行为运营；以人为中心的算法设计；偏离分类（信息型偏离 vs. 复杂型偏离）。",
+    "contributions": "1) 首次提供两类偏离并存的现场证据；2) 提出预测并纳入人类偏离的“以人为中心装箱算法”；3) 通过大规模现场实验证明可显著降低偏离与打包时间，并可推广至物流其他环节。",
+    "key_findings": "工人对5.8%包裹偏离指令，偏离包裹处理时间长48.3%；新算法使目标包裹换大箱率从29.5%降至23.8%（-19.4%），打包时间降4.5%；估算全量应用年省约260万美元；收益主要来自减少复杂型偏离。",
+    "limitations": "仅限装箱场景与单一企业（阿里）；难以完全区分两类偏离；未涵盖其他仓库任务；外部效度到其他行业待验证。",
+    "pages": "摘要 p.1；引言 p.1；现场实验设计 p.22；结论与讨论 p.29"
+  },
+  {
+    "file": "67 Reskilling the workforce for AI- Domain expertise and algorithmic literacy.pdf",
+    "title": "Reskilling the Workforce for AI: Domain Expertise and Algorithmic Literacy",
+    "research_question": "算法/AI价值何时被放大？将“算法专长”分散到具备领域知识的员工中（而非集中于IT专家），是否提升企业从AI投资中获得的回报？",
+    "method": "二手数据实证。两个劳动力数据集：①美国招聘广告(2013-2016)反映雇主需求；②员工技能扩散面板(2008-2021/2015-2021，大型上市公司)；辅以O*NET职业知识内容与Compustat财务数据；并考察no-code工具作用。",
+    "theory": "工作设计与任务分配；知识/决策权配置理论（Garicano 2000; Dessein & Santos 2006）；IT决策权集中-分散权衡。",
+    "contributions": "1) 证明AI价值在算法技能分散于领域专家时放大，区别于其他IT技术；2) 推进“雇佣实践如何补充IT投资”文献；3) 对管理者：应培养领域专家的算法素养，而非仅依赖集中式IT/数据科学团队。",
+    "key_findings": "雇主愈发在非技术岗位寻求算法专长（2016年仅1/3在IT岗）；算法技能随no-code工具普及更分散到具决策权的领域专家；市场对有“分散+AI投资”企业的估值更高（数据科学早年期、AI后期更强）。",
+    "limitations": "依赖自我报告/招聘文本数据，技能度量有噪声；相关而非因果；无法区分“专长/素养/流利度”细粒度；样本偏向大型企业。",
+    "pages": "摘要 p.2；引言 p.2；理论与假设 p.5；实证/数据 p.13起；结论 p.24（含局限 p.24）"
+  },
+  {
+    "file": "68 Reciprocal human-machine learning- A theory and an instantiation for the case of message classification.pdf",
+    "title": "Reciprocal Human-Machine Learning: A Theory and an Instantiation for the Case of Message Classification",
+    "research_question": "如何在微观层面设计“人在回路”系统，使人与机器在文本分类任务中持续相互学习（互惠学习）？",
+    "method": "设计科学（design science）方法。基于人类互惠学习理论构建RHML抽象配置；实例化artifact “Fusion”；在两个网络安全论坛语料（毒品贩卖、黑客攻击）案例研究中迭代开发；最后用两个实验在8个学习周期内检验人与机的学习过程。",
+    "theory": "人类伙伴间互惠学习理论（Jörg 2004）；人在回路（HITL）；设计科学。",
+    "contributions": "1) 提出RHML抽象配置，弥补微观层面HITL设计理论缺失；2) 通过Fusion实例化并验证人与机相互学习可行；3) 提炼支持RHML系统开发的正式设计原则。",
+    "key_findings": "人与机器通过反复交换分类反馈、调整各自知识表征可联合持续学习；领域专家既教机器也向机器学；Fusion在两案例与8周期实验中支持双向学习。",
+    "limitations": "仅限文本分类（网络安全）场景；案例与实验样本有限；未与其他HITL设计系统充分比较；长期效果与泛化待验证。",
+    "pages": "摘要 p.2；引言 p.2；理论与配置 p.3-5；Fusion实例化/案例 p.5-11；评估/实验 p.11；设计原则 p.23；讨论 p.21"
+  },
+  {
+    "file": "69 Privacy, algorithms, and artificial intelligence.pdf",
+    "title": "Privacy, Algorithms, and Artificial Intelligence (NBER章节)",
+    "research_question": "在AI时代，传统经济学隐私理论（将隐私建模为中间商品）是否充分？AI带来的哪些新隐私特征需要重新建模？",
+    "method": "概念性/综述性章节（文献综述+理论分析），非实证；基于经济学隐私文献与AI特征论述。",
+    "theory": "经济学隐私理论（Varian 1996; Acquisti et al. 2016行为隐私）；“预测技术成本下降”视角（Agrawal et al. 2016）。",
+    "contributions": "1) 系统提出AI下三大隐私主题：数据持久性(data persistence)、数据重用(data repurposing)、数据溢出(data spillovers)；2) 指出传统原子化、静态隐私模型在互联经济中不再适用；3) 提出未来研究议程。",
+    "key_findings": "传统将隐私建模为个人与单一企业交换的模型不再合适；数据可长期持久、被无限重用、并对他人产生溢出；消费者关心“被收集”本身而不仅是用途；个性化需伴随控制感。",
+    "limitations": "非实证章节，主张基于文献推演；未提供量化检验；政策建议多为方向性；未来研究议程未给出结论性答案。",
+    "pages": "引言/三主题 p.2；隐私理论 p.5；AI与隐私 p.6；启示与未来议程 p.15（书页435-437）"
+  },
+  {
+    "file": "70 Ordering behavior in retail stores and implications for automated replenishment.pdf",
+    "title": "Ordering Behavior in Retail Stores and Implications for Automated Replenishment",
+    "research_question": "零售店经理在多大程度上、为何偏离自动补货系统的订单建议？能否从其行为中学习以改进自动补货系统？",
+    "method": "实证分析。欧洲连锁超市5家门店、19,417个“商品-门店”组合的历史订单/发货/销售点(POS)数据；回归分析驱动因素；基于管理系数理论(Bowman 1963)构建学习店经理行为的方法并评估。",
+    "theory": "管理系数理论（Bowman 1963）；行为运营；库存管理（系统不足 vs. 激励错配）。",
+    "contributions": "1) 刻画店经理对自动补货的系统偏离并识别驱动因素；2) 用新检验复兴并发展Bowman管理系数理论；3) 构建“从店经理行为学习”的方法，优于店经理且易实施。",
+    "key_findings": "店经理持续将订单从高峰日提前到非高峰日；由箱规/平均需求比、净货架空间、品类广度、需求不确定、季节性误差显著解释；经理通过纳入店内搬运成本与更好现货潜力改进系统；新方法取得更平衡搬运负荷且库存天数相近，优于经理。",
+    "limitations": "单一超市连锁与欧洲情境；历史数据相关而非实验；未涵盖所有激励维度；方法泛化到其他零售格式待验证。",
+    "pages": "摘要 p.2；引言 p.2；假设 p.9；模型 p.13；结果 p.15；结论 p.18"
+  },
+  {
+    "file": "71 Artificial intelligence, lean startup method, and product innovations.pdf",
+    "title": "Artificial intelligence, lean startup method, and product innovations",
+    "research_question": "为何有些初创企业能用AI创新而另一些不能？精益创业方法(LSM)如何影响AI对产品创新（新颖与渐进）的作用？",
+    "method": "面板数据实证。中国1,800家初创企业2011-2020数据；区分发现导向AI与优化导向AI、LSM中的原型制作与受控实验(A/B测试)；以地方政府AI政策为外生冲击用2SLS处理内生性；多种稳健性检验。",
+    "theory": "IT双元性/探索-利用（March 1991; Levinthal & March 1993）；精益创业方法（Ries 2011; Blank 2013）。",
+    "contributions": "1) 揭示AI能力与LSM互补促进产品创新，且二者缺一不可收益有限；2) 细分AI类型与LSM实践并证明匹配机制（发现型AI+原型→首次发布；优化型AI+A/B测试→迭代发布）；3) 强调将AI视为异质构念。",
+    "key_findings": "强AI能力企业产出更多创新产品；LSM与AI互补且在更少时间内产出更高质量产品；发现导向AI+原型制作促进首次发布，优化导向AI+受控实验加速迭代发布；政策冲击IV与替代度量下稳健。",
+    "limitations": "仅中国初创企业样本；AI能力自我报告/代理度量；未完全涵盖所有组织情境；相关/IV设计仍存在未观测混杂可能。",
+    "pages": "摘要 p.1；引言 p.1；数据与度量 p.14；实证方法 p.21；结果 p.26；讨论 p.32"
+  }
+]

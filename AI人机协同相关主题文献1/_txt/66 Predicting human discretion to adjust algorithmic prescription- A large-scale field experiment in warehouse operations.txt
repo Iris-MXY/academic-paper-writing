@@ -1,0 +1,1998 @@
+    Predicting Human Discretion to Adjust Algorithmic
+ Prescription: A Large-Scale Field Experiment in Warehouse
+                         Operations
+                Jiankun Sun1 , Dennis J. Zhang2 , Haoyuan Hu3 , Jan A. Van Mieghem4
+                        1. Imperial College Business School, Imperial College London, London, UK
+                     2. Olin Business School, Washington University in St. Louis, St. Louis, MO, USA
+                                            3. Alibaba Group, Hangzhou, China
+                      4. Kellogg School of Management, Northwestern University, Evanston, IL, USA
+
+
+                  Submitted on April 23, 2019; Revised on April 26 and July 14, 2020
+       Conventional optimization algorithms that prescribe order packing instructions (which items to pack
+     in which sequence in which box) focus on box volume utilization yet tend to overlook human behavioral
+     deviations. We observe that packing workers at the warehouses of Alibaba Group deviate from algorithmic
+     prescriptions for 5.8% of packages, and these deviations increase packing time and reduce operational effi-
+     ciency. We posit two mechanisms and demonstrate that they result in two types of deviations: (1) information
+     deviations stem from workers having more information and in turn better solutions than the algorithm;
+     and (2) complexity deviations result from workers’ aversion, inability or discretion to precisely implement
+     algorithmic prescriptions.
+       We propose a new “human-centric bin packing algorithm” that anticipates and incorporates human devi-
+     ations to reduce deviations and improve performance. It predicts when workers are more likely to switch to
+     larger boxes using machine learning techniques and then pro-actively adjusts the algorithmic prescriptions of
+     those “targeted packages.” We conducted a large-scale randomized field experiment with the Alibaba Group.
+     Orders were randomly assigned to either the new algorithm (treatment group) or Alibaba’s original algo-
+     rithm (control group). Our field experiment results show that our new algorithm lowers the rate of switching
+     to larger boxes from 29.5% to 23.8% for targeted packages and reduces the average packing time of targeted
+     packages by 4.5%. This idea of incorporating human deviations to improve optimization algorithms could
+     also be generalized to other processes in logistics and operations.
+
+     Key words : Warehouse Operations, Behavioral Operations, Field Experiment, Online Retailing
+
+
+
+
+1.     Introduction
+Today, the adoption of artificial intelligence (AI) and robotics is revolutionizing business opera-
+tions by augmenting human work. Indeed, rather than striving for autonomous automation, we are
+entering an age of digital operations where humans can work with AI embodied in algorithms to
+execute tasks. Algorithms can improve human work by supporting and augmenting their judgment
+and actions. For example, ride-sharing platforms like Uber are driven by algorithms that match
+drivers and customers and propose real-time optimized routes. Similarly, Amazon deploys algo-
+
+                                                           1
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                             Predicting Human Discretion to Adjust Algorithmic Prescription
+2                                                                                      00(0), pp. 000–000, c 0000 INFORMS
+
+
+rithms to drive automated guided vehicles (AGV) within a warehouse and to prescribe a picking
+list for warehouse workers to pick and pack from these AGVs.
+    Yet users (e.g., drivers and packers) may deviate from the algorithmic prescriptions. We broadly
+classify such deviations into two categories in this paper. The first category is information devia-
+tion. Information deviations occur when users deviate from infeasible or sub-optimal algorithmic
+prescriptions and execute feasible or improved actions because users have more objective informa-
+tion than the algorithm. Such deviations exist when the algorithm has insufficient information to
+recommend a feasible or optimal prescription. By definition, information deviations are typically
+beneficial to operational performance. For example, inaccurate inventory records in an inventory
+management system may lead to sub-optimal ordering decisions by the algorithm, but store man-
+agers may improve the decisions through information deviations by observing the actual inventory
+level (van Donselaar et al., 2010). The second category is complexity deviation, which results from
+users’ aversion, inability or discretion to implement the algorithmic prescription rather than the
+lack of objective information in the algorithm. Complexity deviations typically happen when algo-
+rithmic prescriptions are so complex that users may fail to understand, trust, or execute the pre-
+scriptions. As a result, users revert to implementing simpler but sub-optimal decisions instead, even
+if the algorithmic prescription is feasible and optimal in practice. Therefore, complexity deviations
+typically hurt operational performance.1 For example, human dispatchers may deviate from the
+routing prescribed by a vehicle routing algorithm when planning the delivery routes for multiple
+drivers, since both dispatchers and drivers usually prefer tours that connect points on the convex
+hull in the order of adjacency and avoid complex, overlapping but shorter routes (Rossit et al.,
+2019). Overall, the key distinctions between information deviation and complexity deviation are
+(1) whether the deviation is due to lack of information in the algorithm design and (2) whether
+the deviation improves the algorithmic prescription in feasibility or optimality given the defined
+objective function.2
+    While these deviations are common in practice, there is little rigorous empirical evidence on how
+to encourage or discourage these deviations in the stage of designing algorithms to improve oper-
+ational performance. In this paper, we provide the first suggestive field evidence that both types
+of deviations may exist in the bin packing process at Alibaba, which is the largest e-commerce
+platform in China. We also demonstrate, through a large field experiment, that operational perfor-
+mance can improve significantly from re-designing a “human-centric” algorithm that predicts and
+anticipates both types of human deviations.
+1
+  Complexity deviation is harmful in terms of the algorithm’s objective (e.g. box material cost), but it can be beneficial
+in terms of a more comprehensive objective (e.g. box material cost + labor cost), as shown in our experiment.
+2
+ While this classification suits the data in our setting and suffices for the design of our algorithm, it is probably not
+the only, let alone best, classification for other settings.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                    3
+
+  We first analyze over 1 million packages from July 12, 2018 to July 31, 2018 at Alibaba. We
+observe that workers do not always follow the algorithmic instructions when performing their tasks,
+which we will refer to as “non-conforming” behavior. Specifically, we find that workers use box
+sizes different from the prescribed sizes for 5.8% of the packages. Moreover, the processing time of
+these non-conforming packages are 48.3% longer than conforming packages. We further decompose
+such non-conforming behaviors into two types.
+  First, we show that workers switch to smaller boxes than prescribed in 1.6% of all packages (i.e.,
+in more than a quarter of the 5.8% non-conforming packages). We interpret such deviations as
+information deviations, since workers can fold or compress some items and pack them in smaller
+boxes, while the algorithm lacks the information to identify items that can be folded or compressed.
+  Second, in the remaining 5.8% − 1.6% = 4.2% of the packages (i.e., in about three quarters of
+the non-conforming packages), workers switch to larger boxes than prescribed. These deviations
+may be driven by both information deviation and complexity deviation. Information deviation can
+exist in these cases because workers know certain items need wrappers that increase the item sizes,
+while the algorithm does not. Complexity deviation may arise when workers fail to organize the
+items in the orientations and positions inside the box as the algorithm prescribes, especially for
+complex packing tasks. While it is hard to completely differentiate the two types of deviations in
+our data, we provide supportive evidence that both deviations may exist and that neither one can
+fully explain all switching-to-larger-boxes deviations.
+  First, we show that the packages that contain an item that consistently causes workers to switch
+to larger boxes only account for less than 0.5% of the packages where workers switch to larger boxes.
+This indicates that information deviation exists in the switching-to-large-boxes packages, but it
+cannot fully explain all the switching-to-large-boxes deviations. Second, we show that workers are
+more likely to switch to larger boxes when tasks are more complex (i.e., when there are multiple
+items in the package or when the prescribed fill rate is high). Specifically, the probability of workers
+switching to larger boxes is 2.4% for packages containing only one item, but 4.4% for packages with
+more than one item. Similarly, the probability of switching to larger boxes is 3.9% for the packages
+with prescribed fill rate below 75%, but 9.4% for the packages with prescribed fill rate above 75%.
+This suggests that complexity deviation exists for these switching-to-large-boxes packages. Third,
+we find that in 35.6% of the packages for which workers switch to larger boxes, workers use boxes
+that are at least two sizes larger than prescribed. This provides additional evidence for the existence
+of complexity deviation since information deviations (e.g., certain items needing wrappers) are
+almost unlikely to cause the required box sizes to be increased by at least 2.
+  After analyzing the historical data, we propose a new algorithm that predicts cases, henceforth
+referred to as “targeted packages,” where human workers are likely to switch to larger boxes. The
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                    Predicting Human Discretion to Adjust Algorithmic Prescription
+4                                                                             00(0), pp. 000–000, c 0000 INFORMS
+
+
+prediction uses machine learning models to capture 43 product and order features that well explain
+workers’ deviations of switching to larger boxes in the historical data. The new algorithm then pro-
+actively adjusts the algorithmic prescriptions for these targeted packages by using a lower maximum
+prescribed fill rate. This is likely to cause the algorithm to prescribe a box one size larger than the
+original recommendation. We argue that our algorithm may improve operational performance in
+two different ways, depending on whether it reduces complexity deviation or information deviation.
+If there is complexity deviation, this new algorithm can reduce the difficulty of following the
+original bin packing algorithm to pack items by lowering the fill rate (i.e., the complexity) of
+targeted packages, which in turn is likely to reduce workers’ probability of switching to larger
+boxes and improve workers’ productivity. If there is information deviation, this algorithm may also
+systematically identify fragile items that need wrappers from historical human actions and suggest
+box sizes that account for the wrapping materials.
+    We implemented our new human-centric bin packing algorithm in four of Alibaba’s warehouses
+and conducted a large-scale field experiment comparing our human-centric algorithm to the original
+algorithm for two weeks from August 27, 2018 to September 9, 2018. Around 14 thousand packages
+on average are packed per warehouse per day in our experiment. We find that, when using our
+human-centric algorithm, the rate of switching to larger boxes drops from 29.5% to 23.8% among
+targeted packages, a relative improvement of 19.4% (p-value < 0.0001). Moreover, the reduction in
+non-conforming behavior reduces the packing time of those targeted packages by 3.2 seconds, a rel-
+ative improvement of 4.5% (p-value < 0.05). By combining our estimated improvements with actual
+cost data from Alibaba, we show that our algorithm may result in annual savings of approximately
+2.6 million dollars if applied to all warehouses of Alibaba.
+    We also provide three strands of evidence that, while both types of deviations may exist in
+switching-to-larger-boxes packages in the historical data, the majority of the gain from our algo-
+rithm stems from reducing complexity deviation. First, we show that our algorithm reduces the
+switching probability, and in turn the processing time, only for packages that have more than 1
+item (i.e., packages that are more complex and in turn more likely to have complexity deviation).
+Second, we also confirm that the estimated effect size does not change if we exclude packages where
+workers are likely to have more information than the algorithm and wrap around certain fragile
+items. Third, we find that our new algorithm reduces the probability of switching to boxes that are
+at least two sizes larger from 13.0% to 10.2%, which accounts for around half of the improvement.
+    Our main contributions can be summarized as follows. First, we provide suggestive evidence that
+both information deviation and complexity deviation may exist in the same operational setting.
+This reconciles two seemingly contradicting literature streams which show that human deviations
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                  5
+
+can be driven by both human workers’ superior information or insufficient processing power. Sec-
+ond, we present a low-cost method of modifying an existing algorithm by anticipating human
+deviations. This method improves the conformance, as well as the operational performance, of
+the human workers who are executing the adjusted algorithmic prescriptions. Third, we provide
+rigorous causal estimates of the impact of this method to modify algorithms. We demonstrate
+that, despite its simplicity, such human-centric algorithm modification can result in economically
+meaningful improvements in a real-world setting. Moreover, we show that the improvement from
+our algorithm can be mostly attributed to the reduction in complexity deviations.
+
+2.    Literature Review
+Since our paper improves the bin packing algorithm by Alibaba, it is naturally related to the large
+literature in Operations Research and Computer Science that studies the bin packing problem.
+Bin packing is a classic NP-hard combinatorial optimization problem and has many variations for
+different practical settings. Our research is mainly related to the three-dimensional bin packing
+problem with multiple bin sizes. The problem is to pack a given set of three-dimensional items into
+a given set of bins without overlapping. Various objective functions could be specified for the three-
+dimensional bin packing algorithm, such as minimizing the wasted volume of bins, maximizing the
+box fill rate, or minimizing the number of bins to use. Regardless of the selected objective, the
+problem remains of formidable complexity. Although some papers propose exact algorithms for the
+problem (Martello et al., 2000; Taylor et al., 2017), most work focuses on developing approximation
+algorithms and corresponding heuristics (Hodgson, 1982). In most literature of the bin packing
+problem, the items are modeled as perfect cuboid and are organized orthogonally in the bins.
+  The classical literature for algorithm design, including but not limited to the bin packing litera-
+ture, usually implicitly assumes that optimization algorithms finalize the managerial decisions and
+that workers will implement the algorithmic prescriptions exactly. Our main contribution to the
+literature of bin packing algorithm design is to provide empirical evidence that humans tend to
+deviate from algorithmic prescriptions in a real-world setting and show that system-wise efficiency
+can be improved by incorporating such predicted deviations in the algorithm design.
+  Our work also contributes to a large literature on behavioral operations that studies worker
+discretion from optimal solutions and behavioral biases in many operations settings, including
+task sequence (Ibanez et al., 2018; Bendoly et al., 2014), demand forecasting (Kremer et al.,
+2011), ordering (Schweitzer and Cachon, 2000; van Donselaar et al., 2010; Cui et al., 2015; Craig
+et al., 2016; Moritz et al., 2019), inventory transshipment (Bostian et al., 2012), contract decisions
+(Davis et al., 2014; Chen et al., 2019; Johnsen et al., 2019), picking (Batt and Gallino, 2019) and
+providing services (Buell et al., 2016; Tan and Netessine, 2014). Such non-conforming behavior
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                    Predicting Human Discretion to Adjust Algorithmic Prescription
+6                                                                             00(0), pp. 000–000, c 0000 INFORMS
+
+
+typically results from workers’ behavioral biases or information mismatch between the worker and
+the algorithm (see Bendoly et al. 2006 and Gino and Pisano 2008 for comprehensive reviews),
+and the literature provides mixed results on whether such discretion may benefit or hurt the
+overall productivity. For example, Ibanez et al. (2018) demonstrate that doctors tend to prioritize
+tasks since they may want to group similar tasks together due to mental switching costs, but
+such prioritization may reduce productivity in the long run. In contrast, van Donselaar et al.
+(2010) find that store managers tend to deviate from advised ordering policies since they have
+superior information, and conclude that such discretion may result in higher profits. Furthermore,
+a recent stream literature, called algorithmic aversion, demonstrates that, even if humans know
+that algorithms outperform humans and have the ability to follow algorithms, they might still be
+reluctant to using algorithm prescriptions and prefer to believe in their own judgment if they see
+the algorithms err (Dietvorst et al., 2015).
+    Some of this behavioral operations literature has also proposed solutions by incorporating the
+behavioral aspects into the algorithmic prescriptions. For instance, Boudreau et al. (2003) suggest
+utilizing human responses to help explain the variations and anomalies and improve the operations
+management system. van Donselaar et al. (2010) modify the automated order systems by learning
+from the deviation behavior of retail store managers in ordering, and show that their method is
+efficient to implement and may outperform store managers. Dietvorst et al. (2018) show that people
+are more willing to use the algorithms if they are allowed to modify the algorithmic prescriptions.
+Liu et al. (2018) use machine learning approaches to capture drivers’ routing behavior and predict
+their actual delivery tour distance in the order assignment optimization model for last mile delivery.
+Kim et al. (2015) include unobserved patient factors that physicians may consider in developing
+the admission policy and show that the resulting policy improves the system performance com-
+pared with a policy over only observed patient factors. There is also literature proposing different
+interventions in workflow management to improve workers’ performance (Acimovic et al., 2018;
+Song et al., 2017) or reduce discretionary behavior (Staats et al., 2017).
+    We contribute to the behavioral operations literature by providing suggestive evidence in a new
+setting (i.e., warehouse operations) that both information deviation and complexity deviation may
+exist in one operational process. Moreover, different from the existing literature, we do not only
+analyze how deviation happens and its impact, but also develop a low-cost method to update exist-
+ing algorithms using machine learning techniques to reduce such deviations and improve overall
+productivity. Last, to the best of our knowledge, this study is the first to implement such behav-
+iorally adjusted algorithm in a randomized controlled experiment and demonstrate causally that
+such algorithm adjustment based on human behavior can improve overall productivity. Given the
+mixed evidence presented in the literature, we believe that it is valuable to provide more empirical
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                       7
+
+evidence on both types of deviations, and some causal assessment on the impacts of non-conforming
+behavior on productivity and how we can improve the algorithm’s performance by anticipating
+and incorporating human deviations in the algorithm design.
+
+3.      Alibaba’s Warehouse Operations and Bin Packing Algorithms
+3.1.     Overview of Alibaba’s Warehouse Management
+As the largest e-commerce platform in China, Alibaba has a logistics affiliate named Cainiao
+Network, which is one of the largest start-ups in China.3 Cainiao has built a collaborative platform
+that connects logistics companies, merchants and consumers to improve the efficiency and quality
+of logistics service both in China and globally. One of Cainiao’s major missions is to offer integrated
+warehousing and delivery service to the merchants on Alibaba’s marketplaces. The merchants can
+store their merchandise in Cainiao’s warehouses, and Cainiao helps manage the inventory, order
+shipping and delivery process. Since Alibaba owns more than 50% of Cainiao Network, we simply
+use Alibaba to refer to the company throughout the paper.
+     Alibaba operates more than 200 warehouses with different service merchants or industries. These
+warehouses use Alibaba’s warehouse management system, but the warehouse operations is often
+outsourced to third-party warehousing service providers. Therefore, Alibaba’s warehouse manage-
+ment system controls the operating process in the warehouses and provides algorithmic solutions
+for many warehouse operations tasks, such as putaway locations, picking routes, packing box selec-
+tions, etc. The workers from third-party companies receive such algorithmic prescriptions from
+Alibaba’s system on their hand-held devices or monitors, and then perform the tasks according to
+these prescriptions with, as we will show below, certain non-conformance.
+
+3.2.     Alibaba’s Bin Packing Problem
+For each order received by the warehouses, Alibaba’s warehouse management system will decide the
+size and number of shipping boxes to pack the order by solving a bin packing problem. Alibaba’s
+bin packing problem involves multiple objectives with different priorities. The primary objective
+is to minimize the total number of boxes. If there are multiple solutions with the same number
+of boxes, the secondary objective is to minimize the total cost of boxes. Since there are multiple
+box sizes available in each warehouse, Alibaba’s bin packing problem can be formulated as a
+three-dimensional multiple bin-size bin packing problem (3D-MBSBPP) with multiple objectives.
+Suppose there are K sizes of boxes, {B1 , ..., BK }, each with unlimited supply. Each box size Bj
+costs cj and has length Lj , width Wj and height Hj for j = 1, . . . , K. The maximum weight capacity
+of box size Bj is Mj . Consider an order with N rectangular-shaped items, where each item i has
+length li , width wi , height hi and mass mi for i = 1, . . . , N . We will decide xj , the number of boxes
+
+3
+    http://www.chinadaily.com.cn/a/201805/10/WS5af379eca3105cdcf651cfe8.html
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                                Predicting Human Discretion to Adjust Algorithmic Prescription
+8                                                                                         00(0), pp. 000–000, c 0000 INFORMS
+
+
+Figure 1     Alibaba’s Bin Packing Algorithm
+
+
+
+
+of size Bj to use for packing the order, for j = 1, . . . , K. The optimization objective of Alibaba’s
+                                             PK       PK
+bin packing problem is lex min(x1 ,...,xK ) ( i=1 xj , i=1 cj xj ), where “lex min” denotes lexicographic
+minimum4 . Alibaba’s bin packing problem imposes the following constraints: (1) all items must
+fit within the three dimensions of the box orthogonally without overlapping each other; (2) the
+total weight of the items in a box of size Bi cannot exceed its weight capacity Mi ; and (3) the
+ratio of the total volume of the items in a box of size Bi to the box volume capacity cannot exceed
+the specified maximum box fill rate R (this parameter will be important for the remainder of this
+paper). This is an NP-hard problem with complex formulation. We skip the model formulation
+since we are not going into theoretical analysis of this problem. We refer the readers to Chen et al.
+(1995) for a complete analytical model of the 3D-MBSBPP.
+
+3.3.    Alibaba’s Current Bin Packing Algorithm
+In this section, we provide an overview of Alibaba’s current bin packing algorithm. Because the bin
+packing problem is NP-hard, Alibaba developed a heuristic algorithm shown in Figure 1: For each
+customer order received at the warehouse, the algorithm decides the number of boxes of each size to
+use for packing the order and the items to pack in each box. There are two sets of input parameters
+for this algorithm: the SKU parameters and the box parameters. The SKU parameters include the
+length, width, height, weight and number of each SKU in an order. The box parameters include
+the length, width, height, weight capacity and maximum box fill rate of each available box size.
+The principle idea of Alibaba’s bin packing algorithm is to decompose the bin packing problem
+into three sub-problems at different levels and develop an algorithm to solve each sub-problem.
+
+4
+ Given a collection of n objective functions f = (f1 (x), . . . , fn (x)) and a feasible set X , the solution x∗ is lexicographic
+minimum if there is no x ∈ X such that f (x) <lex f (x∗ ). Here <lex is lexicographic ordering: y <lex y0 if yk < yk0 for
+k = min{l|yl 6= yl0 }, where yl and yl0 denotes the l’s element of y and y0 , respectively.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                  9
+
+  The most basic sub-problem is the positioning problem: Given a single box size and a packing
+sequence of a set of items, determine the items to be fitted into the box and their positions and
+orientations in the box, subject to the constraints of Alibaba’s bin packing problem. Alibaba
+employs a greedy algorithm with two steps to solve this sub-problem. The first step is to split the
+unoccupied box space into cuboids using the maximal rectangle algorithm. The second is to fit the
+next item in the packing sequence into one of the cuboid free spaces according to some heuristic
+rule. The weight capacity constraint and maximum fill rate constraint are also checked in this step.
+The algorithm executes the two steps iteratively for each item until no more items in the packing
+sequence can be fitted into the box. It finally returns the positions and orientations of the packed
+items in the sequence, and the sequence of remaining items that have not been fitted into the box.
+  The second sub-problem is the box-selection problem: Given a packing sequence of all the items
+in the order, determine the number of boxes of each size to use. The algorithm for this problem
+initiates an item sequence S with the sequence of all the items in the order. The algorithm first
+checks whether all the items in S can be fitted into the largest box in the given order by calling the
+positioning algorithm. If they can, the algorithm gradually lowers the box size and iteratively run
+the positioning algorithm until it finds the minimum box size that can contain all the items in S.
+Otherwise, S is updated to be the remaining sequence of items that have not been fitted into the
+box, and the algorithm runs recursively with the updated S until there are no remaining items.
+  The last sub-problem is the sequencing problem to optimize the packing sequence of items. The
+objective of this problem is to minimize the total number of boxes, or to minimize the total box
+cost if multiple solutions achieve the minimum number of boxes. The particle swarm optimization
+(PSO) algorithm is currently used to solve this problem. During its search for the optimal packing
+sequence, the box-selection algorithm and positioning algorithm as discussed above are called
+iteratively to evaluate the performance of a packing sequence.
+
+3.4.   Standard Packing Procedures and Practices in Alibaba’s Warehouses
+We next describe the standard packing procedures for an order in Alibaba’s warehouses (depicted
+in Figure 2), since they are closely related to how we design the bin packing algorithm, conduct the
+experiment and analyze the results. When an order is received at the warehouse, the warehouse
+management system obtains the information of all items in the order, and feeds it into the bin
+packing algorithm. The algorithm then outputs the size and number of boxes needed for packing
+the order and the box assignment of each item in the order. In practice, more than 90% of orders are
+prescribed to be packed into one box, while the remaining orders are split into two or more boxes.
+The system generates a packing slip, including an ID and the corresponding item list, for each
+package. Then workers pick and sort the items into the picking containers. Each container contains
+the items of a single packing slip. The containers are inventorized at the packing workstation.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                      Predicting Human Discretion to Adjust Algorithmic Prescription
+10                                                                              00(0), pp. 000–000, c 0000 INFORMS
+
+
+Figure 2    A Flow Chart of the Packing Process of an Order in Alibaba’s Warehouses
+
+
+
+
+     The standard packing procedures are as follows. A packing worker starts a packing process by
+scanning the barcode on the packing slip. The item information and recommended box size will
+show on the display. Then the worker picks the box for packing. Next, the worker scans the items
+one by one and puts them inside the box. The worker may add some void fill materials for padding
+in this process. If all the items have been scanned, confirmed undamaged and consistent with those
+on the packing slip, the worker then wraps the box. Otherwise, the package will be sent to the
+exception handling group. After wrapping the box, the worker scans the barcode of the box that
+is actually used in packing so that the actually used box size is recorded. Finally, the mailing label
+is printed, and the worker sticks the mailing label on the box and completes the packing process.
+     There are a few points to highlight about the packing procedures. First, the order of the pro-
+cedures are not interchangeable. The packing process of a package always starts with scanning
+the barcode of the packing slip, followed by scanning the items, and ends with scanning the box
+barcode. Second, the worker cannot use two boxes to pack a single package. This is not feasible
+since only one mailing label can be printed for a single packing slip. In particular, if the worker
+cannot fit all the items in the box, he/she must switch to a larger box but cannot simply use one
+more box to pack the leftover items. Third, the workers can only see the recommended box size,
+and they cannot observe any information about how to arrange the items in the recommended
+box. Such restriction is due to the limited space in the packing station and the high cost of display
+equipment. Fourth, Alibaba’s system only prescribes the box size and does not prescribe the use
+of supplementary packing materials (e.g. item wrappers) to the workers. The rules for using sup-
+plementary packing materials are usually given by warehouse managers. We observed that workers
+typically follow those rules when deciding whether or not to use supplementary packing materials.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                   11
+
+4.       Non-conforming Behavior in Bin Packing and Its Impact Prior to
+         the Field Experiment
+The bin packing algorithm has helped control the cost of packing materials and improve the
+productivity of workers. However, we observe that workers occasionally do not use the box sizes
+prescribed by the algorithm, but instead switch to larger or smaller ones than recommended. In this
+section, we provide initial empirical evidence on how such non-conforming behavior is correlated
+with productivity and box material cost. Note that the analysis for productivity in this section is
+prior to our field experiment and in turn is only correlational. The causal impact of non-conforming
+behavior on productivity is estimated in Section 7.2.
+
+4.1.      Data
+We conduct the analysis using the packing data of 1, 086, 441 packages from July 12, 2018 to July
+31, 2018 prior to our experiment from four warehouses for the Tmall Supermarket of Alibaba
+Group. Our unit of observation in our analysis is a package. The four warehouses were using the bin
+packing algorithm as described in Section 3.3 before our experiment; and they are representative
+of Alibaba’s warehouses in terms of size, facilities and operational processes.
+     We exclude some observations in our analysis to ensure the stability and robustness of our
+results. First, we exclude observations with packing time longer than 20 minutes (1.3% of all
+packages). Exceptionally long packing time suggests that the worker suspended the packing process
+for personal reasons, or the package was sent for exception handling5 before the packing process is
+completed. Second, we exclude the packages with more than 25 items (0.8% of all packages). Such
+packages typically include a large number of items of the same SKU. The workers may scan only 1
+item and input manually the number of items of this SKU into the system, rather than scanning all
+the items one by one as they do for packages with a small number of items. Therefore, the packing
+procedures for the packages with an extremely large number of items may be different from others.
+Our analysis of the field experiment in Section 7.1 also follows the same data exclusion criterion.
+
+4.2.      Preliminary Analysis of Box Size Switching Behavior
+We categorize workers’ box size selection decisions for each package into three types: using the
+recommended box sizes of the algorithm, switching to larger boxes than recommended, and switching
+to smaller boxes than recommended.6 As shown in Columns (1) to (3) in Panel A of Table 1, the
+rate of non-conforming behavior (i.e., where workers do not use recommended boxes) is 5.80%
+
+5
+    Exception handling may be required when the picked items are defective or not exactly as listed on the packing slip.
+6
+ Workers may scan a non-standard box barcode and we lose track of the actually used box sizes in this case. Therefore,
+to ensure the robustness of our results, we only mark the confirmed cases where the scanned box sizes are larger (or
+smaller) than the recommended box sizes as switching to larger (or smaller) boxes than recommended. Our results
+are qualitatively consistent if we exclude all packages where workers use the non-standard box barcode.
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                            Predicting Human Discretion to Adjust Algorithmic Prescription
+12                                                                                    00(0), pp. 000–000, c 0000 INFORMS
+
+
+                       Table 1     Summary Statistics of Different Types of Box Size Selections
+
+                             Panel A: Proportion of Different Types of Box Size Selections
+                                                                                    Switch to            Switch to
+                         Use Recommended         Switch to         Switch to
+                                                                                   Larger Box           Larger Box
+                             Box Size           Smaller Box       Larger Box
+                                                                                 (Large-1 Case)       (Large-2 Case)
+                                   (1)              (2)              (3)               (4)                  (5)
+         Rate                    94.20%            1.64%            4.16%            4.14%                 1.48%
+                         Panel B: Average Package Size and Prescribed Fill Rate Per Package
+                                                                                    Switch to            Switch to
+                         Use Recommended         Switch to         Switch to
+                                                                                   Larger Box           Larger Box
+                             Box Size           Smaller Box       Larger Box
+                                                                                 (Large-1 Case)       (Large-2 Case)
+                                   (1)              (2)              (3)               (4)                  (5)
+ Number of Items                  5.61             4.93             5.79              5.79                 6.14
+Prescribed Fill Rate             47.30%           37.88%           56.12%            56.15%               57.40%
+       Panel C: Average Box Surface Areas (cm2 ) of Recommended Boxes and Actually Used Boxes Per Package
+                                                                                    Switch to            Switch to
+                         Use Recommended         Switch to         Switch to
+                                                                                   Larger Box           Larger Box
+                             Box Size           Smaller Box       Larger Box
+                                                                                 (Large-1 Case)       (Large-2 Case)
+                                   (1)              (2)              (3)               (4)                  (5)
+Recommended Boxes                3797.22          4748.46          3265.77           3267.13              3481.00
+Actually Used Boxes              3797.22          3378.01          4604.44           4604.20              5536.68
+                                  Panel D: Average Packing Time (seconds) Per Package
+                                                                                    Switch to            Switch to
+                         Use Recommended         Switch to         Switch to
+                                                                                   Larger Box           Larger Box
+                             Box Size           Smaller Box       Larger Box
+                                                                                 (Large-1 Case)       (Large-2 Case)
+                                   (1)              (2)              (3)               (4)                  (5)
+     Packing Time                 45.34            55.26            71.95             71.88                76.14
+     Panel E: Rate of Switching to Larger or Smaller Box for Packages of Different Sizes and Prescribed Fill Rates
+                             Number of Items       Number of Items          Prescribed Fill Rate   Prescribed Fill Rate
+                                  =1                    >1                         ≤ 75%                  > 75%
+                                  (1)                   (2)                         (3)                    (4)
+Switch to Larger Box                2.44%                 4.43%                    3.87%                   9.37%
+Switch to Smaller Box               2.64%                 1.47%                    1.70%                   0.76%
+
+
+
+(1 − 94.20%). In particular, these non-conforming behaviors can be decomposed into switching
+to larger boxes (4.16%) and switching to smaller boxes (1.64%). We interpret the deviations of
+switching to smaller boxes as information deviation. As we have learned from the operations team,
+these deviations are normally caused by human workers being able to fold or compress items while
+the algorithm lacks the information to identify items that can be folded or compressed.
+     In contrast, the deviations of switching to larger boxes may be driven by both information
+deviation and complexity deviation. Information deviation may occur since workers know certain
+fragile items need wrappers, which increase the item sizes, while the algorithm does not. Complexity
+deviation may arise when workers fail to organize the items compactly in the boxes as prescribed
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                   13
+
+by the algorithm, especially for complex packing tasks.7 While it is very difficult to completely
+distinguish two types of deviations in the data, we find supportive evidence that both types of
+deviations may exist and neither may fully explain all the deviations of switching to larger boxes.
+     First, we identify all items that were always packed in larger boxes than prescribed since these
+items may need wrappers. We then only count the packages that do not contain these items but are
+packed in larger boxes than prescribed, and denote these packages as “large-1 case.” These large-1
+cases include packages where workers switch to larger boxes but the switching behavior is not
+caused by items that need wrappers. Column (4) of Panel A in Table 1 shows that such large-1 cases
+account for 4.14% of all packages. Therefore, there are 0.02% (4.16% − 4.14%) packages which are
+packed in larger boxes than prescribed and also contain the items that consistently cause workers
+                                                         0.02%
+to switch to larger boxes. Such packages make up 0.48% ( 4.16% ) of the packages where workers
+switch to larger boxes. This indicates that information deviation may exist when workers switch
+to larger boxes, but it cannot explain the majority of the switching-to-larger-boxes deviations.8
+     Second, we check the packages where workers switch to boxes that are at least two sizes larger
+than prescribed9 (denoted as “large-2 case”). We focus on these cases because, given the wrapping
+material size is normally small, these cases are typically caused by complexity deviation. Column
+(5) of Panel A in Table 1 shows that the proportion of such large-2 cases in all packages is 1.48%,
+and they account for 35.6% ( 1.48%
+                             4.16%
+                                   ) of the packages where workers switch to larger boxes. This
+provides suggestive evidence that a significant part of switching-to-larger-boxes deviations is driven
+by complexity deviation.
+     Third, we investigate the deviations of switching to larger boxes for several subgroups of pack-
+ages with different number of items or prescribed fill rates. As shown in Panel E of Table 1, the
+probability of switching to larger boxes is 2.44% for packages containing only 1 item, but it is 4.43%
+for packages containing more than 1 item.10 Similarly, the probability of switching to larger boxes
+is 3.87% for packages with prescribed fill rates below 75% but 9.37% for packages with prescribed
+
+7
+    We provide more examples of information deviations and complexity deviations in Appendix B.
+8
+  Our estimate of large-1 cases mainly demonstrates the co-existence of information deviations and complexity devia-
+tions, but 0.02% may not be an accurate estimate of the proportion of information deviations. Notice that we identify
+information deviations by identifying items whose probability of triggering deviations to larger boxes (i.e., items that
+may need wrappers) is at least x%. Our current value of x% = 100% may be restrictive. As a robustness check,
+we therefore change this threshold from 100% (9 items identified) to 80% (14 items identified) and 50% (118 items
+identified). The rate of large-1 cases drops to 4.12% and 3.96% with the thresholds 80% and 50%, respectively, which
+do not change our results qualitatively.
+9
+ Each warehouse has 7 to 9 box sizes. Increasing a box size by one size will increase the box volume by 40% on
+average. Increasing a box size by two sizes will increase the box volume by 88% on average.
+10
+  We also repeat the analysis for multi-item packages after removing those containing items that may cause deviations
+to larger boxes, using different thresholds x% for identifying such items. The probability of switching to larger boxes
+among multi-item packages is 4.43% when x% = 100%, 4.42% when x% = 80%, and 4.40% when x% = 50%. Therefore,
+our results do not change qualitatively if we exclude packages that are likely to cause information deviations.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                     Predicting Human Discretion to Adjust Algorithmic Prescription
+14                                                                             00(0), pp. 000–000, c 0000 INFORMS
+
+
+fill rates above 75%. The results suggest that human workers are much more likely to switch to
+larger boxes when the packing tasks are more complex (i.e. when there are multiple items in the
+package or when the prescribed rate is high). This provides another supportive evidence for the
+existence of complexity deviation.
+     We next present model-free evidence on how non-conforming behavior impacts box material
+cost and productivity. We use the box surface area as a proxy of the box material cost. As shown
+in Panel C of Table 1, among the packages where workers exhibit non-conforming behavior (i.e.,
+switching to larger or smaller boxes), the average box surface area of recommended boxes and the
+actually used boxes are 3685cm2 ( 3265.77×4.16%+4748.46×1.64%
+                                          4.16%+1.64%
+                                                              ) and 4258cm2 ( 4604.44×4.16%+3378.01×1.64%
+                                                                                      4.16%+1.64%
+                                                                                                          )
+respectively, which indicates that non-conforming behavior on average increases the box surface
+area by 15.5% (p-value < 0.0001). The average box surface area of the recommended and actually
+used boxes are 3266cm2 and 4604cm2 for packages where workers switch to larger boxes, which
+represents an increase of 1338cm2 (or 41.0%) in box material due to switching to larger boxes.
+When workers switch to smaller boxes, the average box surface area is reduced from a prescribed
+value of 4748cm2 to an actual value of 3378cm2 , which corresponds to a decrease of 1370cm2 (or
+28.9%) in box material. Therefore, switching to larger boxes increases the box material cost while
+switching to smaller boxes decreases that; and since switching to larger boxes is more common and
+more impactful in size increase than switching to smaller boxes, non-conforming behavior increases
+the overall box material cost. Since we observe both the recommended and the actually used box
+surface areas, we interpret the impact of non-conforming behavior on box material costs as causal.
+     Moreover, the non-conforming behavior may also be correlated with longer packing time and
+a decrease in the productivity of workers. As described in Panel D of Table 1, we find that the
+average packing time is 45.3 seconds when workers use the recommended box size. The average
+packing time is 72.0 seconds when workers switch to larger boxes and 55.3 seconds when workers
+switch to smaller boxes, corresponding to a relative increase of 58.9% and 22.1%, respectively.
+Therefore, the packing time of the non-conforming packages is 67.2 seconds ( 71.95×4.16%+55.26×1.64%
+                                                                                   4.16%+1.64%
+                                                                                                     )
+per package on average, which is 48.3% longer than that of the conforming packages. Since we
+do not observe the packing time workers would need when they do not switch, the relationship
+between non-conforming behavior and productivity is only correlational.
+     While workers spend longer time packing when they switch boxes than when they follow the
+recommendations, such difference may be due to the inherent difference between the orders in
+the two cases rather than the switching behavior. For example, workers are more likely to switch
+when the packing task is more complex since they are less likely to figure out the exact positioning
+of items. However, packing an order in general takes longer time when the packing task is more
+complex (e.g. the package may include more items). Therefore, to get a better estimate of the
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                 15
+
+impact of non-conforming behavior on packing time, we use the following empirical specifications
+to model the correlation between switching behavior and packing time while controlling for other
+possible factors that may jointly correlate with switching probability and packing time11 :
+
+Dependent Variableikt =θ0 + θ1 Non-conformanceikt + γ1 Number of Itemsikt + γ2 Volume of Itemsikt
+
+                              + γ3 Weight of Itemsikt + γ4 Xikt + Wk + Dt + ikt ,                                (1)
+
+Dependent Variableikt =θ0 + θ1 Switch to Larger Boxikt + θ1 Switch to Smaller Boxikt
+
+                              + γ1 Number of Itemsikt + γ2 Volume of Itemsikt + γ3 Weight of Itemsikt
+
+                              + γ4 Xikt + Wk + Dt + ikt .                                                        (2)
+
+     Table 9 in Appendix A summarizes the definitions of the dependent and independent variables
+examined in this paper. Our unit of analysis is a package i that is packed in warehouse k on day
+t. Dependent Variableikt can be Packing Timeikt or log(Packing Timeikt ), where Packing Timeikt
+is the packing time (in seconds) of package i packed in warehouse k on day t. Non-conformanceikt
+is a binary variable that equals 1 if a worker does not use the prescribed box size for package i
+packed in warehouse k on day t and 0 otherwise. Switch to Larger Boxikt is a binary variable that
+equals one if a worker uses a larger box than prescribed to pack package i in warehouse k on day
+t, and 0 otherwise. Switch to Smaller Boxikt is a binary variable that equals 1 if a worker uses a
+smaller box than prescribed to pack package i in warehouse k on day t and 0 otherwise. Number
+of Itemikt , Volume of Itemsikt and Weight of Itemsikt are the number of items, total volume of
+items and total weight of items in the package i packed in warehouse k on day t, respectively.
+Xikt are other control variables of package i that may impact workers’ likelihood of deviating from
+recommendations. These variables include the prescribed box fill rate, the package specific features
+and the box specific features, and they are summarized in Tables 7 and 8 in Appendix A. We
+will provide more details of these control variables in Section 5.1 when we discuss our prediction
+algorithms based on these variables. Wk and Dt are the fixed effects of warehouse k and date t,
+respectively. In all regression analyses in the paper, we report the robust standard errors.
+     Columns (1) and (3) in Table 2 show that the non-conforming behavior is associated with an
+increase of 16.2 seconds (or 32.8%) in packing time, controlling for various fixed effects and package
+characteristics, which reconfirms the model-free evidence from Table 1. Columns (2) and (4) of
+Table 2 indicate that switching to larger and smaller boxes increase the packing time by 18.0
+seconds (or 34.9%) and 11.8 seconds (or 27.9%), respectively. The increase in packing time may
+
+11
+  We treat the estimates of the relationship between switching behavior and packing time, after controlling for
+package characteristics, as correlational and exploratory. In Section 7, we demonstrate the causal impact of switching
+behavior on packing time after implementing our experiment.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                                Predicting Human Discretion to Adjust Algorithmic Prescription
+16                                                                                        00(0), pp. 000–000, c 0000 INFORMS
+
+
+                         Table 2     Association Between Non-conformance and Packing Time
+
+                                                   Packing Time                          log(Packing Time)
+                                             (1)                  (2)                  (3)               (4)
+        Non-conformance                     16.152∗∗∗∗                                 0.328∗∗∗∗
+                                            (1.320)                                   (0.040)
+        Switch to Larger Box                                      17.977∗∗∗∗                                0.349∗∗∗∗
+                                                                  (2.379)                                  (0.042)
+        Switch to Smaller Box                                     11.766∗∗∗∗                                0.279∗∗∗∗
+                                                                  (0.672)                                  (0.037)
+        Warehouse Fixed Effect              Yes                  Yes                  Yes                  Yes
+        Date Fixed Effect                   Yes                  Yes                  Yes                  Yes
+        Package Characteristics             Yes                  Yes                  Yes                  Yes
+        Observations                     1,063,986            1,063,986            1,063,986            1,063,986
+
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the worker and date level.
+Columns (1) and (3) report the results of the regression model (1) to estimate the overall effect of non-conforming behavior on
+packing time and log(packing time), respectively. Columns (2) and (4) report the results of the regression model (2) to estimate
+the effect of each type of non-conformance on packing time and log(packing time), respectively.
+
+
+come from the extra time spent on re-packing the package in a different box after the first packing
+trial. Notice that the impact on packing time of switching to smaller boxes is smaller than that of
+switching to larger boxes. One reason for this difference is that switching to smaller boxes involves
+more direct switches without the re-packing process than switching to larger boxes. On one hand,
+since the packages where workers switch to smaller boxes have fewer items on average than those
+where workers switch to larger ones, workers may identify the proper box sizes more easily without
+trying the prescribed box sizes when they switch to smaller boxes. On the other hand, workers do
+not necessarily switch to a smaller box if they find the prescribed box is too large after the first
+trial, but they must switch to a larger box if they find the prescribed box is too small.
+
+5.     Human-centric Bin Packing Algorithm
+Given our findings that non-conforming behavior is common and is associated with longer packing
+time and higher material cost, we develop a new algorithm to reduce non-conforming behavior and
+increase productivity. In this section, we detail our human-centric bin packing algorithm, which is
+built upon Alibaba’s current bin packing algorithm.
+
+5.1.    Human Discretion Prediction Problem
+The essential part of our algorithm is to predict when humans are likely to switch to a larger box.
+We focus on switching to larger boxes rather than smaller boxes mainly for two reasons. First,
+we get most of the benefits by reducing the cases of switching to larger boxes since switching-to-
+larger-boxes deviations account for the majority (71.7%) of the non-conforming behavior. Second
+and more importantly, our intervention with the algorithm must be simple enough to implement
+in the field experiment. If we target deviations to larger boxes, where complexity deviation makes
+up a significant proportion, our intervention can be as simple as lowering the maximum fill rate
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                             17
+
+Figure 3       The Lundvall-Juran Curve for Bin Packing
+        Cost                                                    Cost
+
+                                                                                C1(R)
+               Total Cost
+                 C(R)                                                  Cc1(R)
+                        Cost of
+                      Conformance
+                         Cc (R)
+
+
+                                                                          C2(R)
+                    Cost of                                            Cc2(R)
+                Non-conformance
+                     Cn (R)                                            Cn1(R)
+                                                                                        Cn2(R)
+                                          R*    Maximum                                           R1*   R2*    Maximum
+                                               Filling Rate R                                                 Filling Rate R
+                                    (a)                                                          (b)
+
+
+
+(and thus the task complexity) in the algorithm. However, if we target deviations to smaller boxes,
+which is typically caused by information deviation, the aforementioned intervention will not work.
+  Next, we discuss the fundamental trade-off behind such a prediction module. We use the
+Lundvall-Juran curve (Juran and Godfrey, 1999) in the classical Cost of Quality (CoQ) model for
+quality control to explain our motivation. We can control the total cost in bin packing by con-
+trolling the maximum box fill rate R in the algorithm, since changing R affects the recommended
+box sizes and thus the rate of non-conforming behavior on average. The total cost in bin packing
+C(R) consists of two types of cost: cost of conformance Cc (R) and cost of non-conformance Cn (R).
+Cost of conformance Cc (R) mainly comes from the box material of recommended box sizes, since
+recommending larger boxes generally improves workers’ conformance with prescriptions. Cost of
+non-conformance Cn (R) includes the extra labor cost due to the longer packing time incurred by
+switching behavior and extra box material cost due to possible use of much larger boxes than nec-
+essary at a worker’s discretion. Figure 3(a) is a tailored Lundvall-Juran curve showing the trade-off
+of the two types of cost in the bin packing setting. Increasing the maximum box fill rate R in the
+algorithm results in smaller recommended box sizes and more non-conforming behavior. Therefore,
+Cc (R) decreases while Cn (R) increases as we increase R. According to the theory of CoQ model,
+there is an optimal maximum box fill rate R∗ that minimizes the total cost C(R).
+  Moreover, we may improve on a single control R∗ if we leverage the heterogeneity in the packages
+and set different R’s for different types of packages, as shown in Figure 3(b). We can divide the
+packages into two groups according to whether workers switch to larger boxes or not when we set
+R = 100% in the algorithm (i.e., Alibaba’s original threshold). For packages where workers will
+switch to larger boxes when we set R = 100% in the algorithm, their total cost C 1 (R) consists of
+their cost of conformance Cc1 (R) and cost of non-conformance Cn1 (R). For packages where workers
+will not switch to larger boxes when we set R = 100% in the algorithm, their total cost C 2 (R)
+consists of their cost of conformance Cc2 (R) and cost of non-conformance Cn2 (R). As shown in
+Figure 3(b), we have distinct Lundvall-Juran curves for the two group of packages, and thus two
+
+
+
+
+                            Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                         Predicting Human Discretion to Adjust Algorithmic Prescription
+18                                                                                 00(0), pp. 000–000, c 0000 INFORMS
+
+
+Figure 4    Distribution of Prescribed Box Fill Rate (Left Figure) and Rate of Non-conforming Behavior with
+            Different Prescribed Box Fill Rates (Right Figure)
+
+
+
+
+maximum box fill rates R1∗ and R2∗ that minimize C 1 (R) and C 2 (R) respectively. In particular,
+Cn2 (R) = 0 for all R and thus R2∗ = 100%. Suppose packages where workers will switch to larger
+boxes when we set R = 100% in the algorithm account for a fraction f . We can show that the total
+cost is smaller by setting different R’s for different group of packages as in Figure 3(b) than by
+setting a single R as in Figure 3(a). In fact,
+
+
+                   C(R∗ ) = f C 1 (R∗ ) + (1 − f )C 2 (R∗ ) ≥ f C 1 (R1∗ ) + (1 − f )C 2 (R2∗ ).                   (3)
+
+
+The analysis above provides a theoretical foundation for our prediction model and the key idea
+of our new algorithm design as will be shown in Section 5.2. If our goal is to simply reduce non-
+conforming behavior, we may recommend larger boxes for all packages (i.e., allowing all packages
+to have a maximum box fill rate R < 100%) to reduce the switching-to-larger-boxes cases and reach
+the goal. However, such an action would result in much larger box material costs because we may
+recommend larger boxes even when workers would conform with the originally prescribed smaller
+boxes. Therefore, since our goal is to reduce non-conforming behavior in order to reduce processing
+time with the constraint of not significantly increasing material costs, we should only recommend
+larger boxes when workers are likely to switch to larger boxes.
+     Our prediction problem can be formulated as follows. For each package i in our training data,
+we have a tuple of data (Xi , Yi ), where Xi is a vector of package features and box features for this
+package and Yi is a binary output label representing workers’ switching behavior for this package.
+Specifically, Yi = 1 if a worker packs the package i with a box larger than prescribed and Yi = 0
+otherwise. The prediction problem is to predict Yi based on Xi by estimating the probability of
+switching to a larger box Pi = P(Yi = 1|Xi ).
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                   19
+
+     5.1.1.   Feature Selection Overall, we use 43 features of the packages and boxes in our pre-
+diction model. The features of a package-box pair to fit our prediction models can be classified into
+three different categories. The first category contains package-specific features, the second category
+contains box-specific features, and the third category contains joint features of the package and the
+box. The package-specific features describe characteristics of the items in a given package i. There
+are three types of package specific features: (1) summary features (mostly dimensional features) of
+all the items in the package, including the total number of items, total volume of items and averages
+of item volume and ratios of item dimensions; (2) box switching behavior associated with items in
+the package, such as the probability of switching to larger boxes for packages that contained the
+item in the last 7 days; and (3) features related to particular items in the package, such as the
+largest SKU in the package. Table 7 in Appendix A summarizes all the package-specific features
+with definitions. The box-specific features involve the box size switching history of the box size
+recommended for package i, such as the probability of switching to larger boxes for packages where
+the prescribed box size is the same as that for package i in the last 7 days. Table 8 in Appendix A
+summarizes all the box-specific features with definitions. The joint feature of the package and the
+box size is algo box fill rate, which is the fill rate of the prescribed box size for package i, defined
+by the ratio of total volume of items in package i to the prescribed box volume.
+     We exclude some potentially predictive features in our model for some practical reasons. First,
+worker-specific features are not included in the prediction because they are not available when the
+system runs the bin packing algorithm. In Alibaba’s warehouse operations practice, the bin packing
+algorithm determines the box sizes for packing an order right after the order is received by the
+warehouse. The packing tasks are randomly dispatched to the workers after the picking and sorting
+processes. Therefore, we do not know which worker will pack a specific package when the system
+runs the bin packing algorithm and decides the box sizes. Second, we also exclude features about
+categories, special properties (e.g. liquid) or pre-packaging types of items in a package, since they
+are not available or hard to compute in an online experiment environment. However, these features
+can be partially captured by the box size switching history features of the items in a package.
+
+     5.1.2.   Prediction Algorithm We implement four common machine learning models for
+binary classification: logistic regression, support vector machines (SVM), random forest (RF) and
+gradient boosting decision tree (GBDT). We build and train these models using PAI, a machine
+learning platform developed by Alibaba that integrates more than 100 sets of algorithms12 . We
+use the packing data from July 1, 2018 to July 25, 2018 of the four warehouses where we run the
+experiment to train the prediction models and test their performance. The dataset is divided into
+
+12
+     https://www.alibabacloud.com/press-room/alibaba-cloud-announces-machine-learning-platform-pai
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                        Predicting Human Discretion to Adjust Algorithmic Prescription
+20                                                                                00(0), pp. 000–000, c 0000 INFORMS
+
+
+a training set and a testing set according to the package generation date. Specifically, the training
+set consists of data from July 1, 2018 to July 20, 2018 and is used to train the models. The testing
+set consists of data from July 21, 2018 to July 25, 2018 and is used to evaluate the out-of-sample
+prediction performance of the models. We have around 1.15 million observations in the training
+set and 0.29 million observations in the testing set.
+     The performance of different prediction models is evaluated by Area Under the Curve (AUC).
+The AUC value equals the probability that the model ranks a random positive example more highly
+than a random negative example (Fawcett, 2006). It is a common measure for how well two classes
+are separated by a binary classifier. The AUC value ranges from 0 to 1 and a larger value indicates
+a better performance of the classifier. We find that the GBDT model has the highest AUC value
+of 0.846, indicating that it has the best prediction power among all the models. The AUC values
+of RF, SVM and logistic regression models are 0.837, 0.798 and 0.804, respectively. Therefore, we
+select the GBDT model as the prediction model in our human-centric bin packing algorithm.
+     The 10 features with the highest importance in the output of the GBDT model, shown in Figure 5,
+gives insight into the main causes of non-conforming behavior. The most important feature is the
+joint feature of the package-box pair, followed by a group of package specific features, and then a
+group of box specific features. In particular, the five most important features are the prescribed box
+fill rate, the average rate of switching to larger boxes for each item in the last 30 days13 , the rate
+of switching to larger boxes for the largest item in the last 30 days, the total volume of the items
+and the width of the largest item. Some of the features, such as high prescribed box fill rate, large
+volume of items, special size and shape of the largest item, capture the complexity of the tasks,
+and in turn are supportive evidence of the existence of complexity deviation. Other features, such
+as the history of non-conforming behavior for the items, capture unobservable information related
+to items that may cause deviation, which is in support of the existence of information deviation.
+
+5.2.     The Human-centric Bin Packing Algorithm Design
+Our human-centric bin packing algorithm modifies Alibaba’s current bin packing algorithm with
+the prediction module above. This modification consists of two main parts. First, prior to running
+the existing bin packing algorithm, we use our prediction model to identify packages where workers
+are more than 50% likely to use boxes larger than recommended. Second, we target those packages
+with deviation probability exceeding 50% and adjust their algorithmic prescriptions by lowering
+their maximum box fill rate R. We choose the threshold cutoff at 50% for two main reasons. First,
+it is a natural bar for binary classification given that the prediction score could be viewed as the
+
+13
+  The rate of switching to larger (smaller) boxes for an item in the last x days is defined as the probability of
+switching to larger (smaller) boxes for packages that contained the item in the last x days.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                 21
+
+Figure 5    The Most Important 10 Features for Non-conformance Prediction in the GBDT Model
+
+
+
+
+probability of switching to larger boxes. Second, the value of 50% also balances the size of the
+selected package group and the rate of true positive cases in the group (i.e. the packages where the
+workers actually switch to larger boxes).
+  Moreover, we adjust the algorithmic prescriptions for those targeted packages by re-running
+Alibaba’s current bin packing algorithm with a constraint that the box fill rate should not exceed
+70% (note that the original algorithm constrains R = 100%). In this case, the new algorithm will
+enlarge the recommended box sizes for those targeted packages where the original prescribed fill
+rates are larger than 70%. For targeted packages where the original prescribed fill rates are smaller
+than 70%, our new algorithm will not change the prescriptions. We set the maximum box fill rate
+R to be 70% to balance the benefit of recommending larger boxes for proper cases (i.e. saving
+processing time) and the cost of doing this for unnecessary cases (i.e. increasing box material cost).
+If we choose a higher ratio, we may leave money on the table since our new algorithm may leave out
+some packages where workers switch to larger boxes. If we choose a lower ratio, we may recommend
+larger boxes for some packages where workers may not deviate originally. After discussing with
+the engineering team, we choose 70% empirically to balance the two sides. Note that we do not
+know whether the choices of 50% and 70% as cutoffs are optimal given that we cannot simulate
+the entire system before the experiment. Therefore, we interpret the results of this algorithm, if it
+improves operations, as a lower bound on such improvement.
+  The detailed description of the algorithm is given in Algorithm 1. For each arriving package i,
+we first run Alibaba’s bin packing algorithm with the maximum box fill rate R = 100% to get a
+recommended box size k. Then we run the prediction algorithm for package i and box size k. The
+algorithm outputs a prediction score indicating the probability that a larger box than size k will be
+used in packing. If the prediction score is smaller than 50%, we retain size k as the recommended
+box size. Otherwise, we rerun Alibaba’s bin packing algorithm with the maximum box fill rate
+R = 70%, and output the new recommended box size k 0 . Size k 0 may or may not be the same as size
+k. Notice that our new algorithm outputs the same recommended box sizes as Alibaba’s bin packing
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                          Predicting Human Discretion to Adjust Algorithmic Prescription
+22                                                                                  00(0), pp. 000–000, c 0000 INFORMS
+
+
+
+Algorithm 1 Human-centricBinPacking(package i)
+ 1: Run Alibaba’s bin packing algorithm and get the prescribed box size k for package i
+
+ 2: Run the prediction module on package i and box size k, and get the prediction score s
+
+ 3: if s ≥ 50% then
+
+ 4:      Run Alibaba’s bin packing algorithm with the maximum box fill rate R = 70%
+ 5:      Output the new prescribed box size k 0
+ 6: else
+
+ 7:      Output the original prescribed box size k
+ 8: end if
+
+
+algorithm for the packages with prediction scores lower than 50%, but possibly recommends larger
+box sizes than those given by Alibaba’s bin packing algorithm for the packages with prediction
+scores larger than or equal to 50%.
+     Given our algorithm design, we argue that our human-centric algorithm may theoretically
+improve the operational performance in two different ways, depending on the types of deviations.
+For complexity deviation, our algorithm may reduce the prescribed box fill rate and thus the com-
+plexity of the packing task by setting a lower maximum box fill rate for the targeted packages in
+the algorithm. This may help reduce the probability of switching to larger boxes and improve the
+productivity of workers. For information deviation, our algorithm may identify the packages that
+contain fragile items that need wrappers given their box size switching history, and recommend
+proper box sizes with wrapping materials taken into account. In this sense, our algorithm may
+incorporate human wisdom and improve the algorithmic prescriptions in a low-cost manner that
+a conventional bin packing algorithm cannot do. It turns out that the majority of the benefits of
+our algorithm come from reducing complexity deviation, as we will discuss in Section 7.1.
+
+6.     Field Experiment Design and Data
+6.1.     Experimental Design
+To test the performance of our algorithm and whether switching behavior causally reduces pro-
+ductivity, we conducted a large field experiment from August 27, 2018 to September 9, 2018 in
+the same four warehouses of Alibaba Group as described in Section 4. During the experiment, all
+customer orders received at the four warehouses were randomly assigned to a treatment group or
+a control group based on the order IDs14 . For the orders in the control group, the recommended
+box sizes are determined by the Alibaba’s current bin packing algorithm. For the orders in the
+
+14
+  Note that the randomization is on the order level rather than the worker level. In fact, the warehouse management
+system randomly assigns the packing jobs to the workers after the bin packing algorithm decides the recommended
+box sizes; thus, a worker may receive packages in both control and treatment groups with equal probability in theory.
+
+
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                             23
+
+treatment group, the recommended box sizes are determined by the human-centric bin packing
+algorithm. The prediction module embedded in the human-centric bin packing algorithm outputs a
+prediction score for each package in the treatment group, and the score is used to identify targeted
+packages for potential adjustment of algorithmic prescriptions. To compare the performance of
+the original and human-centric algorithms on these targeted packages, we also run the prediction
+module for the control group to get a prediction score for each package with the box size prescribed
+by Alibaba’s current algorithm. However, the scores in the control group do not affect box size
+prescriptions and are only used for the experimental result analysis.
+
+6.2.     Data and Randomization Check
+Over the two weeks of our experiment, we observe 741, 465 customer orders which generate 782, 356
+packages in total (396, 284 packages in the treatment group and 386, 072 packages in the control
+group)15 . Due to some issues in implementing the prediction module in the control group from
+August 27, 2018 to August 30, 2018, we do not have prediction scores for the packages in the control
+group for these days. The prediction scores of the packages are available for both groups from
+August 31, 2018 to September 9, 2018. Overall, we have 13, 414 targeted packages with prediction
+scores higher than 50% from both control and treatment groups. This accounts for 2.52% of all
+packages in our experiment from August 31, 2018 to Sep 9, 2018. Notice that only for these targeted
+packages can our human-centric bin packing algorithm possibly change the box sizes prescribed
+by Alibaba’s current algorithm. The prescribed box sizes for the targeted packages in the control
+group are given by Alibaba’s bin packing algorithm where the maximum box fill rate R = 100%.
+In the treatment group, the recommended box sizes for the targeted packages are determined by
+Alibaba’s bin packing algorithm with the maximum box fill rate R = 70%.
+     We next present information about the orders in the treatment and control groups to confirm that
+the orders assigned in each group are comparable in terms of important characteristics. Specifically,
+we compute the total number of items, total volume of items and total weight of items for each
+order in the two groups. These characteristics should not be affected by our algorithm. As shown in
+the Panel A of Table 3, the treatment and control group orders are statistically indistinguishable
+in terms of number of items, volume of items and weight of items in an order: the p-values of
+all t-tests are greater than 0.05. In both groups, an order on average contains 6.3 items with a
+total volume of 9.5 dm3 and a total weight of 2.7 kg. Panel B of Table 3 shows the randomization
+check results for the important order features of orders involving the targeted packages between
+the two groups. We observe that there is no statistically significant difference between the two
+15
+   There are slightly more pacakges in the treatment group than in the control group. This is because on August 29
+and 30, a small portion of orders from the control group were randomly drawn to test other bin packing algorithms
+of Alibaba while the proportion of orders assigned to the treatment group remained 50%.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                               Predicting Human Discretion to Adjust Algorithmic Prescription
+24                                                                                       00(0), pp. 000–000, c 0000 INFORMS
+
+
+                                            Table 3      Randomization Checks
+
+                                     Panel A: Randomization Checks for All Orders
+                                     Number of Items       Volume of Items (dm3 )       Weight of Items (kg)
+              Treatment Group               6.29                     9.46                        2.67
+               Control Group               6.30                      9.46                        2.66
+                 Difference                −0.01                     0.00                        0.01
+               T-test p-value               0.75                     0.95                        0.41
+
+                       Panel B: Randomization Checks for Orders Involving Targeted Packages
+                                     Number of Items       Volume of Items (dm3 )       Weight of Items (kg)
+              Treatment Group               9.73                     15.56                       5.19
+               Control Group                9.72                     15.60                       5.15
+                 Difference                 0.01                     −0.04                       0.04
+               T-test p-value               0.98                      0.93                       0.82
+
+Note: This table reports the results of randomization checks for all orders and for orders involving targeted packages. Panel A
+reports the average number of items, average total volume of items and average total weight of items of an order for all orders
+in each group during experimental period (August 27, 2018 - September 9, 2018). Panel B reports the average number of items,
+average total volume of items and average total weight of items of an order for the orders involving targeted packages in each
+group during the period when the prediction scores are available for both groups (August 31, 2018 - September 9, 2018).
+
+
+groups of these orders: on average, they similarly contain 9.7 items with a volume of 15.6 dm3 and
+a weight of 5.2 kg. Notice that the orders involving targeted packages have more items with larger
+total volumes and weights and thus incur higher complexity in packing than the other orders. It
+also indicates that the switching behavior is associated with high complexity of packing tasks.
+Overall, our randomization check results suggest that any difference in the outcome variables in
+the experiment should be attributed to the implementation of different algorithms.
+
+7.      Main Results
+We present the results of the field experiment in this section. We first analyze the effects of our
+human-centric algorithm on non-conforming behavior, productivity and box material cost for tar-
+geted packages. Then we re-estimate the impact of non-conforming behavior on productivity but
+now causally by leveraging the field experiment. Finally, we analyze the economic impact of our
+human-centric algorithm at Alibaba.
+
+7.1.     Algorithm Performance for Targeted Packages
+We first compare the performance of the two algorithms in conformance, productivity and box
+material cost of targeted packages. Recall that targeted packages are the packages for which our
+human-centric algorithm adjusts the maximum box fill rate and may prescribe slightly larger box
+sizes than Alibaba’s algorithm. The treatment effects on the targeted packages thus demonstrate
+the efficacy of adjusting algorithmic prescriptions based on predicted deviation behavior of workers.
+     We use the two binary variables, Switch to Larger Boxikt and Switch to Smaller Boxikt , as defined
+in Section 4 to describe the non-conforming behavior for package i packed in warehouse k on day t.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                 25
+
+For packages in the treatment group, if a worker uses the new recommended box size, we treat this
+as conformance instead of deviation, since the worker does not know the algorithm changes and
+he/she indeed complies with the prescription. Packing Timeikt , as defined in Section 4, measures
+productivity. The proxy of box material cost is Actual Surface Areaikt , defined as the surface area
+(cm2 ) of the actually used box to pack package i in warehouse k on day t. Therefore, Switch to
+Larger Boxikt , Switch to Smaller Boxikt , Packing Timeikt and Actual Surface Areaikt are the four
+main outcome variables that we use to evaluate the algorithm performance. Furthermore, we also
+check the probability of large-1 case and large-2 case as defined in Section 4, using the variables
+Switch to Larger Box (Large-1 Case)ikt and Switch to Larger Box (Large-2 Case)ikt . Switch to
+Larger Box (Large-1 Case)ikt is a binary variable that equals 1 if a worker switches to a larger
+box than prescribed for package i in warehouse k on day t and the package does not contain the 9
+items that were always packed in larger boxes than prescribed, and 0 otherwise. Switch to Larger
+Box (Large-2 Case)ikt is a binary variable that equals 1 if a worker switches to a box that is at
+least two sizes larger than prescribed for package i in warehouse k on day t, and 0 otherwise. We
+use these two variables to decompose the effects of our algorithm and evaluate the extent to which
+they correspond to complexity deviation or information deviation.
+  Panel A of Table 4 presents the t-test results of the four main outcome variables. The non-
+conformance rate among the targeted packages is 24.48% (23.81% + 0.67%) for the human-centric
+algorithm, and 30.07% (29.53% + 0.54%) for Alibaba’s original algorithm. The human-centric
+algorithm lowers the rate of switching to larger boxes by 5.72 percentage points (from 29.53% to
+23.81%), which corresponds to a relative improvement of 19.4%. The difference is significant (p-
+value < 0.0001). The effect on the rate of switching to smaller boxes is not significant. The packing
+time per package under the original algorithm and the new algorithm is 71.23 seconds and 68.02
+seconds, respectively. The packing time per package is lowered by 3.21 seconds or 4.5%, and the
+difference is significant. The effect on surface area of actually used boxes is not significant.
+  Next, we present the differences in performance between the two algorithms, controlling for
+the package characteristics and other factors. The control variables are included only to make
+the estimators more efficient, since we have run a field experiment with proper randomization.
+Specifically, we use the following regression models:
+
+      Outcome Variableikt =γ0 + γ1 Treatmentikt + Wk + Dt + ikt ,                                 (4)
+      Outcome Variableikt =γ0 + γ1 Treatmentikt + γ2 Number of Itemsikt + γ3 Volume of Items
+                                   + γ4 Weight of Itemsikt + Wk + Dt + ikt .                      (5)
+
+In regression models (4) and (5), Outcome Variableikt ∈ {Switch to Larger Boxikt , Switch to Smaller
+Boxikt , Packing Timeikt , Actual Surface Areaikt , Switch to Larger Box (Large-1 Case)ikt , Switch
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                                Predicting Human Discretion to Adjust Algorithmic Prescription
+26                                                                                        00(0), pp. 000–000, c 0000 INFORMS
+
+
+                               Table 4        Algorithm Performance for Targeted Packages
+
+                                                 Panel A: Summary Statistics
+                                                                              Actual         Switch to           Switch to
+                                Switch to        Switch to       Packing
+                                                                              Surface       Larger Box          Larger Box
+                               Larger Box       Smaller Box       Time
+                                                                               Area       (Large-1 Case)      (Large-2 Case)
+     Treatment Group              23.81%           0.67%          68.02      3, 934.70        23.81%              10.17%
+      Control Group               29.53%           0.54%          71.23      3, 930.84        29.51%              13.04%
+        Difference               −5.72%            0.13%          −3.21         3.86         −5.70%              −2.87%
+      T-test p-value             < 0.0001          0.340          0.049        0.916         < 0.0001            < 0.0001
+              Panel B: OLS Regression Results on Algorithm Performance (Without Package Controls)
+                                                                              Actual         Switch to           Switch to
+                                Switch to        Switch to       Packing
+                                                                              Surface       Larger Box          Larger Box
+                               Larger Box       Smaller Box       Time
+                                                                               Area       (Large-1 Case)      (Large-2 Case)
+                                    (1)              (2)           (3)          (4)             (5)                 (6)
+                                       ∗∗∗∗
+        Treatment               -0.061              0.001        -3.856∗∗     10.825         -0.061∗∗∗∗          -0.029∗∗∗∗
+                                  (0.009)          (0.002)        (1.799)    (34.907)          (0.009)             (0.006)
+   Package Controls                 No               No            No           No               No                  No
+ Warehouse Fixed Effects           Yes              Yes           Yes          Yes              Yes                 Yes
+   Date Fixed Effects              Yes              Yes           Yes          Yes              Yes                 Yes
+      Observations                12,809           12,809        12,809       10,106           12,809              12,809
+                Panel C: OLS Regression Results on Algorithm Performance (With Package Controls)
+                                                                              Actual         Switch to           Switch to
+                                Switch to        Switch to       Packing
+                                                                              Surface       Larger Box          Larger Box
+                               Larger Box       Smaller Box       Time
+                                                                               Area       (Large-1 Case)      (Large-2 Case)
+                                    (1)              (2)           (3)          (4)             (5)                 (6)
+                                       ∗∗∗∗
+        Treatment               -0.061              0.001        -3.184∗∗    28.512∗         -0.061∗∗∗∗          -0.029∗∗∗∗
+                                  (0.007)          (0.002)        (1.275)    (16.297)          (0.007)             (0.005)
+   Package Controls                Yes              Yes           Yes          Yes              Yes                 Yes
+ Warehouse Fixed Effects           Yes              Yes           Yes          Yes              Yes                 Yes
+   Date Fixed Effects              Yes              Yes           Yes          Yes              Yes                 Yes
+      Observations                12,809           12,809        12,809       10,106           12,809              12,809
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the worker and date level. To
+ensure the robustness of our results, we again remove the packages with more than 25 items and packing time longer than 20
+minutes as we do in Section 4, and thus we have 12, 809 targeted packages for analysis. Panel A reports the rate of switching
+to larger and smaller boxes, average packing time, average surface area of actually used boxes and the rates of large-1 case and
+large-2 case for the targeted packages. Panel B shows the OLS regression results without package controls. In Panel B, Columns
+(1) and (2) report the estimated treatment effects on switching to larger and smaller boxes, respectively. Column (3) reports
+the estimated treatment effect on packing time per package. Column (4) reports the estimated treatment effect on surface area
+of actually used box per package. The number of observations in Column (4) is smaller than that in the other columns. This
+is because the workers may sometimes scan a non-standard barcode rather than the actual barcode attached on the box, and
+we lose track of the surface area of the actually used boxes in these cases. Columns (5) and (6) report the estimated treatment
+effects on the large-1 case and large-2 case, respectively. Panel C reports the OLS regression results with package controls. The
+meaning of each column in Panel C is the same as that in Panel B.
+
+
+
+
+to Larger Box (Large-2 Case)ikt }. Treatmentikt is a binary variable which equals to 1 if package i
+packed in warehouse k on day t is assigned to the treatment group (human-centric algorithm) and
+0 if assigned to the control group. Number of Itemsikt , Volume of Itemsikt and Weight of Itemsikt
+are the three control variables with the same definitions as in Section 4. Wk and Dt are the fixed
+effects of warehouses and dates.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                      27
+
+                           Table 5     Algorithm Performance for Different Package Sizes
+
+                                                    Switch to Larger Box         Packing Time
+                                                     (1)          (2)           (3)       (4)
+                              Treatment              -0.021      -0.068∗∗∗∗    0.251     -3.645∗∗∗
+                                                    (0.026)        (0.007)    (1.981)     (1.388)
+                          Number of Items             =1           >1           =1         >1
+                         Package Controls             Yes          Yes          Yes        Yes
+                       Warehouse Fixed Effects        Yes          Yes          Yes        Yes
+                         Date Fixed Effects           Yes          Yes          Yes        Yes
+                            Observations             1,611        11,198       1,611      11,198
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the worker and date level.
+Columns (1) and (2) report the estimated treatment effects on switching to larger boxes for packages containing 1 item and
+more than 1 items, respectively. Columns (3) and (4) reports the estimated treatment effect on packing time per package for
+packages containing 1 item and more than 1 items, respectively.
+
+
+     Panel B of Table 4 shows the OLS regression results without controlling the package charac-
+teristics under Specification (4). Column (1) shows that the human-centric algorithm reduces the
+rate of switching to larger boxes by 6.1 percentage points, and the effect is statistically significant.
+Column (2) indicates that the effect on switching to smaller boxes is not statistically significant.
+Column (3) shows that the human-centric algorithm reduces the packing time per targeted package
+by around 3.85 seconds, and the effect is statistically significant. Column (4) indicates that the
+effect on the surface area of actually used boxes is not statistically significant. Panel C of Table
+4 reports the OLS regression results of Specification (5) with package controls. The results are
+qualitatively similar to those in Panel B, except that human-centric algorithm marginally increases
+the surface area of actually used boxes by 28.51 cm2 . The above results demonstrate the efficacy of
+the human-centric bin packing algorithm. By adjusting algorithmic prescriptions for the packages
+where it is predicted that the workers might switch to larger boxes, our human-centric algorithm
+significantly reduces non-conformance by lowering the rate of switching to larger boxes for the
+targeted packages. Productivity also improves since workers will switch box sizes less frequently
+given that more suitable box sizes are recommended at the beginning.
+     Moreover, Column (5) of Panels B and C in Table 4 indicates that, if we only focus on packages
+that do not contain items that always cause workers to switch to larger boxes (i.e. items that
+may need wrappers) in both treatment and control groups, our results do not qualitatively change
+compared to those in Column (1).16 This demonstrates that ignoring the packages that involve
+information deviations will not lower our treatment effects, which suggests that the majority of
+the treatment effects are explained by reduction in complexity deviation. Furthermore, Column
+(6) shows that the rate of switching to boxes at least two sizes larger than prescribed is reduced
+
+16
+  We also estimate the treatment effects on the large-1 case when we use 80% and 50% as the thresholds for
+identifying items that cause deviations to larger boxes in the identification of large-1 cases. Our results do not change
+qualitatively. Please refer to Appendix D.2 for more details.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                           Predicting Human Discretion to Adjust Algorithmic Prescription
+28                                                                                   00(0), pp. 000–000, c 0000 INFORMS
+
+
+significantly by 2.9 percentage points, which accounts for almost half of the estimated effects in
+Column (1). Given that switching to boxes at least two sizes larger is typically caused by complexity
+deviation, this also suggests that reducing complexity deviation can explain a significant part of
+our algorithm’s improvement.
+     Last but not least, we also estimate the effects of our algorithm on packages with different package
+sizes using Specification (5), and report the results in Table 5. We find that our new algorithm
+lowers the rate of switching to larger boxes by 6.8 percentage points and reduces the packing time
+by around 3.6 seconds for packages containing more than one item, but the treatment effects are
+not statistically significant for packages containing only one item. This shows that the effect of our
+algorithm is only significant on more complex cases with multiple items, which further suggests
+that the gains of our new algorithm mostly arise from the reduction in complexity deviation.
+
+7.2.     Causal Impact of Non-conforming Behavior on Productivity
+In this section, we estimate the impact of non-conforming behavior on productivity causally by
+leveraging the field experiment. Notice that the assignment of an order (and thus a package) to
+treatment and control groups is random, and the group assignment affects the packing time only by
+affecting the non-conforming behavior. Therefore, we can use group assignment as an instrumental
+variable to the binary variable of non-conformance in Specification (1) and estimate the causal
+impact of non-conforming behavior on productivity.
+     Table 6 shows the OLS results of Specification (1) using data of the targeted packages in the
+experiment.17 Column (1) shows the result without any instrumental variable as in Column (1)
+of Table 2. It is estimated that non-conforming behavior will increase the packing time by 7.5
+seconds, and the effect is statistically significant. In Column (2), we use the group assignment as
+the instrumental variable to Non-conformanceikt in Specification (1), which yields a causal estimate
+of the effect of non-conformance. Column (2) shows that non-conforming behavior increases the
+packing time by 49.2 seconds, and the effect is statistically significant. Therefore, we confirm that
+non-conforming behavior indeed causes an increase in packing time and thus loss in productivity.
+
+7.3.     Economic Impact of Human-centric Algorithm
+Last, we analyze the economic impact of our human-centric algorithm in this section in terms
+of labor and box material cost in packing. At Alibaba, the average labor cost per package is
+about 1 RMB. Since our human-centric algorithm reduces the packing time of targeted packages
+by 4.5%, it saves about 0.045 RMB per targeted package. Given that the average surface area
+
+17
+  We exclude the features related to box sizes in the control variables for validity of the instrument variable, since
+the group assignment of packages in our experiment impacts the non-conforming behavior through the changes in
+recommended box size.
+
+
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                             29
+
+             Table 6      Causal Impact of Non-conformance on the Packing Time of Targeted Packages
+
+                                                                          Packing Time
+                                                                    (1)                  (2)
+                                                                            ∗∗∗∗
+                              Non-conformance                       7.509              49.151∗∗∗
+                                                                   (2.151)            (18.884)
+                              Treatment as IV                       No                 Yes
+                              Warehouse Fixed Effect               Yes                 Yes
+                              Date Fixed Effect                    Yes                 Yes
+                              Package Characteristics              Yes                 Yes
+                              Observations                        12,809              12,809
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are clustered at worker and date level. This table reports the
+OLS results of Specification (1) using targeted packages in the experiment. Column (1) reports the OLS results without using
+the group assignment as an instrumental variable. Column (2) reports the OLS results where we use the group assignment as
+an instrument variable for the binary variable Non-conformanceikt .
+
+
+of actually used boxes in the control group is 3930.84 cm2 and the box material costs around 7
+RMB/m2 , the average box material cost per package is 2.75 RMB. The average total box material
+and labor cost per package thus is 1 + 2.75 = 3.75 RMB. Our OLS results show that human-
+centric algorithm is estimated to marginally increase the average surface area of actually used
+boxes per package by 28.51cm2 , and thus marginally increase the box material cost per package
+by 0.020 RMB. We estimate that the increase in shipping cost and void fill cost due to box size
+increase is no larger than 0.005 RMB in Appendix F. Therefore, our human-centric algorithm saves
+0.045 − 0.020 − 0.005 = 0.02 RMB per targeted package on average.18 The human-centric algorithm
+thus yields economic savings by recommending more suitable box sizes for workers and thereby
+improving their productivity without increasing the box material cost significantly.
+     If our algorithm were applied to all packages processed by Alibaba, there would be a significant
+economic benefit for the company. Alibaba processes about 100 million packages per day.19 Recall
+that targeted packages account for 2.52% of all packages in the experiment. Therefore, if our
+human-centric algorithm were applied to all the packages processed by Alibaba, the annual cost
+savings are estimated to be 108 × 365 × 2.52% × 0.02 RMB = 18.4 million RMB, or 2.60 million
+USD. This demonstrates the potential large economic potential of our human-centric algorithm.
+
+8.      Conclusion and Discussion
+We study the non-conforming behavior with algorithmic prescriptions in logistics with a focus on
+bin packing. Using the observational packing data from four warehouses of Alibaba Group in July
+2018, we quantify the existence of two types of non-conforming behavior: we observe that workers
+
+18
+  Here we do not consider the potential indirect costs (e.g. return costs) due to damaged items and jeopardized
+consumer experience since, as explained by our industry collaborators, they are not major cost components of a
+package in logistics business.
+19
+  https://www.zdnet.com/article/alibaba-wants-to-build-logistics-network-that-can-handle-1-billion-packages-a-
+day/
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                     Predicting Human Discretion to Adjust Algorithmic Prescription
+30                                                                             00(0), pp. 000–000, c 0000 INFORMS
+
+
+use a box size different from prescribed for 5.8% of the packages, with 1.6% of the packages where
+workers switch to smaller boxes (information deviation) and 4.2% of the packages where workers
+switch to larger boxes (both information deviation and complexity deviation). We show that non-
+conforming behavior increases the box material cost and lowers the productivity of workers.
+     We then propose a method to revise the algorithm design by building a machine learning model
+to predict humans’ non-conforming behavior and using the predictions to adjust the algorithmic
+prescriptions. We conduct a randomized experiment in four warehouses of Alibaba Group for two
+weeks to causally evaluate the performance of our algorithm design. In particular, for the targeted
+packages where our revised algorithm might adjust the original prescriptions, the non-conformance
+rate is lowered by 5.7 percentage points (a 19.4% relative improvement) and the packing time is
+reduced by 4.5% relatively. We show that the majority of our new algorithm’s benefits arises from
+reducing complexity deviations.
+     Our results highlight the importance of integrating behavioral components with the optimization
+algorithm design to improve its realized performance in practice. In particular, we show the effec-
+tiveness of utilizing implementation data of workers as feedback to the optimization algorithm to
+adjust the prescriptions and reduce non-conformance using machine learning techniques. This idea
+can also be applicable to algorithm designs in other operational processes. Moreover, our study
+also demonstrates that the non-conforming behavior can be beneficial in some cases but harmful
+in others. Companies should not simply avoid all deviations through regulation, but should figure
+out the reasons for non-conforming behavior before deciding how to make an improvement. If the
+deviations are information deviations that result from lack of information in the algorithm design,
+the companies should learn from these deviations to acquire new information and use it to improve
+the algorithms rather than force workers to follow the algorithmic prescriptions. However, if the
+deviations are complexity deviations that arise from humans’ aversion, inability or discretion and
+lead to lower efficiency and increased cost, the companies should work on making the algorithms
+more accessible to workers to reduce such non-conforming behavior.
+     Our work also has certain limitations that could be addressed by future research. First, we
+classify deviations into information deviations and complexity deviations, since this classification is
+sufficient for the analysis in the paper. In practice, different data and different motives of deviations
+may be present in other settings, which requires researchers to refine the current classification so
+that it can be applied to the new settings. Second, another potentially interesting intervention
+that we did not explore is displaying to workers the recommended guidance on arranging items
+in the box. It is interesting to study how such types of interventions can improve operations in
+different settings. Third, we were not able to account for worker heterogeneity in our algorithm
+design since Alibaba’s system runs the bin packing algorithm before randomly assigning the packing
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                         31
+
+jobs to the workers. As our heterogeneous treatment effect analysis in Appendix E suggests, the
+differences among workers in their warehouses or working shifts may result in heterogeneity in the
+performance of our human-centric algorithm. Therefore, accounting for worker heterogeneity in
+the algorithm design may further improve the algorithm’s performance and is worth investigating
+when possible. Fourth, we do not completely distinguish information deviation from complexity
+deviation in our setting due to data limitation. It would be valuable to distinguish them at a
+more granular level, or explore other more distinguishable classifications in the future. Finally, we
+mainly focus on the bin packing process in this study. Our heterogeneous treatment effect analysis
+suggests that the benefits of accounting for human’s behavior in the algorithm design may vary with
+different characteristics of an operations process. Therefore, it would be interesting to investigate
+how human-centric algorithm design may help improve operations in other settings.
+
+References
+Acimovic, Jason, David Drake, Chris Parker, Karthik Balasubramanian. 2018. Show or tell? Improving agent
+     decision making in a Tanzanian mobile money field experiment. Working paper.
+
+Batt, Robert J., Santiago Gallino. 2019. Finding a needle in a haystack: The effects of searching and learning
+     on pick-worker performance. Management Science .
+
+Bendoly, Elliot, Karen Donohue, Kenneth L Schultz. 2006. Behavior in operations management: Assessing
+     recent findings and revisiting old assumptions. Journal of Operations Management 24(6) 737–752.
+
+Bendoly, Elliot, Morgan Swink, Wendell P. Simpson. 2014. Prioritizing and monitoring concurrent project
+     work: Effects on switching behavior. Production and Operations Management 23(5) 847–860.
+
+Bostian, AJ A., Charles A. Holt, Sanjay Jain, Kamalini Ramdas. 2012. Is transshipment a behaviorally-
+     robust risk-pooling strategy? Working paper.
+
+Boudreau, John, Wallace Hopp, John O. McClain, L. Joseph Thomas. 2003. On the interface between
+     operations and human resources management. Manufacturing & Service Operations Management 5(3)
+     179–202.
+
+Buell, Ryan W., Tami Kim, Chia-Jung Tsay. 2016. Creating reciprocal value through operational trans-
+     parency. Management Science 63(6) 1673–1695.
+
+Chen, C.S., Shen-Ming Lee, Q.S. Shen. 1995. An analytical model for the container loading problem. European
+     Journal of Operational Research 80(1) 68–76.
+
+Chen, Xirong, Zheng Li, Liu Ming, Weiming Zhu. 2019. Optimal bonus scheme under target effect: Evidence
+     from the ride sharing market. Working paper.
+
+Craig, Nathan, Nicole DeHoratius, Ananth Raman. 2016. The impact of supplier inventory service level on
+     retailer demand. Manufacturing & Service Operations Management 18(4) 461–474.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                     Predicting Human Discretion to Adjust Algorithmic Prescription
+32                                                                             00(0), pp. 000–000, c 0000 INFORMS
+
+
+Cui, Ruomeng, Gad Allon, Achal Bassamboo, Jan A. Van Mieghem. 2015. Information sharing in supply
+     chains: An empirical and theoretical valuation. Management Science 61(11) 2803–2824.
+
+Davis, Andrew M., Elena Katok, Natalia Santamarı́a. 2014. Push, pull, or both? A behavioral study of how
+     the allocation of inventory risk affects channel efficiency. Management Science 60(11) 2666–2683.
+
+Dietvorst, Berkeley J., Joseph P. Simmons, Cade Massey. 2015. Algorithm aversion: People erroneously avoid
+     algorithms after seeing them err. Journal of Experimental Psychology: General 144(1) 114–126.
+
+Dietvorst, Berkeley J., Joseph P. Simmons, Cade Massey. 2018. Overcoming algorithm aversion: People
+     will use imperfect algorithms if they can (even slightly) modify them. Management Science 64(3)
+     1155–1170.
+
+Fawcett, Tom. 2006. An introduction to ROC analysis. Pattern recognition letters 27(8) 861–874.
+
+Gino, Francesca, Gary Pisano. 2008. Toward a theory of behavioral operations. Manufacturing & Service
+     Operations Management 10(4) 676–691.
+
+Hodgson, Thom J. 1982. A combined approach to the pallet loading problem. IIE Transactions 14(3)
+     175–182.
+
+Ibanez, Maria R., Jonathan R. Clark, Robert S. Huckman, Bradley R. Staats. 2018. Discretionary task
+     ordering: Queue management in radiological services. Management Science 64(9) 4389–4407.
+
+Johnsen, Lennart C., Guido Voigt, Charles J. Corbett. 2019. Behavioral contract design under asymmetric
+     forecast information. Decision Sciences .
+
+Juran, Joseph, A Blanton Godfrey. 1999. Quality handbook. Republished McGraw-Hill 173–178.
+
+Kim, Song-Hee, Carri W. Chan, Marcelo Olivares, Gabriel Escobar. 2015. ICU admission control: An empir-
+     ical study of capacity allocation and its implication on patient outcomes. Management Science 61(1)
+     19–38.
+
+Kremer, Mirko, Brent Moritz, Enno Siemsen. 2011. Demand forecasting behavior: System neglect and change
+     detection. Management Science 57(10) 1827–1843.
+
+Liu, Sheng, Long He, Zuo-Jun Max Shen. 2018. Data-driven order assignment for last mile delivery. Working
+     paper.
+
+Martello, Silvano, David Pisinger, Daniele Vigo. 2000. The three-dimensional bin packing problem. Opera-
+     tions Research 48(2) 256–267.
+
+Moritz, Brent B., Arunachalam Narayanan, Chris Parker. 2019. Unraveling behavioral ordering: Relative
+     costs and the bullwhip effect. Working paper.
+
+Rossit, Diego G, Daniele Vigo, Fernando Tohmé, Mariano Frutos. 2019. Visual attractiveness in routing
+     problems: A review. Computers & Operations Research 103 13–34.
+
+Schweitzer, Maurice E., Gérard P. Cachon. 2000. Decision bias in the newsvendor problem with a known
+     demand distribution: Experimental evidence. Management Science 46(3) 404–420.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                    33
+
+Song, Hummy, Anita L. Tucker, Karen L. Murrell, David R. Vinson. 2017. Closing the productivity gap:
+     Improving worker productivity through public relative performance feedback and validation of best
+     practices. Management Science 64(6) 2628–2649.
+
+Staats, Bradley R., Hengchen Dai, David A. Hofmann, Katherine L. Milkman. 2017. Motivating process
+     compliance through individual electronic monitoring: An empirical examination of hand hygiene in
+     healthcare. Management Science 63(5) 1563–1585.
+
+Tan, Tom Fangyun, Serguei Netessine. 2014. When does the devil make work? An empirical study of the
+     impact of workload on worker productivity. Management Science 60(6) 1574–1593.
+
+Taylor, Gregory S., Yupo Chan, Ghulam Rasool. 2017. A three-dimensional bin-packing model: Exact
+     multicriteria solution and computational complexity. Annals of Operations Research 251(1-2) 397–427.
+
+van Donselaar, Karel H., Vishal Gaur, Tom van Woensel, Rob A. C. M. Broekmeulen, Jan C. Fransoo. 2010.
+     Ordering behavior in retail stores and implications for automated replenishment. Management Science
+     56(5) 766–784.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                              Predicting Human Discretion to Adjust Algorithmic Prescription
+34                                                                                      00(0), pp. 000–000, c 0000 INFORMS
+
+
+Appendix
+A.    Definition of Features, Dependent Variables and Independent Variables
+
+                                          Table 7     Package Specific Features
+       Feature Name                                                   Explanation
+                                                1
+ item total count             Number of items in the package
+ item total volume            Total volume of items in the package
+ l1 sku count                 Number of units of the largest SKU in the package
+ l1 sku volume                Total volume of units of the largest SKU in the package
+ l1 sku length                Length of the largest SKU in the package
+ l1 sku width                 Width of the largest SKU in the package
+ l1 sku height                Height of the largest SKU in the package
+ l1 sku lw ratio              Ratio of length to width of the largest SKU in the package
+ l1 sku wh ratio              Ratio of width to height of the largest SKU in the package
+ l1 sku hl ratio              Ratio of height to length of the largest SKU in the package
+ l1 sku to large ratio        30-day up-sizing rate2 of the largest SKU in the package
+ wavg item wh ratio           Average ratio of width to height of the items in the package
+ wavg item lw ratio           Average ratio of length to width of the items in the package
+ wavg item hl ratio           Average ratio of height to length of the items in the package
+ wavg item volume             Average volume of the items in the package
+ to large ratio sw 3          Average 3-day up-sizing rate of the SKUs in the package
+ to large ratio sw 7          Average 7-day up-sizing rate of the SKUs in the package
+ to large ratio sw 30         Average 30-day up-sizing rate of the SKUs in the package
+ to small ratio sw 3          Average 3-day down-sizing rate of the SKUs in the package
+ to small ratio sw 7          Average 7-day down-sizing rate of the SKUs in the package
+ to small ratio sw 30         Average 30-day down-sizing rate of the SKUs in the package
+ avg to large n box sw 3      Average number of up-sizing packages in the last 3 days3 of the SKUs in the package
+ avg to large n box sw 7      Average number of up-sizing packages in the last 7 days of the SKUs in the package
+ avg to large n box sw 30     Average number of up-sizing packages in the last 30 days of the SKUs in the package
+ avg to small n box sw 3      Average number of down-sizing packages in the last 3 days of the SKUs in the package
+ avg to small n box sw 7      Average number of down-sizing packages in the last 7 days of the SKUs in the package
+ avg to small n box sw 30     Average number of down-sizing packages in the last 30 days of the SKUs in the package
+Note: 1. An item is a unit of a SKU (Stock Keeping Unit). An SKU is a distinct product for sale (usually with a unique
+identifier). A package may contain multiple SKUs and each SKU may have multiple units or multiple items. 2. The x-day
+up-sizing (down-sizing) rate of an SKU is defined as the rate of switching to larger (smaller) boxes than prescriptions among
+the packages that contained the SKU in the last x days. 3. The number of up-sizing (down-sizing) packages in the last x days
+of an SKU is defined as the number of packages that contained the SKU and where workers switched to larger (smaller) boxes
+than prescriptions in the last x days.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                            35
+
+                                             Table 8      Box Specific Features
+       Feature Name                                                      Explanation
+                                                     1
+ box to large ratio sw 3       3-day up-sizing rate of the box size
+ box to large ratio sw 7       7-day up-sizing rate of the box size
+ box to large ratio sw 30      30-day up-sizing rate of the box size
+ box to small ratio sw 3       3-day down-sizing rate of the box size
+ box to small ratio sw 7       7-day down-sizing rate of the box size
+ box to small ratio sw 30      30-day down-sizing rate of the box size
+ box n to large box sw 3       Number of up-sizing packages in the last 3 days2 of the box size
+ box n to large box sw 7       Number of up-sizing packages in the last 7 days of the box size
+ box n to large box sw 30      Number of up-sizing packages in the last 30 days of the box size
+ box n to small box sw 3       Number of down-sizing packages in the last 3 days of the box size
+ box n to small box sw 7       Number of down-sizing packages in the last 7 days of the box size
+ box n to small box sw 30      Number of down-sizing packages in the last 30 days of the box size
+ box n change total sw 3       Total number of up-sizing and down-sizing packages in the last 3 days of the box size
+ box n change total sw 7       Total number of up-sizing and down-sizing packages in the last 7 days of the box size
+ box n change total sw 30      Total number of up-sizing and down-sizing packages in the last 30 days of the box size
+Note: 1. The x-day up-sizing (down-sizing) rate of a box size is defined as the rate of switching to larger (smaller) boxes among
+packages prescribed with the box size in the last x days. 2. The number of up-sizing (down-sizing) packages in the last x days
+of a box size is defined as the number of packages prescribed with the box size but actually packed with a larger (smaller) box
+size in the last x days.
+
+
+
+
+                   Table 9 Summary of Key Dependent and Independent Variables in the Study
+                                       Panel A: Key Dependent Variables
+ Dependent Variable                     Definition
+ Switch to Larger Boxikt                A binary variable that equals 1 if a worker uses a larger box than pre-
+                                        scribed to pack package i in warehouse k on day t and 0 otherwise
+ Switch to Smaller Boxikt               A binary variable that equals 1 if a worker uses a smaller box than pre-
+                                        scribed to pack package i in warehouse k on day t and 0 otherwise
+ Packing Timeikt                        A numerical variable representing the packing time (seconds) of the pack-
+                                        age i packed in warehouse k on day t
+ Actual Surface Areaikt                 A numerical variable representing the surface area of the actually used
+                                        box (cm2 ) to pack package i in warehouse k on day t
+ Switch to Larger Box (Large-1 Case)ikt A binary variable that equals 1 if a worker switches to a larger box than
+                                        prescribed for package i packed in warehouse k on day t and package i
+                                        does not contain the items that were always packed in larger boxes than
+                                        prescribed, and 0 otherwise
+ Switch to Larger Box (Large-2 Case)ikt A binary variable that equals 1 if a worker switches to a box that is at
+                                        least two sizes larger than prescribed for package i packed in warehouse
+                                        k on day t, and 0 otherwise
+                                            Panel B: Key Independent Variables
+ Independent Variable                         Definition
+ Treatmentikt                                 A binary variable that equals 1 if the package i packed in warehouse k
+                                              on day t is in the treatment group and 0 otherwise
+ Number of Itemsikt                           A numercial variable representing the number of items in package i packed
+                                              in warehouse k on day t
+ Volume of Itemsikt                           A numerical variable representing the total volume of items in package i
+                                              packed in warehouse k on day t
+ Weight of Itemsikt                           A numerical variable representing the total weight of items in package i
+                                              packed in warehouse k on day t
+ Non-conformanceikt                           A binary variable that equals 1 if a worker does not use the prescribed
+                                              box size for package i packed in warehouse k on day t and 0 otherwise
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                             Predicting Human Discretion to Adjust Algorithmic Prescription
+36                                                                                     00(0), pp. 000–000, c 0000 INFORMS
+
+
+B.      Examples of Information Deviation and Complexity Deviation in Packing
+
+
+                      Table 10     Examples of Information Deviation and Complexity Deviation
+     Type of deviations                                             Examples
+Information deviation (1) The item’s measurements are not accurate.
+                      (2) An item requires extra wrapping around it.
+                      (3) An item has a highly irregular shape.
+                      (4) An item can be folded or compressed.
+                      (5) Boxes of a specific size are out of stock.
+Complexity deviation       (1) Workers do not know the optimal packing sequence, positions and orientation of the
+                           items in the prescribed box size.
+                           (2) Workers believe that the prescribed box size is not large enough given their experience.
+                           (3) Workers do not want to pack the items in a compact way as prescribed by the algorithm
+                           and would like to use a larger box to save packing effort.
+
+
+
+
+C.      Recommended Box Sizes for Targeted Packages
+
+
+Figure 6      Recommended Box Sizes for Targeted Packages with Different Original Prescribed Fill Rates of
+              Alibaba’s Algorithm in the Treatment and Control Groups
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                         37
+
+                 Table 11      Algorithm Performance for Targeted Packages (Worker Fixed Effects)
+
+              Panel A: OLS Regression Results on Algorithm Performance (Without Package Controls)
+                                        Switch to       Switch to                                Actual
+                                                                       Packing Time
+                                       Larger Box      Smaller Box                            Surface Area
+                                           (1)             (2)               (3)                   (4)
+                                              ∗∗∗∗
+                   Treatment            -0.061             0.001          -2.409∗∗∗              34.849
+                                          (0.007)         (0.002)          (0.794)              (35.165)
+              Package Controls              No              No                No                   No
+             Worker Fixed Effects          Yes             Yes               Yes                  Yes
+              Date Fixed Effects           Yes             Yes               Yes                  Yes
+                Observations              12,809          12,809            12,809               10,106
+                Panel B: OLS Regression Results on Algorithm Performance (With Package Controls)
+                                        Switch to       Switch to                                Actual
+                                                                       Packing Time
+                                       Larger Box      Smaller Box                            Surface Area
+                                           (1)             (2)               (3)                   (4)
+                   Treatment            -0.059∗∗∗∗         0.001           -1.632∗∗             38.505∗∗
+                                          (0.007)         (0.002)           (0.686)             (18.276)
+              Package Controls             Yes             Yes               Yes                  Yes
+             Worker Fixed Effects          Yes             Yes               Yes                  Yes
+              Date Fixed Effects           Yes             Yes               Yes                  Yes
+                Observations              12,809          12,809            12,809               10,106
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the worker and date level. In
+Panel A, Columns (1) and (2) report the estimated treatment effects on switching to larger and smaller boxes. Column (3)
+reports the estimated treatment effect on packing time per package. Column (4) reports the estimated treatment effect on the
+surface area of the actually used box per package. Panel B reports the OLS regression results with package controls, including
+total number of items, total volume of items and total weight of items in a package. The meaning of each column in Panel B is
+the same as that in Panel A.
+
+
+D.     Robustness Analysis
+D.1.    Worker Fixed Effects
+Some workers may be more likely to deviate from the recommended box sizes than others. Therefore, we also
+analyze the impacts of implementing human-centric algorithm controlling for worker fixed effects to account
+for the possible heterogeneity among workers. Specifically, we estimate the following regression models:
+             Outcome Variableijt =γ1 Treatmentijt + Uj + Dt + ijt ,                                                      (6)
+             Outcome Variableijt =γ1 Treatmentijt + γ2 Number of Itemsijt + γ3 Volume of Itemsijt
+                                        + γ4 Weight of Itemsijt + Uj + Dt + ijt .                                        (7)
+  The unit of analysis is a package i packed by worker j on day t. Uj is the fixed effect of worker j. All the
+other variables are the same as those in Specifications (4) and (5). Table 11 reports the estimation results
+of Specifications (6) and (7). The results do not change qualitatively, compared with those in Table 4. In
+particular, our new algorithm lowers the rate of switching to larger boxes and reduces packing time, and
+both effects are statistically significant. The results confirm that our human-centric algorithm helps reduce
+the non-conforming behavior and improve productivity.
+D.2.    Varying Thresholds for Large-1 Case Identification
+To ensure the robustness of our experimental results on the large-1 case, we vary the thresholds for identifying
+items that cause deviations to larger boxes (i.e., items that may need wrappers) from 100% to 80% or 50%
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                               Predicting Human Discretion to Adjust Algorithmic Prescription
+38                                                                                       00(0), pp. 000–000, c 0000 INFORMS
+
+
+                     Table 12      Treatment Effects on Large-1 Cases With Varying Thresholds)
+
+                                     Panel A: Summary Statistics on Large-1 Cases
+                                                         Switch to Larger Box (Large-1 Case)
+                                                            x% = 80%                     x% = 50%
+                                                               (1)                          (2)
+                        Treatment Group                      23.56%                       23.22%
+                         Control Group                       29.28%                       29.01%
+                            Difference                      −5.72%                       −5.79%
+                          T-test p-value                    < 0.0001                     < 0.0001
+                                  Panel B: OLS Regression Results on Large-1 Cases
+                                                         Switch to Larger Box (Large-1 Case)
+                                                            x% = 80%                     x% = 50%
+                                                      (1)              (2)         (3)              (4)
+                                                        ∗∗∗∗             ∗∗∗∗         ∗∗∗∗
+                            Treatment             -0.061         -0.061         -0.062        -0.062∗∗∗∗
+                                                    (0.009)        (0.008)        (0.008)       (0.007)
+                      Package Controls                No            Yes            No            Yes
+                    Warehouse Fixed Effects          Yes            Yes           Yes            Yes
+                      Date Fixed Effects             Yes            Yes           Yes            Yes
+                         Observations               12,809         12,809        12,809         12,809
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the warehouse and date level.
+In Panel A, Columns (1) and (2) report the rates of large-1 case for targeted packages and the t-test results of treatment
+effects with thresholds 80% and 50%, respectively. In Panel B, Columns (1) and (2) reports the estimated treatment effects on
+the large-1 case without and with package controls, respectively, when the threshold is 80%. Columns (3) and (4) reports the
+estimated treatment effects on the large-1 case without and with package controls, respectively, when the threshold is 50%.
+
+
+in our identification of large-1 cases, as we did in the observational study (see Footnote 8 in Section 4.2
+for more details). We then estimate the treatment effects on large-1 cases that are identified with the new
+thresholds. As reported in Table 12, the estimation results do not change qualitatively compared to those in
+Table 4. Specifically, the treatment effect on large-1 cases is significant and close to that on the overall rate
+of switching to larger boxes, whatever the threshold is. This gives additional evidence that we can attribute
+the majority of the benefits of our algorithm to the reduction of complexity deviations.
+
+E.      Heterogeneous Treatment Effect
+In this section, we perform several analyses on the heterogeneous treatment effects of using our new human-
+centric algorithm versus Alibaba’s original algorithm. Specifically, we consider the following moderators that
+may affect the performance of our new algorithm:
+     • Different warehouses. The four warehouses in our experiment, which we label warehouses A, B, C and
+D, are operated by different logistics service providers (Alibaba outsources the operations of their warehouses
+to the third-party logistics companies).
+     • Whether a package is packed on weekends or not. We observe higher non-conformance rate of the workers
+during the weekends. Thus, we explore whether the performance of our algorithm is associated with whether
+it is on weekends or not.
+     • Whether a package is packed during busy hours in a day. The warehouses operate around 20 hours per
+day. Generally, the warehouses are busier during 9am-12pm, 1pm-5pm, and 6pm-8pm than during other
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                   39
+
+                  Table 13      Summary of Moderators in Heterogeneous Treatment Efffect Analysis
+ Moderator                   Definition
+ Warehouseikt                A categorical variable that can equal A, B, C and D if package i is packed in warehouse
+                             A, B, C and D on day t, respectively
+ Weekendikt                  A binary variable that equals 1 if package i in warehouse k on day t is packed on weekends
+                             and 0 otherwise
+ Busy Periodikt              A binary variable that equals 1 if package i in warehouse k on day t is packed during busy
+                             hours in a day and 0 otherwise
+ Prescribed Fill Rateikt     A continuous variable representing the prescribed fill rate given by Alibaba’s algorithm
+                             for package i in warehouse k on day t
+
+
+operating hours, in terms of the total number of processed packages. We explore whether our new algorithm
+is more effective or not during busy hours.
+  • The original prescribed fill rate. The original prescribed fill rate is the fill rate of the prescribed box
+size given by Alibaba’s algorithm. It indicates the complexity of a packing task for workers. Therefore, we
+explore whether the effects of our algorithm are larger for packages with higher prescribed fill rate.
+  We use the following OLS regression specification to test the interaction between the various moderators
+and our new algorithm indicator:
+
+              Outcome Variableikt =γ0 + γ1 Treatmentikt + γ2 Moderatorikt
+
+                                        + γ3 Treatmentikt × Moderatorikt + γ4 Number of Itemsikt
+
+                                        + γ5 Volume of Items + γ6 Weight of Itemsikt + Wk + Dt + ikt .             (8)
+
+where Moderatorikt are defined as in Table 13 and the definitions of other variables are the same as those in
+Specifications (4) and (5) in the paper.
+  Table 14 reports the results of our heterogeneous treatment effect analysis. First, we find that the effects
+of our new algorithm are robust across the warehouses. The impacts of our algorithm on the behavior of
+switching to larger boxes and processing time are statistically insignificant among Warehouses A, C, and D.
+Moreover, we find that our algorithm lowers the rate of switching to larger boxes in Warehouse B significantly
+less than Warehouse A (and other warehouses), and the savings in packing time are also directionally smaller
+in Warehouse B than in other warehouses, but the difference is not statistically significant. This may be due
+to the differences in package characteristics or management styles across warehouses.
+  Second, our new algorithm performs better on weekends than on weekdays. The new algorithm lowers the
+rate of switching to larger boxes significantly more on weekends than on weekdays. The packing time is also
+directionally reduced more on weekends, but the differences are not statistically significant. Such hetero-
+geneity may be explained by differences in orders and workers’ behavior between weekends and weekdays.
+In general, there are more orders and thus more packages to process on weekends. The packages may also
+contain more large items on weekends than on weekdays. We also observe that workers switch to larger
+boxes more frequently on weekends. All of the above factors lead to more cases of switching to larger boxes
+identified in our machine learning module; thus, our algorithm tends to yield more benefits on weekends
+than on weekdays.
+  Third, our algorithm marginally reduces the rate of switching to larger boxes less during the busy hours
+than during other operating hours, but we do not observe significant difference in the effect on packing time.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3355114
+                                                               Predicting Human Discretion to Adjust Algorithmic Prescription
+40                                                                                       00(0), pp. 000–000, c 0000 INFORMS
+
+
+                              Table 14      Summary of Heterogeneous Treatment Effects
+
+
+                                                          Switch to Larger Box            Packing Time
+                                                             (1)           (2)           (3)          (4)
+                                                                ∗∗∗∗          ∗∗∗∗
+                 Treatment                               -0.081         -0.079          -2.297       -2.351
+                                                           (0.011)        (0.011)      (3.062)      (2.338)
+                 Treatment × Warehouse B                  0.041∗∗       0.0043∗∗∗        2.737        0.245
+                                                           (0.018)        (0.016)      (6.029)      (4.907)
+                 Treatment × Warehouse C                    -0.028         -0.044      -11.886      -17.533
+                                                           (0.052)        (0.055)     (14.609)     (12.113)
+                 Treatment × Warehouse D                    0.025          0.021        -3.360       -1.154
+                                                           (0.018)        (0.015)      (3.855)      (2.750)
+                 Treatment                               -0.046∗∗∗∗     -0.047∗∗∗∗      -2.061    -3.010∗∗∗
+                                                           (0.008)        (0.005)      (1.740)     (1.125)
+                 Treatment × Weekend                      -0.035∗∗∗     -0.033∗∗∗∗      -4.124      -0.399
+                                                           (0.012)        (0.009)      (3.391)     (2.872)
+                 Treatment                               -0.079∗∗∗∗     -0.076∗∗∗∗     -4.033∗     -2.974∗
+                                                           (0.019)        (0.015)      (2.102)     (1.585)
+                 Treatment × Busy Period                    0.028         0.023∗        0.204       -0.397
+                                                           (0.019)        (0.014)      (2.187)     (2.442)
+                 Treatment                               -0.059∗∗∗∗     -0.054∗∗∗∗      -2.797     -3.029∗∗
+                                                           (0.009)        (0.009)      (2.113)      (1.339)
+                 Treatment × Prescribed Fill Rate        -0.051∗∗∗∗     -0.043∗∗∗∗       1.468       1.063
+                                                           (0.010)        (0.011)      (2.103)      (2.005)
+                 Package Controls                            No            Yes           No          Yes
+                 Warehouse Fixed Effects                    Yes            Yes          Yes          Yes
+                 Date Fixed Effects                         Yes            Yes          Yes          Yes
+                 Observations                              12,809         12,809       12,809       12,809
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the worker and date level.
+Columns (1) and (2) report the heterogeneous treatment effects on switching to larger boxes without and with package controls,
+respectively. Columns (3) and (4) report the heterogeneous treatment effects on packing time without and with package controls,
+respectively.
+
+
+
+This indicates that our new algorithm may benefit more when the warehouses are less busy. This is probably
+because workers may pay less attention to the recommended box sizes and become more inclined to pick
+boxes that are sufficiently large based on their experience when they are busy. As a result, workers may
+follow the prescriptions of our new algorithm less when they are busier, which leads to less benefits from our
+algorithm.
+     Fourth, we find that our algorithm reduces the rate of switching to larger boxes significantly more for
+packages with higher prescribed fill rates. The results indicate that our algorithm has more benefit when
+the packing tasks are more complex for workers. This result makes sense because, when the utilization rate
+is high, workers are more likely to switch to larger boxes; in turn, our algorithm has a larger impact. This
+also provides supportive evidence that the benefits of our algorithm mostly arise from reducing complexity
+deviation.
+
+F.      Impact of Human-centric Algorithm on Shipping Cost and Void Fill Cost
+We analyze the impact of our human-centric algorithm on shipping cost and void fill cost to provide a more
+thorough estimation of the potential economic benefit of our algorithm. The shipping cost of a package
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+Predicting Human Discretion to Adjust Algorithmic Prescription
+00(0), pp. 000–000, c 0000 INFORMS                                                                                        41
+
+          Table 15     Impact of Human-centric Algorithm on Box Shipping Cost and Void Space Volume
+
+                                              Actual Box Shipping Cost        Actual Void Space Volume
+                                                 (1)           (2)               (3)           (4)
+                Treatment                         0.001            0.002          0.152           0.164∗
+                                                 (0.007)          (0.007)        (0.097)         (0.093)
+                Package Controls                  No              Yes             No             Yes
+                Warehouse Fixed Effects          Yes              Yes            Yes             Yes
+                Date Fixed Effects               Yes              Yes            Yes             Yes
+                Observations                    10,106           10,106         10,106          10,106
+Note: ∗ p<0.1; ∗∗ p<0.05; ∗∗∗ p<0.01; ∗∗∗∗ p<0.001. Standard errors are robust and clustered at the worker and date level.
+Columns (1) and (2) report the estimated treatment effects on the box shipping cost of the actually used box size per package
+without and with package controls, respectively. Columns (3) and (4) report the estimated treatment effects on the void space
+volume in the actually used box size per package without and with package controls, respectively.
+
+
+in Alibaba is determined by the total package weight and follows a tiered pricing rule. Therefore, we can
+calculate the shipping cost of the box weight for each package based on Alibaba’s tiered pricing rule. Since
+the shipping cost of the item weight is not affected by our algorithm, the impact of our algorithm on the
+shipping cost is the change in the shipping cost of the box weight. For void fill cost, we get an average void
+fill cost per package from Alibaba. Therefore, we estimate the void fill cost change by estimating the change
+in the void space volume in the actually used box for each package and assume that the average void fill cost
+changes proportionally to the average void space volume change.
+  To estimate the effect of the human-centric algorithm on the actual box shipping cost and void space volume
+in a package, we run OLS regressions for Specifications (4) and (5) with Outcome Variableikt ∈ {Actual Box
+Shipping Costikt , Void Space Volumeikt }. Actual Box Shipping Costikt is defined as the shipping cost due to
+the box weight of the actually used box to pack package i in warehouse k on day t. Void Space Volumeikt is
+the void space volume (dm3 ) of the actually used box to pack package i in warehouse k on day t.
+  Table 15 reports the estimation results. Columns (1) and (2) show that the effect of the human-centric
+algorithm on the actual box shipping cost is not statistically significant. Column (3) indicates that the effect
+on the void space volume in a package is not significant, but Column (4) shows that the human-centric
+algorithm marginally increases the actual void space volume in a package by 0.164 dm3 . If we assume that
+the average void fill cost per package is proportional to the average void space volume in a package, we
+estimate that the average void fill cost per package is marginally increased by 0.003 RMB. Notice that this
+might be an overestimate since the marginal increase in void fill material should decrease with the void space
+volume. Therefore, we estimate that the total increase in shipping cost and void fill cost due to our new
+algorithm should be no larger than 0.002 RMB + 0.003 RMB = 0.005 RMB.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=3355114
+

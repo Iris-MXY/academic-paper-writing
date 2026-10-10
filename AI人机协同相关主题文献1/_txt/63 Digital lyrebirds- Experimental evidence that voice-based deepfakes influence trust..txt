@@ -1,0 +1,1757 @@
+   Digital Lyrebirds: Experimental Evidence that
+      Voice-based Deep Fakes Influence Trust
+                                              Scott Schanke
+                             University of Wisconsin, Milwaukee schanke@uwm.edu
+
+                                              Gordon Burtch
+                                      Boston University gburtch@bu.edu
+
+                                               Gautam Ray
+                                  University of Minnesota gautamr@umn.edu
+
+
+We consider the pairing of audio chatbot technologies with voice-based deep fakes, i.e., voice clones, examin-
+ing the potential of this combination to induce consumer trust. We report on a set of controlled experiments
+based on the investment game, evaluating how voice cloning and chatbot disclosure jointly affect participants’
+trust, reflected by their willingness to play with an autonomous, AI-enabled partner. We observe evidence
+that voice-based agents garner significantly greater trust from subjects when imbued with a clone of the
+subject’s voice. Recognizing that these technologies present not only opportunities, but also the potential for
+misuse, we further consider the moderating impact of AI-disclosure, a recent regulatory proposal advocated
+by some policymakers. We find no evidence that AI disclosure attenuates the trust-inducing effect of voice
+clones. Finally, we explore underlying mechanisms and contextual moderators for the trust-inducing effects,
+with an eye toward informing future efforts to manage and regulate voice-cloning applications. We find that
+a voice clone’s effects operate at least in part by inducing a perception of homophily and that the effects
+are increasing in the clarity and quality of generated audio. Implications of these results for consumers,
+policymakers, and society are discussed.
+
+Key words : Artificial intelligence; deep fakes; voice cloning; generative AI; hypernudging; trust; social
+  engineering.
+History :
+
+
+
+
+                                                      1
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+2
+
+1.     Introduction
+Generative Artificial Intelligence (Generative AI) technologies have advanced rapidly of
+late, yielding unprecedented progress across various domains. Generative models are pre-
+dictive models typically rooted in deep neural network architectures, e.g., generative adver-
+sarial networks (Goodfellow et al. 2014), variational autoencoders (Kingma et al. 2019),
+transformers (Vaswani et al. 2017), which are trained with the goal of producing new,
+previously unseen data samples that closely resemble authentic samples that appear in a
+training dataset. These models have been deployed for a variety of exciting applications,
+from the development of novel statistical methods (Athey et al. 2019, Bennett et al. 2020),
+to the automated production of news headlines (Longoni et al. 2022), the synthesis of
+online reviews (Li and Tuzhilin 2019), and the crafting of digital art (Ghosh and Fossas
+2022, Zhou and Lee 2024). One prominent use case relates to the synthesis of personalized
+content, which may be used to personalize and thereby improve a customer experience.
+We explore that possibility here, in the context of audio-based consumer interactions,
+examining the trust-inducing effects of personalized generative voice models that clone a
+consumer’s own voice (a form of audio deepfake).
+     Audio deepfakes, which seek to emulate an individual’s voice signature (Chesney and
+Citron 2019, Almutairi and Elgibreen 2022, Mcuba et al. 2023), have recently attracted a
+great deal of attention in popular culture due in large part to rapid advancements in the
+open-source community. New models and tools are frequently deployed that any individual
+can use, at little to no cost, to generate synthetic voice samples that are often difficult
+to distinguish from a modeled speaker’s true voice. These technologies are set to have a
+massive impact on a variety of industries over the coming years. For instance, McKinsey
+estimates that the market for automated customer service call interactions will roughly
+double, reaching $9 Billion by 2030, and has forecast that a large component of that
+market will comprise of personalized, autonomous audio interactions rooted in generative
+AI (Agarwal et al. 2023). Further, these technologies have obvious applications for the
+synthesis of personalized voice in audio advertisements, e.g., on streaming music services
+(Huang et al. 2018), and for voice-over in video advertisements (Allison et al. 2022).
+     Although these technologies have a very large potential to personalize and thereby
+improve customer voice interactions, they of course also bring the potential for deception
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                                3
+
+and manipulation. Such concerns have most often been raised in the political sphere,1 , but
+policymakers and regulators are also concerned about the implications for business. For
+example, in 2023, the FTC issued a warning that “misleading consumers via doppelgängers,
+such as fake dating profiles, phony followers, deepfakes, or chatbots, could result – and in
+fact have [sic] resulted – in FTC enforcement actions” (Atleson 2023).
+     Bearing the above in mind, we evaluate here the potential application of voice cloning
+technology to personalize synthetic speech in voice interactions. Because voice-cloning can
+be used to create a voice that sounds very similar to a modeled individual, the potential
+exists that these tools could be leveraged to create an engaging interface by evoking similar-
+ity attraction (Byrne 1961, Dahlbäck et al. 2007). We thus consider that these technologies
+might be used to personalize an AI voice, to elicit a perception of homophily, and influence
+an individual’s willingness to trust. Bearing in mind the possible negative applications of
+these techniques, we also consider the likely efficacy of recent regulatory proposals toward
+mandated AI disclosure, as a possible means of mitigating any trust-inducing influence of
+voice clones. More formally, we address the following research questions: To what extent
+do generative Deep Fakes induce individuals’ to trust a voice-based agent? Fur-
+ther, does disclosure of a voice-based agent’s autonomous nature mitigate any
+trust-inducing effects of voice-cloning?
+     We address our questions via a series of controlled experiments, implementing a variant
+of the one-shot investment game (Berg et al. 1995), a widely used experimental paradigm
+for evaluating individual trust. In this game, a participant (Party A) is randomly paired
+with another participant (Party B) and must make a choice about whether to play with
+that individual, a decision that reveals their willingness to trust the other individual. 2 We
+build on a variant of the investment game, first introduced by Charness and Dufwenberg
+(2006, 2010), wherein written communication is allowed between players, prior to observ-
+ing their decisions about whether to play. We adapt their experimental design to an online
+setting, and modify three aspects of the participant interaction. First, while Party A is a
+recruited human subject, Party B is an autonomous agent. Second, we adjust the medium
+of communication, incorporating voice-based recordings. Depending on the assigned condi-
+tion, the participant receives a message communicated in a voice that is either a randomly
+1
+    The Guardian — Disinformation re-imagined: how AI could erode democracy in the 2024 US elections.
+2
+ In doing so, our work addresses recent calls in the IS literature for more work employing economic experiments to
+address causal questions of interest (Gupta et al. 2018)
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=4839606
+4
+
+selected synthetic voice (produced using a generative text-to-speech model) or a clone of
+their own voice (wherein the same generative text-to-speech model is calibrated to a record-
+ing of the subject’s voice).3 Contrasting participants’ willingness to play when exposed to a
+voice-clone versus a random voice, we assess the trust-inducing effects of the clone. Third,
+we independently randomize some subjects into an AI disclosure condition, wherein Party
+B’s autonomous nature is explicitly disclosed at the outset of the experiment. Incorporat-
+ing this intervention allows us to evaluate the potential of mandated disclosure as a means
+of combating any trust-inducing effects of voice clones, recognizing that AI disclosure has
+recently been advocated by some policymakers.
+     We provide evidence that individuals exhibit greater trust4 in the autonomous partner
+when it is imbued with a voice clone. Further, we observe no evidence that disclosing the
+autonomous nature of the other party eliminates the clone’s trust-inducing effect. Subse-
+quent analyses speak to underlying mechanisms, namely the role of perceived homophily
+and the importance of clone audio quality.
+     Our proposed technique can be thought of as a form of hypernudge, an advanced per-
+sonalization technique where rich consumer data is used to adapt a nudge-like intervention
+towards a target (Yeung 2019, Camerer 2018, Athey et al. 2023). Overall this literature
+has focused on the idea of deploying personalized nudges that steer a user toward a desired
+outcome–we highlight here that advanced personalization techniques may be deployed in
+other ways, again based on rich data, to achieve similar ends.
+     The use of these techniques in voice-based interactions is already quite feasible for
+many firms today. Consumer voice data is widely available, as many businesses are now
+investing heavily in customer voice technology (Turow 2021). Financial service providers
+regularly employ voice-prints to identify their customers, 5 large tech giants have ready
+access to reams of user voice data from tools like Siri, Alexa, and Google Assistant 6 , and
+3
+ Before participating, subjects are required to dial into a 1-800 number and read the study consent statement aloud.
+We calibrate our generative model using the recorded voice sample.
+4
+  It is important to note that the investment game that we employ is an instrument that is used to gauge interpersonal
+trust. The game is designed to evaluate a participant’s willingness to voluntarily relinquish a resource–typically
+monetary–with no enforceable contract, in the expectation that the second participant will reciprocate in a manner
+that benefits both. Thus, rather than assess trust in the other party’s ability, i.e., functional trust, it enables assessment
+participants’ belief that the other party will behave cooperatively and pro-socially, in a situation where betrayal is
+possible and potentially advantageous to the other party.
+5
+    Forbes — Citi Uses Voice Prints To Authenticate Customers Quickly And Effortlessly
+6
+    The Guardian — ’Alexa, are you invading my privacy?’ – the dark side of our voice assistants
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                              5
+
+many consumer electronics providers offer voice-based product interactions, e.g., Samsung
+Smart TVs offer voice-based search7 . Further, advertising intermediaries (e.g., Amazon)
+are actively developing new business models that leverage voice-based interactions, such
+as interactive audio advertising, wherein consumers may converse directly with the adver-
+tisements they hear 8 .
+     Our findings make several contributions to research, policy, and practice. On the research
+side, this study contributes to a burgeoning body of work assessing human acceptance of
+algorithms (Luo et al. 2019, 2021, Adam et al. 2018, Tambe et al. 2019). We critically
+examine how the aesthetic characteristics of AI-enabled agents can influence consumer
+perceptions of algorithms, and thereby shape behavior in firm interactions. Second, we
+contribute to the literature on personalization in information systems (Adomavicius et al.
+2018) and marketing (Ansari et al. 2000, Hosanagar et al. 2014), in that we evaluate the
+extent to which a new personalization technique, voice cloning, can influence consumer
+perceptions and engender trust. For policy and practice, this work is the first empiri-
+cal investigation of a novel audio deep fake technology application. In the near future,
+consumers will regularly interact with AI agents that operate on behalf of firms and orga-
+nizations. Aesthetic aspects of AI design may thus be employed by organizations in the
+future to engage the user.
+
+2.      Literature Review
+2.1.      Aesthetics, Algorithms & Trust
+A long stream of research has looked at the interface between humans and algorithms
+(Brunswik 1955, Dawes et al. 1989, Karelaia and Hogarth 2008). As algorithms have become
+more prevalent in many sectors of industry and our society, human-algorithm interactions
+are now a topic of interest in many fields of study, including Marketing (Castelo et al. 2019,
+Luo et al. 2019), Psychology (Dietvorst et al. 2018, Logg et al. 2019), Computer Science
+(Yeomans et al. 2019), and Economics (Kleinberg et al. 2017). Within the body of work
+on this topic, a particularly relevant stream of research focuses on human appreciation
+of, and aversion to algorithms. Findings in that literature highlight that the perception of
+algorithms varies greatly across contexts. For example, individuals may be more likely to
+
+7
+    USA Today — Your TV is spying on you, but you can stop it
+8
+    Amazon Ads — Engage listeners in a natural way with interactive audio ads
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=4839606
+6
+
+appreciate algorithms in contexts characterized by decision-support, as compared to nego-
+tiation or algorithmic management (Möhlmann et al. 2021). Further, individuals may be
+less likely to appreciate algorithms in objective tasks, e.g., numeric forecasts (Logg et al.
+2019), providing directions, or predicting the weather (Castelo et al. 2019), as opposed to
+tasks perceived as requiring more subjective judgement (Lee 2018), e.g., music recommen-
+dations (Yeomans et al. 2019), Human Resources decisions (Castelo et al. 2019, Tambe
+et al. 2019), or medical diagnoses (Promberger and Baron 2006). A broad take-away from
+this body of work, however, is that humans’ perception of algorithms is highly contextual,
+depending upon the individual, as well as the setting and nature of the interaction.
+    Both IS literature and HCI literature have examined the role of design aesthetics, as
+a determinant of trust in technology, specifically in relation to interactions with websites
+(Cyr et al. 2009, Liu and Goodhue 2012, Jiang et al. 2016) and robotics (Hegel et al. 2009,
+Tractinsky 2015, Mori 1970). A notable phenomenon that has come out of that line of
+research is that dealing with the Uncanny Valley (Mori 1970), which refers to the unease
+people experience when confronted with a humanoid robot or computer-generated charac-
+ter that appears and behaves almost, but not quite, as a human (McGinn and Torre 2019).
+A related result has been identified in more recent HCI research, which has demonstrated
+that AI systems imbued with voices similar to a user’s friends and family members tend
+to be perceived as more ’eerie’, yet they are also, nonetheless more persuasive (Chan et al.
+2021). Might a system imbued with a listener’s own voice exhibit similar persuasive influ-
+ence? This is an important question; although voice samples from a listener’s friends and
+family members might not be readily accessible to an AI system operator, samples of the
+listener’s own voice often are. And, there are good reasons to believe that a listener’s own
+voice would also likely be persuasive.
+    First, while an individual may readily identify the voice of a close social connection,
+prior work has found that individuals typically have difficulty recognizing their own voice
+when played from a recording (Rousey and Holzman 1967). Self-recognition is difficult
+because one typically does not hear their own voice emitted from an external source;
+rather, one typically hears their voice emitted from their own mouth, while the sound
+also resonates through their skull (Pörschmann 2000). This has a moderating effect on
+voice perception, such that the way we typically hear our own voice differs from how it
+is experienced by others or when we hear it played from a recording. Because one’s own
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                            7
+
+voice is difficult to recognize (particularly absent any advance indication that one might
+be hearing themselves), voice-clones hold the prospect of eliciting persuasion and trust,
+while avoiding the perception of ’eerieness’.
+  Second, one’s own voice is likely to induce perceptions of homophily and similarity
+attraction. Similarity attraction is a well-documented phenomenon in social psychology
+(Byrne 1961). This occurs when individuals appraise others as being similar to themselves
+in some personal dimension, such as facial attributes (Bailenson et al. 2008), demographics
+(Banikiotes and Neimeyer 1981, Hu et al. 2008), or attitudes (Singh et al. 2017, Yeong
+Tan and Singh 1995). Although initially observed in face-to-face interpersonal contexts,
+similarity-based attraction has been shown to manifest in several technological contexts
+as well, including social media (Adamopoulos et al. 2018, Aral et al. 2009), computer-
+mediated communication more generally (Kaptein et al. 2014) and AI agents (Nass and
+Lee 2001, Nass and Moon 2000, Nass et al. 1997).
+  Although there are many explanations for similarity attraction, a dominant explanation
+for the phenomenon is the reinforcement-affect model (Byrne and Clore 1970). This model
+postulates that people enjoy experiencing positive stimuli (Byrne and Clore 1970) and
+actively seek them. Since interactions with similar individuals tend to go more smoothly,
+as opposed to dissimilar stimuli, individuals are drawn toward stimuli congruent with these
+attributions (Berscheid and Hatfield 1978). For example, when individuals hear a similar
+voice, they associate the sound with subsequent positive conversations, as there is already
+a basis for common ground. Prior research in psychology has also reported consistent
+evidence that individuals form impressions about trustworthiness in a rapid and automatic
+(visceral) manner, responding to highly superficial, aesthetic features of another party’s
+face (Holmes and Robins 2007, Todorov et al. 2009) or voice (McAleer et al. 2014, Belin
+et al. 2017) to subconsciously arrive at “approach or avoid” assessments in a matter of
+milliseconds. Given the prior evidence in psychology, it is perhaps unsurprising that work
+in HCI has observed that AI-enabled agents are more persuasive or trust-inducing when
+imbued with the voices of friends or family-members (Chan et al. 2021).
+  Early work experimenting with computerized voice and text-based chatbots documented
+that experiment participants would often attribute human-like qualities and social motives,
+despite stating explicitly that they were aware the other party was entirely artificial (Nass
+and Lee 2001, Nass and Moon 2000, Nass et al. 1997). To trigger these attributions,
+
+
+
+                  Electronic copy available at: https://ssrn.com/abstract=4839606
+8
+
+researchers would manipulate aesthetics like para-linguistic vocal cues that better align
+with the individual’s own (Nass and Lee 2001), and voice accents that mirror those of
+the human counterpart (Dahlbäck et al. 2007). Consistent findings have been reported in
+more recent work evaluating trust. For example in an experiment investigating human-AI
+collaboration, Trainer et al. (2020) found that subjects preferred to work with AI-enabled
+agents whose avatars exhibited similar racial and gender characteristics to themselves.
+Further, those authors observed that this effect arose because subjects trusted those agents
+more, even though the agents were very clearly robots, and not human. These prior findings
+suggest that an AI’s similarity to their counterpart can greatly influence end-user behavior
+and that mere awareness of the AI’s nature may fail to mitigate those effects.
+    If any persuasive effects do derive from a voice-clone, a natural question then, from
+a consumer protection standpoint, is how one might mitigate that influence. The above
+points raise questions about the likely efficacy of relying on AI disclosure as a means of
+managing or regulating the potential effects of a voice clone.
+
+2.2.   AI Disclosure & Decision Risk
+Management literature addressing the use of autonomous agents in customer-facing job
+roles is relatively rare, but speaks to a possible intervention for mitigating the likely per-
+suasive, trust-inducing influence of voice-clones. An important design consideration when
+deploying these IT artifacts in a managerial setting is whether to disclose their autonomous
+nature. However, findings related to disclosure interventions are somewhat mixed.
+    For example, recent work by Luo et al. (2019) explored a financial institution’s use of
+voice-based agents to solicit customer loan renewals. Employing a field experiment, the
+authors randomized customers to receive calls from voice-based chatbots or human employ-
+ees, and further randomized whether the autonomous nature of an agent was disclosed to
+the consumer at the outset of the call. The authors found that, although loan renewals were
+equally likely using a voice-based chatbot or a human employee, when the autonomous
+nature of the chatbot was disclosed upfront, subjects were nearly 80% less likely to renew
+their loan. These findings would seem to suggest that consumers’ trust in AI algorithms
+may be heavily dependent upon awareness that they are in fact dealing with an algorithm.
+In another study, Tong et al. (2021) utilized AI as a manager, employing it to provide
+managerial feedback to employees. Those authors found a similar negative response to AI
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                            9
+
+feedback, but the effect was notably attenuated among more established, seasoned employ-
+ees. In contrast, Schanke et al. (2021) explored autonomous customer service agents in a
+textual medium, where the AI agents acted on behalf of a retailer to negotiate and accept
+used clothing buy-back offers from consumers. Unlike Luo et al. (2019) and Tong et al.
+(2021), Schanke et al. (2021) found that consumers perceived chatbots as more likeable
+when their autonomous nature was explicitly disclosed. Further, Mozafari et al. (2022)
+explored user perceptions of agents in a conversation, and discovered that errors were
+viewed less negatively when the user was aware the other party was an autonomous chat-
+bot. Finally, in a brand-related context, Kirkby et al. (2023) observed no negative impacts
+of AI disclosure on downstream brand attributions. The highly variable consequences of
+AI disclosure suggest that the relationship may vary a great deal with context. This is, in
+part, a reason that we seek to explore the trust-inducing effects of conversational AI, and
+how it varies with AI disclosure in a highly controlled, de-contextualized setting.
+  The prior conflicting results in the literature about the impact of disclosure raise ques-
+tions about the potential efficacy of disclosure as a policy intervention here. Further, as
+mentioned earlier, in our setting we have reason to expect that disclosure might not miti-
+gate the trust-inducing effects of similarity attraction in autonomous agents, because the
+trust-inducing effects we anticipate are likely to occur mindlessly(Nass and Moon 2000),
+as a visceral response (Todorov et al. 2009, Belin et al. 2017), evoking trust regardless of
+individuals’ conscious consideration of the other party’s traits.
+  A second factor that prior literature highlights, which likely plays into AI-trust, is the
+degree of risk involved in a decision. Numerous studies have found that people are more
+likely to reject decision-support from algorithms in risky or uncertain environments, such as
+financial investing, medical decision-making, or demand forecasting (Mahmud et al. 2022).
+Accordingly, we might anticipate that any persuasive influence of voice-clones would be
+attenuated under risk. However, it is important to bear in mind that there are important
+differences between scenarios in which algorithms provide decision-support (e.g., medical
+diagnosis, or a forecast) versus those in which an autonomous agent is acting on behalf
+of a firm, interacting with a customer. In the former scenario, the algorithm and the user
+generally share common objectives, something that might not be true in the latter setting.
+  A likely more appropriate framework for thinking about consumer trust in an
+autonomous agent, acting on behalf of a firm, is that from the HCI literature dealing with
+
+
+
+                  Electronic copy available at: https://ssrn.com/abstract=4839606
+10
+
+trust in robotics. A widely accepted definition from that literature states that trust is “the
+attitude that an agent will help achieve an individual’s goal in a situation characterized by
+uncertainty and vulnerability”(Lee and See 2004). As noted above, design aesthetics have
+received extensive study as a driver of human trust in robotic partners.
+     The literature notes that an agent that is perceived to be empathetic also tends to
+be perceived as more trustworthy, likeable, and caring (Lee 2006). As a result, scholars
+in that discipline have suggested anthropomorphic robots present certain dangers from
+a design standpoint, because humans may develop an inappropriate level of trust (Lewis
+et al. 2018), even in risky situations (Howard and Borenstein 2019). Indeed, some work has
+found that human trust in robotic partners is increased when robots bear anthropomorphic
+characteristics, e.g., a name, or a human form, even when they have shown themselves to
+be error-prone (Ahmad et al. 2019). Extending this line of thought, the notion of similarity
+attraction and homophily implies that empathy and thus trust in autonomous agents may
+be expected to increase in the presence of aesthetics that imply greater similarity, likeness,
+or familiarity to a human evaluator, e.g., the customer. Rather than eliminate the trust-
+inducing effects of a voice-clone, a very real potential exists that such effects may instead
+operate at their strongest under scenarios of elevated risk.
+     To better tease out these factors, we pursue an alternative research design, in the form of
+a controlled economic experiment. This methodology has been used to better understand
+human decision-making biases and strategic behavior (e.g., trust, cooperation, negotiation)
+in a variety of scenarios (Camerer 2018, March 2019, Thaler 2018, Smith et al. 1988). While
+behavioral economics, as a discipline, has not focused on human-machine interaction, the
+methods that economists have developed in that field have frequently been leveraged by
+scholars of HCI (March 2019, McCabe et al. 2001, Sanfey et al. 2003, Kiesler et al. 1996,
+Torta et al. 2013, Lee et al. 2011) and Organizational Behavior (Adam et al. 2018), to
+improve our understanding of these interactions and design considerations.
+
+3.     Methods
+3.1.     Experiment Design
+We explore the influence of voice-clones on human trust in an AI-enabled partner, employ-
+ing an experimental design first introduced by Charness and Dufwenberg (2006). The
+experiment, a variant of the investment (trust) game, was developed to test how commu-
+nication influences trust between two subjects. In the original game design, articulated in
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                          11
+
+Figure 1, subjects are first ”matched” to a human playing partner and randomly assigned
+to play the role of agent A or B. In the original treatment condition, subjects playing
+the role of B would have the opportunity to pass a written message to party A, stating
+whatever they like, e.g., superfluous comments, promises, etc. Subsequently, party A would
+decide whether they wished to play the game with B (choosing ”in” or ”out”). If party A
+decided to play, B could choose to walk away with some money, leaving A with nothing,
+or B could choose to roll a die. Choosing to roll, the final payoff to both parties would
+depend on the resulting number that was rolled, with a 5 in 6 chance of a positive payoff
+for both players. This study design enabled Charness and Dufwenberg (2006) to examine
+how communication would influence the decisions of both A (whether to trust B), and B
+(how to behave upon receiving that trust).
+
+
+
+
+                   Figure 1   Payoffs Adapted from Charness & Dufwenberg 2006
+
+
+
+  We modified this game in a few key ways. First, we port the game to a digital, computer-
+mediated setting, employing voice-based media. Second, we replace one human subject,
+Party B, with an autonomous agent. Third, we introduce additional manipulations. One
+of the manipulations is related to the medium and aesthetics of message delivery. We
+deliver messages via recorded voice, employing generative text-to-speech models, and we
+manipulate the nature of that voice. The other key manipulation is related to the disclosure
+
+
+
+                  Electronic copy available at: https://ssrn.com/abstract=4839606
+12
+
+of Party B’s autonomous nature. For our voice-based messaging conditions, a message
+is delivered via audio recording. The voice that is used depends on the user’s assigned
+voice condition. Users in one voice condition received messages employing a randomly
+drawn computer voice from the Librispeech dataset, while users in a second condition
+received messages employing a clone of their own voice. To obtain the voice-clone, we
+calibrate a pre-trained neural network-based voice model to a recording of the subject’s
+voice, obtained when the subject reads our consent statement verbally, via telephone, at the
+outset of the game (we provide more details on our procedure below). This combination of
+treatments yields 2x2 full factorial design, with 4 main experimental conditions as indicated
+in Figure 2.9,10
+
+
+
+
+                                         Figure 2     Experimental Conditions
+
+
+
+     Voice Cloning Technology:
+     We utilized an open-source implementation of Jia et al. (2018)11 , which enables the
+implementation of near real-time voice cloning via transfer learning (Pan and Yang 2010).
+An illustration of Jia et al. (2018)’s pre-trained, three-part model is presented in Figure
+3. The three parts of this model include: a Speaker Encoder, a Synthesizer, and a Vocoder.
+The Speaker Encoder takes a short voice recording as input, and yields a speaker embed-
+ding. The embedding is then provided as input to the Synthesizer, which maps input text
+to a mel-spectrogram, i.e., a visual plot of audio, depicted on a mel-scale (Davis and Mer-
+melstein 1980). An example of the normalized waveform depicted in a mel-spectrogram
+9
+    This experiment was pre-registered with open science foundation, link is available upon request
+10
+   Beyond these primary manipulations, we also introduced an additional, independently randomized treatment
+related to risk. We did this by manipulating the provision of information on Party B’s recent prior game play behavior,
+manipulating the level of risk that the subject faces from playing with Party B. Subjects in our no-risk conditions
+received no information on Party B’s recent game play. Subjects in the low-risk condition were informed that Party
+B had rolled in 5 out of their last 6 games. Lastly, subjects in the high-risk condition were informed that Party B
+had rolled in 1 out of their last 6 games. We use this additional, independently randomized intervention to explore
+how the voice clone effect may vary under differing levels of risk in Appendix E.
+11
+     https://github.com/CorentinJ/Real-Time-Voice-Cloning
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                   13
+
+
+
+
+                                   Figure 3    Jia et al 2018 Voice Cloning Model
+
+
+
+
+                   Figure 4    Jia et al. 2018 Example of Actual versus Generated Mel-Spectrgram
+
+
+can be found in Figure 4. Finally, the spectrogram is passed as input to the Vocoder,
+which employs the spectrogram to generate (predict) an associated audio file.
+     Using a transfer-learning approach, we calibrate a pre-trained voice-clone model to an
+individual subject, based on very short (5 second) segments of recorded voice, in near real-
+time. The messages we employ for Party B’s communications are drawn from those that
+were produced by subjects in the original experiment by Charness and Dufwenberg (2006)
+(more details are provided below). For reference, we provide some samples of generated
+voice messages that were used in actual game play during our experiment 12 .
+     Enrollment Process and Experiment Flow: We recruited subjects via Prolific, lim-
+iting enrollment to North American, native English speakers, primarily because the neural
+networks that underlie our generative models were originally trained using recordings of
+North American English speakers. Limiting the subject pool in this way also mitigates the
+potential that any effects we observe might be driven by accent-based inferences or attribu-
+tions (Dahlbäck et al. 2007). We also limited the pool to subjects that have indicated they
+
+12
+     https://digitallyrebirds.s3.us-east-2.amazonaws.com/onlineappendix.html
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+14
+
+are comfortable with experiments involving deception, per Prolific’s guidelines.13 Upon
+agreeing to participate, subjects followed the process outlined in Figure 5. First, a subject
+calls a 1-800 number and reads a consent statement over the phone. Our server records
+the consent statement, randomizes the subject into one of the experimental conditions,
+and then provides the subject with a unique completion code. The subject then enters
+the completion code via their computer, through a web interface, and begins to play the
+game. If the subject is assigned to a Disclosure condition, they are informed that they
+have been partnered with autonomous agent B. If the subject is in a non-disclosure condi-
+tion, they are informed that they have been paired with another player. Finally, subjects
+are notified that their partner has sent them a message, which they can play before they
+decide whether they will Opt-In, to play with the the partner. If the subject is assigned to
+a Random voice condition, the message they receive (based on a randomly drawn written
+message, from among those messages subjects actually wrote in the experiment conducted
+by Charness and Dufwenberg (2006)) is generated in audio format, using a voice selected
+at Random from the Librispeech dataset. Alternatively, if the subject is assigned to a Voice
+Clone condition, the message is generated using a clone of the subject’s own voice, based
+on the consent statement recording. After the subject completes gameplay, they fill out
+the survey and are then debriefed about the nature of the study, its use of voice clones,
+and the autonomous nature of the other party.
+
+
+
+
+                                              Figure 5    Study Procedure
+
+
+
+
+13
+     Prolific.co — Can I run studies that deceive participants?
+
+
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                           15
+
+4.     Empirical Approach & Data
+4.1.    Pilot Study
+Before launching our main experiment, we began by conducting a pilot study, to ensure
+the infrastructure was working properly, to confirm the logistics of execution, to under-
+take manipulation and mechanism checks, and to assess any demand effects. More specif-
+ically, we ensured the proper operation of the real-time mechanism for voice cloning by
+comparing generated audio samples with subjects’ true voices, using industry-standard
+voice-comparison tools. As described below, we also performed a manipulation check for
+the disclosure treatment, assessing whether subjects perceived it as intended. Finally, we
+confirmed the manipulation of our voice clone treatment, assessing whether subjects would
+perceive the resulting voices’ similarity, and whether, in turn, that would induce subjects
+to perceive that their assigned partner was more similar to themselves, demographically.
+     Disclosure Manipulation: To evaluate the effect of our disclosure manipulation, we
+recruited N = 465 subjects, and randomized them into disclosure (N=234) and non-
+disclosure (N=231) conditions. After subjects completed the game, we asked them to
+provide free-form textual responses to the following questions: ”Please describe the other
+party playing this game with you.” Based on subjects’ responses, we examined the rate at
+which subjects described their partner as autonomous, computerized, or AI-enabled. The
+raw textual descriptions our subjects provided about their game partners can be found
+in Appendix C. We report cross tabulations of the results below in Table 1. As expected,
+subjects were more likely to describe their partner as bot-like in the disclosure condition.
+Of the 234 subjects in the disclosure condition, 48.7% described the other party as com-
+puterized, AI, not human, or algorithmic, as compared to 37, or 16%, in the non-disclosure
+condition. This difference demonstrates that, while some individuals in the non-disclosure
+condition do clearly suspect that the other party is an autonomous agent, individuals
+are nonetheless much more likely to describe the other party as such under disclosure.
+While this difference may reflect a simply greater willingness or comfort with disclosing
+pre-existing suspicions, the result is at least consistent with the idea that disclosure does
+manipulate individuals’ beliefs about the other party’s autonomous nature.
+     To shed greater light on the role of bot perception, we conducted another follow-up
+study, documented more thoroughly in Appendix D. In that study, we randomly assigned
+subjects to hear messages read by a human versus synthetic speech from a Random or
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+16
+
+                                 Table 1    Revealed Beliefs About Other Party
+
+                                                   Disclosure Non-Disclosure
+                          Bot Mentioned                 114                 37
+                       No Bot Mentioned                 120                194
+
+Cloned voice model. We asked subjects, outright, at the end of the experiment whether
+they believed the other party to be a bot (or not), and we also used the experiment as
+an opportunity to assess how that belief might interact with the Clone manipulation to
+determine perceptions of trustworthiness. Further, we used this experiment to explore pos-
+sible mechanisms behind the trust-inducing effects, asking subjects to evaluate perceptions
+of the other party’s reliability, honesty, and various other positive character traits, e.g.,
+attractiveness, likeability, and so on. Although the experiment was small in scale, implying
+limited statistical power, we nonetheless observed several interesting results that could
+suggest the efficacy of voice cloning. First, we found that a Clone was perceived as more
+trustworthy than a Random synthetic voice. Second, we observed no significant moderating
+influence of bot-perception on the clone’s trust-inducing effect. Third, considering the ele-
+ments of trust, we observe, in particular, that the Clone voice induces a greater perception
+of reliability, with no significant difference in perceived honesty. Fourth, we observed no
+significant effects on perceptions of any other positive character traits. This last result is
+consistent with prior work dealing with perceptions of self-similar faces (DeBruine 2002),
+and perhaps suggests that the trust-inducing effects of voice clones are highly visceral,
+automatic, and sub-conscious in nature.
+     Voice Clone Manipulation: Next, we assessed the efficacy of our voice-cloning imple-
+mentation, quantifying the vocal similarity between synthetic voice-cloned audio messages
+and the actual voice recordings of subjects using industry standard measures. We employ
+Praat14 for this purpose, a well-known phonology tool, generating mean frequency metrics
+(meanf0), which capture the pitch of a voice in an audio recording. We calculate distinct
+measures based on the consent statement recording and a subject’s assigned generated
+voice they experienced during game play, whether based on a voice-clone or a randomly
+assigned voice. Taking the absolute difference in the two values for each subject, we see
+clear differences between conditions employing a voice clone, as compared to subjects in the
+14
+     Praat — doing phonetics by computer
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                                 17
+
+random voice condition (M = 29.57 vs 57.13; t(433) = -8.382; p < 0.001). This result sug-
+gests that our voice cloning method is achieving the desired goal; it produces a voice that
+is objectively more similar to the subject’s own voice than a randomly selected synthetic
+voice.
+     Finally, we explore whether the difference in voice similarity is perceived by subjects, and
+whether this perception translates to a belief that their partner is demographically similar.
+We ask subjects to describe the gender of the other party. Gender cues have received a
+great deal of attention in prior literature on spoken audio, linguistics (Titze 1989), and
+Human Computer Interaction (Nass et al. 1997) because gender cues are relatively easy
+for individuals to decipher in spoken audio (compared to more subtle information, such
+as accent). Perceptions of gender similarity have also been shown to be a key driver of
+similarity attraction in prior literature (Eyssel et al. 2012, Ozogul et al. 2013).
+     To execute this test, we examined the difference in probability that subjects describe
+the other party as having the same gender, contrasting the Clone and Random Voice
+conditions. As expected, we find that individuals in the Clone condition are significantly
+more likely to perceive their assigned partner as being of the same gender (89.14% vs
+53.10%; χ2 = 68.64; p ≤ 0.001).
+
+4.2.     Subject Recruitment
+Before conducting the main experiment, a power analysis was performed, presuming effect
+sizes consistent with those observed by Charness and Dufwenberg (2006). We recruited
+1,208 subjects, again through Prolific. We again limited the subject pool to Native English
+speakers residing in the United States and Canada. We also ensured these subjects did not
+take part in the aforementioned pilot study.
+
+4.3.     Descriptive Statistics
+We randomize subjects into experimental conditions on the fly, as they enter the experi-
+ment. Our 1,208 subjects were randomly assigned as follows: 302 subjects were assigned to
+a Random voice with No Disclosure, 307 to a Random voice with Disclosure, 295 subjects
+to a voice Clone with No Disclosure, and 304 subjects to a voice Clone with Disclosure.15
+15
+   To facilitate secondary analyses of the potential influence of contextual risk, subjects were also independently
+randomized to receive different risk information (i.e., roll history in recent games) about their partner, Party B.
+Specifically, 411 subjects were assigned information that Party B historically rolled with High likelihood, 396 were
+assigned information that Party B had historically rolled with low likelihood, and 401 subjects were assigned no
+information on Party B’s play history. We discuss this treatment and associated results in Appendix E
+
+
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=4839606
+18
+
+     Table 2 presents descriptive statistics for various measures that describe our sample. On
+average, subjects were willing to trust player B and play, i.e., Opt-in, 74% of the time.
+Subjects spent 325 seconds (about 5 minutes) playing the game, on average. Roughly 60%
+of our subjects are Female, and the average subject is approximately 34 years of age.
+
+                                            Table 2    Descriptive Statistics
+
+                            Variable         Mean St. Dev.              Min         Max
+                            Disclosure        0.506        0.500        0.000       1.000
+                            Clone             0.496        0.500        0.000       1.000
+                            Opt-In            0.738        0.440        0.000       1.000
+                            Age              34.200       12.200       18.000      74.000
+                            Female            0.575        0.495        0.000       1.000
+                            Total Time 325.000            125.000     129.000 970.000
+
+
+     Balance Checks: To gauge whether the randomization was implemented successfully,
+we assess balance across conditions in terms of several observable characteristics of sub-
+jects, including their age, gender, and time to complete the study. Results indicate no
+evidence of systematic differences in any observable features, as p ≥ 0.10 across all pairwise
+comparisons.16,17
+
+5.       Results
+We first report the cross-tabulation of Opt-in Rate by treatment condition, in Table 3. We
+notably observe a higher opt-in rate in the Clone condition, regardless of Disclosure; that is,
+Opt-In rates are 6-9 percentage points higher in the Clone condition. Analyzing the implied
+effect sizes based on a comparison of Opt-in rates between groups and a pooled standard
+deviation, we obtain the values of Cohen’s d reported in Table 4. We see effects roughly
+equivalent to the typical threshold for a ’small’ effect, i.e., 0.20. Specifically, we observe a
+Cohen’s d of 0.20 for the Clone effect in the presence of Disclosure, 0.15 with No Disclosure,
+and 0.17 in general. When considered at scale (e.g., the broad deployment of voice cloning
+techniques across a large customer base), the impact of a Clone intervention on consumer
+
+16
+   We omit the results here for the sake of brevity, due to the large volume of comparisons; however, they are available
+from the authors upon request.
+17
+     Given the large number of pairwise tests, we incorporate a correction for multiple-comparsions.
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                       19
+
+behavior would be quite impactful. In Figure 6, we provide a graphical depiction of the
+group means for Opt-in and their 95% confidence intervals. From the figure, Disclosure
+appears to have no discernible moderating influence upon the effect of the voice Clone on
+Opt-in.
+
+                          Table 3    Opt-in Rate by Treatment Condition
+
+                                      No Disclosure      Disclosure
+
+                          Random      70.5%              69.7%
+
+                          Clone       76.9%              78.3%
+
+
+
+
+                               Table 4    Standardized Effect Sizes
+
+                  Comparison                                          Cohen’s d
+                  Overall Clone vs Overall Random                       0.17
+                  Clone vs Random                                       0.15
+                  Clone Disclosure vs Random Disclosure                 0.20
+                  Clone vs Clone Disclosure                             0.03
+                  Random vs Random Disclosure                           0.02
+
+
+
+
+               Figure 6   Means and 95% Confidence Intervals of Opt-In by Condition
+
+
+
+
+                 Electronic copy available at: https://ssrn.com/abstract=4839606
+20
+
+     We also analyze the resulting data via regression. We estimate a series of linear proba-
+bility models (LPMs) that model a subject’s decision to Opt-In, i.e., to play the investment
+game with Party B, as a function of indicators of their randomly assigned voice and disclo-
+sure treatments. The results are presented in Table 5. We begin by estimating the effect of
+the Clone in isolation, in Model (1). Subsequently, we introduce the Disclosure treatment,
+first adding it as a distinct covariate in Model (2), and then interacting the Disclosure
+dummy with the Clone dummy in Model (3). Referring to the first column, we observe a
+statistically significant positive effect of the Clone; we see that a cloned voice yields an
+estimated 7.5 percentage point increase in a subject’s probability of Opt-In, as compared
+to a Random voice (p < 0.01).
+
+                       Table 5    Voice Clone Effects Moderated by Disclosure (LPM)
+
+       Explanatory Variables             Model (1)            Model (2)               Model (3)
+       Intercept                      0.701*** (0.019) 0.700*** (0.022) 0.705*** (0.026)
+       Clone                          0.075*** (0.025)      0.075**(0.036)        0.064* (0.025)
+       Disclosure                                            0.002 (0.025)        -0.008 (0.037)
+       Clone × Disclosure                                                         0.022 (0.050)
+       Observations                          1,208                1,208                 1,208
+       R2                                    0.007                0.007                 0.007
+       Note: Robust SEs in parentheses; *** p< 0.01, ** p < 0.05, * p < 0.10.
+
+
+     Considering the second column, we continue to observe the positive effect of the voice
+Clone, and we see no evidence that Disclosure has an influence on Opt-in. Finally, in
+the third column, we again find no evidence that Disclosure significantly moderates the
+Clone effect. Neither the main effect nor the interaction term involving Disclosure exhibit
+statistical significance, while the main effect of the Clone treatment persists, though the
+significance of the Clone effect declines to an extent. These results demonstrate the positive
+influence of the voice Clone on subjects’ trust, and no evidence that Disclosure serves to
+mitigate that trust-inducing effect.
+     Despite our earlier power analyses, the potential remains that these null results are due
+to a lack of statistical power. Regardless, the small point estimates and very large p-values
+associated with Disclosure suggest that the true effect, if non-zero, is nonetheless likely to
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                                 21
+
+be quite small. Nonetheless, to better establish the robustness of our conclusions, we re-
+evaluated the results employing an alternative, potentially more robust analysis technique,
+namely randomization inference.
+     Robustness: Randomization Inference
+     Randomization inference (RI)-based tests are less susceptible to influential, high-leverage
+observations (Young 2019). We conducted 10,000 permutations. With each iteration, we re-
+shuffled the Clone and Disclosure vectors in our data, repeated our estimation of all three
+regression specifications. Consistent with the recommendation of Young (2019), we stored
+the test statistic associated with each coefficient at each step, rather than the coefficient.
+After completing all 10,000 iterations, we calculated empirical p-values associated with
+each coefficient as the fraction of all test statistics observed under the null (i.e., across
+our permutations of the data) that were less extreme than the statistic obtained in the
+regressions using the true data. In Table 6 we once again report our point estimates for all
+coefficients under each specification again, this time providing each parameter’s empirical
+p-value in square brackets, obtained from the RI-procedure.
+     We observe consistent results in terms of the statistical significance of our effects. In fact,
+of particular note, the coefficient associated with the Clone dummy in our interacted model
+(Column 3), is more statistically significant than indicated by the asymptotic standard
+errors in Table 5; the empirical p-value is just 0.04.18 In Figure 7, we further depict the null
+distribution of t-statistics that we obtained for this parameter across our permutations,
+and we denote the t-statistic associated with our estimation in the true data as a red
+vertical line.
+     Moderating Role of Audio Quality: One limitation to voice cloning is that the syn-
+thesized audio messages can be of variable quality, because they are generated in real time
+using recordings obtained from a telephone call, where the quality of phone connections
+can be poor. Additionally, the pre-trained neural network that we use to generate the
+audio files may perform better with some phonetic combinations than others, as a result of
+natural variation in the original training data. As these technologies improve, the quality
+of generated audio is only likely to improve in turn. Accordingly, it is useful to examine
+
+18
+  9,601 of the t-statistics associated with this coefficient that we obtained from our interacted regressions across
+shuffled iterations were strictly smaller than the t-stat we observed in the true data
+
+
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=4839606
+22
+
+                              Table 6    Randomization Inference-based Results
+
+            Explanatory Variables              Model (1)            Model (2)           Model (3)
+            Clone                            0.075*** [0.001] 0.075** [0.036] 0.064** [0.040]
+            Disclosure                                             0.002 [0.474]      -0.008 [0.589]
+            Clone × Disclosure                                                          0.022 [0.332]
+            Observations                           1,208                1,208              1,208
+           Note: empirical p-values reported in square brackets based on 10,000 permutations;
+           *** p < 0.01, ** p < 0.05.
+
+
+
+
+           Figure 7    Sampling Distribution of Clone Main Effect Under the Null & Observed Effect
+
+
+heterogeneity in the strength of the voice-clone’s trust-inducing effects under differing lev-
+els of perceived audio quality. Were we to demonstrate that effects are magnified in the
+presence of higher audio quality, it would suggest that these effects may only grow stronger
+in the future.
+     To assess the role of audio quality, we asked subjects to rate their perception of audio
+clarity for the received message on a scale from 0 to 100. This was done as part of the
+exit survey. Considering this measure, we observe that the distribution is bimodal, in both
+the Random voice and a Clone voice conditions (see Figure 8). Given the distribution is
+similar between the two treatments, we infer that the bimodal distribution of perception
+is a by-product of the pre-trained neural network’s performance, rather than the assigned
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                           23
+
+treatment or the data input, e.g., the recording of the subject’s consent-statement or the
+message to be synthesized.
+
+
+
+
+                                    Figure 8   Clarity Distribution
+
+
+
+
+     Cognizant of the bimodal distribution, we construct a dummy variable for perceived
+audio clarity, dichotomizing the raw value based on a median split. We define a sample as
+High Clarity if the subject reported a value greater than or equal to 55.5 out of 100. We
+include this dummy variable as a moderator in our regression. The results are presented
+in Table 7, where we observe that the effect of the Voice Clone is significantly larger under
+High Clarity with a p-value of 0.05. This finding suggests that, as the quality of audio
+improves, the trust-inducing effects of voice clones increase in turn.
+
+6.     Discussion
+Our work provides a first consideration of the potential value that real-time voice cloning
+technology may have for eliciting consumer trust in autonomous, voice-based agents, par-
+ticularly those operating in customer-facing roles on behalf of a firm. Our experiments indi-
+cate that the use of voice clones significantly increases individuals’ trust in an autonomous
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+24
+
+                             Table 7    Moderating Effect of Audio Clarity (LPM)
+
+           Variables                                       DV = Opt-In
+           Intercept                                      0.686*** (0.030)
+           Clone                                            0.023 (0.037)
+           High Clarity                                     0.027 (0.037)
+           Clone × High Clarity                            0.105** (0.050)
+           Disclosure                                       0.0027 (0.025)
+           Observations                                          1,208
+           R2                                                    0.016
+           Note: Robust SEs in parentheses;*** p < 0.01, ** p < 0.05, * p < 0.10
+
+agent. Our results also indicate that the trust-inducing effects are strongest when the per-
+ceived quality of audio is high, suggesting that the performance of these technologies is
+only likely to grow with time, as the technologies improve.
+     At the same time, exploring possible approaches to managing possible misuses of these
+technologies, we considered the possible mitigating influence of AI disclosure. Unfortu-
+nately, we found no evidence that the trust-inducing effects of a clone were mitigated by
+explicit disclosure of the agent’s autonomous nature. Further, additional analyses involving
+independently randomized risk treatments were suggestive that the trust-inducing effects
+of voice clones may be strongest in decision-making contexts characterized by high-risk
+(see Appendix E), suggesting that future work can and should delve more deeply into other
+possible strategies for mitigation and management of these tools.
+     That voice clones induce greater trust is a finding that complements prior results in
+the literature on AI disclosure. Our finding that disclosure does not necessarily undermine
+trust is consistent with results reported by Schanke et al. (2021) and Mozafari et al.
+(2022), though in contrast (at least superficially) to those reported by Luo et al. (2019)
+and Tong et al. (2021). Context is likely to play a major role here. For example, whereas
+Luo et al. (2019) examined AI disclosure in the context of unsolicited sales calls, our study
+and that by Schanke et al. (2021) examine a setting wherein individuals have opted into
+the interaction. A more rigorous examination of the literature and possible sources of this
+heterogeneity are worth exploring in future work.
+     Our work also builds on prior work dealing with the efficacy and influence of face morphs
+in visual advertisements, i.e., self-morphs, wherein elements of a consumer’s own face are
+
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                                      25
+
+integrated into facial images within advertisements. Despite past lab-based evidence that
+self-morphs induce greater trust, even when users do not recognize the presence of their
+own face, recent work attempting to adapt self-morphs into a field setting has observed no
+evidence of improved advertisement performance (Samat et al. 2018). Our work suggests
+that this strategy may be more effective in audio settings using voice clones. Self-morphs are
+relatively subtle by design, drawing on only some elements of a consumer’s face, presumably
+in an effort to avoid the consumer recognizing attempts at manipulation. In contrast,
+voice clones attempt to mimic the consumer’s voice completely. The reason this approach
+is feasible in the context of voice is that even a perfect clone is unlikely to induce a
+sense of ‘eerieness’ on the part of consumers, because individuals typically face difficulty
+recognizing their own voice (Rousey and Holzman 1967).19 Other, contextual factors may
+also contribute to our finding that this strategy works with voice clones. For example, it
+may be that trust-inducing effects are amplified in our setting because it is a dynamic
+social interaction. Alternatively, the stronger result in our setting may be driven by the fact
+that the communication and interaction between parties in our setting are purely voice-
+based, with voice serving as the primary and only source of social information (Walther
+and Tidwell 1995), making it very salient to subjects.
+     Our work takes a first step toward understanding the implications of audio deepfakes
+deployed within business applications. As these technologies are becoming a much more
+important element of day to day life, it is increasingly important that we understand
+the potential ways they may be used to influence customer behavior. Audio deepfake
+technologies can be deployed to implement a form of hypernudging in voice-based contexts
+(Yeung 2019, Morozovaite 2023). The strategy we examine could be put to beneficial use
+by organizations, to personalize consumers’ voice-based experiences and further enhance
+consumers’ social interactions with voice-based AI agents.
+     Indeed, the breadth of contexts in which voice clones might be deployed is growing as
+more companies begin to collect consumer voice data, and companies begin to implement
+conversational, audio-based consumer touch points (Grewal et al. 2021). As noted in the
+introduction, conversational AI stands to have a huge impact on applications of interactive
+
+19
+  As noted earlier, individuals generally do not hear their own voice from an external source, e.g., a recording; rather,
+individuals hear their voice only when speaking, emitted from their own mouth, and resonating through their own
+skull, yielding a distinctly different sound.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=4839606
+26
+
+voice response. This has clear implications for the call center industry, which alone was
+worth more than $300 Billion USD in 2022 and is forecasted to rise to more than $400
+Billion USD in value by 2030 20 . And, voice cloning has applications that go well beyond a
+call center, as the strategy we study could be employed in any targeted marketing efforts
+that involve voice audio, e.g., video and audio advertisements (Allison et al. 2022, Huang
+et al. 2018). Furthermore, Guerouaou et al. (2022) find that consumers are much more
+open to the idea of interacting with voice-based deepfakes, and this may be a fruitful future
+avenue for personalization.
+
+7.       Limitations & Conclusion
+While this study provides novel insights, our work is subject to certain limitations. First,
+our experiment occurs in a controlled online setting. As such, the degree to which our
+results generalize to relevant field settings (e.g., sales conversion, lead generation, etc.)
+remains an open question. Although our controlled setting provides us the ability to tease
+apart mechanisms and potential sources of influence, future work should be done in field
+contexts to quantify these trust-inducing effects using measures of more direct relevance
+to practice.
+     That said, our experiment design is notably relevant to and at least superficially repre-
+sentative of many real-world consumer settings. In most settings that involve AI-enabled
+customer service agents, the agent acts as a delegate (Libai et al. 2020), working on an
+organization’s behalf to assist the consumer. For example, a customer might interact with
+an automated voice-based agent to perform various customer support tasks, e.g., change
+a flight booking, update dinner plans, or even renew a bank loan (Luo et al. 2019). In
+all such scenarios, consumers are uncertain whether the agent will perform the task prop-
+erly. Our game design parallels such real world contexts. Charness and Dufwenberg (2006,
+2010) explicitly designed their game to study exactly these scenarios, involving hidden-
+information, where an anonymous party’s actions have implications for the subject’s utility
+a priori.
+     Second, the experiment focuses on trust in a meaningful economic scenario. While there
+are several conceptualizations of trust that have been employed in prior literature for the
+design of technology artifacts (e.g., Benbasat and Wang 2005), the version we employ here
+20
+     https://finance.yahoo.com/news/global-call-centers-business-analysis-090800828.html
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                            27
+
+has a long history in economics for understanding individual decision-making in real-time
+choice settings. In short, the design of the game is such that it leverages pay-offs and choice
+structures that elicit decision-making that closely mirrors scenarios that would arise in real-
+world economic choices (Becker et al. 1964). This trust variable assesses whether the subject
+deems the other party as credible in a one shot economic scenario. Future work could
+evaluate alternative conceptualizations of trust, like trust in the artifact’s functionality
+(Choung et al. 2023).
+  Another limitation of our work is its focus on North American English-speakers. It is not
+clear whether our results may generalize across cultures. As noted earlier, Luo et al. (2019)
+found that AI disclosure negatively impacts consumer interest in a loan renewal, within
+a Chinese banking context. Further work on AI disclosure might thus seek to evaluate
+cultural (and other demographic) differences in individuals’ receptivity to AI agents.
+  Finally, our experimental setting limits our ability to assess the true beliefs of subjects,
+particularly under the non-disclosure condition. While we do observe that subjects in the
+Disclosure condition were more likely to describe their partner using terminology more
+indicative of a bot or a computer, it remains unclear whether subjects truly believed their
+assigned partner to be human. Asking subjects to report their belief of whether the other
+party was a bot via survey, as we do in Appendix D, presents inherent challenges for
+measuring true perceptions, because merely by reading the question, respondents may be
+induced to reflect on their experience and reassess, potentially tainting their response.
+Further study is thus needed to understand the degree to which human subjects are capable
+of discerning that their partner is an AI-enabled autonomous, synthetic agent, and how
+that verified perception moderates the effects of a voice clone.
+  This work will ideally aid both practitioners and policymakers in developing a clearer
+understanding of the business applications of audio-based deepfakes, as well as the potential
+value of certain policy and regulatory approaches to addressing risks of misuse, e.g., AI
+disclosure. It is our hope that this work represents only a first step toward a broader
+stream of literature in management and policy, one that will ideally explore a broader
+set of potential impacts, as well as appropriate policy and managerial responses, in light
+of the ongoing rapid advancements and applications of generative AI technologies in the
+business sphere. Further, it is our hope that this research can spurn further scholarship in
+the domain of voice-based consumer interactions.
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+28
+
+References
+Adam MT, Teubner T, Gimpel H (2018) No Rage Against the Machine: How Computer Agents Mitigate
+     Human Emotional Processes in Electronic Negotiations. Group Decision and Negotiation 27(4):543–
+     571, ISSN 15729907, URL http://dx.doi.org/10.1007/s10726-018-9579-5.
+
+Adamopoulos P, Ghose A, Todri V (2018) The impact of user personality traits on word of mouth: Text-
+     mining social media platforms. Information Systems Research 29(3):612–640, ISSN 15265536, URL
+     http://dx.doi.org/10.1287/isre.2017.0768.
+
+Adomavicius G, Bockstedt JC, Curley SP, Zhang J (2018) Effects of online recommendations on consumers’
+     willingness to pay. Information Systems Research 29(1):84–102, ISSN 15265536, URL http://dx.doi.
+     org/10.1287/isre.2017.0703.
+
+Agarwal   R,    Kline    P,   Raabe   J   (2023)   Why   ivr   still   matters   in   an   ai   world.   McKinsey
+     &    Co.   Insights      URL   https://www.mckinsey.com/capabilities/operations/our-insights/
+     operations-blog/why-ivr-still-matters-in-an-ai-world.
+
+Ahmad MI, Bernotat J, Lohan K, Eyssel F (2019) Trust and cognitive load during human-robot interaction.
+     arXiv preprint arXiv:1909.05160 .
+
+Allison TH, Warnick BJ, Davis BC, Cardon MS (2022) Can you hear me now? engendering passion and
+     preparedness perceptions with vocal expressions in crowdfunding pitches. Journal of Business Venturing
+     37(3):106193.
+
+Almutairi Z, Elgibreen H (2022) A review of modern audio deepfake detection methods: challenges and future
+     directions. Algorithms 15(5):155.
+
+Ansari A, Essegaier S, Kohli R (2000) Internet recommendation systems. Journal of Marketing Research
+     37(3):363–375, ISSN 00222437, URL http://dx.doi.org/10.1509/jmkr.37.3.363.18779.
+
+Aral S, Muchnik L, Sundararajan A (2009) Distinguishing influence-based contagion from homophily-
+     driven diffusion in dynamic networks. Proceedings of the National Academy of Sciences of the United
+     States of America 106(51):21544–21549, ISSN 00278424, URL http://dx.doi.org/10.1073/pnas.
+     0908800106.
+
+Athey S, Imbens G, Metzger J, Munro E (2019) Using wasserstein generative adversarial networks for the
+     design of monte carlo simulations URL http://dx.doi.org/10.3386/w26566.
+
+Athey S, Keleher N, Spiess J (2023) Machine learning who to nudge: Causal vs predictive targeting in a field
+     experiment on student financial aid renewal. arXiv preprint arXiv:2310.08672 .
+
+Atleson M (2023) Chatbots, deepfakes, and voice clones: Ai deception for sale. URL https://www.ftc.gov/
+     business-guidance/blog/2023/03/chatbots-deepfakes-voice-clones-ai-deception-sale,
+     8/26/2023.
+
+Bailenson JN, Iyengar S, Yee N, Collins NA (2008) Facial similarity between voters and candidates causes
+     influence. Public Opinion Quarterly 72(5):935–961, ISSN 0033362X, URL http://dx.doi.org/10.
+     1093/poq/nfn064.
+
+
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                          29
+
+Banikiotes PG, Neimeyer GJ (1981) Construct importance and rating similarity as determinants of inter-
+     personal attraction. British Journal of Social Psychology 20:259–263.
+
+Becker GM, Degroot MH, Marschak J (1964) Measuring utility by a single-response sequential method.
+     Behavioral Science 9(3):226–232, URL http://dx.doi.org/10.1002/bs.3830090304.
+
+Belin P, Boehme B, McAleer P (2017) The sound of trustworthiness: Acoustic-based modulation of perceived
+     voice personality. PloS one 12(10):e0185651.
+
+Benbasat I, Wang W (2005) Trust in and adoption of online recommendation agents. J. AIS 6, URL http:
+     //dx.doi.org/10.17705/1jais.00065.
+
+Bennett A, Kallus N, Schnabel T (2020) Deep generalized method of moments for instrumental variable
+     analysis. arXiv preprint arXiv: 1905.12495 .
+
+Berg J, Dickhaut J, McCabe K (1995) Trust, reciprocity, and social history. URL http://dx.doi.org/10.
+     1006/game.1995.1027.
+
+Berscheid E, Hatfield E (1978) Interpersonal attraction (Reading, Mass.: Reading, Mass. : Addison-Wesley
+     Pub. Co.), 2d ed.. edition, ISBN 0201005697.
+
+Brunswik E (1955) Representative design and probabilistic theory in a functional psychology. Psychological
+     Review 62(3):193–217, ISSN 0033295X, URL http://dx.doi.org/10.1037/h0047470.
+
+Byrne D (1961) Interpersonal attraction and attitude similarity. The Journal of Abnormal and Social Psy-
+     chology 62(3):713–715, ISSN 0096-851X(Print), URL http://dx.doi.org/10.1037/h0044721.
+
+Byrne D, Clore GL (1970) A reinforcement model of evaluative responses. Personality 1(2):103–128.
+
+Camerer CF (2018) Artificial intelligence and behavioral economics. The economics of artificial intelligence:
+     An agenda, 587–608 (University of Chicago Press).
+
+Castelo N, Bos MW, Lehmann DR (2019) Task-Dependent Algorithm Aversion. Journal of Marketing
+     Research 56(5):809–825, ISSN 00222437, URL http://dx.doi.org/10.1177/0022243719851788.
+
+Chan SW, Gunasekaran TS, Pai YS, Zhang H, Nanayakkara S (2021) Kinvoices: Using voices of friends and
+     family in voice interfaces. Proceedings of the ACM on Human-Computer Interaction 5(CSCW2):1–25.
+
+Charness G, Dufwenberg M (2006) Promises and partnership. Econometrica 74(6):1579–1601.
+
+Charness G, Dufwenberg M (2010) Bare promises: An experiment. Economics Letters 107(2):281–283, ISSN
+     01651765, URL http://dx.doi.org/10.1016/j.econlet.2010.02.009.
+
+Chesney B, Citron D (2019) Deep fakes: A looming challenge for privacy, democracy, and national secu-
+     rity. California Law Review 107(6):1753–1820, ISSN 00081221, URL http://dx.doi.org/10.15779/
+     Z38RV0D15J.
+
+Choung H, David P, Ross A (2023) Trust in ai and its role in the acceptance of ai technologies. International
+     Journal of Human–Computer Interaction 39(9):1727–1739.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+30
+
+Cyr D, Head M, Larios H, Pan B (2009) Exploring human images in website design: a multi-method approach.
+     MIS quarterly 539–566.
+
+Dahlbäck N, Wang Q, Nass C, Alwin J (2007) Similarity is more important than expertise: Accent effects
+     in speech interfaces. Conference on Human Factors in Computing Systems - Proceedings 1553–1556,
+     URL http://dx.doi.org/10.1145/1240624.1240859.
+
+Das T, Teng BS (2004) The risk-based view of trust: A conceptual framework. journal of Business and
+     Psychology 19:85–116.
+
+Davis S, Mermelstein P (1980) Comparison of parametric representations for monosyllabic word recogni-
+     tion in continuously spoken sentences. IEEE Transactions on Acoustics, Speech, and Signal Processing
+     28(4):357–366, URL http://dx.doi.org/10.1109/tassp.1980.1163420.
+
+Dawes RM, Faust D, Meehl PE (1989) Clinical Versus Actuarial Judgement. Science 243(4899):1668, ISSN
+     00368075.
+
+DeBruine LM (2002) Facial resemblance enhances trust. Proceedings of the Royal Society of London. Series
+     B: Biological Sciences 269(1498):1307–1312.
+
+Dietvorst BJ, Simmons JP, Massey C (2018) Overcoming algorithm aversion: People will use imperfect
+     algorithms if they can (even slightly) modify them. Management Science 64(3):1155–1170, URL http:
+     //dx.doi.org/10.1287/mnsc.2016.2643.
+
+Eyssel F, Kuchenbrandt D, Bobinger S, De Ruiter L, Hegel F (2012) ’if you sound like me, you must be more
+     human’ on the interplay of robot and user features on human-robot acceptance and anthropomorphism.
+     Proceedings of the seventh annual ACM/IEEE international conference on Human-Robot Interaction,
+     125–126.
+
+Ghosh A, Fossas G (2022) Can there be art without an artist? arXiv preprint arXiv:2209.07667 .
+
+Goodfellow IJ, Pouget-Abadie J, Mirza M, Xu B, Warde-Farley D, Ozair S, Courville A, Bengio Y (2014)
+     Generative adversarial networks. arXiv preprint arXiv: 1406.2661 .
+
+Grewal R, Gupta S, Hamilton R (2021) Marketing insights from multimedia data: text, image, audio, and
+     video.
+
+Guerouaou N, Vaiva G, Aucouturier JJ (2022) The shallow of your smile: the ethics of expressive vocal
+     deep-fakes. Philosophical Transactions of the Royal Society B 377(1841):20210083.
+
+Gupta A, Kannan K, Sanyal P (2018) Economic experiments in information systems. MIS Quarterly
+     42(2):595–606.
+
+Hegel F, Muhl C, Wrede B, Hielscher-Fastabend M, Sagerer G (2009) Understanding social robots. 2009
+     Second International Conferences on Advances in Computer-Human Interactions, 169–174 (IEEE).
+
+Holmes J, Robins D (2007) Visceral and cognitive levels of credibility judgment in an authorless environment:
+     A factor analysis of the influence of visual design. Proceedings of the American Society for Information
+     Science and Technology 44(1):1–10.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                            31
+
+Hosanagar K, Fleder D, Lee D, Buja A (2014) Will the global village fracture into tribes recommender systems
+     and their effects on consumer fragmentation. Management Science 60(4):805–823, ISSN 15265501, URL
+     http://dx.doi.org/10.1287/mnsc.2013.1808.
+
+Howard A, Borenstein J (2019) Trust and bias in robots: These elements of artificial intelligence present
+     ethical challenges, which scientists are trying to solve. American Scientist 107(2):86–90.
+
+Hu C, Thomas KM, Lance CE (2008) Intentions to initiate mentoring relationships: Understanding the
+     impact of race, proactivity, feelings of deprivation, and relationship roles. Journal of Social Psychology
+     148(6):727–744, ISSN 00224545, URL http://dx.doi.org/10.3200/SOCP.148.6.727-744.
+
+Huang J, Reiley D, Riabov N (2018) Measuring consumer sensitivity to audio advertising: A field experiment
+     on pandora internet radio. Available at SSRN 3166676 .
+
+Jia Y, Zhang Y, Weiss RJ, Wang Q, Shen J, Ren F, Chen Z, Nguyen P, Pang R, Moreno IL, Wu Y (2018)
+     Transfer learning from speaker verification to multispeaker text-to-speech synthesis. Advances in Neural
+     Information Processing Systems 2018-December(NeurIPS):4480–4490, ISSN 10495258.
+
+Jiang Z, Wang W, Tan BC, Yu J (2016) The determinants and impacts of aesthetics in users’ first interaction
+     with websites. Journal of Management Information Systems 33(1):229–259.
+
+Kaptein M, Castaneda D, Fernandez N, Nass C (2014) Extending the similarity-attraction effect: The effects
+     of when-similarity in computer-mediated communication. Journal of Computer-Mediated Communica-
+     tion 19(3):342–357, ISSN 10836101, URL http://dx.doi.org/10.1111/jcc4.12049.
+
+Karelaia N, Hogarth RM (2008) Determinants of Linear Judgment: A Meta-Analysis of Lens Model
+     Studies. Psychological Bulletin 134(3):404–426, ISSN 00332909, URL http://dx.doi.org/10.1037/
+     0033-2909.134.3.404.
+
+Kiesler S, Sproull L, Waters K (1996) A prisoners dilemma experiment on cooperation with people and
+     human-like computers. Journal of Personality and Social Psychology 70(1):47–65, URL http://dx.
+     doi.org/10.1037//0022-3514.70.1.47.
+
+Kingma DP, Welling M, et al. (2019) An introduction to variational autoencoders. Foundations and Trends®
+     in Machine Learning 12(4):307–392.
+
+Kirkby A, Baumgarth C, Henseler J (2023) To disclose or not disclose, is no longer the question–effect of
+     ai-disclosed brand voice on brand authenticity and attitude. Journal of Product & Brand Management
+     .
+
+Kleinberg J, Lakkaraju H, Leskovec J, Ludwig J, Mullainathan S (2017) Human decisions and machine
+     predictions*. The Quarterly Journal of Economics URL http://dx.doi.org/10.1093/qje/qjx032.
+
+Lee B (2006) Empathy, androids and ‘authentic experience’. Connection Science 18(4):419–428.
+
+Lee JD, See KA (2004) Trust in automation: Designing for appropriate reliance. Human factors 46(1):50–80.
+
+Lee MK (2018) Understanding perception of algorithmic decisions: Fairness, trust, and emotion in response
+     to algorithmic management. Big Data & Society 5(1):2053951718756684.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+32
+
+Lee MK, Kiesler S, Forlizzi J (2011) 2011-CHI-behavioral econ 325–334.
+
+Lewis M, Sycara K, Walker P (2018) The role of trust in human-robot interaction. Foundations of trusted
+     autonomy, 135–159 (Springer, Cham).
+
+Li P, Tuzhilin A (2019) Towards controllable and personalized review generation. arXiv preprint
+     arXiv:1910.03506 .
+
+Libai B, Bart Y, Gensler S, Hofacker CF, Kaplan A, Kötterheinrich K, Kroll EB (2020) Brave new world?
+     on ai and the management of customer relationships. Journal of Interactive Marketing 51:44–56.
+
+Liu BQ, Goodhue DL (2012) Two worlds of trust for potential e-commerce users: Humans as cognitive misers.
+     Information Systems Research 23(4):1246–1262.
+
+Logg JM, Minson JA, Moore DA (2019) Algorithm appreciation: People prefer algorithmic to human judg-
+     ment. Organizational Behavior and Human Decision Processes 151:90–103, URL http://dx.doi.org/
+     10.1016/j.obhdp.2018.12.005.
+
+Longoni C, Fradkin A, Cian L, Pennycook G (2022) News from generative artificial intelligence is believed
+     less. 2022 ACM Conference on Fairness, Accountability, and Transparency, 97–106.
+
+Luo X, Qin MS, Fang Z, Qu Z (2021) Artificial Intelligence Coaches for Sales Agents: Caveats and
+     Solutions. Journal of Marketing 85(2):14–32, ISSN 15477185, URL http://dx.doi.org/10.1177/
+     0022242920956676.
+
+Luo X, Tong S, Fang Z, Qu Z (2019) Frontiers: Machines vs. humans: The impact of artificial intelligence chat-
+     bot disclosure on customer purchases. Marketing Science URL http://dx.doi.org/10.1287/mksc.
+     2019.1192.
+
+Mahmud H, Islam AN, Ahmed SI, Smolander K (2022) What influences algorithmic decision-making?
+     a systematic literature review on algorithm aversion. Technological Forecasting and Social Change
+     175:121390.
+
+March C (2019) The Behavioral Economics of Artificial Intelligence: Lessons from Experiments with Com-
+     puter Players. CESifo Working Paper (7926).
+
+McAleer P, Todorov A, Belin P (2014) How do you say ‘hello’ ? personality impressions from brief novel
+     voices. PloS one 9(3):e90779.
+
+McCabe K, Houser D, Ryan L, Smith V, Trouard T (2001) A functional imaging study of cooperation in two-
+     person reciprocal exchange. Proceedings of the National Academy of Sciences of the United States of
+     America 98(20):11832–11835, ISSN 00278424, URL http://dx.doi.org/10.1073/pnas.211415698.
+
+McGinn C, Torre I (2019) Can you tell the robot by the voice? an exploratory study on the role of voice in
+     the perception of robots. 2019 14th ACM/IEEE International Conference on Human-Robot Interaction
+     (HRI), 211–221 (IEEE).
+
+Mcuba M, Singh A, Ikuesan RA, Venter H (2023) The effect of deep learning methods on deepfake audio
+     detection for digital investigation. Procedia Computer Science 219:211–219.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                        33
+
+Mori M (1970) The uncanny valley. Energy 7:33–35.
+
+Morozovaite V (2023) The future of anticompetitive self-preferencing: analysis of hypernudging by voice
+     assistants under article 102 tfeu. European Competition Journal 1–39.
+
+Mozafari N, Weiger WH, Hammerschmidt M (2022) Trust me, i’m a bot–repercussions of chatbot disclosure
+     in different service frontline settings. Journal of Service Management 33(2):221–245.
+
+Möhlmann M, Zalmanson L, Henfridsson O, Gregory R (2021) Algorithmic management of work on online
+     labor platforms: When matching meets control. MIS Quarterly 45.
+
+Nass C, Lee KM (2001) Does computer-synthesized speech manifest personality? experimental tests of recog-
+     nition, similarity-attraction, and consistency-attraction. Journal of Experimental Psychology: Applied
+     7(3):171–181, URL http://dx.doi.org/10.1037//1076-898x.7.3.171.
+
+Nass C, Moon Y (2000) Machines and Mindlessness: Social Responses to Computers. Journal of Social Issues
+     56(1):81–103, URL http://dx.doi.org/10.1111/0022-4537.00153.
+
+Nass C, Moon Y, Green N (1997) Are machines gender neutral? gender-stereotypic responses to computers
+     with voices. Journal of applied social psychology 27(10):864–876.
+
+Ozogul G, Johnson AM, Atkinson RK, Reisslein M (2013) Investigating the impact of pedagogical agent
+     gender matching and learner choice on learning outcomes and perceptions. Computers & Education
+     67:36–50.
+
+Pan SJ, Yang Q (2010) A survey on transfer learning. IEEE Transactions on Knowledge and Data Engineering
+     22(10):1345–1359, URL http://dx.doi.org/10.1109/TKDE.2009.191.
+
+Park KF, Shapira Z (2017) Risk and uncertainty.
+
+Pörschmann C (2000) Influences of bone conduction and air conduction on the sound of one’s own voice.
+     Acta Acustica united with Acustica 86(6):1038–1045.
+
+Promberger M, Baron J (2006) Do patients trust computers? Journal of Behavioral Decision Making
+     19(5):455–468, ISSN 10990771, URL http://dx.doi.org/10.1002/bdm.542.
+
+Rousey C, Holzman PS (1967) Recognition of one’s own voice. Journal of Personality and Social Psychology
+     6(4p1):464.
+
+Samat S, Péer E, Acquisti A (2018) Can digital face-morphs influence attitudes and online behav-
+     iors? Fourteenth Symposium on Usable Privacy and Security (SOUPS 2018), 117–125 (Baltimore,
+     MD: USENIX Association), ISBN 978-1-939133-10-6, URL https://www.usenix.org/conference/
+     soups2018/presentation/peer.
+
+Sanfey AG, Rilling JK, Aronson JA, Nystrom LE, Cohen JD (2003) The neural basis of economic decision-
+     making in the ultimatum game. Science 300(5626):1755–1758.
+
+Schanke S, Burtch G, Ray G (2021) Estimating the Impact of “Humanizing” Customer Service Chatbots.
+     Information systems research ISSN 1047-7047.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+34
+
+Singh R, Tay YY, Sankaran K (2017) Causal role of trust in interpersonal attraction from attitude similarity.
+     Journal of Social and Personal Relationships 34(5):717–731, ISSN 14603608, URL http://dx.doi.
+     org/10.1177/0265407516656826.
+
+Smith VL, Suchanek GL, Williams AW (1988) Bubbles, crashes, and endogenous expectations in experimen-
+     tal spot asset markets. Econometrica 56(5):1119, URL http://dx.doi.org/10.2307/1911361.
+
+Tambe P, Cappelli P, Yakubovich V (2019) Artificial intelligence in human resources management: Challenges
+     and a path forward. California Management Review 61(4):15–42, URL http://dx.doi.org/10.1177/
+     0008125619867910.
+
+Thaler RH (2018) Behavioral economics: Past, present, and future. Revista de Economia Institucional
+     20(38):9–43, ISSN 01245996, URL http://dx.doi.org/10.18601/01245996.v20n38.02.
+
+Titze IR (1989) Physiologic and acoustic differences between male and female voices. The Journal of the
+     Acoustical Society of America 85(4):1699–1707.
+
+Todorov A, Pakrashi M, Oosterhof NN (2009) Evaluating faces on trustworthiness after minimal time expo-
+     sure. Social cognition 27(6):813–833.
+
+Tong S, Jia N, Luo X, Fang Z (2021) The janus face of artificial intelligence feedback: Deployment versus
+     disclosure effects on employee performance. Strategic Management Journal 42(9):1600–1631.
+
+Torta E, Dijk EV, Ruijten PAM, Cuijpers RH (2013) The ultimatum game as measurement tool for anthro-
+     pomorphism in human–robot interaction. Social Robotics Lecture Notes in Computer Science 209–217,
+     URL http://dx.doi.org/10.1007/978-3-319-02675-6_21.
+
+Tractinsky N (2015) Aesthetics in information technology: Motivation and future research directions. Human-
+     Computer Interaction and Management Information Systems: Foundations, 344–361 (Routledge).
+
+Trainer T, Taylor JR, Stanton CJ (2020) Choosing the Best Robot for the Job: Affinity Bias in Human-
+     Robot Interaction, volume 12483 LNAI (Springer International Publishing), ISBN 9783030620554, URL
+     http://dx.doi.org/10.1007/978-3-030-62056-1_41.
+
+Turow J (2021) The voice catchers: How marketers listen in to exploit your feelings, your privacy, and your
+     wallet (Yale University Press).
+
+Vaswani A, Shazeer N, Parmar N, Uszkoreit J, Jones L, Gomez AN, Kaiser L, Polosukhin I (2017) Attention
+     is all you need. Advances in neural information processing systems 30.
+
+Walther JB, Tidwell LC (1995) Nonverbal cues in computer-mediated communication, and the effect of
+     chronemics on relational communication. Journal of Organizational Computing 5(4):355–378, URL
+     http://dx.doi.org/10.1080/10919399509540258.
+
+Yeomans M, Shah A, Mullainathan S, Kleinberg J (2019) Making sense of recommendations. Journal of
+     Behavioral Decision Making 32(4):403–414, ISSN 10990771, URL http://dx.doi.org/10.1002/bdm.
+     2118.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                         35
+
+Yeong Tan DT, Singh R (1995) Attitudes and Attraction: A Developmental Study of the Similarity-Attraction
+     and Dissimilarity-Repulsion Hypotheses. Personality and Social Psychology Bulletin 21(9):975–986,
+     ISSN 0146-1672, URL http://dx.doi.org/10.1177/0146167295219011.
+
+Yeung K (2019) ‘hypernudge’: Big data as a mode of regulation by design. The social power of algorithms,
+     118–136 (Routledge).
+
+Young A (2019) Channeling fisher: Randomization tests and the statistical insignificance of seemingly sig-
+     nificant experimental results. The quarterly journal of economics 134(2):557–598.
+
+Zhou E, Lee D (2024) Generative artificial intelligence, human creativity, and art. PNAS nexus 3(3):pgae052.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+36
+
+                                SUPPLEMENTARY APPENDICES
+
+Appendix A               Message Content
+Below we provide a sample of the messages subjects received in the experiment. The
+complete set is available in the Online Appendix 21 . Note that the messages are slightly
+adapted from those reported in Charness and Dufwenberg (2006), e.g., to account for
+differences in referenced pay amounts, dated cultural references, etc.
+
+                                      Table 8: Example Messages Sent                                                   ID
+
+ Message
+ 1     Please choose In, so we can get paid more.
+ 2     Choose in, I will roll the dice. You are likely to get two, three, four, five, or six. This way both of us will win
+       something.
+ 3     If you stay in, the chances of the die coming up other than one are pretty good. Otherwise, we’d both be stuck
+       at 1 25 If you opt out
+ 4     I have to do laundry tonight, and I really don’t want to do it! But I also don’t have any clean underwear left,
+       and I don’t want to go commando tommorrow. We’ll see what I decide. This study is kinda funny, isn’t it? All
+       this mystery is kind of cool.
+ 5     If you will choose In, I will choose to roll. This way, we both have an opportunity to make more than one twenty
+       five!
+ 6     If I roll a 2 through 6 you’ll know when you receive the money, you will give 1 25 to a stranger. You’ll still be
+       gaining more than if I had chosen don’t roll
+ 7     The fairest thing to do is for you to opt IN. Then I will proceed to choose roll. That way you and I have 5 in 6
+       chances to make money for the both of us. That’s much better than just making one twenty five each. Increases
+       both our chances. Thanks
+ 8     Choose In and I will Roll. You have my word.
+
+
+
+
+21
+     https://digitallyrebirds.s3.us-east-2.amazonaws.com/onlineappendix.html
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                          37
+
+Appendix B           Controlling for Message Content
+Below we evaluate whether specific message content may drive our results. A possible
+concern might be that audio quality varies systematically with message content (perhaps
+because the generative neural network breaks down with certain phonemes). To address
+this possibility, we estimate our LPM that relates Opt-In to the Voice Clone treatment,
+while conditioning on a message fixed effect, which controls for the specific message a user
+received (randomly drawn from those documented in the experiment by Charness and
+Dufwenberg (2006)). We find that the Voice Clone effect persists, implying that our results
+are not driven by specific messages being communicated; rather, the results are driven
+purely by the voice aesthetic.
+
+                       Table 9   Voice Clone Effect Conditional on Message Content
+
+         Variables                                  DV = Opt-In
+         Intercept                                   0.737 (0.138)
+         Clone                                     0.074*** (0.026)
+         Message FEs                                       Yes
+         Observations                                     1,208
+         R2                                               0.011
+         Note: Robust SEs in parentheses;*** p < 0.01, ** p < 0.05, * p < 0.10
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+38
+
+Appendix C               Assessing Potential Demand Effects
+Below we report the first five free form textual responses from subjects conveying their
+guess about the experiment’s purpose, and their description of the game partner. As noted
+elsewhere, no subjects were able to correctly guess the purpose of our experiment, and sub-
+jects were three times as likely to mention computerization AI in the Disclosure conditions.
+The rest of these free form responses can be found in the Online Appendix 22 .
+
+         ID      Experiment’s Purpose               Partner Description                   AI   Disclosure
+         1       To see if people take more mone-   The other party was a young male      0    0
+                 tary risk when they are dependent  adult who played the role of player
+                 on another person.                 B. He seemed like he liked taking
+                                                    risks because he wanted me to roll.
+         2       Game theory-esque experimenting A cool automated robot who               1    1
+                 based on info participant receives recorded a message that sounded
+                 about their paired partner         convincing and honest in their
+                                                    intention, no tricks!
+         3       gambling                           They, B, were undecided how they      0    1
+                                                    should play and ended up rolling a
+                                                    2
+         4       I don’t know.                      N/A                                   0    0
+
+
+
+
+22
+     https://digitallyrebirds.s3.us-east-2.amazonaws.com/onlineappendix.html
+
+
+
+
+                         Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                            39
+
+Appendix D         Perceived Humanness of Other Party
+A limitation of our research design is that it is difficult to decipher a subject’s true belief
+about the autonomous versus human nature of their game partner. By asking a participant
+at the end of the experiment whether they believe the other party was a human or a bot,
+we will very likely influence that belief prior to receiving their response. Participants who
+might not have realized, initially, are likely to reflect on their experience and revise their
+beliefs upon being prompted with the question. Further, conditioning on any such response
+in an empirical test may pose an econometric challenge, because the response may also be
+a function of the treatment, making it a bad control.
+  With these limitations in mind, we nonetheless conducted an additional experiment in a
+slightly different setup, one that did not include an incentivized game design. We randomly
+assigned participants to one of three voice conditions: synthetic random voice, synthetic
+clone voice, or a real human voice. To implement the real human condition, we paid Prolific
+workers to record themselves reading our messages and we then used those recordings in
+the new experiment, for participants assigned to the human condition.
+  Participants were asked to listen to a randomly selected message (again from among the
+set of all messages in the original Charness and Dufwenberg study), where the message
+was read either by a voice clone (once again based upon the subject’s phone-based reading
+of our consent statement), a randomly chosen synthetic voice, or a real human voice. We
+then told subjects that we were using a mix of human and bot voices in our study, and
+asked them to state which they believed they had heard in the recorded message. We also
+asked subjects to report the level they agreed with the following statements: “the other
+party is trustworthy,” on a scale from 1 to 5, with 5 being strongly agree, “the other party
+is reliable,” and “the other party is honest.” Here, trustworthiness is our key outcome,
+while honesty and reliability might be viewed as precursors to, or dimensions of trust.
+  Additionally, we explored possible mechanisms by which a Clone might induce more
+trust than a Random synthetic voice, asking subjects to report the extent to which they
+agreed with statements conveying various other desirable qualities of the other party. These
+other statements included the degree to which the participant felt the other party was:
+likable, attractive, familiar, natural, intelligent, warm, nice, or good. Here, it is important
+to note that we do not necessarily anticipate a significant increase in the perception of
+any of these positive characteristics because, as noted previously, the trust-inducing nature
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+40
+
+of faces and voices has been shown to be quite visercal and instinctive in nature (rather
+than conscious and deliberative) (Todorov et al. 2009, Belin et al. 2017). Additionally,
+and consistent with the idea that facial and vocal cues influence trusting perceptions on a
+visceral, sub-conscious level, other prior work dealing with perceptions of self-similar faces
+was unable to detect evidence that the effects were associated with increased perceptions
+of attractiveness or familiarity (DeBruine 2002).
+     This experiment was somewhat smaller in scale. We recruited approximately 200 sub-
+jects, and we then dropped several who 1) did not play the audio file, 2) had a Qualtrics
+recaptcha score below 0.85, 3) had duplicate IP addresses across survey responses, or 4)
+exhibited clear evidence of inattention (e.g., providing identical response across all survey
+items, e.g., all 1’s). Excluding these subjects, we were left with 172 valid responses.
+     Below, we report the results of the experiment. First, we compare the perceptions of a
+cloned voice and human benchmark to a random voice on the positive attributes (likeable,
+attractive, familiar, etc). In Tables 11 - 13, we report no statistically significant differences
+for the cloned versus random voice across these outcomes. Next, in Table 14, we report
+our results for the cloned voice on both reliability and honesty outcomes, here we note a
+statistically significant positive effect of cloned voice on reliability. Finally, we consider 1)
+the main effect of the Clone voice on trustworthiness, compared to the Random synthetic
+voice (the reference) or the Human voice; 2) the same relationship conditional on whether
+the subject believed the other party was a bot (or not); and 3) a moderated specification,
+to see if the Clone effects depend on bot perception. These results are reported in Table
+15.
+
+              Table 11   Voice Perception Experiment Results (DV=likable, attractive, familiar)
+
+Explanatory Variables Model (likable) Model (attractive) Model (familiar)
+Intercept                        4.048*** (0.237)          3.289*** (0.250)           3.116*** (0.211)
+Clone                              -0.178 (0.265)            -0.230 (0.247)              0.370 (0.256)
+Human                              0.430 (0.282)            0.807** (0.266)             0.733* (0.284)
+Bot Perception                     -1.130(0.223)           -0.727*** (0.208)          -0.847*** (0.229)
+Observations                             172                       172                            172
+R2                                      0.180                     0.184                      0.122
+Note: Robust SEs in parentheses; *** p < 0.01, ** p < 0.05, * p < 0.10.
+
+
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                                         41
+
+             Table 12   Voice Perception Experiment Results (DV=natural, intelligent, warm)
+
+Explanatory Variables Model (natural) Model (intelligent) Model (warm)
+Intercept                          4.327*** (0.230)          4.354*** (0.228)          3.647*** (0.232)
+Clone                               -0.122 (0.239)             0.022 (0.266)            -0.086 (0.250)
+Human                                0.411 (0.280)             0.043 (0.267)            0.567* (0.287)
+Bot Perception                     -2.204***(0.217)         -1.246*** (0.217)          -1.257*** (0.227)
+Observations                               172                       172                      172
+R2                                       0.428                      0.158                     0.218
+Note: Robust SEs in parentheses; *** p < 0.01, ** p < 0.05, * p < 0.10.
+
+                    Table 13     Voice Perception Experiment Results (DV=good, nice)
+
+        Explanatory Variables              Model (nice)                Model (good)
+        Intercept                         4.082*** (0.238)             4.179*** (0.228)
+        Clone                               -0.391 (0.257)               -0.237 (0.252)
+        Human                               0.462 (0.297)                  0.316(0.270)
+        Bot Perception                    -1.100***(0.224)            -1.195*** (0.210)
+        Observations                              172                          172
+        R2                                       0.428                        0.201
+        Note: Robust SEs in parentheses; *** p < 0.01, ** p < 0.05, * p < 0.10.
+
+                 Table 14      Voice Perception Experiment Results (DV=reliable, honest))
+
+        Explanatory Variables Model (reliable)                         Model (honest)
+        Intercept                           2.745*** (0.248)            2.699*** (0.234)
+        Clone                                0.716* (0.353)                 0.473 (0.323)
+        Human                                 0.405 (0.324)                 0.464(0.306)
+        Bot Perception                      0.063***(0.289)                -0.242 (0.270)
+        Observations                                172                         172
+        R2                                         0.008                       0.007
+        Note: Robust SEs in parentheses; *** p < 0.01, ** p < 0.05, * p < 0.10.
+
+  Consistent with our main results, in the first column, we observe that the Clone voice
+receives a systematically higher trustworthiness rating than the Random voice. We also
+observe that the Human voice dominates the Random synthetic voice, perhaps because of
+
+
+
+                    Electronic copy available at: https://ssrn.com/abstract=4839606
+42
+
+                   Table 15    Bot-Perception Experiment Results (DV = Trustworthiness)
+
+       Explanatory Variables             Model (1)            Model (2)            Model (3)
+       Intercept                      2.446*** (0.213) 2.547*** (0.250) 2.300*** (0.240)
+       Clone                           0.812** (0.337)      0.807** (0.337) 1.408*** (0.451)
+       Human                           0.628** (0.298)       0.568* (0.312)      0.725** (0.328)
+       Bot Perception                                        -0.156 (0.283)       0.228 (0.389)
+       Clone × Bot Perception                                                     -0.962 (0.646)
+       Human × Bot Perception                                                     -0.038 (0.668)
+       Observations                           172                  172                    172
+       R2                                    0.039                0.040                   0.055
+       Note: Robust SEs in parentheses; *** p < 0.01, ** p < 0.05, * p < 0.10.
+
+greater audio quality. Notably, a statistical test comparing the Clone and Human voices
+to one another indicates that the difference in trustworthiness between the two is not
+statistically significant, p > 0.10 ).
+     In the second column, we next introduce a control for participants’ self-reported belief
+that the voice was generated by a bot, and our results generally do not change. Lastly, in
+the third column, we introduce interaction terms between the Bot Perception dummy and
+the Clone and Human dummies, observing negative coefficients in each case, though no
+statistical significance (here, we recognize the possibility that this is an issue of statistical
+power, given the relatively small sample). At the same time, we continue to observe that
+the Clone and Human dummies continue to exhibit significant, positive effects, indicating
+their relative trustworthiness over the random voice.
+
+
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=4839606
+                                                                                              43
+
+Appendix E         Moderating Effect of Risk
+In addition to voice and disclosure treatments, we also delivered an independently ran-
+domized treatment related to risk information.
+  We developed our risk treatments based on reference to definitions of risk in the liter-
+ature, which defines risk separately from uncertainty (Park and Shapira 2017) and also
+articulates its relationship with trust (Das and Teng 2004). Our interventions are defined
+as follows: i) subjects in the high-risk condition were informed that Party B had opted to
+cooperate and roll just 1 time in their last 6 games; ii) subjects in the no risk information
+condition received no information on Party B’s play history; and iii) subjects in the low-
+risk condition received information that Party B had opted to cooperate and roll 5 times
+out of their last 6 games.
+  We evaluate whether and to what degree the trust-inducing effects of a voice clone vary
+with the level of risk a subject faces. Specifically, we subset our data, splitting the sample
+on the basis of assigned risk information. We then estimate three LPMs, relating Opt-In
+to the Voice Clone treatment in each case. The results are presented in Table 16.
+  First, considering the intercept term in each column, we find, as we might expect, that
+subjects’ probability of Opt-In is lowest in the high-risk condition, in the presence of infor-
+mation indicating that Party B rarely cooperates, yet highest in the low-risk condition, the
+presence of information that Party B often rolls. Considering the estimated effect of the
+Voice Clone in each group, we see that the effect is largest, and only statistically significant,
+under the high-risk condition. Specifically, the estimated coefficient nearly doubles com-
+pared to those obtained in the No Info and Low Risk conditions. This finding is suggestive
+that the influence of voice clones is most prominent under high risk.
+  That said, these results need to be interpreted with a great deal of caution, and further
+study is needed. We say this because a statistical test that compares the estimates across
+these three conditions does not indicate that statistically significant differences in the Voice
+Clone’s effects.
+
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=4839606
+44
+
+      Table 16      Effect of Clone Conditional on Risk (LPM; DV = Opt-In)
+
+     Variables            High Risk           No Info         Low Risk
+     Intercept           0.591 (0.034)     0.672 (0.034) 0.840 (0.026)
+     Clone              0.105** (0.048) 0.061 (0.046) 0.053 (0.034)
+     Observations              396               401              411
+     R2                      0.010              0.002            0.004
+     Note: Robust SEs; *** p < 0.01, ** p < 0.05, * p < 0.01
+
+
+
+
+          Electronic copy available at: https://ssrn.com/abstract=4839606
+

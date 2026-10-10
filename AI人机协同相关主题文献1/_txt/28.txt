@@ -1,0 +1,3380 @@
+                        The Robot Revolution:
+          Managerial and Employment Consequences for Firms
+
+                                            Jay Dixon
+                                          Statistics Canada
+
+                                           Bryan Hong
+                   New York University (NYU) - Leonard N. Stern School of Business
+
+                                            Lynn Wu
+                           University of Pennsylvania - The Wharton School
+
+
+
+                                               Abstract
+
+As a new general-purpose technology, robots have the potential to radically transform employment
+and organizations. In contrast to prior studies that predict dramatic employment declines, we find
+that investments in robotics are associated with increases in total firm employment, but decreases
+in the total number of managers. Similarly, we find that robots are associated with an increase in
+the span of control for supervisors remaining within the organization. We also provide evidence
+that robot adoption is not motivated by the desire to reduce labor costs, but is instead related to
+improving product and service quality. Our findings are consistent with the notion that robots
+reduce variance in production processes, diminishing the need for managers to monitor worker
+activities to ensure production quality. As additional evidence, we also find robot investments
+predict improved performance measurement and increased adoption of incentive pay based on
+individual employee performance. With respect to changes in skill composition within the
+organization, robots predict decreases in employment for middle-skilled workers, but increases in
+employment for low- and high-skilled workers. We also find robots not only predict changes in
+employment, but also corresponding adaptations in organizational structure. Robot investments
+are associated with both centralization and decentralization of decision-making authority
+depending upon the task, but decision rights in either case are reassigned away from the managerial
+level of the hierarchy. Overall, our results suggest that robots have distinct and profound effects
+on employment and organizations that require fundamental changes in firm practices and
+organizational design.
+
+
+
+
+                   Electronic copy available at: https://ssrn.com/abstract=3422581
+1 Introduction
+
+    We explore how employment and organizations have changed in response to robot adoption. As
+
+robotics and artificial intelligence (AI) are increasingly used by firms as the next engine of innovation and
+
+productivity growth, their effects on labor, firm practices, and productivity have become a subject of
+
+growing importance. Anecdotal evidence in the popular press has documented extensively that robots
+
+reduce overall employment and exacerbate income inequality, as rapid advancements in vision, speech,
+
+natural language processing and prediction capabilities have achieved parity with or exceed human
+
+capabilities across a range of tasks. These technological advancements have shifted the comparative
+
+advantage from humans to machines for a growing list of occupations (Brynjolfsson and Mitchell 2017,
+
+Felten et al. 2019, Frey and Osborne 2017), potentially leaving human labor with substantially fewer
+
+activities that can add value (Brynjolfsson and McAfee 2014, Ford 2015). This technology-based labor
+
+substitution may displace a significant fraction of the overall workforce despite generating productivity
+
+gains (Acemoglu and Restrepo 2017, Autor and Salomons 2017, Ford 2015). If true, robots may be
+
+fundamentally different in nature from prior generations of general-purpose technologies (GPT) that
+
+ultimately increased labor demand.
+
+    Recent empirical studies have primarily focused on the effect of robots on total employment
+
+(Acemoglu and Restrepo 2017, Dinlersoz and Wolf 2018, Graetz and Michaels 2015, Mann and Püttmann
+
+2017). However, robots are likely to have much broader effects beyond changes in employee headcount.
+
+As a new general-purpose technology, robots may also lead to significant changes in how firms organize
+
+production activities and manage their human capital (Bidwell 2013, Puranam, Alexy, and Reitzig, 2014,
+
+Zammuto et al. 2007). As robots offer new capabilities that differ from prior information technology (IT)
+
+investments (Brynjolfsson and Mitchell 2017), new sets of organizational practices will be necessary to
+
+effectively utilize the new technology. These practices are likely to complement the specific capabilities
+
+of robots and differ from practices implemented for prior general-purpose technologies (Bresnahan et al.
+
+2002, Bresnahan and Trajtenberg 1995, Trajtenberg 2018). Ultimately, understanding how robots change
+
+
+                                                                                                             1
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+organizational practices would not only shed light on how robots affect total employment, but also the
+
+mechanisms through which changes in employment occur.
+
+    Using comprehensive data on businesses in the Canadian economy spanning the years 2000-2015,1
+
+we show that robots are associated with increases in total employment in robot-adopting firms. Our
+
+results suggest that robots are similar to past generations of general-purpose technologies that ultimately
+
+increased labor demand and provide a stark contrast to labor declines found in earlier empirical studies
+
+using data at industry or geographic region levels. To examine how these changes in total employment
+
+occur, we find that investments in robotics predict increases in non-managerial employment but
+
+substantial declines in managerial employment, differing from prior information technologies that could
+
+not easily replace managerial and professional work (Autor et al. 2006, Autor et al. 2003, David and Dorn
+
+2013, Dustmann et al. 2009, Murnane et al. 1999). We explore two ways through which robots may affect
+
+managerial employment. First, robots may directly reduce the need to monitor and supervise workers
+
+when robots can substantially reduce human errors in the production process.2 Given that supervision of
+
+workers accounts for a significant portion of work done by managers (Hales 1999), demand for
+
+managerial labor to supervise workers may decline with robot adoption. Second, robots may also
+
+indirectly affect managerial employment through changing the composition of workers within the
+
+organization. Although the total number of non-managerial employees increases with robot adoption, we
+
+also find that robot investments predict decreases in employment of middle-skilled workers and increases
+
+in employment of low- and high-skilled labor, which may reduce the need for managers (Malone 2003,
+
+Mintzberg 2013). Consistent with our finding of an increase in non-managerial employees and decrease in
+
+the number of managers, we find that robot investments predict an increase in the span of control for
+
+supervisors remaining within the organization.
+
+
+
+
+1
+  We use two main datasets for our empirical analysis spanning overlapping timeframes, described in more detail in
+the data section.
+2
+  https://www.indeed.com/career-advice/what-does-a-production-supervisor-do
+
+
+                                                                                                                     2
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+    In examining the motivations for robot adoption by firms, we find that robot investment is not
+
+associated with the strategic importance of reducing labor costs, but is instead associated with an increase
+
+in the strategic importance of improving product and service quality. With respect to the allocation of
+
+decision authority within organizations, we find that robot investments predict both centralization and
+
+decentralization of decision rights away from the managerial level of the hierarchy. This suggests that not
+
+only has managerial headcount decreased, but their decision authority has also diminished, where changes
+
+in the firm’s human capital are directly related to corresponding adaptations in organizational structure
+
+(Hong 2020). This result also differs from earlier studies that found IT generally led to decentralization of
+
+decision rights (Acemoglu et al. 2007, Bresnahan et al. 2002). Consistent with a decrease in the cost of
+
+monitoring employee performance from robot adoption, we also find that investments in robotics predict
+
+an increase in the adoption of performance pay linked to individual employee performance. Overall, our
+
+results show that changes in employment are related to complementary changes in organizational
+
+practices that are critical to the effective use of robots.
+
+    To the best of our knowledge, this study provides the most comprehensive evidence at the level of
+
+individual businesses on employment and organizational effects of robot investments. The wide range of
+
+outcomes we examine—employment, labor composition, span of control, strategic priorities, the
+
+allocation of decision rights, and incentive pay—suggest that robots have a substantive effect on both
+
+employment and the organization of production in ways that differ from prior general-purpose
+
+technologies. Our analysis also provides a deeper examination of how robots can change employment and
+
+organizational practices that is difficult to capture using industry and geographic region level data (Raj
+
+and Seamans 2018). More broadly, our results suggest that detailed exploration at the level of individual
+
+organizations can provide useful insights into the mechanisms through which robots may affect labor and
+
+organizations.
+
+
+
+
+                                                                                                             3
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+2 Theoretical considerations
+
+    The adoption of GPTs is often associated with substantial and widespread productivity gains across
+
+different sectors of the economy (Bresnahan and Trajtenberg 1995). To maximize the value of GPTs, firms
+
+must reorganize their work activities and change the nature of work and human capital requirements (Autor
+
+et al. 2003, Bresnahan et al. 2002, Brynjolfsson et al. 2018). As a recent and rapidly proliferating GPT
+
+(Brynjolfsson et al. 2018, Cockburn et al. 2018), robots have the potential to transform employment,
+
+organizational practices, and industries throughout the economy (Agrawal et al. 2018, McAfee and
+
+Brynjolfsson 2017).
+
+2.1 Robot capabilities
+
+    With advances in vision, speech, and prediction capabilities, robotics has advanced beyond automating
+
+simple routine tasks and become capable of performing more cognitively complex work, as well as tasks
+
+involving specific types of manual dexterity. The International Federation of Robotics (IFR) defines
+
+industrial robots as having the characteristics of being 1) automatically controlled, 2) reprogrammable, 3)
+
+a multi-purpose manipulator in three or more axes, and 4) used in industrial automation applications. They
+
+can perform many activities such as assembly, welding, painting, packaging, picking and placing, and
+
+handling materials. In performing these activities, robots can substantially reduce variance in production
+
+quality by minimizing human errors across a wide range of tasks (IFR 2017).
+
+    There are two key areas where robots have a comparative advantage over human labor. First, for many
+
+tasks requiring physical manipulation, robots can repeatedly follow complex multi-step protocols with a
+
+high degree of precision, which can greatly increase consistency and efficiency in production. 3 For
+
+example, when assembling electronics components consisting of multiple plastic and metal parts, robots
+
+are able to dramatically reduce product defect rates.4 In the healthcare and pharmaceutical industries, robots
+
+can follow complex protocols to prepare materials and analyze samples while minimizing errors and human
+
+
+3
+  Source: https://ifr.org/case-studies/industrial-robots/four-yaskawa-motoman-handling-robots-feed-two-turning-
+machines-for-the-manu
+4
+  Source: https://ifr.org/case-studies/industrial-robots/challenges-in-creating-revolutions
+
+                                                                                                                  4
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+contact with hazardous materials (Steffens et al. 2017). Warehousing operations have also experienced
+
+similar effects, where robots have automated a wide range of warehousing logistics activities by effectively
+
+transporting objects between locations without human intervention. In the automotive industry, machine
+
+vision enables robots to consistently install and weld parts onto car bodies with a high degree of precision,
+
+minimizing errors in the production process.5
+
+    Second, robots have much greater manual dexterity in performing certain tasks relative to humans.
+
+While robots do not have the versatility to perform the same range of tasks that human hands are able to
+
+do, they can be trained to perform specific types of tasks effectively, and at times surpass human abilities.
+
+In performing these tasks, robots can both increase consistency and decrease injuries to human workers at
+
+the same time. For example, when managing physical inventory in a warehouse setting, robots are able to
+
+relieve humans from lifting and handling awkward, heavy objects, reducing both worker injuries and overall
+
+delivery times.6 In manufacturing, robots can also complete highly complex tasks requiring difficult manual
+
+manipulations such as 360-degree multi-arm rotations with many repetitions.7 Robots can be trained to
+
+perform these tasks precisely and consistently over long periods of time, substantially reducing unintended
+
+human errors arising from fatigue as well as gaming of production quotas that have previously impeded
+
+productivity and effective management (Helper and Henderson 2014, Larkin 2014).
+
+    Although robot capabilities have grown rapidly in recent years, tasks that robots are able to perform are
+
+generally algorithmic, requiring either explicit instructions or large amounts of data to train robots to
+
+execute the relevant task (Brawer et al. 2018). Currently, robot capabilities continue to be far from achieving
+
+general artificial intelligence that can replace all human labor, and even in those cases where capabilities
+
+have matched or surpassed humans, these robots remain too expensive to be practical for widespread
+
+adoption. For example, Elon Musk famously scaled back investments in automation in Tesla’s factory and
+
+reintroduced human workers after too much automation slowed the production of the Model 3 electric
+
+
+
+5
+  https://blog.robotiq.com/bid/69722/Top-5-Robotic-Applications-in-the-Automotive-Industry
+6
+  https://www.nytimes.com/2017/09/10/technology/amazon-robots-workers.html
+7
+  https://www.superdroidrobots.com/shop/custom.aspx/custom-robot-arms/54/
+
+                                                                                                             5
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+vehicle and delayed its market launch.8 In general, many more tasks remain that robots cannot do compared
+
+to human labor, mainly due to the nature of many work activities requiring tacit knowledge that cannot be
+
+easily codified into instructions or training data for robots to consume (Marcus and Davis 2019). For tasks
+
+that have no available or limited data, including some types of complex manual procedures and those
+
+requiring creativity, robots have yet to be able to easily replace human labor (Wu et al. 2020).
+
+2.2 Robots and total employment
+
+      Research examining the effect of robots on labor is still nascent, with only a few studies examining the
+
+substitutability of robots on work (Acemoglu and Restrepo 2017, Arntz et al. 2016, Frey and Osborne 2017,
+
+Mann and Püttmann 2017, Manyika 2017). However, preliminary evidence thus far generally predicts dire
+
+consequences of labor displacement from robot adoption. For example, Frey and Osborne (2017) find that
+
+up to 47% of all jobs in the United States may be displaced. Using a task-based approach breaking each
+
+occupation into a set of concrete tasks, OECD researchers find that 70% of tasks performed by labor could
+
+be automated (Arntz et al. 2016). Other studies using the task-based approach have concluded that more
+
+than 50% of work tasks are vulnerable to automation (Manyika 2017), leading to both labor displacement
+
+and wage reductions (Bessen et al. 2019). Using a measure of robot penetration at the industry level in the
+
+US, Acemoglu and Restrepo (2017) find that one robot can replace roughly six people. Graetz and Michaels
+
+(2015) also find that robot adoption is associated with a reduction in hours worked for low-skilled labor,
+
+using similar data on robot adoption for 17 countries.
+
+      The findings from these initial studies stand in stark contrast to earlier generations of technologies that
+
+have been found to increase employment in conjunction with productivity, ultimately leading to labor’s
+
+share of productivity remaining constant. Instead of reducing employment, robots may also positively affect
+
+employment through 1) productivity increases from labor substitution inducing demand for other goods and
+
+services that require non-automated tasks; 2) capital deepening that increases the effectiveness of robots,
+
+which can increase productivity without further reducing labor; or 3) the creation of new tasks or increased
+
+
+
+8
+    https://www.theverge.com/2018/4/13/17234296/tesla-model-3-robots-production-hell-elon-musk
+
+                                                                                                               6
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3422581
+demand for existing tasks that are complementary to robots (Acemoglu and Restrepo 2018, Brynjolfsson et
+
+al. 2018).
+
+    One potential explanation for the contrast in recent findings compared to prior technologies is the
+
+difficulty in observing different countervailing effects using data at the industry and geographic region
+
+levels. As prior literature examining the link between IT and productivity has shown, analysis at more
+
+aggregated levels can often lead to markedly different conclusions from empirical studies conducted at the
+
+firm level (Bresnahan et al. 2002, Brynjolfsson and Hitt 1996). These differences can arise due to the
+
+substantial heterogeneity in productivity growth across firms that cannot be clearly observed at the industry
+
+level or other aggregated levels of analysis (Syverson 2004). For example, robot-adopting firms may
+
+experience productivity and employment gains while non-adopting firms in the same industry experience
+
+employment and productivity losses. If true, even if robots are observed to cause employment losses at the
+
+industry level, it remains unclear whether robots displace workers within robot-adopting firms, or if workers
+
+are instead displaced in non-adopting firms due to a decrease in competitiveness. Ultimately, understanding
+
+how robots can substitute or complement labor requires more fine-grained data at the firm level. Using a
+
+firm-level measure of robot investments for the population of firms in the Canadian economy, we
+
+empirically investigate whether robots increase or decrease employment in firms.
+
+2.3 Robots and non-managerial employment
+
+    Regardless of the effect on total employment, workforce composition is likely to change with robot
+
+adoption as demand for different skills changes within the organization, similar to prior generations of skill-
+
+biased technical change. For example, the rise of IT in the late 1990s led to a reduction in the demand for
+
+routine tasks typically done by low-skilled workers and a corresponding increase in demand for nonroutine
+
+and cognitively challenging tasks, including managing employees (Autor et al. 2006, Autor et al. 2003,
+
+Card and DiNardo 2002, Murnane et al. 1999). Similar to these studies, we define low-skilled workers as
+
+those working in occupations requiring a high school degree or less that are engaged in production; middle-
+
+skilled workers as those working in occupations requiring vocational/trades accreditation or an associate
+
+degree; and high-skilled workers as those working in occupations requiring at least an undergraduate
+
+                                                                                                             7
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+university degree. Although nonroutine and cognitively challenging tasks have been argued to be difficult
+
+to automate (Autor et al. 2003, Murnane et al. 1999), the increasing sophistication of robots is likely to
+
+automate tasks that were previously unaffected by automation.
+
+2.3.1 Decreases in middle-skilled labor due to a substitution effect
+
+    While earlier work on automation and skill-biased technical change has shown that technologies are
+
+more prone to replace routine work (Autor et al. 2003), recent evidence suggests that the displacement of
+
+middle-skilled labor has accelerated since the early 2000s (Autor and Salomons 2018). Although the decline
+
+of middle-skilled work has been attributed to international trade, geographic polarization of the urban-rural
+
+divide, and structural changes in the economy, a main factor driving these changes in the last two decades
+
+is the use of a new wave of automation technologies (Acemoglu et al. 2016, Autor et al. 2016, Autor et al.
+
+2006).
+
+    As robots have advanced technologically beyond automating simple routine tasks, they have become
+
+capable of performing more complex work, including tasks involving specific types of manual dexterity.
+
+These tasks often require middle-skilled labor including technicians, machinists, and operations personnel
+
+from a variety of industries that are responsible for following complex protocols and ensuring production
+
+quality. Although these tasks require training, they are largely predictable tasks that must be repeated
+
+consistently, and are thus well-suited for automation (Brynjolfsson and Mitchell 2017). For example,
+
+instead of training a machinist to install and weld parts onto car bodies with a high degree of precision or
+
+using lab technicians to prepare and analyze samples, robots can learn to do these tasks consistently and
+
+effectively. They can also reduce unintended human errors and eliminate the need to provide training for
+
+these skills. By minimizing production variance and providing consistency in the production process
+
+(Helper and Henderson 2014), robots may decrease the demand for middle-skilled labor, given the
+
+vulnerability of these tasks to robot-based automation.
+
+2.3.1 Increases in low-skilled labor that complements robots
+
+    However, despite recent technological advances, robots are often unable to fully automate most
+
+production processes. For many of these “residual tasks,” human labor remains a more efficient and cost-
+
+                                                                                                           8
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+effective solution (Autor et al. 2003, Brynjolfsson and Mitchell 2017). For firms that redesign their
+
+production processes to leverage the capabilities that robots can offer, productivity increases can ultimately
+
+lead to increases in employment, especially for those types of labor that complement robots. Often these
+
+residual tasks that robots have not yet been able to automate can be done by low-skilled manual labor. For
+
+example, in the case of warehousing logistics, robots can automatically track inventory items and bring
+
+them to human workers, who then place them into shipping boxes. The redesign of warehousing logistics
+
+still requires humans to pack boxes before shipping since robot capabilities remain too limited to effectively
+
+manipulate the range of objects of various sizes and shapes.9 As a consequence, the demand for low-skilled
+
+workers doing residual tasks such as those engaged in packing has increased. Recent studies support this
+
+view, providing evidence that many of the manual skills performed by low-skilled workers cannot be easily
+
+replaced using existing automation technologies (Brynjolfsson and Mitchell 2017, Felten et al. 2019).
+
+2.3.3 Increases in high-skilled labor that complements robots
+
+      Demand for high-skilled workers may also increase with robot adoption, given that the majority of
+
+productivity gains from technology adoption come from the complementary redesign of work (Bresnahan
+
+et al. 2002, Hammer 1990). Implementing the necessary process improvements and work reorganization
+
+requires highly skilled professionals (Bresnahan et al. 2002, Hammer 1990, Helper and Henderson 2014,
+
+Huselid and Becker 1997, Ichniowski et al. 1997), some of whom are needed to program, repair, customize
+
+and work with robots (Acemoglu and Restrepo 2017, Autor and Salomons 2018, Brynjolfsson and Mitchell
+
+2017). However, experiencing an increase in labor demand does not require that employees work directly
+
+with robots. As a result of automation by robots, high-skilled workers may have more time and resources
+
+to engage in more cognitively complex tasks. For example, when hospitals adopt robots to lift patients out
+
+of beds, nurses are not only relieved of the physical strain from tasks that are prone to injuries, but also
+
+given more time to interact with patients and participate in clinical treatment (Gombolay et al. 2018); nurses
+
+who can perform these tasks well may see demand for their labor increase. Similarly, by algorithmically
+
+
+
+9
+    https://www.wired.com/story/robots-alone-cant-solve-amazons-labor-woes/
+
+                                                                                                            9
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3422581
+providing pills and other medications directly to patients (Bepko Jr et al. 2009), nurses can spend more time
+
+ensuring compliance and making other clinical decisions. In the context of manufacturing, when much of
+
+the routine production process is handled by robots and low-skilled labor, this can increase available time
+
+and resources for high-skilled professionals to design and market new products and optimize production
+
+processes (Felten et al. 2019). Programmable robots can also increase a firm’s flexibility in serving different
+
+types of orders and in providing a greater range of products, increasing the demand for higher-skilled
+
+workers who can design them. 10 Consistent with these arguments, Autor and Dorn (2009) find that
+
+investments in computer technologies over the last several decades contributed to the widespread increase
+
+in high-skilled jobs engaged in creative, problem-solving, and coordination tasks. Similarly, Felten et al.
+
+(2019) find that investments in artificial intelligence are correlated with increased employment of high-
+
+skilled workers such as software engineers. Thus, we expect employment of high-skilled workers to also
+
+increase after robot adoption.
+
+2.4 Effect on managerial employment
+
+    As firms reconfigure their organizational and production processes to best leverage robot technologies,
+
+managerial employment may also be affected. Here, we consider two ways that robots could affect the
+
+demand for managers within the organization. First, robots may directly affect the demand for tasks that
+
+managers are typically engaged in. Second, robots can change the type of labor firms need, changing the
+
+composition of the workforce and changing the demand for managerial labor indirectly.
+
+2.4.1 Direct effect on managerial employment
+
+    When production is automated using robotics, human errors and variance in production quality can
+
+both decrease (Verl 2019). This can reduce the level of managerial attention required to ensure consistency
+
+in production quality. Agency problems arising from information asymmetries also do not exist with robots,
+
+as robots do not operate for self-interested gains the way humans might in work settings (Eisenhardt 1989,
+
+
+
+10
+   http://search.abb.com/library/Download.aspx?DocumentID=9AKK104295D4369&LanguageCode=en&Document
+PartId=&Action=Launch; https://www.kuka.com/en-ca/industries/solutions-database/2020/05/waybo-machine-
+tending-cells
+
+                                                                                                            10
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+Hong et al. 2019, Jensen and Meckling 1976). Given the substantial monitoring costs incurred by firms
+
+(Dickens et al. 1989, 1990) and considerable time spent by managers monitoring employee and production
+
+activities (Hales 1986, 1999), the adoption of robots in production can substantially reduce the need to
+
+closely monitor employee effort. As monitoring and supervision constitute a significant portion of
+
+managerial activities (Kolbjørnsrud et al. 2016), the demand for managerial labor is likely to decrease after
+
+robot adoption as robots replace routine and predictable segments of the production process. However,
+
+managerial employment may also increase if non-managerial employment increases substantially such that
+
+firms require more managers, even if the need for particular managerial tasks is diminished. Similarly,
+
+managers may also spend more time doing work that complements robots when their time and resources
+
+dedicated to monitoring decrease, ultimately leading to an increase in demand for their labor. Ultimately,
+
+changes observed in managerial employment are likely to be the net effect of these competing factors.
+
+2.4.2 Indirect effect from changes in worker composition
+
+    Robots can also affect managerial work by changing the composition of employees that managers need
+
+to supervise. If robot adoption is associated with a decline in middle-skilled workers and an increase in
+
+high- and low-skilled workers, managerial practices also need to change to accommodate the newly
+
+transformed workforce. Managing low-skilled workers can differ from managing middle-skilled workers
+
+as low-skilled work is typically more standardized, and consequently easier to monitor and evaluate than
+
+their higher skilled counterparts (Perrow 1967). Also, an individual manager can potentially supervise many
+
+more employees if digital tools automate aspects of monitoring standardized work. For example,
+
+technology can be used to organize and report the output of simple routine tasks and even make predictions
+
+about work outcomes (Aral et al. 2012), especially for standardized work where inputs and outputs can be
+
+specified and clearly measured (Brynjolfsson and Mitchell 2017). Having an objective measure of
+
+productivity recorded using automation technology also reduces disruptive conflicts between managers and
+
+subordinates, since objective productivity measures are more difficult to dispute (Scully 2000, Wu 2013).
+
+As the fraction of low-skilled workers in the organization’s workforce increases, fewer managers may be
+
+needed within the organization.
+
+                                                                                                          11
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+    Managing highly skilled professionals is also likely to differ from managing middle- and low-skilled
+
+workers doing predictable manual tasks (MacDuffie 1997, Parker and Slaughter 1988), which primarily
+
+involves ensuring that employees arrive on time, complying with rules and regulations, monitoring their
+
+work procedures and output, issuing commands, and training workers to do the job properly (Helper and
+
+Henderson 2014, Taylor 1977). By contrast, high-skilled workers often engage in more cognitively
+
+challenging tasks which provide higher added value, such as product design and production optimization
+
+that robots are not well-suited to execute (Wu et al. 2019). Because they are often the experts in dealing
+
+with problems outside of routine operations, and can frequently resolve production problems better than
+
+their managers (Helper et al. 2000, Kenny and Florida 1993), these employees are often empowered to
+
+make more decisions (Huselid and Becker 1997, Ichniowski et al. 1997). As a consequence, managing high-
+
+skill employees may entail less direct issuing of commands and more advising and empowerment of
+
+employees to solve problems (Malone 2003, Mintzberg 1973, Mintzberg 2013). However, although the
+
+nature of managing high-skilled labor differs from that of lower-skilled employees, the effect on managerial
+
+employment is unclear, given that greater managerial time and effort to mentor and advise high-skilled
+
+employees may also be required. Demand for managerial labor will also likely depend on the relative size
+
+of high- and low-skilled employees within the organization. If the relative increase of low-skilled labor is
+
+greater than that of high-skilled labor, this may reduce managerial headcount, while a greater increase in
+
+high-skilled labor may have the opposite effect. However, regardless of the direction of the effect on
+
+managerial employment, we expect the nature of managerial work to change with robot investments and to
+
+observe the adoption of new complementary work practices.
+
+2.4.3 Effect on managerial span of control
+
+    As discussed earlier, we expect that as managers supervise more low-skilled labor, the span of control
+
+would also increase because managers can supervise many employees doing predicable and standardized
+
+work. However, the expected change is ambiguous when subordinates are high-skilled workers. If workers
+
+require more advising and coaching from managers, supervisor span of control may decrease (Malone 2003,
+
+Malone 2004). High-skilled workers have also been argued to pose unique challenges to the efficiency of
+
+                                                                                                         12
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+organizational hierarchies due to greater needs for communication and conflict resolution, which can be
+
+mitigated by decreasing span of control (Bell 1967, Meyer 1968). However, effective utilization of high-
+
+skilled labor often leads to granting employees greater autonomy (Bresnahan et al. 2002), potentially
+
+leading to increases in span of control (Simon 1946). Prior literature examining the relationship between
+
+skill composition changes and span of control in the presence of technology adoption has been limited, but
+
+available evidence generally finds net positive effects on span of control (Scott et al. 1994).11 Overall, if
+
+the growth of low-skilled labor is more than that of high-skilled labor, we expect the overall span of control
+
+to increase.
+
+
+3 Data and Measures
+
+    3.1 Data
+
+    To measure robot investment at the firm level, we use data capturing the purchases of robots imported
+
+by Canadian firms provided by the Canadian Border Services Agency (CBSA) from 1996 to 2017. Global
+
+production of robotics hardware is highly concentrated in relatively few countries including Japan,
+
+Germany, the United States and increasingly China. By contrast, Canada does not produce a meaningful
+
+quantity of robotics hardware domestically and consequently must import robots from foreign producers,
+
+allowing us to exploit data on import transactions to measure robot adoption by firms. For all import
+
+transactions, the CBSA classifies goods according to Harmonized System (HS) codes, and classifies
+
+industrial robots separately from other types of technologies, machinery, and equipment.1213 In addition to
+
+the HS code, the name of the exporting firm, product country of origin, name and address of the importing
+
+firm, business number of the importing firm (a unique government-issued identifier for Canadian
+
+businesses) and value of the transaction are recorded. As an additional validity check of our measure of
+
+
+11
+   Bloom et al. (2014) also find a positive relationship between IT investment and span of control, but were not able
+to observe corresponding changes in employee skill composition.
+12
+   Industrial robots are a separate classification at the ten digit HS code level recorded by the CBSA.
+13
+   The classification details several different types of robots as distinct HS codes, which can be grouped into two
+consistent categories across the time period of our data: 1) robots for automotive assembly lines and 2) all other
+types of industrial robots. Our measure of total robot investment is the sum of these two categories of robots.
+
+                                                                                                                   13
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+robot investment, we benchmark our measure to data reported by the Robotics Industry Association (RIA),
+
+and find both measures are comparable, showing similar trends over time (see detailed discussion in
+
+Appendix section S1).
+
+     We merge our robot investment data with two datasets maintained by Statistics Canada containing
+
+measures of firm characteristics: 1) the National Accounts Longitudinal Microdata File (NALMF), a panel
+
+dataset that contains measures of aggregate firm-level employment and economic inputs derived from tax
+
+filing data from 2000-2015; and 2) the Workplace and Employee Survey (WES), developed and
+
+administered by the Business and Labour Market Analysis Division and the Labour Statistics Division at
+
+Statistics Canada. 14 The WES consists of both an employer component which contains comprehensive
+
+information on employment and management practices at the organizational level, and a linked employee
+
+component measuring individual-level job characteristics and activities. The employer survey sample is a
+
+random stratified sample in a panel structure, representative of the population of business establishments in
+
+the Canadian economy in each year.1516 For the employee sample, individual employees were randomly
+
+chosen within each organization and surveyed for two consecutive years, with Statistics Canada resampling
+
+individuals from each organization after each 2-year cycle was completed. The WES employer survey data
+
+we use spans the years 2001-2006, while the employee survey data we use follows employees during the
+
+years 2001-2002 and 2003-2004.
+
+     We make several adjustments to both our NALMF and WES samples to more precisely capture those
+
+firms of sufficient size that purchased robots for production purposes. Here, we only include firms with at
+
+least ten employees, and removed those firms in the finance and insurance (NAICS code 52) and real estate
+
+rental and leasing sectors (NAICS code 53), as firms in these sectors were found to be primarily involved
+
+
+
+14
+   Datasets are linked by organization-year using unique identifiers provided by Statistics Canada.
+15
+   We note that the WES employer survey data is at the establishment level (approximately 95% of firms in the
+Canadian economy have only one establishment), and conducted additional checks with Statistics Canada to ensure
+our results are robust to this issue.
+16
+   An important strength of the WES is that responding to the survey was mandatory under Canadian law, which
+resulted in regular response rates of approximately 90 percent, mitigating concerns of non-response bias in our
+analysis.
+
+                                                                                                              14
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+in leasing robots to other firms and comprised a negligible percentage of total robot imports into Canada.
+
+We also removed firms in service industries that were engaged in programming imported robots for the
+
+purpose of reselling them to other firms (NAICS codes 5413, 5414, 5415, 5416), and firms in the wholesale
+
+trade sector (NAICS code 41). In our final data used for analysis, our NALMF sample contains 168,729
+
+firms in total, our WES employer sample contains 3,981 businesses establishments, and our WES employee
+
+sample contains 7,958 individual employees.
+
+
+     3.2 Measures
+
+     Here, we describe the measures used for our main baseline tests.
+
+     Robot investment. Using our data capturing imports of robotics hardware, we create a measure of robot
+
+capital stock by adding all robot purchases by each firm recorded in each year. To adjust our robot capital
+
+stock measure for economic depreciation, we assume a useful life of 12 years based upon stated guidance
+
+given by the International Federation of Robotics (IFR).
+
+     Employee count, hiring, and departures. To measure the total number of employees within the firm,
+
+we use the total count of employees provided in the NALMF data for each firm-year, recorded from payroll
+
+deduction remittance forms submitted by all Canadian firms to the Canada Revenue Agency (CRA). Total
+
+numbers of managerial and non-managerial employees are recorded as responses in each year of the WES
+
+employer survey.17 The total number of new employee hires and departures are also recorded for each year
+
+of the survey data for both managerial and non-managerial employees. Non-managerial employee
+
+headcount is also reported by skill type, including middle-skilled, low-skilled, and high-skilled workers.18
+
+
+
+
+17
+   The survey provides a variety of examples of what is included in the definition of managers: “Examples: president
+of a single location company; retail store manager; plant manager; senior partners in business services firms;
+production superintendent; as well as vice-presidents, assistant directors, junior partners and assistant administrators
+whose responsibilities cover more than one specific domain, department heads or managers (engineering,
+accounting, R&D, personnel, computing, marketing, sales, etc.); heads or managers of specific product lines; junior
+partners or assistant administrators with responsibilities for a specific domain; and assistant directors in small
+locations (without an internal department structure).”
+18
+   Definitions of middle, low, and high-skilled workers in the survey match the definitions stated earlier in the paper.
+
+                                                                                                                     15
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+     Strategic importance of labor cost reductions and quality improvements. To measure the strategic
+
+importance of labor cost reductions and quality improvements to the firm, we exploit a section of the WES
+
+employer survey which asks respondents to “please rate the following factors with respect to their relative
+
+importance in your workplace general business strategy” for the years 2001, 2003, and 2005. Respondents
+
+are asked to choose the importance of each factor on a Likert scale with possible responses being (1) Not
+
+applicable, (2) Not important, (3) Slightly important, (4) Important, (5) Very important, and (6) Crucial.
+
+Here, we consider the factors of “reducing labour costs” and “improving product/service quality” separately
+
+for analysis. For our measure of strategic priority of each factor, we redefine values of (2) on the Likert
+
+scale to be equal to (1) and reset the scale to be ascending from 1 to 5, as an increase from the original (1)
+
+to (2) and vice versa does not clearly capture the changes in strategic priority that we aim to measure.19
+
+     Decision authority for training and choice of production technology. The WES employer survey data
+
+contain detailed information regarding decision-making authority for tasks across different layers of the
+
+organizational hierarchy, drawn from survey questions similar to those used by Bresnahan et al. (2002) and
+
+Bloom et al. (2014) for measuring worker autonomy. The survey asks, “who normally makes decisions
+
+with respect to the following activities?” Here, we consider the activities of “training” and “choice of
+
+production technology” as they are directly relevant to the firm’s investments in human capital and use of
+
+robotics for productivity. For the 2003 and 2005 waves of the survey, survey respondents were given the
+
+following five possible responses to the question of who makes decisions: 1) non-managerial employees,
+
+2) work supervisors, 3) senior managers, 4) individuals or groups outside the workplace (typically corporate
+
+headquarters for multi-establishment firms), and 5) business owners. To create distinct categories that
+
+correspond to hierarchical levels within organizations, we create three dummy variables, each equal to one
+
+if: 1) non-managerial employees were assigned decision authority over the task, 2) work supervisors or
+
+senior managers were assigned authority over the task, to capture managerial employees, or 3) business
+
+owners or corporate headquarters were assigned authority over the task.
+
+
+19
+  This modification does not change the sign or significance of our results from using each original variable. Simply
+dropping all values of (1) also produces results of identical sign and significance level.
+
+                                                                                                                  16
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+     Supervisor span of control. To capture supervisor span of control, the WES employee survey asks
+
+individual respondents whether they “supervise the work of employees on a day-to-day basis,” and if so to
+
+report the total number of employees who either directly report to them or who report to their subordinates.
+
+Here, we use this total count as our measure of supervisor span of control, and consider only those
+
+employees who are not promoted during the two-year period they are followed in the data.20
+
+     Unpredictability of work schedule. To assess the unpredictability of the work schedule of employees,
+
+the WES employee survey asks respondents “how far in advance do you know your weekly hours of work?”
+
+with possible responses being (1) always known; (2) more than one month (more than 31 days); (3) one
+
+month (22 to 31 days); (4) 3 weeks (15 to 21 days); (5) 2 weeks (8 to 14 days); (6) 1 to 7 days; and (7) Less
+
+than one day.21 For our main measure of work schedule unpredictability, we use the numerical value
+
+associated with each response, with increasing values denoting a shorter time period where employees know
+
+their work schedule in advance.22
+
+     Increase in ability to measure performance from organizational change. To measure the impact of
+
+organizational change, the WES employer survey asks whether any organizational changes occurred during
+
+the year, defined as a “change in the way in which work is organized within your workplace or between
+
+your workplace and others.” 23 If any organizational changes occurred, the survey subsequently asks
+
+respondents whether the impact of the organizational change that affected the most employees increased
+
+the “ability to measure performance” for the workplace. Here, we create a dummy variable equal to one if
+
+the workplace reports having implemented an organizational change that increased the firm’s ability to
+
+measure performance.
+
+
+20
+   Promotions were recorded as a separate question in the WES employee survey. Including supervisors who were
+promoted and controlling for promotions with a dummy variable also produces results of identical sign and
+significance level.
+21
+   We note that the survey recorded this variable only for employees who did not work regular hours every day.
+22
+   To ensure our results are not driven by scaling differences at values of (1), (2), and (7), we also repeat our
+estimation inlcuding only those values ranging from (3) to (6) and find similar results.
+23
+   The survey then provides a list of possible organizational changes for respondents to choose from, ranging from
+“greater integration among different functional areas” to an “Other” category. Because none of the choices
+obviously improve performance measurement in all work contexts, we focused on the reported impact of the
+organizational change on performance measurement rather than on the choice of organizational change itself.
+
+                                                                                                                 17
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+     Controls. A number of control variables are also included in our analysis. In all our NALMF and WES
+
+employer sample specifications, we include organization fixed effects to address concerns of unobserved
+
+heterogeneity across firms and year fixed effects to control for aggregate shocks and trends. In our WES
+
+employee sample regressions, we also estimate models including individual employee fixed effects. We
+
+control for organization size, measured by logged total assets in our NALMF sample, logged total revenues
+
+in our WES employer sample, and logged total employees in our WES employee sample.24 We also include
+
+a dummy variable control for firms that have multiple business units in our NALMF sample, or
+
+organizations that are part of a multi-establishment firm in our WES employer sample. In our WES
+
+employer sample analysis, we include separate dummy variables to control for business establishments that
+
+have an organized union, or implement outsourcing as an organizational change.2526
+
+
+4 Empirical analysis
+
+4.1 Patterns and trends in robot adoption
+
+     Figure 1 shows aggregate robot capital stock in Canada for each year from 1996-2017. 27 Overall,
+
+investment has been steadily increasing since the late 1990s, with a substantial decline in investment growth
+
+corresponding roughly to the timeframe of the Great Recession.28 Since 2014, investment in robotics has
+
+again continued to increase. Since 2007, robot adoption has also proliferated more broadly across different
+
+
+
+
+24
+   Logged total assets is used in the NALMF sample since logged total revenues is a left hand side variable in our
+productivity regressions. Logged total revenues is used in our WES employer sample since changes in employment
+are part of our main left hand side variables being tested. Logged total employees is used in the WES employee
+sample as a more precise control for firm size that may affect our span of control dependent variable.
+25
+   These variables were not available in the NALMF data.
+26
+   Regarding outsourcing, the survey specifically asks each year “Has your workplace experienced any of the
+following forms of organizational change?” with “Greater reliance on external suppliers of products / services
+(outsourcing)” as a possible response. Because organizational changes are likely to be quasi-fixed in the short time
+period of our data, the dummy variable control remains equal to one in subsequent years after outsourcing is
+reported.
+27
+   We note the graphs in this section use all available robot import data to show aggregate distribution and trends,
+not our NALMF or WES regression samples.
+28
+   We note that the Great Recession did not begin at the same time in Canada and the United States. The United
+States entered the Great Recession in December 2007, while Canada did not enter a recession until October 2008,
+which ended in July 2009.
+
+                                                                                                                  18
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+sectors of the economy, with the most dramatic growth coming from outside the automotive sector (see
+
+Appendix Figures A4 and A5).
+
+4.2 Model and empirical strategy
+
+     To obtain baseline estimates of the relationship between robot investment and our dependent
+
+variables of interest, we estimate panel OLS fixed effects regressions. The general model we estimate is
+
+as follows:
+
+                           𝑦𝑖𝑡 = 𝛼𝑅𝑂𝐵𝑂𝑇𝑆𝑖𝑡 + 𝛽𝐶𝑂𝑁𝑇𝑅𝑂𝐿𝑆𝑖𝑡 + 𝑂𝑅𝐺𝑖 + 𝑌𝐸𝐴𝑅𝑡 + 𝜖𝑖𝑡 ,
+
+
+where y is the relevant dependent variable, α is the coefficient of interest, and control variables are added
+
+including organization and year fixed effects.
+
+     A primary concern in estimating the effect of robotics is that robot adoption is unlikely to be random,
+
+potentially biasing our coefficient estimates. We address this issue in two ways, in addition to our
+
+robustness tests. First, for our total employment regression (using the NALMF sample) we instrument for
+
+robot investment using the percentage of workers in each 4-digit NAICS code in occupations with high
+
+“manual dexterity” and low “verbal ability” in 1995 multiplied by the inverse of the median price per
+
+robot in Canada for each year.2930 Measures of occupation-level manual dexterity and verbal ability are
+
+obtained from the Career Handbook 2003, a dataset created by Employment and Social Development
+
+Canada, which contains ratings of the level of manual dexterity and verbal ability associated with over
+
+920 distinct occupations on a four-point scale. We define high and low levels as the top and bottom two
+
+points on the scale, respectively. The median price per robot for each year in Canada is calculated from
+
+the import data provided by the Canadian Border Services Agency (CBSA). The percentage of workers
+
+in each 4-digit NAICS code in occupations with high manual dexterity and low verbal ability in 1995
+
+provides a cross-sectional measure of industries that have a higher proportion of workers that may engage
+
+in activities that more closely match the capabilities of robots, which is multiplied by the inverse median
+
+
+29
+  Our instrument for robot investment is similar to that used by Graetz and Michaels (2018).
+30
+  Examples of occupations include electronics assemblers, boilermakers, metal mold makers, metal patternmakers,
+tool and die makers, and machinists.
+
+                                                                                                              19
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+robot price in Canada to create a time-varying instrumental variable. As robot prices decrease over time,
+
+those industries with a higher percentage of workers doing work similar to the capabilities of robots are
+
+presumably more likely to adopt them. In using this as our instrument, we argue that both cross-sectional
+
+industry employment composition in 1995 and the national median price of robots serve as plausibly
+
+exogenous predictors of firm-level robot adoption.3132
+
+    Second, we implement Coarsened Exact Matching (CEM) (Iacus et al. 2012), where we match robot-
+
+adopting organizations with non-robot adopting organizations on key observables, and repeat the
+
+estimation of our main regressions on matched samples for comparison. For our NALMF sample, we
+
+match firms in our sample that adopt robots to non-robot adopting firms by industry (measured by 4 digit
+
+NAICS code), year, province, whether the firm is a multi-unit enterprise, total assets, firm age, average
+
+annual earnings of the firm’s employees, and capital stock. Matching is done exactly by industry, year,
+
+province, and multi-unit status, with coarsening allowed for the other variables. For our WES sample,
+
+matching is done exactly by industry, year, and province, with coarsening allowed for total revenues, age
+
+of the organization, average annual employee earnings, and capital stock.33
+
+
+5 Results
+
+5.1 Main findings
+
+    Results for our baseline tests of the relationship between robot investments and total employment are
+
+presented in Columns 1 and 2 of Table 1, for both our full and matched samples created from Coarsened
+
+Exact Matching. As Columns 1 and 2 show, the coefficient for our measure of robot investment is positive
+
+and statistically significant, predicting an increase in total employment. Column 3 shows the results from
+
+our instrumental variable estimation, which is directionally consistent with both Columns 1 and 2 and
+
+similar in magnitude to our matched sample results in Column 2. For both the matched sample and IV
+
+31
+   We note that our instrumental variable specification does not include organization fixed effects, but does include
+industry and province fixed effects.
+32
+   The F-statistic of our instrumental variable is 38.94. Results of the first stage estimation can be found in
+Appendix Section S12.
+33
+   Multi-unit status was excluded because of too few available matches for estimation.
+
+                                                                                                                    20
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+estimations, a one percent increase in robot investment predicts roughly a 0.015 percent increase in total
+
+employment within the firm. Considering robot capital is only 0.05 percent of factor share, this is a
+
+substantial effect and suggests there are complementary firm practices associated with robots. As an
+
+additional step, we estimate the same regression shown in Column 1, but now replace our robot investment
+
+measure with a series of time-indexed dummy variables for the years before and after robot adoption. We
+
+plot the dummy variable coefficients graphically along with 95% confidence intervals, with results shown
+
+in Figure 2. Prior to robot adoption, we find no evidence of differences in total employment trends with
+
+non-robot adopting firms, but an increase in total employment occurs beginning in the first year of robot
+
+adoption. Results examining the relationship between robot investments and non-managerial employment
+
+by different skill types are shown in Columns 4 through 9 of Table 1. As Columns 4 and 5 show, we find
+
+consistent evidence of a negative and statistically significant relationship with middle-skilled employment.
+
+We also find evidence of a positive and statistically significant relationship for both low-skilled (Columns
+
+6 and 7) and high-skilled (Columns 8 and 9) employment.
+
+    Results for our tests examining the relationship between robot investment and managerial and total
+
+non-managerial employment are shown in Table 2, again presenting both full and matched sample results.
+
+In Columns 1 and 2, we find evidence of a negative and statistically significant relationship between robot
+
+adoption and managerial employment. Similar to our exercise in Figure 2, we again estimate the same
+
+regression shown in Column 1, but now replace our robot investment measure with a series of time-indexed
+
+dummy variables for the years before and after robot adoption and plot the coefficients graphically in Figure
+
+3. Prior to robot adoption, we find no evidence of differences in total managerial employment with non-
+
+robot adopting organizations, but a substantial decrease in managerial employment occurs beginning in the
+
+first year of robot adoption. In Table 3, we examine how robot investment may predict hiring and departures
+
+of managerial and non-managerial employees. Robot adoption predicts less hiring of new managers
+
+(Columns 1 and 2), as well as an increase in the number of managerial departures (Columns 3 and 4),
+
+suggesting that both contribute to the change in managerial headcount.
+
+
+
+                                                                                                          21
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+    As additional confirmation, we test whether total employment increases may be explained by an
+
+increase in total non-managerial employment, with results shown in Columns 3 and 4 of Table 2. If our
+
+total employment or managerial employment results are due to measurement error of either variable, we
+
+are unlikely to observe a corresponding change in non-managerial employment. The coefficient for robot
+
+investment is positive and statistically significant, consistent with total employment increases being driven
+
+by non-managerial employees. In Table 3, Columns 5, 6, 7, and 8 examine whether these results are
+
+explained by changes in hiring or turnover for non-managerial employees. The coefficient for robot
+
+investment is positive and significant across all specifications, suggesting that investments in robotics
+
+increase both non-managerial hiring (Columns 5 and 6) as well as non-managerial departures (Columns 7
+
+and 8). While both hiring and turnover increase, the net effect of the two (Columns 3 and 4 in Table 2)
+
+ultimately predicts a net gain in total employment for non-managerial employees. Increases in hiring and
+
+departures for non-managerial employees also suggest a compositional change in the workforce, consistent
+
+with our findings in Table 1 that show a decline in middle-skilled workers and increase in low- and high-
+
+skilled workers.
+
+    We next examine how changes in the strategic priorities of organizations may be related to robot
+
+investments, with results displayed in Table 4. The pattern of employment changes from robot adoption,
+
+especially the decrease in managerial employment, may be related to firms’ need to reduce labor costs. If
+
+true, our results may reflect a reverse causality where firms that focus on reducing expensive managers
+
+choose to adopt robots. As Columns 1 and 2 show, the coefficient for the strategic importance of reducing
+
+labor costs is not statistically significant as a predictor of robot investment, providing no evidence that
+
+purchases of robots by firms are motivated by a desire to reduce labor costs. In Columns 3 and 4, we find
+
+a positive and significant coefficient for the strategic importance of improving product/service quality as a
+
+predictor of robot investment. Overall, the results suggest that robot investments are more likely to be
+
+motivated by improving the quality of production output, as opposed to efficiency gains from labor cost
+
+reductions. This suggests that the possibility of reverse causality where firms may choose to reduce
+
+managers and subsequently adopt robots is less likely. These results also corroborate evidence in the field,
+
+                                                                                                          22
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+especially in manufacturing, that investments in robotics are often made to improve product quality and
+
+reduce production variance.34
+
+5.2 Changes in organizational practices and the nature of work
+
+    Here, we explore whether the allocation of decision authority to managers within the organization has
+
+changed after robot adoption. If firms are simply downsizing managers to reduce slack, we would not
+
+necessarily expect to observe a change in decision authority for managers remaining within the firm;
+
+downsizing may instead suggest that the remaining managers are doing more than before, and experience
+
+an increase in decision authority granted. To explore this possibility, we examine how robot investments
+
+predict the allocation of decision authority over training activities and the choice of production technology,
+
+with results shown in Tables 5 and 6. These two decisions are particularly relevant as they pertain to human
+
+capital management within the firm. Table 5 shows results for the allocation of authority for training
+
+decisions, with the coefficient for robot investment being positive for non-managerial employees (Columns
+
+1 and 2) and negative for managerial employees (Columns 3 and 4), with no significant relationship found
+
+for business owners/corporate headquarters (Columns 5 and 6). The results provide evidence of
+
+decentralization of responsibilities for training from managerial to non-managerial employees within the
+
+firm as a response to robot adoption. Table 6 shows results for the allocation of decision authority over the
+
+choice of production technology, with no significant relationship found for non-managerial employees
+
+(Columns 1 and 2), a negative and significant relationship for managerial employees (Columns 3 and 4),
+
+and a positive and significant relationship for business owners/corporate headquarters (Columns 5 and 6).
+
+In contrast with training activities, the results suggest the choice of production technology becomes
+
+centralized upwards from managerial employees to business owners/corporate headquarters. Although we
+
+cannot measure the allocation of decision authority for all managerial tasks, these results suggest that the
+
+
+
+34
+   Sources: https://www.robots.com/faq/why-should-my-company-use-industrial-robots;
+https://www.robots.com/faq/how-can-industrial-robots-improve-my-profits; https://ifr.org/case-studies/industrial-
+robots/robotic-precision-supports-zero-error-production/; https://ifr.org/case-studies/industrial-robots/panasoni-and-
+A1-Towing-Ltd/
+
+
+                                                                                                                    23
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+type of work managers are doing is changing with robot adoption. The downsizing of managers is not just
+
+a reduction in headcount, but also a change in their decision authority and the nature of tasks they perform.
+
+These results also suggest that robot adoption is also associated with fundamental changes in organizational
+
+design.
+
+     To further confirm our results at the organization level and consider how the nature of work may be
+
+changing with robot adoption at the individual employee level, we begin by testing whether robot
+
+adoption at the organization level predicts changes in the span of control for supervisors, with results
+
+shown in Column 1 of Table 7. The coefficient for robot investment is positive and statistically
+
+significant, suggesting that robot adoption predicts increases in the span of control for supervisors
+
+remaining within the organization. An increase in the span of control is consistent with our earlier
+
+organization-level findings of a reduction in managerial headcount and an increase in non-managerial
+
+employees.
+
+     As an additional test, we also examine how robot investment may change the routine nature of work
+
+for individual employees. Here, we consider a specific definition of routine: the degree to which workers
+
+can predict their schedule in advance, corresponding with the measure we use.35 As shown in Column 2
+
+of Table 7, we find a positive relationship between robot investment and the unpredictability of work in
+
+advance.36 The results are consistent with the notion that, as robots automate a larger proportion of tasks
+
+within the organization and reduce variance in the production process, human workers are left to focus on
+
+work that is less predictable in nature.
+
+
+5.3 Robots and performance measurement
+
+     Here, we conduct two separate tests exploiting available measures in the WES employer survey to
+
+investigate whether robot investments affect the ability of firms to measure performance, as proposed in
+
+our theoretical arguments. For our first test, we examine whether robot investments increase the likelihood
+
+
+35
+  Hage and Aiken (1969) use a similar definiton in their study of routine work.
+36
+  As an additional robustness check, we repeated our analysis only on individuals that reported 3, 4, 5, or 6
+(equidistant time gaps), and found similar and statistically significant results.
+
+                                                                                                                24
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+of improvements in performance measurement when organizational change occurs within the workplace.
+
+To address sample selection concerns, we estimate a first stage probit regression predicting the occurrence
+
+of organizational change, using the strategic priority of “reorganizing the work process” to the firm as an
+
+exogenous predictor, and include the inverse Mills ratio from this regression as an additional control
+
+variable.373839 As shown in Column 1 of Table 8, the coefficient for robot investment is positive and
+
+significant, suggesting that robots contribute to improved performance measurement when organizational
+
+changes are implemented.
+
+     For our second test, we examine whether the strategic priority of improving performance
+
+measurement to the firm is positively related with robot investment. For our measure of strategic priority,
+
+we again exploit the section of the WES employer survey which asks respondents to “please rate the
+
+following factors with respect to their relative importance in your workplace general business strategy,”
+
+but now consider the factor of “improving measures of performance.”40 As the results in Columns 2 and 3
+
+of Table 8 show, the coefficient for robot investment is positive and significant, suggesting that robot
+
+adoption and the strategic importance of improving measures of performance are positively related.
+
+5.4 Robots and performance pay adoption
+
+     One potential implication of improved performance measurement within organizations is the adoption
+
+of performance pay linked to individual employee performance (Aral et al. 2012). While the provision of
+
+performance-based incentives to effectively utilize human capital is a fundamental aspect of organization
+
+design, the difficulty of measuring performance adequately, particularly for individual employees, can
+
+make performance pay adoption much less effective (Alchian and Demsetz 1972, Baker 1992, Zenger
+
+
+37
+   We note that the organizational change and strategic priority measures are recorded in separate sections of the
+WES survey.
+38
+   This is because improvements in the firm’s ability to measure performance are only recorded for firms that
+implement an organizational change.
+39
+   Similar to the measure we use for the strategic priority of improving measures of performance, the WES
+questionnaire also records the strategic priority of “reorganizing the work process” on a Likert scale. We adjust and
+rescale this variable in the same manner as our measure of strategic priority of improving measures of performance.
+40
+   Similar to our other strategic priority measures, we redefine on the Likert scale values of (2) to be equal to (1) and
+reset the scale to be ascending from 1 to 5. This does not change the sign or significance of our results from using
+the original variable, and simply dropping all values of (1) also produces results of identical sign and significance
+level.
+
+                                                                                                                       25
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3422581
+1994). If robot investment improves performance measurement of the production process, firms may
+
+increase their use of incentives linked to individual performance for employees. While this may occur in
+
+a variety of ways, we mention three possibilities here: 1) robots themselves often provide additional
+
+performance data which can be analyzed; 2) by reducing variance in the production process and
+
+increasing consistency, performance attributable to employees may be more readily observable; and 3)
+
+because robots present no agency problem for firms, adding robots to a production process may help
+
+mitigate measurement issues in team production (Alchian and Demsetz 1972).41 To measure individual
+
+performance pay adoption, we exploit a section of the WES employer survey that records the fraction of
+
+employees within the organization that receive “individual incentive systems,” defined as “bonuses,
+
+piece-rate, and commissions that reward individuals on the basis of individual output or performance.”
+
+As shown in Columns 4 and 5 of Table 8, we find a positive and statistically significant relationship
+
+between robot investments and the adoption of individual performance pay. The results suggest that
+
+robots not only affect changes in human capital within the firm, but also the ability of organizations to
+
+effectively utilize their human capital through performance-based incentives.
+
+
+5.5 Robustness checks
+
+     Here, we conduct a series of additional robustness tests for our results. We examine the relationship
+
+between robot investment and total employment across different industries (Appendix Tables A9-A11);
+
+control for IT investment as a possible omitted variable (Tables A12-A15); investigate whether unobserved
+
+purchases from wholesalers and resellers within Canada (instead of direct import purchases) may be
+
+affecting our results (Table A16); control for general improvements in firm performance, which may
+
+explain our finding of increases in total employment (Table A17), control for performance pay adoption
+
+(Table A18); estimate the relationship between robot investment and employment at the industry level
+
+
+
+
+41
+  This depends upon how production is reorganized with robot investment, beyond what we can measure in our
+data. We present this only as a possibility here.
+
+                                                                                                             26
+
+
+                     Electronic copy available at: https://ssrn.com/abstract=3422581
+(Table A19); and control for imports from the US and China (Tables A20-A23). Ultimately, we find similar
+
+results across our different tests.
+
+    While we find consistent evidence of increases in total employment, we also find contrasting declines
+
+in employment for both managers and middle-skilled workers in our WES. For these two findings, we
+
+formally examine the sensitivity of our results to possible bias from omitted variables using the bounding
+
+method developed by Oster (2019). The procedure exploits observable control variables that are
+
+correlated with unobservable controls, and examines how the coefficient of interest and regression R-
+
+squared change when observable controls are included in the specification. If the coefficient of interest
+
+remains relatively stable and the R-squared increases substantially, this increases confidence in the
+
+direction of our coefficient estimates. To assess the level of confidence, Oster (2019) derives a simple
+
+parameter δ that represents how strong selection on unobservables would have to be relative to selection
+
+on observables to diminish the coefficient of interest to zero. Oster (2019) suggests that an absolute value
+
+of δ greater than 1 implies a sufficient degree of confidence in the direction of the coefficient estimate.
+
+Results of our analysis are shown in Tables A24 in the Appendix. For both our managerial and middle-
+
+skilled employment specifications, the absolute values of δ are above 1, suggesting our results are
+
+relatively robust to concerns of selection on unobservables.
+
+
+6 Discussion and conclusion
+
+    Utilizing novel data capturing investments in robotics for a population of businesses in a developed
+
+economy, we provide the first firm-level evidence of the effect of robot adoption on employment and
+
+management and the associated changes in organizational practices. The results suggest that robots do not
+
+affect employment within the firm uniformly, leading to net increases in the headcount of non-managerial
+
+employees, but also decreases in the headcount of managerial employees. This is consistent with the notion
+
+that by taking on a subset of responsibilities and activities in the production process of the firm, robots
+
+affect the demand for workers engaged in other activities within the firm. Employees whose skills have
+
+greater complementarity to robot investments are more likely to experience net gains in employment,
+
+                                                                                                              27
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+depending on the degree to which their skills are complementary. In our study, we find evidence of skill
+
+polarization of the non-managerial workforce, with decreases in middle-skilled employment and increases
+
+in low and high-skilled employment, consistent with prior findings on automation (Autor and Salomons
+
+2018, Autor et al. 2003).
+
+    Surprisingly, we also find evidence of displacement of managers, a higher cognitive-skilled occupation
+
+that was previously less vulnerable to skill-biased technical change from earlier waves of technology. This
+
+reduction may be the consequence of both a decrease in the need for certain types of supervisory work from
+
+robot adoption as well as an indirect effect from the changing composition of non-managerial employees.
+
+However, we note that we are only able to observe short run effects (several years) in our data, and the long
+
+run effect on managerial employment is likely to depend on the way firms reconfigure managerial work.
+
+In the case of past general-purpose technologies, the process of business re-engineering can take decades
+
+to fully evolve (Bresnahan and Trajtenberg 1995). Consistent with a decline in managerial employment and
+
+increase in total employment, we find that the span of control for supervisors has increased after robot
+
+adoption. We also find evidence that managerial work has fundamentally changed after robot adoption, and
+
+their decision authority has been reduced within the organization. However, we find no evidence that job
+
+losses are caused by firms desiring to cut labor costs, and instead find evidence that firms primarily adopt
+
+robots to improve product and service quality.
+
+    In addition to changes in employment, we also observe that organizational practices change with robot
+
+adoption as the allocation of decision authority for certain tasks shifts to different layers of the hierarchy,
+
+away from managers. Human resource-related decisions with respect to training are decentralized from
+
+managers to non-managerial employees, while the choice of production technology is centralized from
+
+managers to business owners and corporate headquarters. This differs from effects of earlier generations of
+
+IT that tended to decentralize decision authority (Acemoglu et al. 2007). Consistent with a decrease in
+
+employee monitoring costs, we observe an increase in the adoption of performance pay linked to individual
+
+employee performance after robot adoption. However, with robot adoption rapidly increasing in prevalence
+
+and capability, we expect that the allocation of decision authority, incentives and other complementary
+
+                                                                                                            28
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+work practices are likely to continue to evolve. Those firms that can best match their capabilities and work
+
+practices to productive opportunities can benefit substantially from robot investments and develop potential
+
+competitive advantages, highlighting the need to understand the different types of complements to robots
+
+as a new technology.
+
+    Overall, our findings using organization-level data suggest the effect of robots on labor is more nuanced
+
+than earlier work has predicted and requires a deeper examination beyond more aggregated levels of
+
+analysis to understand how they are used to complement and substitute labor, as well as how organizational
+
+practices need to evolve around the changing nature of work. While our analysis suggests that robot
+
+adoption is associated with using different types of labor, the associated implication for wages is also an
+
+important question. The extent to which wages may change depends on the type of jobs that are created and
+
+eliminated. Our initial evidence suggests that although labor cost reduction is not the primary reason for
+
+why firms adopt robots, the reduction in managerial and middle-skilled employment and increase in low
+
+and high-skilled employment ultimately predicts an ambiguous result for average wages. However,
+
+complementing our finding of a decline in demand for middle-skilled employment, Dauth et al. (2018) use
+
+industry-level robot investment to examine effects on employee wages, and find that robot adoption leads
+
+to substantial wage decreases for middle-skilled workers. As robots continue to improve firm productivity,
+
+it is important to understand how the additional economic value created will be distributed among owners,
+
+managers, workers and other stakeholders; the effects of these new technologies on inequality remain an
+
+open question.
+
+    Changes in employee types and skills as a result of robot adoption is also likely to lead firms to
+
+implement complementary work practices, similar to earlier generations of skill-biased technical change
+
+(Bresnahan et al. 2002, Murnane et al. 1999). To understand these effects, the collection of microdata,
+
+especially at the firm level, is crucial. Additionally, better data about robot investment across different
+
+contexts are critical to understanding whether the effects we observe on employment and work practices
+
+can be generalized to other economies (Buffington et al. 2018, Frank et al. 2019). While we provide detailed
+
+firm-level evidence on robotics and show that work practices have already evolved in response to robot
+
+                                                                                                          29
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+technologies, future research should continue to examine how robotics technologies in general affect
+
+different firms, occupations, industries, and geographic regions (Felten et al. 2019). A detailed examination
+
+matching specific robot capabilities to specific tasks would also provide greater insight into how
+
+occupations and labor demands evolve in response to robot technologies, allowing for deeper examination
+
+of both obsolete as well as new tasks and occupations created by robots (Felten et al. 2019). This can not
+
+only help firms manage their resources effectively, but also assist policy makers in understanding the short-
+
+and long-term workforce implications of robots and related AI technologies. With rapid advances in
+
+robotics capabilities, understanding these implications is critical as investments in robots are likely to have
+
+profound effects on both employment and organizations.
+
+
+
+
+                                                                                                            30
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+References
+
+Acemoglu D, Aghion P, Lelarge C, Van Reenen J, Zilibotti F (2007). Technology, Information, and the
+         Decentralization of the Firm. The Quarterly Journal of Economics. 122(4) 1759-1799.
+Acemoglu D, Autor D, Dorn D, Hanson GH, Price B (2016). Import competition and the great US employment sag
+         of the 2000s. Journal of Labor Economics. 34(S1) S141-S198.
+Acemoglu D, Restrepo P (2017). Robots and jobs: Evidence from US labor markets.
+Acemoglu D, Restrepo P (2018). Artificial intelligence, automation and work. National Bureau of Economic
+         Research.
+Agrawal A, Gans J, Goldfarb A. (2018). Prediction Machines: The simple economics of artificial intelligence.
+         Harvard Business Press.
+Aral S, Brynjolfsson E, Wu L (2012). Three-way complementarities: Performance pay, human resource analytics,
+         and information technology. Management Science. 58(5) 913-931.
+Arntz M, Gregory T, Zierahn U (2016). The risk of automation for jobs in OECD countries.
+Autor D, Salomons A (2017). Robocalypse Now: Does Productivity Growth Threaten Employment? National
+         Bureau of Economic Research, Inc.
+Autor D, Salomons A (2018). Is automation labor-displacing? Productivity growth, employment, and the labor
+         share. National Bureau of Economic Research.
+Autor DH, Dorn D, Hanson GH (2016). The China shock: Learning from labor-market adjustment to large changes
+         in trade. Annual Review of Economics. 8 205-240.
+Autor DH, Katz LF, Kearney MS (2006). The polarization of the US labor market. American economic review.
+         96(2) 189-194.
+Autor DH, Levy F, Murnane RJ (2003). The Skill Content of Recent Technological Change: An Empirical
+         Exploration. The Quarterly Journal of Economics. 118(4) 1279-1333.
+Autor DH, Levy F, Murnane RJ (2003). The Skill Content of Recent Technological Change: An Empirical
+         Exploration*. The Quarterly Journal of Economics. 118(4) 1279-1333.
+Bepko Jr RJ, Moore JR, Coleman JR (2009). Implementation of a pharmacy automation system (robotics) to ensure
+         medication safety at Norwalk hospital. Quality Management in Healthcare. 18(2) 103-114.
+Bessen JE, Goos M, Salomons A, Van den Berge W (2019). Automatic Reaction-What Happens to Workers at
+         Firms that Automate? Boston Univ. School of Law, Law and Economics Research Paper.
+Brawer J, Mangin O, Roncone A, Widder S, Scassellati B (2018). Situated Human–Robot Collaboration: predicting
+         intent from grounded natural language. IEEE.
+Bresnahan TF, Brynjolfsson E, Hitt LM (2002). Information Technology, Workplace Organization, and the Demand
+         for Skilled Labor: Firm-level Evidence. The Quarterly Journal of Economics. 117(1) 339-376.
+Bresnahan TF, Trajtenberg M (1995). General purpose technologies ‘Engines of growth’? Journal of econometrics.
+         65(1) 83-108.
+Brynjolfsson E, Hitt L (1996). Paradox lost? Firm-level evidence on the returns to information systems spending.
+         Management Science. 42(4) 541-558.
+Brynjolfsson E, McAfee A. (2014). The second machine age: Work, progress, and prosperity in a time of brilliant
+         technologies. WW Norton & Company.
+Brynjolfsson E, Mitchell T (2017). What can machine learning do? Workforce implications. Science. 358(6370)
+         1530-1534.
+Brynjolfsson E, Rock D, Syverson C (2018). Artificial intelligence and the modern productivity paradox: A clash of
+         expectations and statistics. University of Chicago Press.
+Buffington C, Miranda J, Seamans R (2018). Development of Survey Questions on Robotics Expenditures and Use
+         in US Manufacturing Establishments.
+Card D, DiNardo JE (2002). Skill-biased technological change and rising wage inequality: Some problems and
+         puzzles. Journal of labor economics. 20(4) 733-783.
+Cockburn IM, Henderson R, Stern S (2018). The Impact of Artificial Intelligence on Innovation. Working Paper,
+         National Bureau of Economic Research, Cambridge.
+David H, Dorn D (2013). The growth of low-skill service jobs and the polarization of the US labor market.
+         American Economic Review. 103(5) 1553-1597.
+Dinlersoz E, Wolf Z (2018). Automation, Labor Share, and Productivity: Plant-Level Evidence from US
+         Manufacturing.
+Dustmann C, Ludsteck J, Schönberg U (2009). Revisiting the German wage structure. The Quarterly Journal of
+
+                                                                                                                31
+
+
+                      Electronic copy available at: https://ssrn.com/abstract=3422581
+         Economics. 124(2) 843-881.
+Felten E, Raj M, Seamans R (2019). The Occupational Impact of Artificial Intelligence: Labor, Skills, and
+         Polarization
+. Available at SSRN: https://ssrn.com/abstract=3368605 or http://dx.doi.org/10.2139/ssrn.3368605.
+Ford M. (2015). Rise of the Robots: Technology and the Threat of a Jobless Future. Basic Books.
+Frank MR, Autor D, Bessen JE, Brynjolfsson E, Cebrian M, Deming DJ, Feldman M, Groh M, Lobo J, Moro E
+         (2019). Toward understanding the impact of artificial intelligence on labor. Proceedings of the National
+         Academy of Sciences 201900949.
+Frey CB, Osborne MA (2017). The future of employment: how susceptible are jobs to computerisation?
+         Technological forecasting and social change. 114 254-280.
+Gombolay M, Yang XJ, Hayes B, Seo N, Liu Z, Wadhwania S, Yu T, Shah N, Golen T, Shah J (2018). Robotic
+         assistance in the coordination of patient care. The International Journal of Robotics Research. 37(10) 1300-
+         1316.
+Graetz G, Michaels G (2015). Robots at work.
+Hales CP (1986). What do managers do? A critical review of the evidence. Journal of Management studies. 23(1)
+         88-115.
+Hales, C. (1999). Why do managers do what they do? Reconciling evidence and theory in accounts of managerial
+         work. British journal of management, 10(4), 335-350.
+Hammer M (1990). Reengineering work: don't automate, obliterate. Harvard Business Review. 68(4) 104-112.
+Helper S, Henderson R (2014). Management practices, relational contracts, and the decline of General Motors.
+         Journal of Economic Perspectives. 28(1) 49-72.
+Helper S, MacDuffie JP, Sabel C (2000). Pragmatic collaborations: advancing knowledge while controlling
+         opportunism. Industrial and corporate change. 9(3) 443-488.
+Huselid MA, Becker BE (1997). THE IMPACT HIGH PERFORMANCE WORK SYSTEMS, IMPLEMENTATION
+         EFFECTIVENESS, AND ALIGNMENT WITH STRATEGY ON SHAREHOLDER WEALTH. Academy of
+         Management Briarcliff Manor, NY 10510.
+Ichniowski C, Shaw K, Prennushi G (1997). The effects of human resource practices on manufacturing
+         performance: A study of steel finishing lines. American Economic Review. 87(3) 291-313.
+Kenny M, Florida R (1993). Beyond mass production: The Japanese system and its transfer to the US New York:
+         Oxford Univ. Press.
+Kolbjørnsrud V, Amico R, Thomas RJ (2016). How artificial intelligence will redefine management.
+Larkin, I. (2014). The cost of high-powered incentives: Employee gaming in enterprise software sales. Journal of
+         Labor Economics, 32(2), 199-227.
+MacDuffie JP (1997). The road to “root cause”: Shop-floor problem-solving at three auto assembly plants.
+         Management Science. 43(4) 479-502.
+Malone TW (2003). Is empowerment just a fad? Control, decision making, and IT. Inventing the Organizations of
+         the 21st Century 49-69.
+Malone TW. (2004). The future of work. Audio-Tech Business Book Summaries, Incorporated.
+Mann K, Püttmann L (2017). Benign Effects of Automation: New Evidence From Patent Texts.
+Manyika J (2017). A future that works: AI, automation, employment, and productivity. McKinsey Global Institute
+         Research, Tech. Rep.
+Marcus G, Davis E. (2019). Rebooting AI: Building Artificial Intelligence We Can Trust. Pantheon.
+McAfee A, Brynjolfsson E. (2017). Machine, platform, crowd: Harnessing our digital future. WW Norton &
+         Company.
+Mintzberg H (1973). The nature of managerial work.
+Mintzberg H. (2013). Simply managing: What managers do—and can do better. Berrett-Koehler Publishers.
+Murnane RJ, Levy F, Autor D (1999). Technological change, computers and skill demands: Evidence from the back
+         office operations of a large bank.
+Parker M, Slaughter J (1988). Management by stress. Technology Review. 91(7) 37-44.
+Perrow C (1967). A framework for the comparative analysis of organizations. American sociological review 194-
+         208.
+Scully MA (2000). Manage your own employability: Meritocracy and the legitimation of inequality in internal labor
+         markets and beyond. Relational wealth: The advantages of stability in a changing economy 199-214.
+Steffens S, Nüßer L, Seiler T-B, Ruchter N, Schumann M, Döring R, Cofalla C, Ostfeld A, Salomons E,
+         Schüttrumpf H (2017). A versatile and low-cost open source pipetting robot for automation of toxicological
+         and ecotoxicological bioassays. PloS one. 12(6).
+
+                                                                                                                  32
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+Syverson C (2004). Product substitutability and productivity dispersion. Review of Economics and Statistics. 86(2)
+         534-550.
+Taylor FW. (1977). Shop management. Рипол Классик.
+Trajtenberg M (2018). Artificial Intelligence as the Next GPT: A Political-Economy Perspective. NBER Chapters
+         175-186.
+Verl A (2019). Managing mass customisation with software-defined manufacturing. IFR, University of Stuttgart.
+Wu L (2013). Social network effects on productivity and job security: Evidence from the adoption of a social
+         networking tool. Information Systems Research. 24(1) 30-51.
+Wu L, Hitt LM, Lou B (2020). Data Analytics Skills, Innovation and Firm Productivity. Management Science.
+         66(6).
+Wu L, Lou B, Hitt LM (2019). Data Analytics Supports Decentralized Innovation. Management Science. 65(10).
+
+
+
+
+                                                                                                                 33
+
+
+                       Electronic copy available at: https://ssrn.com/abstract=3422581
+Figure 1. Aggregate robot stock in Canada, 1996-2017
+
+                       1,800
+
+                       1,600
+
+                       1,400
+
+                       1,200
+   (millions of CAD)
+
+
+
+
+                       1,000
+
+                        800
+
+                        600
+
+                        400
+
+                        200
+
+                          0
+                               1996 1998 2000 2002 2004 2006 2008 2010 2012 2014 2016
+
+
+Note: Robot stock is depreciated using a 12-year useful life assumption, following guidance from the International
+Federation of Robotics (IFR).
+
+
+
+
+                                                                                                                     34
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 1. Total employment and non-managerial employment by skill type regressions
+                                  (1)           (2)           (3)          (4)           (5)           (6)           (7)           (8)         (9)
+                                  FE            FE          2SLS           FE            FE            FE            FE            FE          FE
+                                                                         WES           WES          WES           WES           WES           WES
+Dataset:                       NALMF        NALMF         NALMF         Employer      Employer     Employer      Employer      Employer      Employer
+Sample:                           Full      Matched          Full          Full       Matched          Full      Matched          Full       Matched
+                                                                         ln(Total     ln(Total    ln(Total low-ln(Total low-
+                               ln(Total   ln(Total   ln(Total            middle-      middle-        skilled      skilled    ln(Total      ln(Total
+Dependent variable:           employees) employees) employees)            skilled)     skilled)    production) production) high-skilled) high-skilled)
+
+ln(Total assets)               0.191***     0.215***      0.346***
+                                (0.013)      (0.037)       (0.016)
+ln(Total revenues)                                                        0.147         0.106         0.122       0.398**        0.040        0.037
+                                                                         (0.103)       (0.094)       (0.086)      (0.162)       (0.071)      (0.074)
+Multi-unit enterprise          0.139***     0.144***      0.500***        -0.077     -0.396***      -0.235*        -0.049        0.090       0.486**
+                                (0.014)      (0.022)       (0.027)       (0.095)      (0.062)       (0.132)       (0.074)       (0.063)      (0.175)
+Unionized                                                               0.389***        -0.092        0.200      2.052***      -0.219**      -1.041*
+                                                                         (0.115)       (0.669)       (0.161)      (0.477)       (0.095)      (0.523)
+Outsourcing                                                               -0.001      0.419**         0.048        -0.335       0.171**       0.162
+                                                                         (0.086)      (0.187)        (0.104)      (0.322)       (0.068)      (0.151)
+ln(Robot capital stock)        0.007***      0.015**      0.015***      -0.086***     -0.031**      0.061***      0.021**       0.016**      0.018**
+                                (0.002)      (0.006)       (0.004)       (0.014)       (0.012)       (0.021)      (0.009)       (0.007)      (0.008)
+Industry fixed effects            N             N             Y             N             N             N            N             N            N
+Province fixed effects            N             N             Y             N             N             N            N             N            N
+Year fixed effects                Y             Y             Y             Y             Y             Y            Y             Y            Y
+Organization fixed effects        Y             Y             N             Y             Y             Y            Y             Y            Y
+
+Observations                   929,162        41,399       865,759       17,449         1,746        17,449         1,746        17,449       1,746
+Adj R-squared                   0.92           0.94                       0.70          0.74          0.72          0.83          0.59        0.76
+Standard errors in parentheses, clustered by industry. All regressions using WES data use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                                                 35
+
+
+                             Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 2. Managerial and non-managerial employment
+                                      (1)           (2)           (3)           (4)
+                                      FE            FE            FE            FE
+                                   WES           WES           WES           WES
+Dataset:                          Employer      Employer      Employer      Employer
+Sample:                               Full       Matched         Full       Matched
+                                                        ln(Total  ln(Total
+                                   ln(Total  ln(Total  non-mgr. non-mgr.
+Dependent variable:               managers) managers) employees) employees)
+
+ln(Total revenues)                 0.084**         0.009       0.242***     0.389***
+                                   (0.033)        (0.168)       (0.053)      (0.093)
+Multi-unit enterprise                0.032         0.307        0.046         1.199
+                                    (0.096)       (0.434)      (0.049)       (0.847)
+Unionized                            0.168         0.594        0.025       -2.309***
+                                    (0.108)       (0.472)      (0.033)       (0.488)
+Outsourcing                          0.001         0.160        0.005        -0.205*
+                                    (0.059)       (0.152)      (0.059)       (0.115)
+ln(Robot capital stock)           -0.080***     -0.073***      0.005**       0.016**
+                                   (0.011)       (0.014)       (0.002)       (0.008)
+Year fixed effects                     Y             Y            Y             Y
+Organization fixed effects             Y             Y            Y             Y
+
+Observations                        17,449         1,746        17,449        1,746
+Adj R-squared                        0.69          0.75          0.88         0.86
+Standard errors in parentheses, clustered by industry. All regressions using WES data
+use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                  36
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 3. Managerial and non-managerial hiring and departure regressions
+                                   (1)           (2)           (3)          (4)           (5)           (6)           (7)           (8)
+                                   FE            FE            FE           FE            FE            FE            FE            FE
+                                WES           WES           WES           WES           WES          WES           WES           WES
+Dataset:                       Employer      Employer      Employer      Employer      Employer     Employer      Employer      Employer
+Sample:                            Full       Matched         Full       Matched          Full       Matched          Full      Matched
+                                                         ln(Total    ln(Total           ln(Total      ln(Total     ln(Total    ln(Total
+                                ln(Total    ln(Total       mgr.        mgr.            non-mgr.      non-mgr.     non-mgr. non-mgr.
+Dependent variable:            mgr. hires) mgr. hires) departures) departures)           hires)        hires)    departures) departures)
+
+ln(Total revenues)                0.053        0.066         0.023         0.024        0.209**        0.045         0.077       0.203*
+                                 (0.070)      (0.183)       (0.037)       (0.044)       (0.082)       (0.161)       (0.084)      (0.112)
+Multi-unit enterprise             0.030       -0.343*        -0.050        -0.061        -0.124        -0.584        0.178        0.006
+                                 (0.149)      (0.185)       (0.078)       (0.223)       (0.208)       (0.419)       (0.118)      (0.192)
+Unionized                       0.279**        0.514         -0.019        -0.159        -0.149     -1.139***      0.292***       0.119
+                                (0.124)       (0.523)       (0.067)       (0.106)       (0.104)      (0.301)        (0.100)      (0.117)
+Outsourcing                       0.116        0.109         -0.049        0.089         0.158       -0.343**        0.062        0.053
+                                 (0.086)      (0.101)       (0.050)       (0.115)       (0.119)       (0.173)       (0.079)      (0.084)
+ln(Robot capital stock)        -0.032***     -0.037***     0.025***       0.031**      0.044***      0.028**       0.037***     0.018***
+                                (0.009)       (0.013)       (0.004)       (0.012)       (0.007)      (0.014)        (0.009)      (0.006)
+Year fixed effects                  Y            Y             Y             Y             Y             Y            Y             Y
+Organization fixed effects          Y            Y             Y             Y             Y             Y            Y             Y
+
+Observations                     17,449         1,746        17,449        1,746        17,449         1,746        17,449        1,746
+Adj R-squared                     0.19          0.22          0.06         0.03          0.60          0.46          0.33         0.15
+Standard errors in parentheses, clustered by industry. All regressions using WES data use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                                             37
+
+
+                                 Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 4. Strategic priority regressions
+                                                (1)               (2)               (3)              (4)
+                                                FE                FE                FE               FE
+Dataset:                                 WES Employer WES Employer WES Employer WES Employer
+Sample:                                         Full           Matched             Full           Matched
+
+                                             ln(Robot         ln(Robot          ln(Robot          ln(Robot
+Dependent variable:                        capital stock)   capital stock)    capital stock)    capital stock)
+
+ln(Total revenues)                             0.006            -0.056            0.005            -0.066
+                                              (0.020)           (0.113)          (0.021)           (0.110)
+Multi-unit enterprise                         0.024**            0.604           0.025**            0.564
+                                              (0.011)           (0.398)          (0.012)           (0.387)
+Unionized                                      0.073             0.196           0.075*             0.189
+                                              (0.043)           (0.236)          (0.043)           (0.216)
+Outsourcing                                   -0.006             0.108           -0.007             0.051
+                                              (0.010)           (0.143)          (0.011)           (0.158)
+Strategic importance: Reducing labor           0.002            -0.001
+costs                                         (0.003)           (0.023)
+Strategic importance: Improving                                                  0.008**           0.059**
+product/service quality                                                          (0.003)           (0.025)
+
+Year fixed effects                               Y                 Y                Y                 Y
+Organization fixed effects                       Y                 Y                Y                 Y
+
+Observations                                   8,906             889              8,906              889
+Adj R-squared                                  0.62              0.78             0.62               0.79
+Standard errors in parentheses, clustered by industry. All regressions using WES data use sampling weights.
+*** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                 38
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 5. Task allocation regressions, training decisions
+                                 (1)           (2)           (3)           (4)           (5)           (6)
+                                 FE            FE            FE            FE            FE            FE
+                              WES           WES            WES          WES           WES           WES
+Dataset:                     Employer      Employer       Employer     Employer      Employer      Employer
+Sample:                          Full       Matched          Full       Matched          Full       Matched
+                                                            Training decisions
+                               Non-       Non-                                        Business      Business
+                             managerial managerial                                   owners or     owners or
+Dependent variable:          employees employees Managers              Managers      Corp HQ       Corp HQ
+
+ln(Total revenues)              -0.003        -0.022        0.003         -0.017        0.027         0.307
+                               (0.019)       (0.046)       (0.090)       (0.066)       (0.089)       (0.230)
+Multi-unit enterprise           0.009         -0.094        -0.021        -0.234        0.110        0.755*
+                               (0.013)       (0.095)       (0.077)       (0.640)       (0.104)       (0.450)
+Unionized                       -0.041        0.014         -0.070        -0.027        -0.139        0.018
+                               (0.139)       (0.015)       (0.212)       (0.025)       (0.173)       (0.101)
+Outsourcing                     0.011         0.121         -0.019        0.066         -0.058        -0.278
+                               (0.028)       (0.074)       (0.072)       (0.300)       (0.081)       (0.195)
+ln(Robot capital stock)       0.074***      0.077***     -0.077***     -0.080***        0.003         0.012
+                               (0.011)       (0.012)      (0.011)       (0.012)        (0.003)       (0.009)
+
+Year fixed effects                Y             Y             Y             Y             Y             Y
+Organization fixed effects        Y             Y             Y             Y             Y             Y
+
+Observations                    6,173         632           6,173         632           6,173         632
+Adj R-squared                   0.29          0.84          0.33          0.72          0.39          0.75
+Standard errors in parentheses, clustered by industry. All regressions use sampling weights. *** p<0.01, **
+p<0.05, * p<0.1
+
+
+Table 6. Task allocation regressions, choice of production technology
+                                 (1)           (2)           (3)           (4)           (5)           (6)
+                                 FE            FE            FE            FE            FE            FE
+                              WES           WES            WES          WES           WES           WES
+Dataset:                     Employer      Employer       Employer     Employer      Employer      Employer
+Sample:                          Full       Matched          Full       Matched          Full       Matched
+                                                     Choice of Production Technology
+                               Non-       Non-                                        Business      Business
+                             managerial managerial                                   owners or     owners or
+Dependent variable:          employees employees Managers              Managers      Corp HQ       Corp HQ
+
+ln(Total revenues)              0.004         0.006         0.056         -0.131        -0.049        0.365
+                               (0.008)       (0.033)       (0.072)       (0.100)       (0.075)       (0.262)
+Multi-unit enterprise           -0.007        -0.010        0.038         -0.498        0.070       0.930***
+                               (0.012)       (0.018)       (0.066)       (0.427)       (0.096)       (0.344)
+Unionized                       -0.000        0.009         0.231       0.868***     -0.527***     -0.878***
+                               (0.004)       (0.009)       (0.189)       (0.092)      (0.181)       (0.070)
+Outsourcing                     -0.010        0.024         0.038         0.212         -0.003      -0.324*
+                               (0.019)       (0.024)       (0.075)       (0.250)       (0.077)      (0.179)
+ln(Robot capital stock)         -0.000        0.002      -0.069***     -0.077***      0.075***      0.082***
+                               (0.000)       (0.001)      (0.015)       (0.012)        (0.013)       (0.017)
+
+Year fixed effects                Y             Y             Y             Y             Y             Y
+Organization fixed effects        Y             Y             Y             Y             Y             Y
+
+Observations                    6,173         632           6,173         632           6,173         632
+Adj R-squared                   0.30          0.09          0.31          0.54          0.33          0.54
+Standard errors in parentheses, clustered by industry. All regressions use sampling weights. *** p<0.01, **
+p<0.05, * p<0.1
+                                                                                                               39
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 7. Span of control and work unpredictability regressions
+                                               (1)                 (2)
+                                               FE                  FE
+Dataset:                                WES Employee WES Employee
+                                                             Work
+Dependent variable:                      Span of control Unpredctability
+
+
+ln(Total employees)                         22.532*              -0.112
+                                            (12.112)             (0.317)
+Multi-unit enterprise                        32.915               0.255
+                                            (29.069)             (0.270)
+Union member                                 -6.911               0.067
+                                             (4.560)             (0.231)
+Outsourcing                                  -4.066               0.325
+                                             (5.147)             (0.229)
+ln(Robot capital stock)                      0.342**            0.158**
+                                             (0.132)            (0.066)
+Year fixed effects                              Y                  Y
+Employee fixed effects                          Y                  Y
+
+Observations                                  11,719             10,969
+Adj R-squared                                  0.15               0.59
+Standard errors in parentheses, clustered by industry. All regressions using
+WES data use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                             40
+
+
+                           Electronic copy available at: https://ssrn.com/abstract=3422581
+Table 8. Performance measurement and performance pay regressions
+                                             (1)                   (2)                  (3)                  (4)                  (5)
+                                             FE                    FE                   FE                   FE                   FE
+Dataset:                              WES Employer         WES Employer          WES Employer         WES Employer         WES Employer
+Sample:                                      Full                 Full              Matched                  Full              Matched
+                                     Increase in ability                                             Fraction of emp. Fraction of emp.
+                                        to measure       ln(Robot capital       ln(Robot capital      with individual  with individual
+Dependent variable:                    performance           stock)                 stock)              perf. pay        perf. pay
+
+
+ln(Total revenues)                          0.034                0.002               -0.053                 0.071                0.146
+                                           (0.047)              (0.020)              (0.109)               (0.056)              (0.105)
+Multi-unit enterprise                       0.027               0.026**               0.555                 0.024                0.071
+                                           (0.088)              (0.011)              (0.365)               (0.078)              (0.119)
+Unionized                                  -0.028               0.073*                0.273                 0.113               -0.003
+                                           (0.062)              (0.042)              (0.224)               (0.073)              (0.030)
+Outsourcing                                                     -0.009                0.083                -0.018               -0.043
+                                                                (0.012)              (0.149)               (0.051)              (0.210)
+ln(Robot capital stock)                    0.022**                                                       0.046***              0.035***
+                                           (0.011)                                                        (0.006)               (0.007)
+Inverse Mills ratio                       -0.140**
+                                           (0.068)
+Strategic importance: Improving                                 0.014**              0.089**
+measures of performance                                         (0.006)              (0.034)
+Organization fixed effects                    Y                    Y                    Y                    Y                     Y
+Year fixed effects                            Y                    Y                    Y                    Y                     Y
+
+Observations                                4,947                8,906                 889                  8,906                889
+Adj R-squared                               0.42                 0.62                  0.79                 0.40                 0.55
+Standard errors in parentheses, clustered by industry. Inverse Mills ratio is from first stage probit regression predicting organizational
+change. Outsourcing is a type of organizational change, so is excluded as a control in Column 1. Fraction of employees with individual
+performance pay is expressed in decimal terms. All regressions use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                                             41
+
+
+                            Electronic copy available at: https://ssrn.com/abstract=3422581
+Figure 2. Total employment time-indexed dummy regression coefficient plot, NALMF sample
+
+
+
+
+Figure 3. Total manager headcount time-indexed dummy regression coefficient plot,
+WES employer sample
+
+
+
+
+                                                                                          42
+
+
+                  Electronic copy available at: https://ssrn.com/abstract=3422581
+                                         Appendix: The Robot Revolution:
+                                 Managerial and Employment Consequences for Firms
+
+S1 Comparison to Robotic Industries Associaton (RIA) data
+Below is a graphical comparison of the value of robot stock calculated from imports into Canada compared to the
+total value of robot stock calculated from data provided by the Robotic Industries Association (RIA) for the years
+2005-2016.1 We note that imports of robots into Canada should generally be a more comprehensive measure of
+total robot purchases, since all purchases of robots from abroad are in principle captured by the Canadian Border
+Services Agency (CBSA). By contrast, the RIA relies upon self-reported information provided by its members,
+who are a subset of all purchasers within Canada and all sellers of robots to Canada, which is likely to include
+transactions of the largest buyers and sellers of robots. However, both follow a similar pattern regarding overall
+robot investment.
+
+Figure A1. Comparison of Canadian robot imports to Robotic Industries Associaton (RIA) data
+
+                          1200
+
+                          1000
+      (millions of USD)
+
+
+
+
+                           800
+
+                           600
+
+                           400
+
+                           200
+
+                             0
+                                 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016
+
+                                  Canadian robot imports          Robotics Industry Association data
+
+Note: Robot stock is depreciated using a 12 year useful life assumption, following guidance from the International Federation
+of Robotics (IFR).
+
+
+
+
+1
+    The RIA reports values in US dollars, so for comparability we present the import data in US dollars here.
+                                                                                                                            1
+
+
+                                          Electronic copy available at: https://ssrn.com/abstract=3422581
+However, for the years 2009 and 2010, there are significant inconsistencies between shipment data
+reported for North America by the RIA and International Federation of Robotics (IFR), the two main
+industry associations that report robot purchases for North America.234 Although the IFR regularly uses
+data provided by the RIA and possesses its data for earlier years, we note that the IFR only reports
+country-level data for North America beginning in 2011, after the 2009-2010 period. If we remove
+these years and separately graph the comparison from 2005-2008 and 2011-2016, the value of robot
+stock is much more similar from the two data sources, as shown in Figures A2 and A3 below.
+
+Figure A2. Comparison of Canadian robot imports to Robotic Industries Associaton (RIA) data, 2005-2008
+                        600
+
+                        500
+    (millions of USD)
+
+
+
+
+                        400
+
+                        300
+
+                        200
+
+                        100
+
+                          0
+                                 2005                  2006             2007                2008
+
+                              Canadian robot imports             Robotics Industry Association data
+
+
+Figure A3. Comparison of Canadian robot imports to Robotic Industries Associaton (RIA) data, 2011-2016
+                        700
+
+                        600
+
+                        500
+    (millions of USD)
+
+
+
+
+                        400
+
+                        300
+
+                        200
+
+                        100
+
+                          -
+                              2011         2012           2013       2014          2015         2016
+
+                              Canadian robot imports             Robotics Industry Association data
+
+
+
+
+2
+  For the years 2005-2008 and 2011-2015, the IFR reports consistently greater shipments in each year, being an average of
+26% higher with a standard deviation of 7%. The consistently higher numbers are to be expected, since the IFR draws upon
+more data sources to augment data it regularly receives from the RIA. However, shipments reported by the IFR were 19%
+lower in 2009 and 459% higher in 2010.
+3
+  The RIA is the industry association for North America; the IFR is the global industry association.
+4
+  The IFR does not report total values of robot purchases for Canada, so cannot be used for comparison with our main
+measure of robot investment.
+                                                                                                                            2
+
+
+                                          Electronic copy available at: https://ssrn.com/abstract=3422581
+S2 Robot investment by industry
+Figure A4. Total robot stock attributable by manufacturing sector, 2000-2017
+
+
+    Automotive
+
+ Petroleum and
+     plastics
+   Minerals and
+      metals
+
+     Machinery
+
+ Computers and
+   electronics
+    Other
+ manufacturing
+
+                  0                         50                   100                  150                 200                 250
+                                                                       (millions of CAD)
+
+                                                         2000     2007     2015     2017
+Note: Automotive sector includes NAICS codes 3361, 3362, 3363. Petroleum and plastics includes 324, 325, and 326.
+Minerals and metals includes 327, 331, and 332. Machinery includes 333. Computers and electronics includes 334 and 335.
+Other manufacturing includes all other NAICS codes in the manufacturing sector.
+
+Figure A5. Total robot stock attributable by services sector, 2000-2017
+
+
+
+                         Healthcare
+
+
+
+            Scientific research svcs.
+
+
+
+ Admin. support, waste mgmt. svcs.
+
+
+
+                      Other services
+
+
+                                        0           10             20           30          40       50
+                                                                     (millions of CAD)
+
+                                             2000   2007        2015     2017
+Note: Healthcare includes NAICS code 62. Scientific research services includes 5417. Administrative support and waste
+management and remediation services includes 56. Other services includes all other NAICS codes outside the manufacturing
+sector, healthcare, scientific research services, administrative support and waste management and remediation services, and
+wholesale trade.
+
+
+
+                                                                                                                          3
+
+
+                           Electronic copy available at: https://ssrn.com/abstract=3422581
+S3 Robot investment by geographic region
+Figure A6. Total robot stock attributable by economic region5: Canada
+
+
+
+
+5
+  Economic regions are groupings of census divisons created by Statistics Canada as a standard geographic unit for analysis of regional
+economic activity.
+                                                                                                                                          4
+
+
+                                    Electronic copy available at: https://ssrn.com/abstract=3422581
+Figure A7. Total robot stock attributable by economic region: Toronto, Montreal, and surrounding areas
+
+
+
+
+                                                                                                         5
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+Figure A8. Total robot stock attributable by economic region: British Columbia, Alberta, and Saskatchewan
+
+
+
+
+                                                                                                            6
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+S4 Total employment regression results by industry
+
+Here, we show the results of our total employment specification for our NALMF sample (also including OLS) by
+industries in our data, using the same industry definitions as in section S2. Overall, we find results consistent
+with our original baseline regressions, although the substantially smaller sample size and/or lower prevalence of
+robot adoption reduces statistical power in some cases.
+Table A9. Total employment regressions by industry
+                                    (1)              (2)              (3)               (4)            (5)          (6)           (7)           (8)
+                                   OLS               FE              OLS                FE            OLS           FE           OLS            FE
+
+                                                                  Petroleum          Petroleum     Minerals and Minerals and Machinery     Machinery
+Industry:                      Automotive       Automotive       and plastics       and plastics     metals       metals    manufacturing manufacturing
+                                ln(Total         ln(Total         ln(Total           ln(Total       ln(Total     ln(Total      ln(Total      ln(Total
+Dependent variable:            employees)       employees)       employees)         employees)     employees)   employees)    employees)    employees)
+
+ln(Total assets)                0.461***         0.148***         0.433***           0.205***       0.459***      0.257***     0.502***      0.301***
+                                 (0.026)          (0.040)          (0.010)            (0.029)        (0.008)       (0.019)      (0.010)       (0.030)
+Multi-unit enterprise           0.395***           0.064          0.416***           0.109***       0.329***      0.075***     0.297***      0.121***
+                                 (0.079)          (0.044)          (0.035)            (0.026)        (0.029)       (0.020)      (0.039)       (0.033)
+ln(Robot capital stock)         0.021***         0.024***         0.035***           0.009***       0.017***      0.012***     0.019***      0.007**
+                                 (0.008)          (0.005)          (0.005)            (0.003)        (0.005)       (0.003)      (0.003)      (0.003)
+Industry fixed effects              Y                N                Y                  N             Y             N            Y              N
+Province fixed effects              Y                N                Y                  N             Y             N            Y              N
+Year fixed effects                  Y                Y                Y                  Y             Y             Y            Y              Y
+Organization fixed effects          N                Y                N                  Y             N             Y            N              Y
+
+Observations                      6,655            6,655            21,997            21,997         50,750        50,750       23,981        23,981
+Adj R-squared                     0.72             0.95              0.70              0.95           0.65          0.93         0.67          0.93
+Standard errors in parentheses, clustered by firm. *** p<0.01, ** p<0.05, * p<0.1
+
+
+Table A10. Total employment regressions by industry
+                                     (1)             (2)              (3)                (4)           (5)           (6)          (7)           (8)
+                                   OLS               FE              OLS                 FE           OLS            FE          OLS            FE
+                              Computer and Computer and                                                                        Scientific    Scientific
+                               electronic    electronic      Other         Other                                               research      research
+Industry:                     manufacturing manufacturing manufacturing manufacturing Healthcare                 Healthcare    services      services
+                                 ln(Total        ln(Total         ln(Total           ln(Total       ln(Total      ln(Total     ln(Total      ln(Total
+Dependent variable:             employees)      employees)       employees)         employees)     employees)    employees)   employees)    employees)
+
+ln(Total assets)                 0.445***         0.242***         0.415***          0.209***        0.201***     0.124***     0.355***      0.272***
+                                  (0.013)          (0.034)          (0.005)           (0.013)         (0.012)      (0.015)      (0.028)       (0.034)
+Multi-unit enterprise            0.408***         0.151***         0.517***          0.118***        0.982***       0.158       0.317**        0.087
+                                  (0.059)          (0.039)          (0.022)           (0.019)         (0.129)      (0.112)      (0.150)       (0.220)
+ln(Robot capital stock)          0.026***           0.005          0.020***            0.002         0.061***     0.118***      0.028**       0.018*
+                                  (0.005)          (0.004)          (0.005)           (0.003)         (0.016)      (0.002)      (0.011)       (0.010)
+Industry fixed effects               Y                N                Y                 N              Y            N             Y             N
+Province fixed effects               Y                N                Y                 N              Y            N             Y             N
+Year fixed effects                   Y                Y                Y                 Y              Y            Y             Y             Y
+Organization fixed effects           N                Y                N                 Y              N            Y             N             Y
+
+Observations                      13,371           13,371           103,673           103,673         12,165       12,165        1,829         1,829
+Adj R-squared                      0.67             0.93             0.63              0.93            0.41         0.92         0.53          0.93
+Standard errors in parentheses, clustered by firm. *** p<0.01, ** p<0.05, * p<0.1
+
+                                                                                                                                                          7
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+Table A11. Total employment regressions by industry
+                                      (1)                  (2)                (3)        (4)
+                                      OLS                  FE                OLS         FE
+                               Admin. support,      Admin. support,
+                                waste mgmt.          waste mgmt.            Other       Other
+Industry:                          svcs.                svcs.              services    services
+                                   ln(Total             ln(Total          ln(Total     ln(Total
+Dependent variable:               employees)           employees)        employees)   employees)
+
+ln(Total assets)                   0.284***             0.194***           0.328***    0.172***
+                                    (0.008)              (0.016)            (0.002)     (0.004)
+Multi-unit enterprise              0.753***              0.095**           0.527***    0.150***
+                                    (0.061)              (0.047)            (0.010)     (0.008)
+ln(Robot capital stock)             0.027*               0.018**           0.027***     0.003
+                                    (0.014)              (0.007)            (0.006)    (0.005)
+Industry fixed effects                 Y                    N                  Y          N
+Province fixed effects                 Y                    N                  Y          N
+Year fixed effects                     Y                    Y                  Y          Y
+Organization fixed effects             N                    Y                  N          Y
+
+Observations                         38,184              38,184             656,557    656,557
+Adj R-squared                         0.39                0.91               0.47       0.91
+Standard errors in parentheses, clustered by firm. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                     8
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+S5 Controlling for IT investment
+To address the concern that our results may be driven by overall investments in IT as opposed to robot
+investment, here we include an additional control variable for IT capital stock in our main regressions using both
+the NALMF and WES samples.6 In our NALMF sample, we use a measure of IT capital stock constructed by
+Statistics Canada comprised of all IT capital investment captured from tax filing records. In the WES sample, we
+construct an IT capital stock measure based upon reported investments in “computer hardware/software” asked by
+the survey.7 As shown in the following tables, we obtain similar results.
+
+Table A12. Employment regressions, IT control variable added
+
+                                  (1)           (2)           (3)          (4)           (5)           (6)
+                                  FE            FE            FE           FE            FE            FE
+                                             WES           WES           WES          WES           WES
+Dataset:                       NALMF        Employer      Employer      Employer     Employer      Employer
+                                             ln(Total    ln(Total low-                        ln(Total non-
+                              ln(Total       middle-        skilled     ln(Total     ln(Total     mgr.
+Dependent variable:          employees)       skilled)    production) high-skilled) managers) employees)
+
+
+ln(Total assets)               0.196***
+                                (0.011)
+ln(Total revenues)                            0.151         0.119         0.038       0.083**       0.243***
+                                             (0.103)       (0.084)       (0.071)      (0.033)        (0.052)
+Multi-unit enterprise          0.128***       -0.079       -0.233*        0.091         0.033         0.046
+                                (0.012)      (0.096)       (0.133)       (0.062)       (0.095)       (0.049)
+Unionized                                   0.394***        0.196       -0.222**        0.166         0.026
+                                             (0.115)       (0.162)       (0.095)       (0.107)       (0.033)
+Outsourcing                                   0.003         0.045        0.168**        -0.001        0.006
+                                             (0.084)       (0.105)       (0.067)       (0.059)       (0.059)
+ln(Robot capital stock)        0.007***     -0.086***     0.062***       0.017**     -0.080***      0.004**
+                                (0.002)      (0.014)       (0.021)       (0.007)      (0.011)       (0.002)
+ln(IT capital stock)           0.009***       -0.007        0.006         0.004         0.002         0.001
+                                (0.000)      (0.006)       (0.009)       (0.006)       (0.003)       (0.003)
+Year fixed effects                Y             Y             Y             Y             Y             Y
+Organization fixed effects        Y             Y             Y             Y             Y             Y
+
+Observations                   901,123        17,442        17,442       17,442        17,442        17,442
+Adj R-squared                   0.92           0.70          0.72         0.59          0.69          0.88
+Standard errors in parentheses, clustered by industry. All regressions using WES data use sampling weights.
+*** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+6
+  Since this concern primarily arises due to the possibility of IT investment being an omitted independent variable correlated
+with robot investment, we only present our main specifications here where robot investment is an independent variable.
+However, including IT investment as an additional control changes neither the sign or statistical significance level of any of
+the coefficients of interest presented in the paper.
+7
+  We use a useful life assumption of 5 years for IT investment, following Baldwin et al. (2015).
+                                                                                                                                 9
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+Table A13. Task allocation regressions, IT control variable added
+                                 (1)               (2)          (3)          (4)           (5)           (6)
+                                 FE                FE           FE           FE            FE            FE
+                              WES               WES         WES           WES           WES           WES
+Dataset:                     Employer          Employer    Employer      Employer      Employer      Employer
+Dependent variable:                      Training decisions               Choice of Production Technology
+                               Non-                         Business       Non-                       Business
+                             managerial                    owners or     managerial                  owners or
+                             employees Managers            Corp HQ       employees Managers          Corp HQ
+
+ln(Total revenues)              -0.003           0.004         0.027        0.004         0.056         -0.049
+                               (0.019)          (0.090)       (0.089)      (0.009)       (0.072)       (0.075)
+Multi-unit enterprise           0.003            -0.017        0.108        -0.007        0.037         0.069
+                               (0.018)          (0.077)       (0.104)      (0.012)       (0.067)       (0.096)
+Unionized                       -0.048           -0.066        -0.141       0.000         0.230      -0.528***
+                               (0.131)          (0.210)       (0.177)      (0.004)       (0.191)      (0.186)
+Outsourcing                     0.020            -0.025        -0.055       -0.011        0.039         -0.001
+                               (0.028)          (0.074)       (0.081)      (0.019)       (0.075)       (0.077)
+ln(Robot capital stock)       0.073***         -0.077***       0.003        -0.000     -0.069***      0.075***
+                               (0.012)          (0.011)       (0.003)      (0.000)      (0.015)        (0.014)
+ln(IT capital stock)          -0.007*            0.004         -0.002     0.001**         -0.001        -0.001
+                              (0.004)           (0.006)       (0.006)     (0.000)        (0.006)       (0.007)
+Year fixed effects                Y                Y              Y           Y             Y             Y
+Organization fixed effects        Y                Y              Y           Y             Y             Y
+
+Observations                    6,171             6,171       6,171         6,171         6,171         6,171
+Adj R-squared                   0.30              0.33        0.39          0.30          0.31          0.33
+Standard errors in parentheses, clustered by industry. All regressions use sampling weights. *** p<0.01, **
+p<0.05, * p<0.1
+
+
+Table A14. Span of control and work unpredictability regressions, IT control variable added
+                                         (1)                  (2)
+                                         FE                   FE
+Dataset:                        WES Employee WES Employee
+                                                     Work
+Dependent variable:              Span of control Unpredctability
+
+ln(Total employees)                    22.601*             -0.111
+                                       (11.971)            (0.320)
+Multi-unit enterprise                   32.936              0.255
+                                       (29.062)            (0.270)
+Union member                           -6.934               0.066
+                                       (4.580)             (0.232)
+Outsourcing                            -4.030               0.329
+                                       (5.245)             (0.227)
+ln(Robot capital stock)               0.338***             0.158**
+                                       (0.129)             (0.066)
+ln(IT capital stock)                    0.117              -0.004
+                                       (0.425)             (0.015)
+Year fixed effects                        Y                   Y
+Employee fixed effects                    Y                   Y
+
+Observations                           11,717              10,968
+Adj R-squared                           0.15                0.59
+Standard errors in parentheses, clustered by industry. All regressions
+using WES data use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+                                                                                                                 10
+
+
+                                       Electronic copy available at: https://ssrn.com/abstract=3422581
+Table A15. Performance measurement and performance pay regressions, IT control variable added
+                                             (1)                   (2)
+                                             FE                    FE
+Dataset:                              WES Employer         WES Employer
+                                     Increase in ability Fraction of emp.
+                                        to measure        with individual
+Dependent variable:                    performance          perf. pay
+
+ln(Total revenues)                          0.022                0.072
+                                           (0.048)              (0.056)
+Multi-unit enterprise                       0.041                0.021
+                                           (0.089)              (0.079)
+Unionized                                  -0.011                0.115
+                                           (0.061)              (0.072)
+Outsourcing                                                     -0.016
+                                                                (0.053)
+ln(Robot capital stock)                    0.023**             0.046***
+                                           (0.011)              (0.006)
+ln(IT capital stock)                        0.007               -0.002
+                                           (0.005)              (0.005)
+Inverse Mills ratio                       -0.141**
+                                           (0.068)
+Organization fixed effects                    Y                    Y
+Year fixed effects                            Y                    Y
+
+Observations                                4,945                8,903
+Adj R-squared                               0.42                 0.40
+Standard errors in parentheses, clustered by industry. Inverse Mills ratio is
+from first stage probit regression predicting organizational change. All
+regressions use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                        11
+
+
+                                      Electronic copy available at: https://ssrn.com/abstract=3422581
+S6 Addressing robots purchased from wholesalers and other resellers
+
+In addition to end-using firms that purchase robots from abroad, wholesalers and value-added resellers within
+Canada also import robots with the intention to resell them to other firms. For these transactions, wholesalers and
+resellers are listed as the importing firm (identified by their NAICS code), but the import data do not capture the
+identity of the firm purchasing robots from these resellers.8 In the context of our data, the robot investments of
+these firms would be understated, potentially biasing our coefficient estimates.
+
+To address this concern, we exploit data on trade shipments between firms within Canada captured in the Surface
+Transportation File (STF), a dataset maintained by Statistics Canada. The data captures all shipments by truck and
+rail carriers between businesses within Canada during the years 2004-2012, recorded at the zip code level. Zip
+codes are also recorded in the NALMF data, allowing us to merge the two datasets.9 To explore whether robot
+purchases from wholesalers and other resellers within Canada may be affecting our results, we identify the zip
+code of all reselling firms in our sample that imported robots, and remove all firms located in zip codes that
+receive shipments from the zip code of the resellers. This effectively removes potential purchasing firms from
+resellers in our data, although they cannot be precisely identified. The results below are for our baseline
+employment regression for our NALMF sample using only the years 2004-2012 (Columns 1 and 2), and
+comparing to the sample with these potential purchasers from robot wholesalers removed (Columns 3 and 4). As
+the results show, we obtain similar findings.10
+
+Table A16. Potential purchasers from robot wholesalers removed
+                                      (1)             (2)               (3)                (4)
+                                     OLS              FE               OLS                 FE
+Dataset:                           NALMF           NALMF             NALMF               NALMF
+
+                                                                   Wholesaler         Wholesaler
+                                  Full sample    Full sample    recipient zipcodes recipient zipcodes
+                                  2004-2012      2004-2012           dropped            dropped
+                                   ln(Total       ln(Total           ln(Total            ln(Total
+Dependent variable:               employees)     employees)         employees)          employees)
+
+
+ln(Total assets)                   0.376***       0.189***           0.375***            0.189***
+                                    (0.014)        (0.013)            (0.014)             (0.013)
+Multi-unit enterprise              0.487***       0.113***           0.489***            0.114***
+                                    (0.030)        (0.019)            (0.030)             (0.019)
+ln(Robot capital stock)            0.031***        0.004*            0.031***            0.004*
+                                    (0.004)        (0.002)            (0.004)            (0.002)
+Industry fixed effects                 Y              N                  Y                  N
+Province fixed effects                 Y              N                  Y                  N
+Year fixed effects                     Y              Y                  Y                  Y
+Organization fixed effects             N              Y                  N                  Y
+
+Observations                        564,365        564,365            554,496            554,496
+Adj R-squared                        0.55           0.94               0.55               0.94
+Standard errors in parentheses, clustered by industry. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+8
+  The following NAICS codes identify wholesalers and value-added resellers: 41, 5413, 5414, 5415, and 5416.
+9
+  The WES data does not contain zip codes.
+10
+   Robot capital stock coefficient in Columns 2 and 4 has a p-value of 6%
+                                                                                                                 12
+
+
+                                  Electronic copy available at: https://ssrn.com/abstract=3422581
+S7 Controlling for general improvements in firm performance
+An alternative explanation for our finding of increases in total employment is that firms that are generally
+expanding employment due to improved performance may be more likely to adopt robots, potentially introducting
+omitted variable bias in our estimates. To address this concern, we include additional controls for total sales
+lagged one, two, and three years. As shown below in comparing Columns 1 and 2 (OLS and FE specifications)
+with Columns 3 and 4, we find similar results after including these additional controls. We also note that general
+changes in performance are unlikely to explain our contrast in results between managers and non-managerial
+employees, since such effects typically predict similar consequences for all types of employees (Kletzer 1998).
+
+Table A17. Total employment, lagged sales controls included
+                                      (1)             (2)            (3)                (4)
+                                     OLS              FE            OLS                 FE
+Dataset:                           NALMF           NALMF          NALMF          NALMF
+                                   ln(Total       ln(Total       ln(Total        ln(Total
+Dependent variable:               employees)     employees)     employees)      employees)
+
+ln(Total assets)                   0.309***       0.191***        0.052***       0.095***
+                                    (0.012)        (0.013)         (0.017)        (0.019)
+Multi-unit enterprise              0.372***       0.139***        0.240***       0.076***
+                                    (0.028)        (0.014)         (0.031)        (0.013)
+ln(Robot capital stock)            0.013***       0.007***        0.013***       0.003***
+                                    (0.003)        (0.002)         (0.003)        (0.001)
+ln(Total sales), lagged                                           0.510***       0.351***
+                                                                   (0.035)        (0.027)
+ln(Total sales), 2 years lagged                                    -0.006         -0.010
+                                                                   (0.009)        (0.007)
+ln(Total sales), 3 years lagged                                    0.027*        0.031***
+                                                                   (0.015)        (0.005)
+Industry fixed effects                 Y              N               Y                 N
+Province fixed effects                 Y              N               Y                 N
+Year fixed effects                     Y              Y               Y                 Y
+Organization fixed effects             N              Y               N                 Y
+
+Observations                        929,162        929,162         459,398        459,398
+Adj R-squared                        0.48           0.92            0.71           0.95
+Standard errors in parentheses, clustered by industry. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                13
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+S8 Controlling for performace pay adoption
+Here, we explore whether the adoption of performance pay may explain our finding of changes in employee skill
+composition (Lazear, 2000), as opposed to investments in robotics. In the table below, we repeat our baseline
+analyses, and include an additional control for the adoption of individual performance pay.11 As the results show,
+we find similar results.
+
+
+Table A18. Employment regressions with performance pay control variable added
+                                     (1)           (2)           (3)          (4)           (5)
+                                     FE            FE            FE           FE            FE
+                                   WES          WES           WES           WES          WES
+Dataset:                          Employer     Employer      Employer      Employer     Employer
+
+                                  ln(Total    ln(Total low                         ln(Total non-
+                                  middle-        skilled     ln(Total     ln(Total     mgr.
+Dependent variable:                skilled)    production) high skilled) managers) employees)
+
+ln(Total revenues)                  0.176         0.061        -0.010      0.083**       0.233***
+                                   (0.135)       (0.076)      (0.091)      (0.042)        (0.056)
+Multi-unit enterprise               -0.099      -0.380*        0.117         0.090        0.060
+                                   (0.145)      (0.208)       (0.096)       (0.133)      (0.121)
+Unionized                         0.485***        0.291        -0.098        0.102      -1.807***
+                                   (0.170)       (0.232)      (0.111)       (0.133)      (0.162)
+Outsourcing                         -0.031        0.044       0.190*         -0.107       0.003
+                                   (0.148)       (0.137)      (0.097)       (0.096)      (0.047)
+ln(Robot capital stock)          -0.130***      0.075***      0.021**     -0.084***      0.013**
+                                  (0.018)        (0.017)      (0.010)      (0.013)       (0.005)
+Fraction of employees with          0.113         0.097        -0.181        -0.030       0.088
+individual performance pay         (0.091)       (0.074)      (0.110)       (0.044)      (0.062)
+Year fixed effects                    Y            Y             Y             Y            Y
+Organization fixed effects            Y            Y             Y             Y            Y
+
+Observations                        8,906         8,906        8,906         8,906         8,906
+Adj R-squared                       0.64          0.67         0.50          0.69          0.79
+Standard errors in parentheses, clustered by industry. Fraction of employees with individual
+performance pay is expressed in decimal terms. All regressions using WES data use sampling weights.
+*** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+11
+     The adoption of performance pay is recorded every other year in the WES survey data.
+                                                                                                                14
+
+
+                                 Electronic copy available at: https://ssrn.com/abstract=3422581
+S9 Industry level employment regression
+
+Although a significant contribution of our study is examining the effects of robot adoption at the level of
+individual organizations, here we aggregate our measures to the industry level (measured by 4 digit NAICS code)
+and examine how robot investment may predict total employment. As shown in Column 1 in the table below, we
+find evidence at the 10% significance level of a positive relationship between robot investment and employment.
+As an additional step, we test how our results may be affected by robots purchased from wholesalers and value-
+added resellers (similar to the exercise in Appendix Section S6). Columns 2 and 3 examine how removing firms
+receiving shipments from wholesalers and resellers may affect our coefficient estimates. Ultimately, we find
+results of similar significance and magnitude. Overall, the results suggest that other factors in our context may
+dominate the business stealing effect found in previous studies (Acemoglu and Restrepo 2020).
+
+Table A19. Total employment regression, industry level
+
+                                   (1)                (2)                    (3)
+                                   FE                 FE                     FE
+Dataset:                        NALMF              NALMF                  NALMF
+                                                  Full sample           Wholesaler
+                                                  2004-2012          recipient zipcodes
+
+                                 ln(Total          ln(Total              ln(Total
+Dependent variable:            employment)       employment)           employment)
+
+
+ln(Ind. total assets)           0.510***           0.490***               0.487***
+                                 (0.024)            (0.032)                (0.031)
+Fraction of firms that are      1.313***           1.462***               1.487***
+multi-unit enterprises           (0.300)            (0.268)                (0.280)
+ln(Ind. robot capital stock)     0.006*              0.005                  0.006
+                                 (0.003)            (0.004)                (0.004)
+Year fixed effects                  Y                  Y                      Y
+Industry fixed effects              Y                  Y                      Y
+
+Observations                      4,034              2,261                  2,260
+Adj R-squared                     0.97               0.97                   0.92
+Standard errors in parentheses, clustered by industry. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                               15
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+S10 Imports from the US and China
+Here, we repeat our baseline analyses controlling for imports from the US and China (Autor, Dorn, and Hanson,
+2013). We acquired data on total imports from each respective country into Canada by industry (4 digit NAICS
+code) and year for the Canadian manufacturing sector, which was provided by Statistics Canada. Using this data,
+we include the total value of imports in each industry-year from the US and China as separate control variables
+across our main regressions. As the following tables show, we find similar results.
+
+Table A20. Employment regressions with US and Chinese import controls
+                                  (1)           (2)           (3)           (4)           (5)          (6)
+                                  FE            FE            FE            FE            FE           FE
+                                             WES           WES           WES           WES           WES
+Dataset:                       NALMF        Employer      Employer      Employer      Employer      Employer
+                                             ln(Total    ln(Total low                         ln(Total non-
+                               ln(Total      middle-        skilled     ln(Total     ln(Total     mgr.
+Dependent variable:           employees)      skilled)    production) high skilled) managers) employees)
+
+ln(Total assets)               0.236***
+                                (0.012)
+ln(Total revenues)                             0.162       0.277***      0.099**      0.123***      0.321***
+                                              (0.117)       (0.093)      (0.045)       (0.046)       (0.036)
+Multi-unit enterprise          0.113***        -0.014        -0.118       0.057         0.050         0.041
+                                (0.013)       (0.102)       (0.152)      (0.075)       (0.118)       (0.051)
+Unionized                                      0.108       0.286**      -0.306***      -0.226*       0.094**
+                                              (0.169)      (0.123)       (0.094)       (0.129)       (0.041)
+Outsourcing                                  0.272**         -0.127      0.151**        0.008         0.038
+                                             (0.113)        (0.138)      (0.071)       (0.049)       (0.038)
+ln(Robot capital stock)        0.008***     -0.071***      0.069***      0.016**      -0.067***     0.013***
+                                (0.002)      (0.013)        (0.013)      (0.007)       (0.007)       (0.003)
+US imports                     0.002***        0.005         0.009        -0.001       -0.004*        0.002
+                                (0.001)       (0.006)       (0.008)      (0.003)       (0.002)       (0.002)
+Chinese imports                  0.003         -0.041        0.031        0.002         0.009         0.007
+                                (0.003)       (0.034)       (0.040)      (0.045)       (0.016)       (0.015)
+Year fixed effects                 Y             Y            Y             Y             Y             Y
+Organization fixed effects         Y             Y            Y             Y             Y             Y
+
+Observations                    242,646        7,171         7,171        7,171         7,171         7,171
+Adj R-squared                    0.93          0.73          0.77         0.69          0.73          0.95
+Standard errors in parentheses, clustered by industry. All regressions using WES data use sampling weights.
+*** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                               16
+
+
+                                  Electronic copy available at: https://ssrn.com/abstract=3422581
+Table A21. Task allocation regressions with US and Chinese import controls
+                                 (1)            (2)             (3)          (4)           (5)           (6)
+                                 FE             FE              FE           FE            FE            FE
+                              WES             WES          WES            WES           WES           WES
+Dataset:                     Employer        Employer     Employer       Employer      Employer      Employer
+Dependent variable:                      Training decisions               Choice of Production Technology
+                               Non-                       Business         Non-                       Business
+                             managerial                  owners or       managerial                  owners or
+                             employees Managers          Corp HQ         employees Managers          Corp HQ
+
+ln(Total revenues)              -0.051         0.029           -0.058       0.020         0.105      -0.226***
+                               (0.041)        (0.077)         (0.049)      (0.024)       (0.073)      (0.070)
+Multi-unit enterprise           0.023          -0.051          0.041        -0.006        0.025         0.083
+                               (0.020)        (0.097)         (0.027)      (0.014)       (0.075)       (0.111)
+Unionized                       -0.052         0.115      -0.194**          -0.001        0.122       -0.275**
+                               (0.042)        (0.093)      (0.094)         (0.005)       (0.103)       (0.107)
+Outsourcing                     0.097          0.048           -0.092       0.012         0.026         -0.143
+                               (0.060)        (0.112)         (0.094)      (0.049)       (0.066)       (0.127)
+ln(Robot capital stock)       0.080***      -0.084***          0.005        0.000      -0.079***      0.082***
+                               (0.006)       (0.006)          (0.003)      (0.001)      (0.004)        (0.005)
+US imports                    0.011***         -0.007          -0.003       0.000         -0.006        0.008
+                               (0.004)        (0.007)         (0.004)      (0.000)       (0.007)       (0.006)
+Chinese imports                0.031*          -0.015          -0.017       -0.004        -0.005        -0.026
+                               (0.019)        (0.031)         (0.022)      (0.005)       (0.019)       (0.025)
+Year fixed effects                Y              Y              Y             Y             Y             Y
+Organization fixed effects        Y              Y              Y             Y             Y             Y
+
+Observations                    2,492          2,492          2,492         2,492         2,492         2,492
+Adj R-squared                   0.32           0.44           0.46          0.33          0.44          0.48
+Standard errors in parentheses, clustered by industry. All regressions use sampling weights. *** p<0.01, **
+p<0.05, * p<0.1
+
+
+
+
+                                                                                                                 17
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+Table A22. Span of control and work unpredictability regressions with US and Chinese import controls
+                                       (1)                 (2)
+                                       FE                  FE
+Dataset:                        WES Employee WES Employee
+                                                     Work
+Dependent variable:              Span of control Unpredctability
+
+ln(Total employees)                  5.741*             -0.077
+                                     (3.009)            (0.315)
+Multi-unit enterprise                31.845              0.332
+                                    (20.434)            (0.296)
+Union member                         -2.717              0.229
+                                     (7.148)            (0.294)
+Outsourcing                          -4.606*             0.310
+                                     (2.417)            (0.411)
+ln(Robot capital stock)              0.243**           0.233***
+                                     (0.106)            (0.039)
+US imports                            0.649             -0.055
+                                     (0.730)            (0.050)
+Chinese imports                      -0.224             -0.231
+                                     (1.385)            (0.558)
+Year fixed effects                      Y                  Y
+Employee fixed effects                  Y                  Y
+
+Observations                          5,209              4,585
+Adj R-squared                         0.78               0.58
+Standard errors in parentheses, clustered by industry. All regressions
+using WES data use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                       18
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+Table A23. Performance measurement and performance pay regressions with US and Chinese import controls
+                                                 (1)                  (2)
+                                                 FE                   FE
+Dataset:                                  WES Employer         WES Employer
+
+                                        Increase in ability Fraction of emp.
+                                           to measure        with individual
+Dependent variable:                       performance          perf. pay
+
+ln(Total revenues)                            -0.049               0.107**
+                                              (0.112)              (0.050)
+Multi-unit enterprise                          0.026                0.013
+                                              (0.102)              (0.082)
+Unionized                                     -0.164               -0.154*
+                                              (0.117)              (0.085)
+Outsourcing                                                        -0.107*
+                                                                   (0.062)
+ln(Robot capital stock)                       0.033*              0.061***
+                                              (0.020)              (0.005)
+Inverse Mills ratio                           -0.058
+                                              (0.086)
+US imports                                    -0.009*              -0.004
+                                              (0.005)              (0.005)
+Chinese imports                               0.080**              0.046**
+                                              (0.036)              (0.021)
+Organization fixed effects                       Y                    Y
+Year fixed effects                               Y                    Y
+
+Observations                                   2,314                3,628
+Adj R-squared                                  0.18                 0.36
+Standard errors in parentheses, clustered by industry. Inverse Mills ratio is
+from first stage probit regression predicting organizational change. Fraction of
+employees with individual performance pay is expressed in decimal terms. All
+regressions use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                         19
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+S11 Selection on unobservables bias bounding exercise
+Here, we examine the sensitivity of our managerial and middle-skilled employment results to possible selection
+on unobservables bias, using the method developed by Oster (2019). The method exploits observable controls
+which are likely to be correlated with unobservable factors which may bias the coefficient of interest, and
+compares the R-squared and coefficient of interest when the observable controls are excluded and included in
+separate specifications. Oster (2019) derives a simple test parameter δ and suggests that an absolute value of δ
+greater than 1 implies a sufficient degree of confidence in the direction of the coefficient estimate.12 In the
+following table, Columns 1 and 3 show our managerial and middle-skilled employment specifications without the
+relevant controls, and Columns 2 and 4 show the results with controls added, along with the estimated δ
+parameter.13
+
+Table A24. Managerial and middle-skilled employment, Oster bounding exercise
+                                           (1)           (2)           (3)          (4)
+                                           FE            FE            FE           FE
+                                         WES          WES           WES           WES
+Dataset:                                Employer     Employer      Employer      Employer
+                                                                    ln(Total      ln(Total
+                                         ln(Total  ln(Total         middle-       middle-
+Dependent variable:                     managers) managers)          skilled)      skilled)
+
+ln(Total revenues)                       0.079**      0.138***       0.137        0.179**
+                                         (0.031)       (0.035)      (0.103)       (0.089)
+Multi-unit enterprise                   -0.074***    -0.076***     -0.073***    -0.070***
+                                         (0.009)      (0.008)       (0.011)      (0.012)
+Unionized                                             -0.246**                   0.392***
+                                                       (0.102)                    (0.129)
+Outsourcing                                             0.004                      0.029
+                                                       (0.052)                    (0.087)
+ln(Robot capital stock)                 -0.074***    -0.076***     -0.073***    -0.070***
+                                         (0.009)      (0.008)       (0.011)      (0.012)
+ln(IT capital stock)                                    0.001                      -0.005
+                                                       (0.003)                    (0.005)
+Organizational change                                   0.019                      0.083
+                                                       (0.047)                    (0.119)
+ln(Total non-mgr. employees)                         -0.260***
+                                                      (0.036)
+ln(Total low skilled production emp.)                                           -0.214***
+                                                                                 (0.042)
+ln(Total high skilled)                                                          -0.196***
+                                                                                 (0.068)
+Organizational change                                   0.019                      0.083
+                                                       (0.047)                    (0.119)
+Year fixed effects                          Y             Y            Y             Y
+Organization fixed effects                  Y             Y            Y             Y
+
+Observations                             17,442        17,442        17,442       17,442
+Adj R-squared                             0.69           0.71         0.70         0.73
+Oster's Delta                                           -3.03                      2.34
+Standard errors in parentheses, clustered by industry. Adjusted R-squared is overall R-
+squared. All regressions using WES data use sampling weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+12
+   Negative values of δ imply that if the observables are positively correlated with our robot investment variable, the
+unobservables must be negatively (instead of positively) correlated with robot adoption to obtain our coefficient estimate.
+13
+   The organizational change dummy control variable comes from a separate section of the WES survey, where the survey
+asks respondents whether their workplace experienced any organizational changes during the year, where organizational
+change is defined as “a change in the way in which work is organized within your workplace.”
+                                                                                                                              20
+
+
+                                    Electronic copy available at: https://ssrn.com/abstract=3422581
+S12 Average employee wage
+Here, we examine whether robot investments are associated with the average wage within the firm. As shown in
+Column 1 in the table below, we find no evidence of a relationship. In Column 2, we find only weak evidence
+(significance at the 10% level) of a positive relationship between robot investment and the average wage.
+Overall, the results do not show compelling evidence of a relationship between robot adoption and the average
+wage inside the firm. Given our earlier findings of increases in both low and high-skilled workers (as well as the
+decrease in managers), the results presented here suggest the net effect of these workforce composition changes
+on the average wage within the firm may be relatively negligible.
+
+Table A25. Average employee wage within the firm
+
+                                      (1)            (2)
+                                     OLS             FE
+Dataset:                           NALMF          NALMF
+                                   Average        Average
+Dependent variable:                 wage           wage
+
+
+ln(Total assets)                  4,088.1***     2,068.1***
+                                    (282.3)        (199.8)
+Multi-unit enterprise             -1,093.5**       -280.4
+                                    (449.7)        (274.8)
+ln(Robot capital stock)              -66.7         73.9*
+                                    (89.4)         (38.6)
+Industry fixed effects                 Y              N
+Province fixed effects                 Y              N
+Year fixed effects                     Y              Y
+Organization fixed effects             N              Y
+
+Observations                       929,162         929,162
+Adj R-squared                       0.48            0.90
+Standard errors in parentheses, clustered by industry. ***
+p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                 21
+
+
+                                  Electronic copy available at: https://ssrn.com/abstract=3422581
+S13 First stage and selection regressions
+First stage results for our 2SLS estimation for total employment as well our probit estimation of endogenous
+choice of organizational change are presented below.
+
+Table A26. First stage of total employment 2SLS regression, first stage probit predicting choice of organizational
+change
+
+                                                        (1)               (2)
+                                                       OLS              Probit
+                                                                       WES
+Dataset:                                             NALMF            Employer
+                                                    ln(Robot     Organizational
+Dependent variable:                               capital stock)    change
+
+ln(Total assets)                                     0.084***
+                                                      (0.016)
+ln(Total revenues)                                                    0.180***
+                                                                       (0.045)
+Multi-unit enterprise                                0.140***           0.209
+                                                      (0.030)          (0.185)
+Pct. of workers in each industry in high
+manual, low verbal occupations in 1995 x
+inverse median price per robot in Canada             1.111***
+                                                      (0.178)
+Unionized                                                               0.040
+                                                                       (0.128)
+ln(Robot capital stock)                                                 -0.028
+                                                                       (0.024)
+Strategic importance: Reorganizing the work                           0.150***
+process                                                                (0.052)
+Industry fixed effects                                   Y                Y
+Province fixed effects                                   Y                Y
+Year fixed effects                                       Y                Y
+
+Observations                                          865,759           8,622
+Adj R-squared                                          0.07
+pseudo-R-squared                                                        0.22
+log likelihood                                                        -217,150
+Standard errors in parentheses, clustered by industry. F-statistic of excluded
+instrument in Column 1 is 38.94. All regressions using WES data use sampling
+weights. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+                                                                                                                22
+
+
+                                   Electronic copy available at: https://ssrn.com/abstract=3422581
+S14 Additional data description
+Robot investment data
+
+Since we are using import data, the definition of robots is ultimately based upon what types of import transactions
+are being classified as “robots.” As mentioned earlier, the IFR defines industrial robots as having the
+characteristics of being 1) automatically controlled, 2) reprogrammable, 3) a multi-purpose manipulator in three
+or more axes, and 4) used in industrial automation applications. It provides a number of examples of robots and
+what their primary functions are in both their published material and on their website, which include activities
+such as assembly, welding, painting, packaging, picking and placing, and handling materials for metal casting. In
+principle, firms that are members of IFR-affiliated industry associations are likely to define “robots” to be
+consistent with the IFR definition.
+
+To examine our measure of robotics investment in greater detail, we manually conducted searches in the public
+domain for transactions accounting for 95% of the total value of robot purchases in our data. Members of IFR-
+affiliated industry associations (e.g., Robotics Industry Association, Japan Robot Association) accounted for
+58.4% of the total value of imports in our data. Firms that were not robotics association members but that
+advertised selling the same type of robots accounted for another 13.3% of the value. Most often these firms
+specialized in installing and integrating robots actually produced by association members. For an additional 2%
+of the total value of transactions, the exporting firms were not affiliated with a robotics industry association but
+manufactured robots for scientific laboratories. Imported mainly by firms in the healthcare industry in our data,
+these robots automate a variety of repetitive tasks in biology and chemistry research, such as pipetting .
+
+An additional 19.0% of the total value was attributable to importing firms in industries that use robots intensively:
+primarily the automotive industry, but also machine tools and plastics manufacturing. Some firms in these
+industries are members of robotics industry associations, but our data has more comprehensive coverage of firms
+that invest in robots. Given the well-documented prevalence of their use in these industries and from examining
+the types of robots used by the importing firms in these transactions, we were able to infer that these transactions
+reflected investments in robotics similar to transactions involving robotics association members. For the
+remaining 2.3%, firm websites confirmed robots being utilized across a variety of activities, including performing
+repairs, handling materials in hazardous environments such as pipelines or nuclear power plants, as well as in
+construction and demolition.
+
+Based on our examination of individual robot import transactions, we found that robots are especially active in the
+automotive and machinery and equipment assembly sectors (see Appendix Figure A4), plastic processing
+industries, and in metal and manufacturing. In automotive manufacturing, robots are usually organized along a
+structured assembly line to fetch and position parts; fasten, rivet or weld parts together; and apply coatings and/or
+paint to the assembled parts. Robots are also prominent in the electronics assembly industry, where “pick and
+place” robots select circuits and place them on circuit boards or silicon wafers. They handle small, delicate parts
+with precision, selecting among different types and pressing them on to circuit boards. They can also visually
+inspect circuit boards, as well as test the connections, and can also be involved in etching circuit boards. Robots
+may also be involved in packaging finished products. In addition to improving quality, one of the main
+motivations for adopting robots in the electronics industry is the increase in flexibility in serving different orders,
+switching from large volume orders to smaller batches.
+
+Robots are also used extensively in the processing of plastics, where they primarily perform secondary machine
+tending roles. They also apply labels and move parts to other areas where they are further modified or packaged
+for shipment. In the injection molding of plastic parts and packaging materials, they are also used to pick items
+                                                                                                                       23
+
+
+                          Electronic copy available at: https://ssrn.com/abstract=3422581
+and as label applicators. Overall, in the plastic processing industry, robots can replace a substantial part of
+repetitive manual labor. In minerals and metals manufacturing, robots are involved in loading and unloading
+metal blanks into computer numerical control (CNC) machine tools, repositioning semi-finished parts during the
+machining process, and deburring afterwards. A primary motivation for robot adoption by firms in die-casting
+industries is the improvement of worker safety. Foundries are dangerous work environments where robots (or
+workers) are subjected to intense heat and toxic fumes. The molded parts would then need to be cooled, modified,
+and inspected. Robots can control for quality in all these steps. When the quality of molded parts depends upon
+the skill of individual workers, robots offer much greater consistency. Individuals working with robots are also
+able to work much more safely and efficiently.
+
+In addition to these industry specific applications, palletizing is a ubiquitous application that robots can facilitate
+across many industries. Robots can recognize, pick up, orient and stack packages on pallets. They can move easily
+between packages of different sizes and varieties of different quantities. Combined with the ability to control for
+quality, robots can efficiently place items in packages, seal them, and label them with machine readable codes.
+This not only increases efficiency and precision, but also reduces injuries associated with palletizing large objects.
+
+Additional descriptive statistics are provided here for the robot-adopting organizations in the NALMF and WES
+samples used. The import data used for analysis consists of 13,228 distinct import transactions.14
+
+                                               NALMF sample                          WES sample
+ No. of robot-adopting                               1,157                                 48
+ organizations
+ No. of organization-years of                        5,674                                 212
+ robot investment
+ Avg. number of years robots                          1.75                                1.96
+ were imported within robot-
+ adopting organizations
+
+Examples of different occupations by skill classification provided in the WES
+
+Examples of middle-skilled occupations: Machinists, machine tenders, stationary engineers, mechanics,
+technologists, lab technicians, registered nursing assistants, audio-visual technicians, ECE-trained caregivers,
+technology trainers, legal secretaries, draftspersons, construction trades, beauticians / barbers/ hairdressers,
+butchers and repair occupations that do not normally require a post-secondary certificate or diploma.. Includes
+computer programmers and operators whose duties would normally require a community college certificate or
+diploma.
+
+Examples of low-skilled occupations: Assemblers, packers, sorters, pilers, machine operators,
+transportation equipment operators (drivers), warehousemen, and cleaning staff.
+
+Examples of high-skilled occupations: Architects, engineers, medical doctors, lawyers, accountants, economists,
+science professionals, psychologists, sociologists, registered nurses, marketing and market research professionals,
+nurse-practitioners and teaching professionals. Includes computing professionals whose duties would normally
+require a minimum of an undergraduate degree in computer science.
+
+
+
+
+14
+     This does not include organizations from industries or size categories that were excluded in the regression samples.
+                                                                                                                            24
+
+
+                              Electronic copy available at: https://ssrn.com/abstract=3422581
+S15 Productivity
+
+As an additional test, we examine whether investments in robotics lead to increases in firm productivity.15 As
+Columns 2 through 4 in the table below show, the coefficient for robot capital stock is positive and significant,
+providing evidence that robots do in fact increase firm productivity.
+
+
+
+Table A27. Productivity regressions
+
+                                                 (1)            (2)           (3)             (4)
+Dependent variable: ln(Total revenues)                                                 Levinsohn-
+                                                OLS           OLS             FE         Petrin
+
+ln(Materials)                                 0.411***      0.411***      0.235***      0.265***
+                                               (0.024)       (0.024)       (0.021)       (0.003)
+ln(Labor)                                     0.445***      0.443***      0.310***      0.312***
+                                               (0.025)       (0.025)       (0.023)       (0.004)
+ln(Non-Robot capital stock)                   0.226***      0.224***      0.279***      0.220***
+                                               (0.041)       (0.041)       (0.019)       (0.005)
+ln(Robot capital stock)                                     0.019***      0.007***      0.008***
+                                                             (0.003)       (0.001)       (0.002)
+
+Industry fixed effects                            Y             Y             N
+Region fixed effects                              Y             Y             N
+Year fixed effects                                Y             Y             Y
+Organization fixed effects                        N             N             Y
+
+Observations                                   929,162       929,162       929,162       929,162
+Adj R-squared                                   0.87          0.87          0.97
+Standard errors in parentheses, clustered by industry. Standard errors for Levinsohn-Petrin
+estimation are bootstrapped with 100 repetitions. *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+
+15
+     Logged materials, labor, and capital stock were calculated using measures of each variable provided in the NALMF data.
+                                                                                                                              25
+
+
+                                Electronic copy available at: https://ssrn.com/abstract=3422581
+S16 Descriptive statistics and correlation tables
+Table A28. Descriptive statistics, NALMF sample
+
+     Variable                      Mean        σ      1       2       3      4
+  1. ln(Total employees)            3.23      0.76    1.00
+  2. ln(Robot capital stock)        0.07      0.89    0.16 1.00
+  3. ln(Total assets)              14.13      1.55    0.62 0.15 1.00
+  4. Multi-unit enterprise          0.05      0.22    0.36 0.08 0.30 1.00
+     N = 929,162
+Note: To prevent the harmful disclosure of any organization-specific information, Statistics Canada does not allow minimum
+and maximum values for variables to be reported.
+
+
+
+Table A29. Descriptive statistics, WES employment sample
+
+    Variable                           Mean     σ     1      2      3       4      5      6      7      8       9     10     11     12      13         14
+ 1. ln(Total managers)                  1.32   0.77   1.00
+ 2. ln(Total non-mgr. employees)        3.08   0.87   0.42   1.00
+ 3. ln(Total mgr. hires)                0.44   0.68   0.60   0.16    1.00
+ 4. ln(Total non-mgr. hires)            2.56   1.11   0.29   0.62    0.27   1.00
+ 5. ln(Total mgr. departures)           0.34   0.63   0.04   0.27   -0.06   0.24   1.00
+ 6. ln(Total non-mgr. departures)       2.35   1.14   0.36   0.53    0.38   0.75   0.20   1.00
+ 7. ln(Total middle-skilled)            0.98   1.19   0.26   0.35    0.08   0.12   0.09   0.09   1.00
+ 8. ln(Total low-skilled production)    1.23   1.40   0.22   0.45    0.07   0.22   0.10   0.21   0.04    1.00
+ 9. ln(Total high-skilled)              0.37   0.79   0.20   0.29    0.13   0.15   0.11   0.15   0.16   -0.03   1.00
+10. ln(Robot capital stock)             0.02   0.45   0.01   0.03    0.01   0.02   0.03   0.02   0.04    0.02   0.04 1.00
+11. ln(Total revenues)                 14.66   1.30   0.50   0.68    0.22   0.35   0.20   0.37   0.40    0.36   0.28 0.02    1.00
+12. Multi-unit enterprise               0.08   0.27   0.21   0.35    0.11   0.20   0.10   0.24   0.11    0.14   0.12 0.003   0.33   1.00
+13. Unionized                           0.19   0.39   0.15   0.26    0.13   0.10   0.13   0.14   0.25    0.18   0.03 0.02    0.26   0.21        1.00
+14. Outsourcing                         0.30   0.46   0.08   0.05    0.07   0.05   0.03   0.07   0.09    0.08   0.07 0.002   0.12   0.06        0.07   1.00
+    N = 17,449
+
+
+
+
+                                                                                                                                           26
+
+
+                                  Electronic copy available at: https://ssrn.com/abstract=3422581
+References
+
+Acemoglu, D., Restrepo, P. (2020). Robots and jobs: Evidence from US labor markets. Journal of Political
+Economy, 128(6), 000-000.
+
+Autor, David, H., Dorn, D., Hanson, G. H. (2013). The geography of trade and technology shocks in the United
+States. American Economic Review, 103(3), 220-25.
+
+Baldwin, J, Liu, H, Tanguay, M (2015). An Update on Depreciation Rates for the Canadian Productivity
+Accounts. Statistics Canada, Economic Analysis Division.
+
+Iacus, S. M., King, G., Porro, G. (2012). Causal inference without balance checking: Coarsened exact matching.
+Political analysis, 20(1), 1-24.
+
+Kletzer, L. G. (1998). Job displacement. Journal of Economic Perspectives, 12(1), 115-136.
+
+Lazear, E. P. (2000). Performance pay and productivity. American Economic Review, 90(5), 1346-1361.
+
+
+
+
+                                                                                                                 27
+
+
+                        Electronic copy available at: https://ssrn.com/abstract=3422581
+

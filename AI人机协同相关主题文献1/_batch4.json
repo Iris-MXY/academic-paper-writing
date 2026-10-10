@@ -1,0 +1,112 @@
+[
+  {
+    "file": "31 Offline reinforcement learning for human-guided human-machine interaction with private information..pdf",
+    "title": "Offline Reinforcement Learning for Human-Guided Human-Machine Interaction with Private Information",
+    "research_question": "在存在机器私有信息的人机引导互动中，如何基于离线（预收集）数据找到最优的 Alice（人）与 Bob（机器）策略对，以最大化双方期望总回报？",
+    "method": "理论建模 + 离线强化学习算法。将互动形式化为两人轮流博弈（turn-based game），提出处理混淆偏误的离线 RL 方法，使用极大极小倾向得分（SMD）估计量；数据来源为离线预收集数据集（a priori）。",
+    "theory": "二人回合制博弈、离线 RL、由私有信息引发的混淆偏误（confounding bias）与分布偏移（distributional shift）、部分覆盖（partial coverage）假设、SMD 估计收敛。",
+    "contributions": "（1）首次将带私有信息的人机引导互动建模为二人回合制博弈下的离线 RL 问题；（2）刻画私有信息导致的混淆偏误两大挑战；（3）给出对人为偏离鲁棒、可计算的最优推荐策略框架及性能差距（performance gap）理论上界。",
+    "key_findings": "离线设定存在两大挑战：机器私有信息不可观测导致混淆偏误、分布偏移。在部分覆盖假设与 SMD 收敛帮助下，最优策略对的性能差距上界随轨迹数 n→∞ 收敛到 0（Theorem 3/4）。",
+    "limitations": "原文未在正文单列局限；方法依赖较强的覆盖与正则假设（Assumptions 1–8），且为纯理论框架，缺乏实证验证。",
+    "pages": "摘要/引言 p.1；结论与定理 p.26"
+  },
+  {
+    "file": "32 Roles of artificial intelligence in collaboration with humans-Automation, augmentation, and the future of work..pdf",
+    "title": "Roles of Artificial Intelligence in Collaboration with Humans: Automation, Augmentation, and the Future of Work",
+    "research_question": "在判断任务中，AI 替代人（自动化 automation）与 AI 辅助人（增强 augmentation）何时应被采用？最优任务分配取决于何种人-AI 互补性？",
+    "method": "分析建模（analytical modeling framework）+ 实证研究。理论框架区分 between-task 与 within-task 互补性；用 100 张图像的人工+AI 分类实验数据校准并验证框架。",
+    "theory": "人-AI 互补性（between-task / within-task complementarity）、Polanyi 条件、ground truth 条件、统一任务分配框架。",
+    "contributions": "（1）证明自动化随 between-task 互补性提高而增加，增强随 within-task 互补性提高而增加；（2）将自动化与增强整合进统一任务分配框架；（3）实证验证稳定配置模式：AI 自动化易任务、增强人机表现相近任务、人独立完成难任务。",
+    "key_findings": "存在两类互补性（pH=0.44+0.31pAI，斜率远小于 1 表明分类差异大→between-task 互补）；最优配置模式稳定：AI 自动化简单任务、增强表现相近任务、人处理困难任务。",
+    "limitations": "框架针对判断任务（图像分类），未考虑任务价值异质性，亦未涉及规划/创造性任务；扩展方向见 p.19 未来研究。",
+    "pages": "引言 p.2；理论背景 p.3；任务分配框架 p.6；结果 p.13；讨论 p.16；结论 p.19"
+  },
+  {
+    "file": "33 Predictably unequal The effects of machine learning on credit markets.pdf",
+    "title": "Predictably Unequal: The Effects of Machine Learning on Credit Markets",
+    "research_question": "更好的统计技术（机器学习）在信用评估中如何改变不同种族借款人之间的分配结果（distributional consequences）？",
+    "method": "二手数据实证（美国抵押贷款数据）。用传统 Logit 与机器学习模型（Nonlinear Logit、Random Forest）预测违约；比较含/不含种族变量及分种族分组模型表现，并建模均衡结果（接受率、利率）。",
+    "theory": "统计技术的分配效应来自更强的灵活性以揭示结构性关系，或从对被排除特征的三角测量（triangulation）；均衡模型分析。",
+    "contributions": "（1）从理论说明 ML 分配效应来源；（2）实证发现黑人和西班牙裔借款人更少从 ML 进步中获益；（3）量化不同模型下的群体间差距（均衡结果表 VII）。",
+    "key_findings": "黑人和西班牙裔借款人 disproportionately less likely to gain；Random Forest 下群体间利率标准差更大（Cross-group SD：NL 2.165 → RF 2.098，SD SATO 上升）；ML 可能加剧信用市场不平等。",
+    "limitations": "需更多数据（再校准均衡、未被批准借款人的反事实行为）才能完全评估；分析基于特定美国抵押贷款样本。",
+    "pages": "摘要 p.1；模型与表现 p.36–39；结论 p.60"
+  },
+  {
+    "file": "34 The role of decision support systems in attenuating racial biases in healthcare delivery..pdf",
+    "title": "The Role of Decision Support Systems in Attenuating Racial Biases in Healthcare Delivery",
+    "research_question": "临床决策支持系统（CDSS）能否、以及在何种机制下减弱黑人与白人患者在截肢/血管重建率上的种族差异？",
+    "method": "二手面板数据 + 双重差分（DiD）。住院患者面板数据；CDSS 采用前后对比，控制医院特征与时间趋势；辅以医生访谈作为机制证据。",
+    "theory": "信息系统通过结构化与标准化护理流程（protocols）促进无偏决策；protocols 增加专家会诊概率、改变护理团队构成（而非改变个别医生决策）。",
+    "contributions": "（1）证明 CDSS 显著缩小黑白截肢率差异，且无证据只是延迟截肢；（2）揭示机制为护理协议将患者匹配到合适专家、改变护理团队，而非改变医生个体决策；（3）强调信息系统在促进无偏决策中的作用。",
+    "key_findings": "CDSS 采用显著缩小黑白截肢率差异；无证据表明只是延迟截肢；效应由治疗方案改变（匹配专家）驱动，而非医生个体决策改变。",
+    "limitations": "原文未明确单列局限；结论基于特定糖尿病相关住院样本，机制推断依赖访谈与观察性设计。",
+    "pages": "摘要 p.1；引言 p.2；数据 p.6；结果 p.9"
+  },
+  {
+    "file": "35 Strategic responses to algorithmic recommendations-Evidence from hotel pricing..pdf",
+    "title": "Strategic Responses to Algorithmic Recommendations: Evidence from Hotel Pricing",
+    "research_question": "算法建议与人类定价决策如何互动？人类决策者的调整成本如何引发与算法顾问的利益冲突并导致策略性偏差建议？",
+    "method": "高频酒店房价二手数据 + 结构模型（structural model）。构建带成本价格调整与算法建议的模型；用数据矩条件校准（Table 5）；量化战略性偏差造成的损失。",
+    "theory": "带调整成本的建议模型（advice with costly price adjustments）、廉价谈话（cheap-talk）模型对比、利益冲突导致策略性偏差（strategic bias）。",
+    "contributions": "（1）记录价格设定摩擦（调整成本）引发的人-算利益冲突；（2）模型显示均衡下算法推荐被策略性偏置并导致次优定价；（3）用结构模型量化战略性偏差损失。",
+    "key_findings": "酒店经理更新率低（约 3.8%），复制推荐率 84%；经理调整成本使其无法完全实现算法潜在收益；算法因利益冲突给出策略性偏差推荐；某些参数下授权（delegation）优于现状。",
+    "limitations": "模型假设经理合规函数在不同算法下保持不变；参数化依赖特定酒店数据，未完全捕捉动态与异质性。",
+    "pages": "摘要 p.3；引言 p.4；模型 p.17；数据/分析 p.26；结论 p.34"
+  },
+  {
+    "file": "36 Rethinking fairness for human-AI collaboration..pdf",
+    "title": "Rethinking Fairness for Human-AI Collaboration",
+    "research_question": "当人类决策者并非完美遵从算法时，传统算法公平约束是否仍能保证公平？如何设计对（先验未知）遵从模式稳健的公平推荐？",
+    "method": "理论定义 + 计算实验（基于真实刑事量刑数据）。通过 FOIA 获取弗吉尼亚法庭记录（22,433 量刑事件、206 法官）估计法官政策 πH 与算法政策 πA；模拟四种人-AI 政策的性能与公平性。",
+    "theory": "选择性遵从（selective compliance）放大歧视；compliance-robustly fair 概念；在未知遵从模式下保证（弱）改善公平。",
+    "contributions": "（1）定义 compliance-robustly fair 推荐，保证任何遵从模式下端到端改善公平；（2）提出寻找最佳性能改进公平政策的优化策略；（3）证明传统公平、遵从稳健公平与优于人类准确性三者往往不可兼得。",
+    "key_findings": "选择性遵从在算法对优势群体更宽容时放大种族偏见（β3 显著为正，除 compliance-robust 政策外）；传统公平政策反而可能恶化公平；遵从稳健政策有效防范此类问题。",
+    "limitations": "假设法官合规函数在不同算法工具下保持不变（实践中可能不成立）；估计政策所用信息可能与法官当时可用信息不完全一致。",
+    "pages": "引言 p.1；实验设置 p.16；结果 p.17；结论 p.18"
+  },
+  {
+    "file": "37 The impact of disclosing human involvement on customer interactions with hybrid service agents..pdf",
+    "title": "The Impact of Disclosing Human Involvement on Customer Interactions with Hybrid Service Agents",
+    "research_question": "向客户披露混合服务代理（AI 聊天机器人 + 幕后人类员工）中的「人类参与」时，如何影响客户沟通行为与员工工作负载？",
+    "method": "随机实地实验（randomized field experiment）+ 受控在线实验（Clickworker 平台，288 参与者）。测量沟通风格（verbosity/complexity/density，LIWC）与员工工作负载。",
+    "theory": "印象管理关注（impression management concerns）被「人类在场」激活，导致更人性化（human-oriented）沟通风格，从而增加需人工处理的请求。",
+    "contributions": "（1）揭示披露人类参与使客户采用更人性化沟通风格；（2）机制为印象管理关注；（3）发现负面后果：聊天机器人自动处理减少、员工工作负载增加 38–70%；（4）拓展披露文献从 AI 身份到人类参与。",
+    "key_findings": "披露（up-front 或 step-in HID）使客户沟通更人性化，由印象管理关注驱动；最终增加员工工作负载 38–70%（探索性）。",
+    "limitations": "实地实验依赖特定公司情境（外部效度有限）；成本影响为探索性分析；在线实验样本为 Clickworker 用户。",
+    "pages": "引言 p.2；理论发展 p.4；实地实验方法 p.8；结果 p.10；在线实验方法 p.14；讨论 p.16"
+  },
+  {
+    "file": "38 The best decisions are not the best advice-Making adherence-aware recommendations..pdf",
+    "title": "The Best Decisions Are Not the Best Advice: Making Adherence-Aware Recommendations",
+    "research_question": "鉴于人类决策者只会部分落实（partial adherence）算法推荐，是否应在一开始就调整推荐？如何计算对人为偏离免疫的最优推荐？",
+    "method": "理论建模（MDP + adherence-aware MDP 框架）+ 数值实验（含医院住院流量等应用）。证明平稳确定性最优策略存在并可化为经典 MDP / 鲁棒 MDP 高效计算。",
+    "theory": "专家在环（expert-in-the-loop）、Markov 决策过程、有效策略 πeff 为推荐与基线政策的凸组合、adherence level θ、s-rectangular 鲁棒 MDP。",
+    "contributions": "（1）提出 adherence-aware MDP 框架刻画推荐与实施政策的二分；（2）证明最优推荐可选平稳确定、可高效计算、具分段常数等结构性质；（3）提供对人为偏离免疫且保证优于基线的推荐策略与性能界。",
+    "key_findings": "忽略遵从度 θ 可能使有效回报低于基线本身（R(πeff(πalg,θ̃))<R(πbase)）；部分遵从对绩效影响非单调；数值实验显示忽视非遵从会造成严重绩效恶化。",
+    "limitations": "假设 θ 静态/外生；θ 随时间变化会使博弈论式更新难以处理；限制不遵从原因的方法可能模型误设；基线政策可能不完全已知。",
+    "pages": "引言 p.1；贡献 p.2–3；数值实验 p.3；核心发现 p.17；局限 p.35"
+  },
+  {
+    "file": "39 Incentives, framing, and reliance on algorithmic advice-An experimental study.pdf",
+    "title": "Incentives, Framing, and Reliance on Algorithmic Advice: An Experimental Study",
+    "research_question": "决策者的薪酬合约设计（激励）与算法建议的框架（framing）如何影响对算法建议的依赖（reliance）、投入努力与最终绩效？",
+    "method": "实验室实验。三国立大学受试者池（ORSEE）招募，1,489 有效参与者；3×3 处理（薪酬：固定/绩效/锦标赛 × 算法建议：纯 AI / 人类增强框架）；预测任务。",
+    "theory": "算法厌恶（algorithm aversion）、金融激励类型（固定/绩效/锦标赛）、算法建议类型（human-augmented framing）、建议权重（weight of advice）。",
+    "contributions": "（1）揭示薪酬合约与框架对算法依赖的交互影响；（2）发现人类增强框架提高建议可信度与依赖，尤其对固定薪酬者；（3）补充算法厌恶文献：仅提及人类专家参与即可提高依赖。",
+    "key_findings": "即便存在算法厌恶，金融激励结构影响有限；人类增强（human-AI）框架显著提高建议权重，尤其对固定薪酬合同者，绩效/锦标赛合同者影响小；问卷证实感知可信度更高。",
+    "limitations": "学生样本（作者认为适合任务但外部效度待考）；实验室环境；依赖自报问卷测量。",
+    "pages": "引言 p.2；文献与假设 p.4；实验设计 p.7；结果 p.9；结论 p.18"
+  },
+  {
+    "file": "40 Strategic inattention in product search..pdf",
+    "title": "Strategic Inattention in Product Search",
+    "research_question": "在线平台可观测买家搜索行为并据此价格歧视时，买家是否会通过战略性不关注（少用筛选器）来应对？这种战略买家-卖家互动的理论与实验后果为何？",
+    "method": "理论模型 + 实验室实验。买家用筛选器（filters）限制产品集，卖家观测筛选数量并定价，买家随机获产品并决策购买；多期博弈。",
+    "theory": "战略不关注（strategic inattention）、价格歧视、信息传输（information transmission）、hold-up 问题、Crawford-Sobel 信号博弈。",
+    "contributions": "（1）提出战略性不关注作为买家对价格歧视的应对策略；（2）理论与实验刻画买家-卖家互动；（3）对「在线平台提升消费者福利」提出批判性质疑。",
+    "key_findings": "实验表明买家确实采用战略不关注，限制了平台通过数据榨取剩余的能力；对在线平台给消费者带来增值的说法提供批评性证据。",
+    "limitations": "实验室设置是对现场决策环境的简化（「clearly a simplification of the decision making environment in the field」），外部效度受限；实验未被受试者视为最后通牒博弈。",
+    "pages": "摘要 p.3；模型/实验设置 p.6；相关与结论 p.8"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "file": "21 OM Forum—The Best of Both Worlds Machine Learning and Behavioral Science in Operations Management.pdf",
+    "title": "OM Forum—The Best of Both Worlds: Machine Learning and Behavioral Science in Operations Management",
+    "research_question": "在运营管理(OM)中，机器学习(ML)与行为科学(BSci)这两类常被视为互斥的学科，如何作为互补工具协同解决重要问题？",
+    "method": "概念性框架论文/文献综述，无实证数据。系统梳理ML与BSci各自优势与弱点，并提出融合框架；详述OM研究流程各步骤中两者如何相互借力。",
+    "theory": "ML与BSci互补性理论：两者在预测、因果推断、改进OM理解上具有交叉目标；一方的弱点恰是另一方的强项。",
+    "contributions": [
+      "提出ML与BSci在OM中互补的概念框架，论证二者目标交叉而非互斥",
+      "提出基于'研究目标(因果推断vs预测)×数据可得性(丰富vs匮乏)'的2×2分类框架，明确各情境下主辅配置",
+      "详述OM研究流程(数据收集/训练、部署算法、设计实验、分析数据)中双方如何相互增强",
+      "讨论未来研究方向、博士生培养与资源需求"
+    ],
+    "key_findings": "ML与BSci目标交叉，彼此弱点正是对方强项(ML缺高质量数据时BSci实验可生成数据；ML难捕捉人类偏好时BSci建模可补足)。学科分离使互补优势未自动实现。四种情境下方法主次不同：数据丰富+预测目标以ML为主，数据匮乏+因果目标以BSci为主。",
+    "limitations": "纯概念性与规范性讨论，未提供具体实证检验；为评论性框架论文，缺乏数据支撑；未讨论具体实施障碍。",
+    "pages": "摘要 p.1605；引言 p.1606；2×2框架 Table 2 p.1617；结论(第5节) p.1615-1617；全文 pp.1605-1621"
+  },
+  {
+    "file": "22 Algorithmic fairness in business analytics-Directions for research and practice..pdf",
+    "title": "Algorithmic fairness in business analytics: Directions for research and practice",
+    "research_question": "商业分析(BA)中算法公平问题何在？存在哪些偏倚来源、度量与缓解手段，以及未来研究与实践方向？",
+    "method": "前瞻性文献综述(special issue article)，无实证数据。系统回顾算法偏倚的来源、度量指标、缓解算法，并讨论utility-fairness关系。",
+    "theory": "算法公平理论；公平性-效用(fairness-utility)关系(常误认为权衡，实为可忽略或短视)；规模化偏倚(bias at scale)。",
+    "contributions": [
+      "首篇聚焦BA/OM情境的算法公平综述，区别于计算机科学/统计/哲学/法律视角",
+      "提出BA全流程(问题构建→数据收集→算法开发→部署评估)中偏倚来源的系统性表征",
+      "批判性讨论utility-fairness关系，指出二者常非真正权衡",
+      "识别未来研究方向(量化公平-效用外部性、human-AI协作缓解偏倚、长期影响等)"
+    ],
+    "key_findings": "BA带来'规模化偏倚'风险，决策自动化使任何偏倚影响被放大。公平与效用常非权衡(Rodolfa et al. 2021显示可忽略)。OM系统视角独特适合推进公平BA。算法公平可作'fair by design'缓解人类偏倚，但数学形式化无法完全捕捉公平。",
+    "limitations": "综述性，缺乏实证量化公平-效用的成本收益；主要为理论性讨论；数学形式化可能无法全面捕捉公平的规范含义。",
+    "pages": "摘要 p.3749；引言 p.3750；未来方向(第8节/结论) p.3768；全文 Prod. Oper. Manag. 2022;31:3749-3770"
+  },
+  {
+    "file": "23 Explainable ai for operational research-A defining framework, methods, applications, and a research agenda..pdf",
+    "title": "Explainable AI for Operational Research: A Defining Framework, Methods, Applications, and a Research Agenda",
+    "research_question": "如何为运筹学(OR)定义可解释人工智能(XAI)，即XAIOR？其方法类别、应用领域与研究议程是什么？",
+    "method": "概念性框架+系统性文献综述(manuscript/preprint)。提出XAIOR三维度规范性框架，系统梳理数据准备、监督/无监督学习、后验解释、评估指标等方法，并综述6个OR领域应用。",
+    "theory": "XAIOR框架 = 性能分析(Performance Analytics, PA) + 归因分析(Attributable Analytics, AA) + 责任分析(Responsible Analytics, RA) 三维度的整合。",
+    "contributions": [
+      "首次提出领域特定的XAIOR规范性定义与框架(PA/AA/RA三维度)",
+      "系统梳理XAIOR在各方法类别(数据准备、监督/无监督学习、后验解释、评估指标)中的应用",
+      "综述预测、风险、供应链、欺诈、营销、教育6个核心OR领域的应用",
+      "提出含5大主题(数据创新、深度学习、XAIOR整合、应用、责任)的未来研究议程"
+    ],
+    "key_findings": "XAIOR=同时具备性能、可归因、负责任的洞察转化。性能(PA)研究基础最成熟，AA与RA仍明显不足。需整合三维度以真正落地。XAI与OR性能间存在权衡(可解释性常以性能为代价)。方法概览为非穷尽。",
+    "limitations": "综述性，非实证；方法概览明确为'非穷尽'(non-exhaustive)；框架为规范性提议，尚待实证检验；未覆盖所有OR子领域。",
+    "pages": "摘要 p.1；框架定义与 Fig.2 p.4-5；方法(第3节) p.320起；应用(第4节) p.1166起；结论(第6节) p.1724；研究议程 Fig.7 p.1624"
+  },
+  {
+    "file": "24 Is your machine better than you You may never know.pdf",
+    "title": "Is your machine better than you? You may never know",
+    "research_question": "在human-in-the-loop高风险决策中，监督机器的决策者(DM)能否正确判断机器是否比自己更优？何种条件下出现学习失败？",
+    "method": "理论模型(贝叶斯动态学习模型)，无实证数据。构建DM在验证偏误(verification bias)与无探索(exploration-free)条件下监督机器重复决策任务的框架，推导定理1-8。",
+    "theory": "验证偏误(一种选择偏误)、贝叶斯信念更新、human-in-the-loop、动态学习。",
+    "contributions": [
+      "提出无需'不信任偏误'假设即可解释不当推翻算法的学习失败机制",
+      "刻画DM信念演化及与4个基本要素(信息性、替代性、验证偏误、无探索)的关系",
+      "识别'永远犹豫'(信念震荡)与'错误相信机器更优'(信念收敛到伯努利变量)两种mislearning",
+      "为human-machine互补提供新解释，并给出完全采纳或拒绝机器的指南"
+    ],
+    "key_findings": "DM因验证偏误(仅在其行动时才验证机器正确性并更新信念)导致学习失败：机器更优时信念震荡(Thm3)，机器更差时信念收敛到伯努利变量(Thm4)；取决于先验p。不信任偏误不会根本改变结构(Thm5-6)。验证偏误部分放松后可正确学习(Thm8)。",
+    "limitations": "理论模型，未用真实数据或实验验证；假设探索-free、验证偏误特定形式；仅二元行动设定；未考虑多期策略性互动。",
+    "pages": "摘要 p.1；引言 p.1-2；定理1(无交互) p.570；定理3(信念震荡) p.719；定理4(伯努利收敛) p.807；结论(第10节) p.1240"
+  },
+  {
+    "file": "25 Frontiers in service science-The management of data analytics services-New challenges and future directions..pdf",
+    "title": "Frontiers in Service Science: The Management of Data Analytics Services: New Challenges and Future Directions",
+    "research_question": "将数据分析的提供本身视为一种服务，其兴起给服务科学带来哪些新管理挑战(数据特性、ML方法、采用、伦理)与未来方向？",
+    "method": "评论性/立场论文(short paper, Frontiers in Service Science)，无实证数据。综述医疗、供应链、零售等服务领域ML/大数据应用，并提出研究方向。",
+    "theory": "数据分析服务管理；人机共创(coproduction)；human-in-the-loop；AI飞轮效应(AI flywheel)。",
+    "contributions": [
+      "将'数据分析的提供'本身视为一种服务并提出其管理挑战",
+      "识别数据特性与ML方法带来的新问题(数据'不合理有效性'、AI飞轮、激励、可解释性、采用)",
+      "呼吁研究人机服务的共创(coproduction)作为最紧迫领域",
+      "提出负责任数据分析服务(responsible analytics services)以应对伦理/公平问题"
+    ],
+    "key_findings": "数据'不合理有效性'使数据获取比改进算法更重要。人机共创是服务科学最紧迫的研究领域。可解释性-性能权衡阻碍采用。算法可强化社会偏见，但去偏数据集比改变社会歧视更易；人类引导学习算法会引入新偏误(如过度奖励正确决策)。",
+    "limitations": "短篇述评，非系统性综述、无实证；观点性，未提供检验；覆盖范围有限，未深入具体机制。",
+    "pages": "摘要 p.121；引言 p.121；挑战(第3节, ML解释性与采用) p.124-125；人机共创(第4节) p.125-126；负责任分析(第5节) p.126-127；结论 p.127；全文 Service Science 2020;12(4):121-129"
+  },
+  {
+    "file": "26 Super Mario meets AI-Experimental effects of automation and skills on team performance and coordination..pdf",
+    "title": "Super Mario meets AI: Experimental effects of automation and skills on team performance and coordination",
+    "research_question": "将AI(自动化协作者)引入团队，如何影响团队绩效、协调、信任与个体努力？效应是否因技能构成而异？",
+    "method": "实验室实验。N=220参与者，55个'实验公司'(110队)，在Nintendo Switch玩'Super Mario Party'团队游戏；随机将部分团队一名人工作者替换为内置AI(该AI单独表现优于人类)。三种组织变动条件(自动化/新员工/控制)，用视频编码协调失败次数，并施测中期与末期问卷(信任、努力、AI态度)。研究预注册(AEA RCT)。",
+    "theory": "组织惯例(routines)、同伴效应(peer effects)、技能偏向型技术变迁(skill-biased technical change)、算法厌恶。",
+    "contributions": [
+      "提供团队内自动化因果效应的实验证据，区分自动化与传统人员更替",
+      "识别自动化通过破坏既有惯例降低协调(不同于人员流动)",
+      "提供技能偏向的微观实验证据：低/中技能团队绩效大降，高技能团队略升",
+      "揭示信任下降与努力减少等动机/文化机制"
+    ],
+    "key_findings": "即便AI单独表现更优，引入AI降低整体团队绩效并增加协调失败(短期尤甚，低/中技能团队最明显)。自动化降低团队信任与个体努力(直接受影响玩家信任-1.44SD、努力-1.10SD)，并对未直接配AI的'溢出'团队也有负面影响。高技能团队因惯例可更好吸收自动化。人类偏好与人的社会性协作。",
+    "limitations": "实验室游戏任务，外部效度受限；样本为学生/参与者而非真实职场；主要捕捉短期效应；AI能力固定(仅一种内置AI)。",
+    "pages": "摘要 p.951；引言 p.951-953；实验设计(第3节, N=220 p.317) p.197-317；结果(第4节) p.535；结论(第6节) p.916；全文 Rev. Econ. Stat. 2025;107(4):951-966"
+  },
+  {
+    "file": "27 Overcoming algorithm aversion-People will use imperfect algorithms if they can (even slightly) modify them..pdf",
+    "title": "Overcoming algorithm aversion: People will use imperfect algorithms if they can (even slightly) modify them",
+    "research_question": "如何减少'算法厌恶'(人们得知算法不完美后不愿使用它)？给予修改权限能否提高算法采用？",
+    "method": "3个有激励的实验室/在线实验。预测学生标准化考试成绩任务(9个变量)。Study1: N=288实验室学生；Study2: N=816 MTurk(可调整幅度2/5/10百分点)；Study3: N=818 MTurk两阶段(过程满意度与后续选择)。操纵是否可修改算法预测(can't-change/adjust-by-X/use-freely)。",
+    "theory": "算法厌恶(algorithm aversion)；控制感(need for control)；决策辅助(judgmental aids)。",
+    "contributions": [
+      "发现允许(即使轻微)修改不完美算法预测能显著提高使用意愿(Study1-3)",
+      "发现偏好对修改幅度不敏感(Study2中2/5/10百分点无显著差异)",
+      "修改自由提升过程满意度、对算法优越性信念及后续使用意愿(Study3)",
+      "为减轻算法厌恶提供'给予少量控制'的实用建议"
+    ],
+    "key_findings": "可修改条件下73-76%使用算法 vs 不可修改32-47%。修改幅度2/5/10对选择无显著差异(p=.809)。可修改者更满意、更自信、后续更愿用算法。constrained调整(adjust-by-10)比自由调整(use-freely)表现更好(更少偏离模型、赚更多)。",
+    "limitations": "实验任务为预测学生成绩，外部效度受限；仅测2-10百分点未测更大幅度；样本为学生/MTurk工人；仅单一算法类型(统计模型)。",
+    "pages": "摘要 p.2-3；贡献说明 p.226；Study1方法与结果 p.273/509；Study2 p.661/759；Study3 p.878/1143；总讨论(General Discussion) p.1498"
+  },
+  {
+    "file": "28 The robot revolution-Managerial and employment consequences for firms..pdf",
+    "title": "The robot revolution: Managerial and employment consequences for firms",
+    "research_question": "机器人(作为通用目的技术)的采用如何影响企业就业总量、管理岗位、技能结构、控制幅度与组织决策权？",
+    "method": "二手数据/计量经济面板分析。加拿大2000-2015企业数据；机器人投资用进口交易数据度量(与RIA对比验证)，合并NALMF(16.8万企业税档面板)与WES(员工/雇主调查)。用工具变量(IV: 机器人价格×行业1995就业构成, F=38.94)缓解内生性；并做Oster边界检验。",
+    "theory": "通用目的技术(GPT)；技能偏向；监控/监督理论(机器人减少生产方差，降低经理监督需求)；决策权分配。",
+    "contributions": [
+      "首个企业层面的机器人采用对就业与组织影响的证据",
+      "发现机器人增加总就业但减少管理岗与中等技能岗，增加低/高技能岗(技能两极化)",
+      "发现主管控制幅度上升，且采用动机是提升质量而非降人工成本",
+      "揭示决策权依任务集中或分散，但都从管理层移出(培训权下放一线、技术选择权上收总部)"
+    ],
+    "key_findings": "机器人采用企业总就业增加；非管理就业↑但管理就业显著↓；中等技能↓、低/高技能↑。主管控制幅度↑。采用动机是提升产品/服务质量而非降成本。绩效测量改善、个人激励薪酬↑。决策权依任务集中或分散，但都从管理层移出。",
+    "limitations": "仅观察短期(数年)效应，长期管理就业影响待定；样本为加拿大企业，外部效度受限；机器人进口数据可能漏掉转售商环节(已用STF缓解)；存在采用选择偏差(已用IV/控制缓解)。",
+    "pages": "摘要 p.1；引言 p.1；数据与方法(第3节) p.735；工具变量(IV) p.1093；主要发现(第5.1节) p.1159；讨论与结论(第6节) p.1563"
+  },
+  {
+    "file": "29 Managerial Insight and “Optimal” Algorithms.pdf",
+    "title": "Managerial Insight and “Optimal” Algorithms",
+    "research_question": "在人机协作中，如何利用管理者的'洞察'(算法无法获取的私有信息)改进订货决策，同时克服人类行为偏误？",
+    "method": "理论模型+8个实验。提出FIND(Forecast to Individualized Normative Distribution)方法，在报童(newsvendor)框架下建模管理者私有信号；前4实验用数值信号，后4实验用图像/颜色/音调等非量化感知信号。每参与者40期预测，FIND用历史预测回归+MLE估计，与ASOS(自动化订货系统)及管理者直接订货比较。",
+    "theory": "报童模型(critical fractile)；贝叶斯信念更新；行为偏误(pull-to-center, anchoring, overconfidence, level shift, underconfidence)；私有信息/管理洞察。",
+    "contributions": [
+      "提出首个接受任意需求分布的'管理洞察'柔性模型(优于替代模型)",
+      "提出FIND方法，用历史预测将管理者点估计转为条件概率分布并机械应用临界分位数",
+      "8个实验证明FIND在广泛条件下利润优于ASOS和直接订货",
+      "证明FIND对非量化感知信号(图像/颜色/音调)同样有效"
+    ],
+    "key_findings": "FIND在所有8实验中利润均高于ASOS和参与者直接订货。在极端临界分位数与不精确洞察下，管理者直接订货利润低于ASOS，但用FIND可反超。识别并缓解pull-to-center、anchoring、overconfidence、underconfidence等偏误。FIND对数值与非数值信号表现一致。",
+    "limitations": "实验为受控报童情景，外部效度待验证；FIND假设噪声正态分布且需一致性预测；依赖管理者历史预测数据；未在所有真实场景检验。",
+    "pages": "摘要 p.1；引言 p.1；模型(第3节) p.258起；FIND算法(第4节) p.458；偏误与假设(第5-6节) p.649/749/786；结论 p.约20；全文 Management Science Articles in Advance, pp.1-20"
+  },
+  {
+    "file": "30 Privacy-preserving personalized recommender systems..pdf",
+    "title": "Privacy-preserving personalized recommender systems",
+    "research_question": "如何设计保护隐私的个性化产品推荐政策，在推荐传输阶段防止偏好排序被中间人推断，同时权衡个性化与隐私？其经济后果如何？",
+    "method": "理论模型(解析模型)，无实证数据。引入α-差分隐私(α-DP)约束于推荐政策；构建基于消费者偏好排序的随机推荐模型；用fluid approximation(大产品数渐近)推导阈值比较静态；拓展到内生价格、产品异质、备选集规划。",
+    "theory": "差分隐私(differential privacy)；基于排序的消费者选择模型；个性化推荐；社会负责任运营(socially-responsible operations)。",
+    "contributions": [
+      "首次将差分隐私应用于推荐输出(下游/传输阶段)而非学习阶段，保护偏好排序",
+      "证明最优政策为'粗粒度阈值政策'(按偏好排序高于/低于阈值随机推荐高/低概率)",
+      "分析阈值比较静态，发现产品价格对最优阈值影响非单调",
+      "考察外生/内生价格下隐私保护对消费者剩余的差异化影响，并拓展到产品异质与备选集"
+    ],
+    "key_findings": "最优隐私保护推荐是阈值随机政策(高/低概率两类)。产品价格对最优阈值影响非单调。外生价格下隐私保护因匹配价值下降而降低消费者剩余('非免费午餐')；内生价格下消费者剩余影响非单调(推荐准确性vs价格膨胀权衡)。",
+    "limitations": "理论模型，未用真实数据/实证验证；假设偏好排序已知(未建模学习过程)；有限产品下解析困难，借助流体近似；基于特定排名选择模型。",
+    "pages": "摘要 p.1；引言 p.1；模型(第2节) p.305；定理1(阈值结构) p.529；比较静态(命题1) p.724；内生价格拓展 p.848起；结论(第7节) p.1226"
+  }
+]

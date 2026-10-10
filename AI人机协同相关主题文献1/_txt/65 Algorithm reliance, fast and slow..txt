@@ -1,0 +1,2344 @@
+                     Algorithm Reliance, Fast and Slow
+                              Clare Snyder, Samantha Keppler, Stephen Leider
+                                     Ross School of Business, University of Michigan
+
+
+     In algorithm-augmented service contexts where workers have decision authority, they face two decisions
+     about the algorithm: whether to follow its advice, and how quickly to do so. The pressure to work quickly
+     increases with the speed of arriving customers. In this paper, we ask: how do workers use algorithms to
+     manage system loads? With a laboratory experiment, we find that superior algorithm quality and high system
+     loads increase participants’ willingness to use their algorithm’s advice. Consequently, participants with the
+     superior algorithm make higher-quality recommendations than those with no algorithm (participants with the
+     inferior algorithm make slightly lower-quality recommendations than those without). However, participants
+     do not necessarily speed up by using algorithms’ advice; their throughput times only decrease compared
+     to the no-algorithm baseline when the system load is high and algorithm quality is superior, although
+     participants would benefit from working faster in all treatments. This happens in part because participants
+     in the high-load, superior-algorithm treatment serve customers more quickly than participants in the other
+     treatments, conditional on using the algorithm. Participants in the high-load, superior-algorithm treatment
+     work especially quickly in later periods as they increasingly default to their algorithm’s advice. Our findings
+     show that algorithms can have benefits for both decision quality and speed. Quality benefits come from
+     workers’ decision to use their algorithms’ advice, while speed benefits depend on workers’ algorithm use and
+     the time they spend deliberating about their algorithm use. Ultimately, algorithm quality and system load are
+     mutually reinforcing factors that influence both service quality and especially speed.
+
+     Key words : behavioral operations; human-algorithm interaction; service operations; queueing systems
+
+
+
+
+1.     Introduction
+More and more organizations are embracing decision-support algorithms for their workers, recog-
+nizing the potential value for operational efficiency and quality (Pettey 2016). Algorithms that
+support human decision-making (instead of replacing it) are particularly promising for customer
+queueing systems in service settings; customers often value human touch, which fully-automated
+systems lack (Buell 2018). However, when human workers are granted ultimate decision authority,
+their behaviors—if, when, and how they use algorithmic decision support—determine algorithms’
+effects on service efficiency and quality. Little is currently known about how workers in queueing
+systems will use such algorithms, or how these behaviors will affect service outcomes.
+  Research about human-algorithm collaboration shows that people are often averse to using algo-
+rithms outside of queueing systems (e.g., Dietvorst et al. 2015). This might suggest that workers
+within queuing systems will also choose not to follow algorithms’ advice, even when it would ben-
+efit them to do so. Yet, other research shows that contextual factors, such as pressure from an
+
+                                                           1
+                                                   Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+2
+
+explicit time limit, can reduce algorithm aversion (Jung and Seiter 2021). Attributes of queueing
+systems, like time pressure from system load—the workload created by incoming customer arrivals
+(Delasay et al. 2019)—might similarly make workers there more inclined to use algorithms. After
+all, workers in traditional service settings (that is, without algorithmic decision support) respond
+to pressure from higher system loads by working more quickly (e.g., KC and Terwiesch 2009).
+    Even if workers do use algorithms to serve customers in a queueing system, this behavior alone
+does not mean that service companies will see improved efficiency or quality outcomes from intro-
+ducing new decision-support algorithms. The outcomes also depend on how workers use the algo-
+rithms. Namely, workers might follow algorithms’ advice, but fail to do so quickly. Most previous
+research about human-algorithm interaction has focused on its effects for quality only, so we do not
+know that algorithm use necessarily affects worker decision-making speed. Workers in customer
+queueing systems might use algorithms to speed up, or they might not. In practice, designing algo-
+rithms to minimize deviations from them makes warehouse workers faster at packing boxes (Sun
+et al. 2022), but in theory, algorithms may not save workers any time if they “induce the human
+to exert more cognitive efforts” (Boyacı et al. 2023, page 1). Algorithms could induce workers to
+exert cognitive efforts if workers only follow their advice sometimes, and take time deliberating
+about when to do so. If workers do use algorithms in a way that improves their speed, this could
+be problematic for service quality if the behavior is mostly driven by automation bias—a bias that
+leads people to blindly rely on even bad algorithmic advice, especially under pressure from time
+limits (Goddard et al. 2012).
+    These possibilities lead us to ask: how do workers in queueing systems engage with algorithmic
+decision-support to manage system loads? What are the implications of this behavior for system
+performance? In this paper, we investigate these questions with a novel laboratory experiment, and
+use our answers to identify lessons for managers about improving worker-algorithm interactions.
+    Participants in our experiment take the role of workers in an M/G/1 queueing system (i.e.,
+customer arrivals follow a Poisson process and each queue has a single server). They are tasked
+with providing a joke recommendation to each unique customer in the queue, with support from
+an algorithm (a task inspired by Yeomans et al. 2019, who study these recommendations outside
+of queueing systems). Joke recommendation captures key aspects of personalized services: there is
+scope for participant expertise, as subjects should have experience with or intuition about humor,
+and customers have unique, heterogeneous preferences. Participants are directly incentivized for
+recommendation quality, and to a lesser degree, recommendation speed. They repeat the joke
+recommendation task over one practice and five paid periods, giving them the opportunity to
+serve over 140 customers in total. We vary two features of the experimental setting to answer our
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                       3
+
+research questions: the system load (high—λload = 7.5 customers/minute, or low—λload = 5 cus-
+tomers/minute) and the algorithm itself (no algorithm, superior-to-worker average recommendation
+quality, or inferior-to-worker average recommendation quality). In an extension, we introduce two
+interventions designed to improve performance outcomes in the superior-algorithm contexts.
+  We find that high system load and superior algorithm quality both induce greater algorithm
+reliance. Because participants use their algorithm for at least some service decisions, their rec-
+ommendations are best in the superior-algorithm conditions, and worst in the inferior-algorithm
+conditions. More significantly, we find that greater reliance does not necessarily mean greater
+worker speed. Participants’ throughput times are only significantly faster than the no-algorithm
+baseline in the high-load, superior-algorithm condition, although participants facing low system
+loads could earn 13% more by serving their customers more quickly. Further, only about half (54%)
+of the throughput time improvement we see in this treatment can be explained by participants’
+higher rates of algorithm use. The remainder of the improvement occurs because participants in
+the high-load, superior-algorithm treatment follow their algorithm’s advice faster. Conditional on
+using the algorithm’s advice, participants’ service speeds are significantly shorter in the high-load,
+superior-algorithm treatment than in treatments where the system load is low or the algorithm’s
+quality is inferior (conditional on not using the algorithm’s advice, participants’ service speeds
+are shorter under high loads, regardless of algorithm quality). Moreover, subjects in the high-
+load, superior-algorithm condition increasingly default to the algorithm in later periods. With
+our follow-up treatments, we show that our interventions to improve system performance increase
+participants’ rates of algorithm use and also their fast algorithm use—especially in the low-load
+setting.
+  Our findings reveal three insights about how workers and algorithms interact in customer queue-
+ing systems, specifically related to service efficiency and speed. First, in service settings, algorithms
+have the potential to improve both decision quality and speed. We demonstrate multiple contexts
+in which workers use algorithms to achieve better and faster service. Second, the benefits to service
+speed depend on both workers’ willingness to follow a (superior) algorithms’ advice and the time
+they spend thinking about that decision; in contrast, the benefits to service quality come primarily
+from the reliance decision. In other words, algorithm reliance can be fast or slow, depending on
+whether decision-makers default to the algorithm or deliberate; either type of reliance has the same
+effect on service quality, but only faster algorithm reliance improves speed. Third, algorithm quality
+and system load are mutually-reinforcing factors that influence both service quality and especially
+speed. Algorithm reliance increases when algorithm quality improves or system load increases, but
+either dial alone may not make workers faster—it takes a combination of both to realize speed
+improvements. These three insights complement a large and growing body of work about the effects
+                                                    Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+4
+
+of discretionary algorithm use on decision quality (e.g., Balakrishnan et al. 2022, Dietvorst et al.
+2015, Lin et al. 2021), by relating the same discretion to another operationally-important outcome,
+time.
+
+2.       Literature Review
+Here we provide more detail about what is currently known about human-algorithm interactions,
+and why queueing systems present an interesting new context in which to study these interactions.
+
+2.1. Human-Algorithm Interactions, Outside of Queueing Systems
+2.1.1. Algorithm Aversion and its Consequences for Decision Quality
+Human-algorithm collaboration, where humans take the role of decision authority and algorithms
+the role of decision support, can be optimal in theory if the human decision-maker has a competency
+that the algorithm lacks, such as private information about the decision or empathy/a human touch
+(e.g., Balakrishnan et al. 2022). Behavioral biases may make such collaboration difficult in practice.
+In particular, algorithm aversion (defined by Dietvorst et al. 2015) makes people reluctant to rely
+on algorithm advice for forecasting tasks, even when the algorithm’s advice is valuable and it is
+possible to measure this value (e.g., Jussupow et al. 2020).
+    Algorithm aversion harms forecast quality. In an experiment, forecasters tasked with predicting
+stock prices made worse forecasts when they received advice from a “statistical model” than when
+they received the same advice from a “financial expert,” because they were more willing to follow
+the human expert (Önkal et al. 2009). In a field study, “managers who appear to hire against
+[algorithm] recommendations end up with worse average hires” (Hoffman et al. 2018, page 765).
+
+2.1.2.    Contextual Factors Mitigating Algorithm Aversion
+Contextual factors can mitigate algorithm aversion and its negative effects. Perceptions of greater
+task objectivity (Castelo et al. 2019), algorithm complexity (Lehmann et al. 2022), and the impor-
+tance of decision precision (Lin et al. 2021) can all encourage algorithm use. People also prefer
+algorithms more after learning more about how they work (Yeomans et al. 2019). Beyond framing
+and explanation, decision-makers experience less aversion, and make more accurate predictions,
+when they can adjust the algorithm’s forecasts (Dietvorst et al. 2018) and when they have task
+experience (Filiz et al. 2021).
+    Time pressure is another contextual factor that reduces algorithm aversion. Jung and Seiter
+(2021) show that people with limited time (12 seconds) to make a forecast are more likely to use
+an algorithm than people with unlimited time to make the same forecast. Because the algorithm’s
+advice is good, time pressure leads to better outcomes there. However, algorithms do not always
+outperform people. When an algorithm’s advice is bad, time pressure can result in blind reliance
+and worse outcomes, through a phenomenon called automation bias (Goddard et al. 2012). For
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                    5
+
+example, pilots in flight simulations, under pressure to act quickly, over-rely on inaccurate decision
+support (Sarter and Schroeder 2001). Ultimately, people use algorithms even when they are bad,
+and avoid them even when they are good, in part because it is often difficult to evaluate algorithms’
+quality—doing so requires “cognitive efforts” (Boyacı et al. 2023). This difficulty has been the topic
+of emerging research in operations management (e.g., Bastani et al. 2020).
+
+2.1.3.   Recent Insights from Operations Management
+Emerging research from behavioral operations shows that human-algorithm interactions can also
+affect outcomes beyond decision quality. Specifically, well-designed algorithm interactions improve
+productivity in theory (e.g., in healthcare settings: Dai and Abramoff 2023). In reality, the effect
+of human-algorithm interactions on productivity seems to be context-dependent. Beer et al. (2022)
+find that in a two-stage process, the automation of one stage negatively affects worker productiv-
+ity in the other stage. When algorithms provide advice to human decision authorities, algorithm
+reliance can improve productivity, but the cognitive efforts associated with deviating from the
+advice are detrimental (Ibanez et al. 2018). “Human-centric” algorithm design can combat costly
+deviation behaviors (Kawaguchi 2021, Sun et al. 2022). Highlighting algorithm’s potential opera-
+tional advantages, such as speed, can also increase algorithm (chatbot) uptake (Kagan et al. 2022).
+Field studies show other ways to improve algorithm prescriptions for better operational outcomes
+(Caro and Saez de Tejada Cuenca 2022, Van Donselaar et al. 2010).
+  Of course, as we mention above, human decision-makers may have reason to deviate from algo-
+rithmic advice. One reason is private information; human decision-makers sometimes know infor-
+mation that the algorithm lacks. A branch of operations management research studies when and
+how private information can be useful (Balakrishnan et al. 2022, Gillis et al. 2023, Ibrahim et al.
+2021, Kesavan and Kushwaha 2020, Kwon et al. 2022). We study a complementary setting in which
+human decision-makers do not necessarily have private information, but they may still be valuable
+decision authorities because they possess empathetic intelligence which algorithms today still lack.
+Empathetic intelligence is the ability to recognize and respond to human emotion (Huang and
+Rust 2018). Customers value the human touch that comes with empathetic intelligence, even at
+the expense of some convenience (e.g., people are more satisfied interacting with a bank teller than
+an ATM: Buell 2018), and so service companies may choose not to automate customer-facing roles.
+
+2.2.     Worker Behavior in Customer Queueing Systems
+As algorithms have become more sophisticated, they have moved into new, operationally-important
+contexts, including service contexts. How decision-makers in service settings interact with algo-
+rithms has been relatively unexplored, but research about worker behavior in traditional service
+settings, in particular customer queueing systems, suggests these settings present an interesting
+extension to what is already known about human-algorithm interaction.
+                                                      Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+6
+
+2.2.1.    System Load as a Form of Time Pressure
+Time pressure induces algorithm reliance (Jung and Seiter 2021), so it seems natural that workers
+in customer queueing systems will more readily follow algorithms’ advice. After all, these workers
+are under pressure to work quickly to avoid long customer wait times (Do et al. 2018). Nevertheless,
+the degree to which time pressure affects people’s algorithm use is not yet clear. In traditional
+service settings—without algorithms—worker behavior is sensitive to system load. Workers speed
+up (Delasay et al. 2019, KC and Terwiesch 2009) and engage in task reduction (Batt and Terwiesch
+2017, KC and Terwiesch 2012, Tan and Netessine 2014) under higher loads, especially when this
+load is made visible (Shunko et al. 2018). Experimental subjects acting as workers in a production
+line speed up when they see their delay would cause idle time (Schultz et al. 1998), and gatekeepers
+respond to congestion information (Hathaway et al. 2022). Therefore, higher system load levels
+may induce more algorithm reliance.
+    At the same time, it is not obvious that high system loads would induce blind reliance on even
+bad algorithmic advice. Research about traditional service settings indicates that workers under
+high system loads could learn more about the algorithm’s quality (and so discern good from bad
+algorithmic advice) from the experience that comes with more frequent customer interactions (Gans
+et al. 2010, Pisano et al. 2001). Alternatively, the pressure that also comes from fast customer
+arrivals could make such learning more difficult. As servers speed up in response to load, they typ-
+ically must sacrifice decision quality (Hopp et al. 2007, Kremer and de Véricourt 2023, Wickelgren
+1977); workers might be willing to use an algorithm even after learning its advice is mediocre, if
+they expect their own decisions will also suffer from speed.
+    How workers engage with algorithmic decision-support to manage system loads is an open
+question. In this paper, we develop an experiment to answer this question by connecting worker-
+algorithm interactions to service quality and speed performance outcomes.
+
+
+3.       Experiment Design
+3.1.     Standard Behavioral Queueing Notation
+Let us introduce some queueing system notation, adapted from Allon and Kremer (2018). Figure
+1 diagrams the queueing system we study in this paper. Four key steps make up this system:
+    A. Customers arrive to the system at an average rate λload . In this paper, we say λload determines
+       overall system load; higher arrival rates mean higher system loads.
+    B. Customers join the queue and wait to be served. Their time waiting in the queue is TW .
+    C. Customers arrive to be served. Their time in service is TS . Service quality, which is customers’
+       value of the service, is v.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                     7
+
+ D. Customers exit the system. The total time customers spend in the system, their throughput
+     time, is T = TS + TW . In practice, workers may see feedback about customer satisfaction from
+     surveys or later interactions after this step. However, they typically cannot learn counterfactual
+     information about how customers would have responded to other service decisions, and so
+     they cannot know what the “optimal” service decision would be or how satisfied customers
+     would be with this decision (v ∗ ).
+
+
+                                                 B.            C.
+                             A. 𝜆𝜆𝑙𝑙𝑙𝑙𝑙𝑙𝑙𝑙                   Service       D. Exit
+                                                Wait
+
+                                   Figure 1   Customer Queueing System Diagram
+
+
+Customers prefer shorter throughput times (smaller T ), but they also enjoy high service quality
+(larger v). Therefore, customer satisfaction (“net utility”) depends on both outcomes, although
+not necessarily equally. Allon and Kremer (2018) conceptualize aggregate-level system welfare “as
+the product of customers’ net utility and system throughput” (page 362).
+
+3.2. Queueing System Service Task
+3.2.1. System Interface
+To understand how workers in queueing systems engage with algorithmic decision-support to man-
+age system loads, we have designed a novel interface that represents each of the four steps that
+make up the queueing system depicted in Figure 1. Subjects in our experiment take the role of
+workers, while customer arrivals are simulated (customer preferences are based on real people).
+Figure 2 illustrates this interface (Figure A.1 in the Appendix shows screenshots of the interface):
+ A. Simulated, heterogeneous customers arrive to the system with an average arrival rate of λload ,
+     determined by subjects’ system load treatment assignment (Section 3.3.1).
+ B. Customers wait for their turn to be served. Subjects have full visibility of the customer queue.
+ C. Subjects provide a personalized joke recommendation to each customer based on the cus-
+     tomer’s historical joke ratings and available joke recommendation options (Section 3.2.2).
+     Subjects may consult an algorithm’s advice in this step (Section 3.3.2).
+ D. As each customer exits the system, subjects are shown service performance metrics, including
+     the customer’s rating of the joke recommendation (v) and throughout time (T ), plus the
+     payoffs associated with both outcomes (Section 3.2.3). Subjects do not learn about how the
+     customer rated other jokes (e.g., v ∗ ) although we, the experimenters, know this.
+In all, participants see more than 140 customer arrivals over the course of the experiment, which
+comprises one practice and five paid periods, each lasting five minutes. Holding system load assign-
+ment fixed, participants see the same customers arrive over the experiment, but in different orders.
+                                                                     Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+8
+
+
+                                        C.           Historical Joke Ratings
+
+                                                     • Joke A #: Rating • Joke B #: Rating
+                                        customer i   • Joke C #: Rating • Joke D #: Rating
+
+
+
+                         customer i+1
+                                          Current Recommendation Options                     D.
+                    B.                           • Joke E #
+                                                 • Joke G #
+                                                                   • Joke F #
+                                                                   • Joke H #
+                                                                                               customer i-1
+
+                                                 • Joke I #        • Joke J #                Rec. Feedback
+                                                 • Joke K #        • Joke L #
+                                                                                             • Rating & Payoff
+                                             Reveal Algorithm*          Submit Rec           • Time & Payoff
+                    A. λ     load
+                                          * The “Reveal Algorithm” button is viewable
+                                          only to participants with algorithm access.
+
+
+                                        Figure 2          Interface Flow Diagram
+
+
+3.2.2.   Personalized Joke Recommendation Service Task
+Participants, acting as workers, are tasked with providing a personalized joke recommendation
+to every customer from a list of eight options, based on how that customer rated four other
+sample jokes (see Section 2 of the Supplementary Appendix for the complete list of twelve jokes).
+We randomly divide the twelve jokes into the two sets for each customer, so a joke may be a
+recommendation option for one customer and a sample rating for the next. Each customer’s joke
+ratings correspond to a real person’s joke ratings (from a dataset by Yeomans et al. 2019), so
+participants can reasonably expect their intuition about humor will be relevant for the task.
+    Yeomans et al. (2019) task subjects with rating the same twelve jokes on a scale from -10 to 10.
+They then task each subject with predicting another subject’s ratings of eight of the jokes, based in
+part on their ratings of the other four jokes. The authors find that an OLS algorithm outperforms
+participants at the rating prediction task. In later studies, they collect ratings data about other
+jokes. We use the original twelve jokes for our experiment because they are not overly offensive,
+and the number of jokes is small enough that participants can reasonably remember them (and so
+they can spend their time thinking about the best joke to recommend rather than reviewing the
+joke content) but large enough that the recommendation task is not trivial.
+    The joke recommendation task has two theoretically important features that make it well-suited
+for our purposes. First, it captures customer heterogeneity. People have different joke preferences,
+and every joke in our joke rating dataset is some customers’ favorite joke and others’ least favorite
+(every joke receives the maximum rating, 10, and the minimum rating, -10, from at least one
+customer), and customers rate these jokes differently. Some customers rate their favorite jokes as
+high as 10, others as low as -1.8. Table A.3 in the Appendix provides some summary statistics
+about customer’s heterogeneous preferences, including about the standard deviation of customers’
+highest and lowest ratings. Table A.4 in the Appendix shows the variance in ratings for each of
+the twelve jokes we use throughout this experiment. Second, joke recommendations capture task
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                                  9
+
+subjectivity and human intuition. In many service settings, workers employ empathy and past
+experiences to inform their customer interactions and we expect participants will similarly have
+some experience with predicting other people’s senses of humor from everyday exchanges. Even
+the most inexperienced joke tellers among them can develop some human intuition for the task
+by reading and comprehending each joke—something our algorithm does not do. We expect our
+participants to be wary of the algorithm’s ability to provide helpful advice without this “human”
+experience, thus creating a perceived tension between the benefits of algorithmic advice for service
+speed versus service quality.
+
+3.2.3.     Incentives and Feedback
+We incentivize our participants to provide service that promotes high customer satisfaction (from
+high service quality and fast throughput times) and customer throughput. We incentivize service
+quality by paying participants more for recommending jokes that the customer rates more highly
+(see Table A.1 in the Appendix for our rating-to-payoff conversion1 ). Participants can earn up to
+$0.25 for recommendations that receive very high ratings. Recall, however, that there is substantial
+heterogeneity in customers’ joke ratings, so it is not always possible to earn this maximum amount
+for each recommendation even if the participant recommends the highest-rated joke for a customer.
+If the period ends before participants have served every customer, they earn $0 for the unserved
+customers. This can be viewed as an implicit opportunity cost to working slowly, related to the
+system throughput.
+     In addition to this implicit cost for speed, we explicitly incentivize participants to serve cus-
+tomers quickly (see Table A.2 for our time-to-payoff conversion). Participants earn more for shorter
+customer throughput times, up to $0.02. Although the magnitude of the time payoff is smaller
+than the rating payoff, the implicit opportunity cost to working slowly means participants still
+have a strong motivation to work relatively quickly (or they will lose not only the time payoff,
+but also the rating payoff for unserved customers). We implement this time payoff to make service
+speed more salient to our participants, who might not realize the opportunity cost from working
+slowly—and because often, customer satisfaction depends in part on customers’ time in the system.
+We also intend the time payoff to motivate participants to work more quickly even at the start of
+the experiment, so that they are not rushing at the end of the period to serve a long queue2 .
+     Participants immediately see feedback about their performance and earnings upon serving each
+customer i, including i’s rating and throughput time Ti , and the earnings associated with each
+
+1
+    We use a step function conversion to help participants understand the incentives and interpret feedback.
+2
+ Queue lengths are stable and short across periods. E.g., the average queue length is 1.0 customers in the low-load,
+no-algorithm condition and 2.2 customers in the high-load, no-algorithm condition. See Table B.3 in the Appendix.
+                                                         Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+10
+
+outcome. They do not see counterfactual information about how well they could have performed by
+making other recommendations (e.g., v ∗ )—we, the researchers, do know this information. Partici-
+pants see detailed feedback only about the most recently served customer; upon serving customer
+i + 1, the display will refresh to show feedback about customer i + 1. Participants do see a summary
+of the number of customers they have served and their total earnings for the period. Figure A.1 in
+the Appendix shows how this feedback is presented to participants via our interface.
+
+3.3.     Treatments
+We implement a 2 × 3, between-subjects design that varies participants’ system load and their
+algorithm: (high load, low load) × (no algorithm, superior algorithm, inferior algorithm).
+
+3.3.1.   System Load
+Customers arrive to the system following a Poisson process, and we manipulate system load by
+varying λload , the average rate of customer arrivals to the system. A customer arrives to the system
+every eight seconds on average in the high-load treatments (λload = 7.5), and every twelve seconds
+on average in the low-load treatments (λload = 5). We chose these values for λload based early
+piloting that showed both arrival rates were high enough to create some pressure, but that it
+was typically possible for participants to serve even the high load within a five-minute period.
+Because of the difference in arrival rates, participants assigned to the high-load treatment see 217
+customers arrivals over the six periods, while those assigned to the low-load treatment see 143.
+Each participant in the same system load sees the same customers, but not in the same order.
+Customer arrivals are generated in groups which are randomly assigned to the incentivized periods.
+
+3.3.2.   Algorithm
+We manipulate both the availability and the quality of algorithm’s advice with our algorithm
+treatment dimension. The no-algorithm treatments serve as a control that shows how participants
+serve customers under high and low system loads without any algorithmic decision support. The
+superior-to-worker- and inferior-to-worker-algorithm treatments vary the average advice quality
+that participants see. Participants in our original treatments are not told anything about their
+algorithm’s rating performance (we describe the effect of similar up-front information in an exten-
+sion, see Section 5). Participants can reveal their algorithm’s advice for any customer with the
+click of a button3 . We require participants to click a button to view the algorithm’s advice to get
+a more precise measure of algorithm use. Clicking the button automatically selects the algorithm’s
+advice for recommendation but does not automatically submit it. Participants can deviate from
+the algorithm’s recommendation if they so choose. Figure A.1 in the Appendix shows what our
+interface looks like just before and just after this button is clicked.
+3
+ Results from an alternative design without the button suggest that the presence of the button in our experiment
+does not meaningfully change the distribution of our algorithm use results—see Table D.4 in the Appendix.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                                            11
+
+                                                                                 Algo. performance
+
+
+
+
+                                                                4
+                                                                                 (i.e., 100% algorithm use)
+
+
+
+
+                                   Customer-level rating avg.
+                                                                3
+                                                                     Human
+                                                                    benchmark
+
+
+
+
+                                                                2
+                                                                1
+                                                                0
+                                                                     No algo.   Superior algo. only   Inferior algo. only
+
+
+               Figure 3     Algorithm Rating Performance Comparison (versus Human Benchmark)
+                  Note. Results show algorithm rating performance across both system load treatments.
+
+
+    Behind the scenes, both the superior and the inferior algorithms use OLS regressions on the
+four historical joke ratings to predict each customer’s ratings of each joke option. The superior
+algorithm selects the joke option with the highest predicted rating, and this algorithm works well
+(see Figure A.3 in the Appendix for a comparison to alternative algorithms). The inferior algorithm
+selects the joke with the lowest predicted rating with highest probability, and the joke with the
+highest predicted rating with lowest (but non-zero) probability. Naturally, the superior algorithm
+(average recommendation rating: 3.1) is significantly better than the inferior algorithm (average
+rating: 0.8). What is more, the superior algorithm is also on the whole significantly better than our
+participants at recommending jokes and the inferior algorithm is on the whole worse, though to a
+lesser degree. Figure 3 compares the performance of the superior and inferior algorithms’ advice
+(in other words, the average rating performance of a participant who follows the algorithm’s advice
+for every recommendation) against a human benchmark—the average rating performance of our
+participants in the no-algorithm conditions.
+
+3.4.    Participant Recruitment
+We recruited 400 participants4 for this study from an economics lab at a large Midwestern public
+university via ORSEE (Greiner 2004). We randomized treatment assignment at the session level
+so that we always had multiple treatments running at any one time (day or week). Table 1 shows
+participants’ assignments to our six treatments.
+    We conducted this experiment via Zoom, following the protocol outlined by Li et al. (2021).
+Participants accessed our interface (implemented in z-Tree: Fischbacher 2007) through a z-Tree
+Unleashed portal (Duch et al. 2020). Upon arriving to the session, participants were taken through
+
+4
+ We collected data for the no- and superior-algorithm treatments between Feb.–Jun. of 2021, and the inferior-
+algorithm treatments between Oct.–Nov. of 2022 in response to reviewer comments. Due to subject pool constraints,
+we prioritized recruiting for the algorithm treatments, where algorithm use is measurable. Table D.1 in the Appendix
+shows that participant controls are largely consistent over both periods of data collection.
+                                                               Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+12
+
+                                       Table 1      Subject Treatment Assignment
+                                                            System Load
+                                                        High Load Low Load
+                                     No Algorithm          38         51
+                           Algorithm Superior Algorithm    96         93
+                                     Inferior Algorithm    62         60
+
+
+the instructions (Section 1 of the Supplementary Appendix). Participants then answered several
+comprehension questions before beginning the joke recommendation task described above. At the
+end of the session, they completed a short follow-up questionnaire (Section 3 of the Supplementary
+Appendix). Sessions lasted no longer than 90 minutes, and participants earned $20 on average,
+including a $5 show-up fee.
+
+3.5.      Variable Descriptions
+To understand whether and how participants use algorithms in queueing systems, we define three
+different but related measures of algorithm use, summarized in Table 2. These measures require
+algorithm access (and so only apply to the superior- and inferior-algorithm treatments); they
+indicate whether participant j clicked the button to see the algorithm’s advice for customer i,
+then if j’s recommendation ultimately aligned with the algorithm’s advice, and finally if this
+recommendation was delivered quickly (service time less than three5 seconds).
+
+
+                                          Table 2     Algorithm Use Measures
+                  Use indicator         Click button          Match advice          TSi < 3 seconds
+                       Consult
+                         Follow
+                        Default
+
+
+
+     We collect subject-level data about each participant j in our post-experiment questionnaire,
+including demographic information (major area, gender) and algorithm attitudes (Section 3 of
+the Supplementary Appendix, partially adapted from Smith 2018). We summarize participants’
+responses in Table B.1 in the Appendix. We create customer-level measures about each customer
+i (summarized in Table A.3 in the Appendix) based on their heterogeneous preferences: customer
+i’s average rating of the four sample jokes and the range of these ratings. We also record the time
+between customer i and customer i − 1’s arrivals.
+
+5
+    Our results are generally robust to other thresholds for defaulting (e.g., see Table D.3 in the Appendix).
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                                13
+
+4.     Results
+4.1.    Performance Outcomes by Treatment
+Figure 4 summarizes both of our incentivized outcome measures—recommendation rating (the y-
+axis of this plot) and throughput time (the x-axis)—by treatment. Note that because participants
+earn more from faster throughput times, the x-axis is descending. Data points closer to the upper
+right corner of the plot reflect higher overall performance along both dimensions. For example,
+participants in the low-system-load, no-algorithm treatment (LL × NA in the figure) outperform
+participants in the high-load, no-algorithm treatment (HL × NA); the former see on average a
+rating of 1.8 and a throughput time of 13.6 seconds, while the latter see on average a rating of 1.7
+and a throughput time of 17.3 seconds (only the difference in throughput time is significant, p <
+0.05). Similarly, participants in the low-load, inferior-algorithm treatment (LL × IA) outperform
+participants in the high-load, inferior-algorithm treatment (HL × IA); the former see on average a
+rating of 1.5 and a throughput time of 13.8 seconds, while the latter see on average a rating of 1.4
+and a throughput time of 17.5 seconds (again, only the difference in throughput time is significant,
+p < 0.05). By contrast, participants in the low-load, superior-algorithm treatment (LL × SA) do
+not outperform participants in the high-load, superior-algorithm treatment (HL × SA); the former
+see on average a rating of 2.4 and a throughput time of 13.3 seconds, while the latter see on
+average a rating of 2.4 and a throughput time of 12.5 seconds. As expected, participants’ algorithm
+treatment assignment affects their rating performance. Participants with the inferior algorithm
+perform slightly worse than participants with no algorithm on this dimension (p < 0.001), while
+participants with the superior algorithm perform much better (p < 0.001).
+
+                                    2.5
+
+
+                                                                                       LL x SA   HL x SA
+
+
+                                     2
+                           Rating
+
+
+
+
+                                                                                 LL x NA
+                                                 HL x NA
+                                    1.5
+                                                                                LL x IA
+                                               HL x IA
+
+
+                                     1
+                                          18                16                  14                         12
+                                                           Throughput time (seconds)
+
+                Figure 4            Performance Across Treatments: Rating Quality and Throughput Time
+                     Note. HL and LL are abbreviations of high and low system load, respectively.
+               NA, SA, and IA are abbreviations for the no-, superior-, and inferior-algorithm treatments.
+
+
+
+  Most interestingly, Figure 4 shows that while better algorithms improve throughput time a little,
+better algorithms plus high system loads improve throughput times a lot. On average, customers of
+                                                        Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+14
+
+participants in the low-load conditions spend a similar amount of time, between 13 and 14 seconds,
+in the system regardless of the participants’ algorithm treatment assignment. On the other hand,
+throughput times in the high-load condition are over 4.5 seconds faster on average for participants
+with advice from the superior algorithm, compared to the other two algorithm conditions. The high-
+load, superior-algorithm average throughput time outcome is especially striking in contrast to the
+low-load, superior-algorithm average throughput time. Throughput times are almost four seconds
+faster in the low-load than the high-load conditions, except in the superior-algorithm treatments
+where the comparison reverses. As a result, participants earn significantly less per customer under
+high loads than low loads, except with the superior algorithm (see Figure B.1 in the Appendix for
+a graph of participants’ earnings). In the following sections we unpack why this is happening.
+
+4.2.     Differential Algorithm Use by Treatment
+The difference in throughput times we see from Figure 4 could be driven by differential rates
+of algorithm use across treatments. To formally analyze the effects of our algorithm quality and
+system load treatments on reliance, we estimate logit regressions of the form:
+
+     P(Algo. usei,j = 1) = F (β0 + β1 HLj + β2 SAj + β3 HLj × SAj + β4 ITi,j + β5 Ci + β6 Pj + ϵi,j ).        (1)
+
+In this equation, P(Algo. usei,j = 1) denotes participant j’s probability of using the algorithm
+to serve customer i. HLj is an indicator variable denoting participant j’s system-load treatment
+assignment (1 if j is assigned the high system load and 0 if the low load). SAj is an indicator
+variable denoting participant j’s algorithm treatment assignment (1 if j is assigned the superior
+algorithm and 0 if the inferior). ITi,j equals the time between customer i − 1 and customer i’s
+arrivals to the system, minus the average inter-arrival time of customers in participant j’s system
+load treatment assignment. Ci represents customer controls: the average and range of customer i’s
+four sample joke ratings. Pj represents participant controls: attributes of participant i, including
+gender and college major, collected from the post-experiment questionnaire (described in Section
+3.5). Across the regressions, we use robust standard errors clustered at the participant level unless
+otherwise specified. We exclude the no-algorithm control treatment results from this regression
+because it is not possible for participants to use the algorithm’s advice there.
+     Table 3 shows the results from this regression model for our three measures of algorithm use:
+consulting, following, and defaulting to the algorithm (see Table B.2 in the Appendix for the full
+customer and participant control details). The regressions confirm that system load significantly
+affects algorithm use, for any definition of use. Participants are significantly, and substantially, more
+likely to use both algorithms under higher system loads. The odds of a participant using the inferior
+algorithm are more than 1.7 times higher if this participant faces a high system load than a low
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                        15
+
+                                    Table 3     Algorithm Use Logit Regressions
+         VARIABLES                                           Consult (0/1) Follow (0/1) Default (0/1)
+
+         β1 : High system load treatment (0/1)                  0.622**      0.548**       0.805***
+                                                                (0.258)      (0.240)        (0.311)
+         β2 : Superior algorithm treatment (0/1)                0.459**      0.501**         0.464
+                                                                (0.233)      (0.219)        (0.294)
+         β3 : Load × algorithm treatment interaction             -0.148       -0.053         0.108
+                                                                (0.336)      (0.316)        (0.396)
+         Inter-arrival time deviation                          -0.003**     -0.005***     -0.032***
+                                                                (0.001)      (0.001)        (0.003)
+         Customer controls                                         Y            Y              Y
+         Participant controls                                      Y            Y              Y
+         Constant                                              -1.273**     -1.469***     -3.218***
+                                                                (0.537)      (0.536)        (0.632)
+
+         Linear combination of treatment coefficients
+         β1 + β3                                               0.474**       0.494**      0.913***
+                                                               (0.214)       (0.206)       (0.246)
+         β2 + β3                                                0.310         0.447*       0.572**
+                                                               (0.244)       (0.228)       (0.260)
+
+         Odds ratios
+         High system load treatment (0/1)                       1.862         1.729         2.238
+         Superior algorithm treatment (0/1)                     1.582         1.650         1.590
+         Load × algorithm treatment interaction                 .8623         .948          1.114
+
+         Observations                                    45,894         45,894             45,894
+         Number of participants                           311            311                311
+                          Robust standard errors clustered at the subject level
+                                    *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+system load (β1 : p < 0.05) and the results are similar for participants with the superior algorithm
+(β1 + β3 : p < 0.05). Relatedly, participants are reactive to variations in arrivals within treatments,
+driven by random inter-arrival times. They are significantly more likely to use their algorithm to
+serve a customer if this customer arrived quickly after the previous customer (p < 0.01).
+  Participants also respond to the quality of their algorithm’s advice. However, their exact response
+to algorithm quality varies by system load; while algorithm quality affects participants’ choice
+to consult and follow the algorithm under low loads, it affects participants’ choice to default to
+the algorithm under high loads. Participants facing low system loads are significantly more likely
+to consult and follow the superior than the inferior algorithm (β2 : p < 0.05 for these measures),
+while participants facing high system loads are significantly more likely to default to the superior
+algorithm’s advice than the inferior algorithm’s (β2 + β3 : p < 0.05 for this measure, β2 + β3 : p < 0.1
+for the “follow” measure). This suggests that the interaction of algorithm quality and system load
+affects not only whether, but also how participants use the algorithm.
+                                                            Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+16
+
+4.2.1.     Algorithm Use Choices
+We also analyze participants’ decision to consult or default to the algorithm a second way, with
+a discrete choice model. The discrete choice model allows us to understand participants’ decisions
+between multiple alternatives, versus the binary decision to use the algorithm in a certain way
+or not. For our model, we simplify participants’ choice set in the algorithm treatments to three
+options: as each customer arrives to receive a joke recommendation, participants can 1) default to
+the algorithm straight away, or 2) they can consult the algorithm with deliberation (marked by
+service times longer than three seconds), or 3) they can ignore the algorithm outright. We model
+participants’ utility for each choice as a function of their expected earning from making that choice
+based on past feedback, plus indicators that the choice involves consulting to and defaulting to the
+algorithm6 . Figure E.1 in the Appendix shows how participants’ expected payoff from each choice
+evolves over time in each period.
+     We find from our discrete choice model (see Table E.1 in the Appendix) that participants expe-
+rience disutility from consulting and especially defaulting to the algorithm which detracts from
+the payoff benefits from using the algorithm (in particular, the superior algorithm). In fact, par-
+ticipants’ disutility from consulting the algorithm’s advice is approximately equivalent to a cost of
+$0.045, (at least 43.6% = 0.045
+                          .102
+                                of participants’ average per-customer payoff), while their disutility
+from defaulting to the algorithm’s advice is equivalent to an additional $0.012 (11.8% = 0.012
+                                                                                          .102
+                                                                                               of
+participants’ average per-customer payoff).
+
+4.3.      Algorithm Use on Throughput Times
+The difference in throughput times we see from Figure 4 could be driven primarily by differential
+rates of algorithm use across treatments. However, if algorithm use (specifically, following the algo-
+rithm’s advice) were the only reason for the speedup we see from introducing the superior algorithm
+in the high-load context, then we would expect to see a greater throughput time improvement
+from introducing the superior algorithm in the low-load context. Instead, we see that although
+participants under low loads follow the superior algorithm’s advice for 39% of their decisions, this
+only improves their throughput times by 2% (= 13.6−13.3
+                                                 13.6
+                                                        ) relative to the low-load, no-algorithm
+condition; participants under high loads follow the superior algorithm’s advice for 48% of their
+decisions and this improves their throughput times by 28% (= 17.3−12.5
+                                                                17.3
+                                                                       ) relative to the high-load,
+no-algorithm condition. We would also expect to see a throughput time improvement moving from
+no algorithm to the inferior algorithm. However, although participants do follow the inferior algo-
+rithm to serve both low and high system loads (for 27% and 39% of decisions, respectively) and
+although the effect of system load on inferior algorithm use is at least as large as the effect of system
+6
+    See Section E of the Appendix for complete details about our choice model and data generation process.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                      17
+
+load on superior algorithm use, this behavior does not result in comparable time savings. In fact,
+participants’ average throughput times are actually slightly (insignificantly) slower in the inferior-
+than in the no-algorithm treatments. There is another, additional explanation for our findings; par-
+ticipants in the high-load, superior-algorithm treatment are using the algorithm differently, namely
+faster, than participants in the other treatments7 .
+     We test this conclusion with a counterfactual simulation of throughput times in the high-load,
+inferior-algorithm treatment to estimate the outcome we would expect if participants in that treat-
+ment used their algorithm in the same way (but not at the same rate) as participants in the
+high-load, superior-algorithm treatment. To construct counterfactuals, we assume that partici-
+pants’ service times would follow the same distribution in both treatments, conditional on their
+choice to follow the algorithm’s advice. Based on this assumption, we replace the service time for
+every instance in which a participant in the high-load, inferior-algorithm treatment follows the algo-
+rithm’s advice with a random draw from an exponential distribution with mean 3.6 seconds. This
+random draw approximates participants’ actual service times in the high-load, superior-algorithm
+treatment, given they followed the algorithm’s advice. We use the updated (hypothetical) service
+times and customers’ arrival times to calculate every resulting waiting and throughput time.
+     According to our simulation, if participants in the high load, inferior algorithm treatment followed
+the algorithm in the same way as participants in the high load, superior algorithm treatment do (but
+still at a rate of 39%), their average throughput time would be about 15.2 seconds, instead of 17.5
+seconds. In other words, the actual difference in throughput times between the high-load, inferior-
+                                                              17.5−12.5
+and high-load, superior-algorithm treatments is 85% larger (= 15.2−12.5 ) than we would expect if
+participants used both algorithms in the same way. Participants’ rate of following the algorithm
+explains only half (54% = 15.2−12.5
+                          17.5−12.5
+                                    ) of the increase in throughput times from the superior relative
+to the inferior algorithm. The remaining half (46%) of this difference is explained by the speed with
+which participants in the high-load, superior-algorithm treatment follow their algorithm’s advice.
+
+4.3.1.     Throughput Time Decomposition
+Above, we provide results about participants’ average throughput times and also discuss how
+changes to participants’ service times could affect these. The two outcomes are closely related—
+recall that participants’ throughput times (T ) depend on a combination of their service and wait
+times, TS and Tw . To better understand the relationship between participants’ algorithm use and
+their throughput times, it is useful to decompose throughput time into these values. Figure 5 shows
+a summary of service, wait, and throughput times by treatment. Participants assigned to the high
+system load condition have shorter TS (see Table B.4 in the Appendix for service time averages
+
+7
+    See Table B.4 in the Appendix for summary statistics about participants’ service times.
+                                                      Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+18
+
+and service time variation) but generally much longer TW than their low-load counterparts, and
+T is generally much longer as a result. This result is unsurprising based on what we know from
+previous behavioral queueing research; workers respond to system load by working more quickly,
+but queues are longer because of the faster customer arrival rate.
+
+
+
+
+                                                                             Waiting, 𝑇𝑇𝑤𝑤
+
+
+
+
+                                                                             Service, 𝑇𝑇𝑠𝑠
+
+
+
+
+                   Figure 5   Throughput Time Decomposition by Treatment (T = TS + TW )
+
+
+
+     However, there is one exception to our finding: when participants have advice from the superior
+algorithm, TW is only 0.89 seconds longer in the high-load than the low-load condition, and this
+difference is not significant (Mann-Whitney U test for subject-level averages: p = 0.711). For com-
+parison, the difference between TW in the high- versus low-load treatments is more than six seconds
+in the no-algorithm and inferior-algorithm treatments (p = 0.054 for the no-algorithm treatment,
+p = 0.018 for the inferior algorithm treatment). This result is driven by changes to service times
+in the high-load treatment. For participants facing the low system load, there is no significant
+or substantial difference in TS , TW , or T when participants have the superior algorithm versus
+no algorithm (e.g., for TW , p = 0.195), or versus the inferior algorithm (p = 0.123). In contrast,
+participants facing the high system load are approximately one second faster when they have the
+superior algorithm than no algorithm or the inferior algorithm (p < 0.006 for both). This one-
+second improvement to service times translates to a more than 4.5-second improvement to wait
+times compared to both the no-algorithm and inferior-algorithm treatments (again, p < 0.006).
+     Participants’ service times have implications for other queueing system-level outcomes like idle
+time and queue lengths. We report summary statistics about these measures in Table B.3 in the
+Appendix. As expected, utilization is consistently lower in the low-load conditions than in the high-
+load conditions (between 53-58% versus between 61-73%, respectively)—relatedly, participants
+have more idle time in the low-load conditions than in the high-load conditions. However, partici-
+pants in the high-load, superior-algorithm condition experience experience relatively more idle time
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                                      19
+
+than participants in the other high-load conditions (about 34%= 38.6%−28.8%
+                                                                    28.8%
+                                                                            more), because their
+service times are faster. The queueing system is relatively stable in both the low- and high-load
+conditions; the longest average queues are in the high-load, inferior-algorithm condition and even
+there the average queue length does not get above 2.3 customers.
+     We might assume that participants under low load are not working any more quickly with the
+(superior) algorithm because they already make decisions sufficiently quickly to earn the maximum
+time payoffs. However, even participants under low system loads have room for earnings improve-
+ment. Participants could earn over 13% more than they do by serving every customer i quickly
+enough to earn the maximum time payoff amount ($0.02)8 . They would do better by using their
+algorithm more, and faster, like participants in the high-load, superior-algorithm condition.
+
+4.4.      Algorithm Use on Service Times
+To further analyze the effects of algorithm quality and system load on how participants use their
+algorithm, we estimate OLS regressions of the form:
+
+                  TSi,j = β0 + β1 HLj + β2 SAj + β3 HLj × SAj + β4 ITi,j + β5 Ci + β6 Pj + ϵi,j .                    (2)
+
+The variable names here follows the notation defined for the logistic regression equation, Equation
+1 above, except that our outcome of interest is participant j’s service time for customer i, TSi,j .
+Table 4 shows the results of this regression, conditioned on participant j’s choice to consult (or
+not) the algorithm’s advice for customer i. We separate the regressions in this way to disentangle
+participants’ service times when using the algorithm from the rate at which they use the algo-
+rithm; across all algorithm treatments, participants’ service times are faster when they consult the
+algorithm than when they do not (see Table B.4 in the Appendix). Note that for both regressions,
+we include only participants with the superior or inferior algorithm for the sake of comparison, as
+participants in the no-algorithm treatment cannot ever consult the algorithm’s advice9 .
+     Table 4 shows participants take significantly less time (more than one second less) to serve
+customers in the high-system-load treatment than the low-load treatment when they do not consult
+the algorithm’s advice (p < 0.01). This result is expected, as participants must work more quickly
+to keep pace with customer arrivals under high system load. Also unsurprisingly, the quality of
+the algorithm has no effect on the time it takes participants to serve customers, assuming they
+are not consulting its advice. However, conditional on consulting the inferior algorithm’s advice,
+participants are not significantly faster at serving customers in the high-load treatment than the
+low-load treatment (p = 0.290). Nor are they faster at serving customers when they have superior
+
+8
+    A small number of participants in each treatment earn this amount for every customer, indicating that it is possible.
+9
+    We replicate the “Consult==0” regression for all treatments in Table B.5 in the Appendix.
+                                                           Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+20
+
+               Table 4      Service Time Linear Regressions, Excluding the No-Algorithm Treatments
+                                                                  Consult==0 Consult==1
+                  VARIABLES                                       Service time Service time
+
+                  β1 : High system load treatment (0/1)             -1.318***         -0.608
+                                                                      (0.428)        (0.574)
+                  β2 : Superior algorithm treatment (0/1)             -0.0635         -0.509
+                                                                      (0.445)        (0.564)
+                  β3 : Load × algorithm treatment interaction          -0.308         -0.967
+                                                                      (0.591)        (0.693)
+                  Inter-arrival time deviation                     0.00910***       0.0307***
+                                                                    (0.00324)       (0.00339)
+                  Customer controls                                      Y              Y
+                  Participant controls                                   Y              Y
+                  Constant                                           8.398***       6.894***
+                                                                      (0.897)        (0.940)
+
+                  Linear combination of treatment coefficients
+                  β1 + β3                                             -1.626        -1.575***
+                                                                     (0.417)         (0.379)
+                  β2 + β3                                             -0.371        -1.475***
+                                                                     (0.390)         (0.383)
+
+                  Observations                                     25,373             20,521
+                  R-squared                                         0.029              0.051
+                                     Robust standard errors in parentheses
+                                       *** p<0.01, ** p<0.05, * p<0.1
+
+
+algorithmic advice than inferior advice under low loads (p = 0.368). However, participants in the
+high-load, superior-algorithm treatment are significantly faster than participants in the low-load,
+superior-algorithm treatment (β1 + β3 : p < 0.01) and than participants in the high-load, inferior-
+algorithm treatment (β2 + β3 : p < 0.01)—conditional on consulting the algorithm. That is, it is
+the interaction of system load and algorithm quality that induces faster algorithm use. The same
+findings persist when we condition the regression on following (or not) the algorithm’s advice.
+     Replicating the “Consult==0” regression, and also a “Follow==0,” regression for all participants
+(including participants in the no-algorithm condition) gives similar results (see Table B.5 in the
+Appendix), with one new finding: conditional on not following the algorithm’s advice, participants’
+service times are about 0.8 seconds faster in the no-algorithm treatment (p < 0.075) than either of
+the algorithm treatments. It may be that the presence of the algorithm creates additional cognitive
+load; subjects with an algorithm have two decisions—whether to consult their algorithm and which
+recommendation to give to their customer—whereas subjects without the algorithm have only one.
+A caveat to any interpretation of these regressions is that participants’ decision to consult and
+follow the algorithm is not random, and this choice may be associated with the time they are
+willing to spend on their service decision.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                                     21
+
+4.5.    Algorithm Use Dynamics: Participant Behavior Across Periods
+Figure 6 summarizes participants’ algorithm use (following and defaulting behavior) in each period
+by treatment. Period 0 indicates the unincentivized practice period, and Periods 1–5 our incen-
+tivized periods. Figure 6 reveals that only participants in the high-load, superior-algorithm treat-
+ment increasingly follow and default to the algorithm after Period 0 (and this trend is significant,
+Cuzick’s test with rank scores: p < 0.001). In our other algorithm treatments, participants’ rates
+of algorithm use are relatively stable after the practice period. This suggests that the effect of the
+interaction between high system loads and superior algorithm quality we have observed across our
+experiment grows even more over time.
+
+
+
+
+                                                                                                   Follow
+
+
+
+
+                                                                                                   Default
+
+
+
+
+                          Figure 6     Rates of Algorithm Use Across Periods, by Treatment
+             Note. In each plot the darker bar represents participants’ rate of defaulting to the advice while the
+                  lighter bar represents participants’ rate of following the advice (overlaid, not stacked).
+
+
+
+  We test this more formally with logit regressions. These regressions follow the same form as our
+regressions of algorithm use on treatment assignment (Equation 1) but with the addition of a new
+indicator variable, periodi,j , which equals 1 if participant j serves customer i in the second half
+(Periods 3–5) of the experiment. We interact this term with HLj , SAj , and HLj × SAj to learn
+how algorithm use over time varies by treatment. Table B.6 in the Appendix shows the results for
+this regression, and these results reinforce Figure 6; the effect of time (as represented by periodi,j )
+on participants’ defaulting behavior is significantly greater in the high-load, superior-algorithm
+treatment than in the low-load, superior-algorithm treatment (β5 + β7 = 0.396 : p < 0.05) or the
+high-load, inferior-algorithm treatment (β6 + β7 = 0.352 : p < 0.05). This means that participants in
+the high-load, superior-algorithm treatment serve customers even more quickly than participants
+in the low-load, inferior-algorithm treatment (β5 + β7 = −0.378 : p = 0.086) and the high-load,
+                                                    Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+22
+
+inferior-algorithm treatment (β6 + β7 = −0.346 : p = 0.096) do over time (see Table B.7 in the
+Appendix).
+
+4.5.1.    Response to Customer Heterogeneity Over Time
+A consequence of the algorithm-use dynamics we describe is that participants are less sensitive to
+customer heterogeneity over time in the high-load, superior-algorithm treatment.
+     In our experiment, there is no evidence that participants benefit from spending time reviewing
+each sample joke rating in the context of the available options. Participants’ joke recommenda-
+tions are no better when they are made slowly than quickly, holding algorithm use fixed. In fact,
+participants in the no-algorithm treatment are no better at the task than random (the difference
+in performance is insignificant, Wilcoxon signed-rank test: p = 0.90). With few exceptions, partic-
+ipants with the superior algorithm could make higher-rated service decisions by always following
+its advice, while participants with the inferior algorithm could make higher-rated service decisions
+by never following its advice. This is notable because the inferior algorithm does by design provide
+helpful advice with nonzero probability—yet participants are not more likely to follow the algo-
+rithm’s advice when it is good then when it is not (p = 0.494 from a regression of algorithm use on
+the rating of the inferior algorithm’s advice, clustered at the customer level).
+     Nevertheless, participants in the algorithm conditions do appear to apply a strategy in their
+decision-making, albeit an ineffective one: they take longer to serve customers who rate the four
+sample jokes highly and have larger rating ranges (e.g., see Table B.5 in the Appendix) and they
+tend to follow their algorithm’s advice most for the customers who give lower ratings with smaller
+ranges (see Table B.2 in the Appendix). One participant explained that “If a customer had a lot
+of ratings that were similarly low ... I felt it might be difficult to suss out what they thought
+was funny, so I chose the algorithm.” This strategy is ineffective because it is not correlated
+with the algorithms’ added value—the quality of the algorithm’s advice is not associated with
+customers’ sample ratings. Table B.8 in the Appendix evidences that the algorithm’s advice is
+not relatively better for any customer type (where type is determined by sample rating average
+and range relative to the customer medians) compared to participants’ own decisions without any
+algorithm. Customers whose sample ratings are low or whose sample rating ranges are small do
+not prefer the algorithm’s advice more than those whose sample ratings or rating ranges are high.
+     As participants under high loads move towards defaulting to the superior algorithm in later
+periods, they also move away from this ineffective strategy, and begin to treat different customer
+types more similarly over time. For example, participants in that treatment are relatively more
+likely to follow their algorithm’s advice for customers with high average sample ratings in later
+periods, while the same is not true in any other treatment (Table B.9 in the Appendix shows
+the effect of periodi,j × customer rating averagei is positive and significant—0.213**—only in the
+regression of participants’ algorithm use for the high-load, superior-algorithm treatment).
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                             23
+
+5.     Extension: Interventions for Better System Performance
+Our results show that participants perform best under high system loads and with advice from a
+superior-to-human algorithm, in particular in later periods as they move towards defaulting to the
+algorithm. Can targeted interventions help us realize similar, or even better outcomes? We consider
+two interventions designed to promote better system performance: 1) up-front information about
+the potential benefits of using the superior algorithm (recall we told participants nothing about
+the algorithm’s quality in our original design) and 2) mandated experience following the superior
+algorithm for the first three customers in every period.
+  Both interventions have similarities to designs tested in previous work. Our up-front-information
+intervention is like another intervention by Castelo et al. (2019). In an experiment, the authors
+informed participants about the algorithm’s superior performance, then asked them how much they
+would like to use the algorithm for a task. This intervention was effective at increasing willingness to
+use the algorithm by making salient to participants the algorithm’s higher quality. Our mandated-
+experience intervention is similar to a design by Cao and Zhang (2020). In a field experiment, the
+authors forced salespeople to use an algorithm to make decisions about how to assign teachers
+to students for a tutoring service. This mandated experience lasted 18 days, after which time
+the authors allowed the salespeople to choose when to use the AI system. They found mandated
+experience promoted greater use of the system and better decisions through positive belief updating
+about the algorithm. The two interventions shape people’s beliefs about algorithms’ quality, the
+former by description and the latter by experience. However, people may respond differently to
+description than experience, and so it is unclear if the two interventions will have similar effects
+on whether and how participants use the superior algorithm.
+  We compare each intervention’s effect in the low and high system load conditions with a 2 × 2,
+between-subjects design that varies participants’ system load and intervention: (high load, low
+load) × (up-front information, mandated experience). Below we describe both interventions:
+
+5.1.    Up-Front Information
+In this intervention, we truthfully inform participants during the reading of the instructions that:
+  In previous sessions of this experiment, subjects who followed the algorithm’s advice for more than half
+  of their recommendations saw higher average customer ratings with shorter average waiting times than
+  those who did not, resulting in approximately 25% higher earnings.
+This result is based on our findings from the original superior-algorithm treatments. We share
+information about participants’ average earnings because we expect this outcome to be the most
+meaningful, and because it is knowable in practice—e.g., it does not require counterfactual infor-
+mation about how well the algorithm performs against participants without the algorithm.
+                                                             Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+24
+
+5.2.     Mandated Experience
+In this intervention, we require participants to follow the algorithm’s advice for the first three
+customers to arrive in each period, including the practice period. We do this by removing the
+eight joke option buttons (but not the jokes themselves) so that the only way for participants to
+serve the first three customers is by clicking the button to reveal and select the algorithm’s advice
+and submitting this recommendation. Otherwise, all attributes of the interface are kept the same
+(see Figure A.2 in the Appendix for a screenshot). We mandate experience for three customers
+per period to ensure that while participants have some baseline experience using the algorithm,
+they can still exercise discretion to serve most customers. We distribute the mandated experience
+across periods so participants will continue to see feedback about the algorithm’s performance
+throughout the experiment even if some early algorithm results are poor. We exclude these 18
+participant-customer interactions (3 customers/period × 6 periods) from our analysis because we
+are interested in how workers behave when they can choose how to serve their customers.
+
+5.3.     Participants
+
+                             Table 5     Participant Assignment to Study 2 Treatments
+                                                            System load
+                                                        High Load Low Load
+                                   Up-Front Information    35         61
+                      Intervention
+                                   Mandated Experience     36         35
+
+
+     In this extension, everything else about our experiment design is kept the same (see Section 3),
+and all participants receive advice from the superior algorithm. We recruited 167 new participants
+for this extension between September 2021 and January 2022, following the same protocol described
+in Section 3.410 . Table 5 shows the division of these participants into the four treatments11 .
+
+5.4.     Intervention Results
+Figure 7 summarizes both of our incentivized outcome measures—recommendation rating (the y-
+axis of this plot) and throughput time (the x-axis)—for our two interventions contrasted with our
+previous results. Recall that participants in the intervention treatments use the superior algorithm.
+     Participants with up-front information about the algorithm see on average a rating of 2.6 and
+a throughput time of 10.6 seconds under high system load (HL × UI in the figure) and a rating
+10
+  Table D.2 in the Appendix shows that participants’ attitudes towards algorithms in this time period are consistent
+with the attitudes of participants in the original (earlier) superior-algorithm treatments.
+11
+  The high number of subjects assigned to the low-load, up-front-information treatment is due to randomness in the
+session-treatment pairings as well as to subject pool constraints. In the earliest session, we recruited 16 subjects per
+session, but this rate quickly dropped to only a few subjects per session, then none as the pool was exhausted. Analysis
+with a randomly-selected 36 subjects from this treatment reveals the participant count does not meaningfully affect
+our results, e.g., see Table C.4 in the Appendix.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                               25
+
+                       2.75
+                                                                                 HL x UI
+                                                                                              LL x UI
+                                                                       HL x SA     LL x ME
+
+                                                          LL x SA
+                       2.25                                            HL x ME
+
+
+                    Rating
+                                                             LL x NA
+                                    HL x NA
+                       1.75
+                                                             LL x IA
+                                   HL x IA
+
+
+                       1.25
+                              18                  15                       12                           9
+                                                        Throughput time
+
+              Figure 7        Performance Across All Treatments: Rating Quality and Throughput Time
+              Note. HL and LL are load abbreviations. NA, SA, and IA are algorithm abbreviations for our
+              original treatments. UI and ME are abbreviations for the up-front information and mandated
+              experience interventions (participants exposed to these interventions get advice from the SA).
+
+
+of 2.7 and a throughput time of 9.5 seconds under low load (LL × UI). These participants’ rec-
+ommendations are rated significantly higher than participants’ recommendations in the original
+superior-algorithm treatments (p = 0.07 in the high-load comparison and p = 0.002 in the low-load
+comparison). The up-front information intervention also significantly improves throughput times
+under low load (p = 0.004). Participants with mandated experience using the algorithm see on
+average a rating of 2.3 and a throughput time of 12.4 seconds under high load (HL × ME), and
+a rating of 2.6 and a throughput time of 10.7 seconds under low load (LL × ME). Under high
+loads, mandated experience has no significant effect on rating or throughput time compared to
+the original superior-algorithm treatment. Under low loads, mandated experience results in higher
+ratings (p < 0.05) and faster throughput times (p < 0.05). See Tables C.1 and C.2 in the Appendix
+for details. In summary, both interventions yield some performance improvement compared to the
+original, no-algorithm results, except mandated experience under high load.
+  The two interventions improve performance because they lead to greater rates of defaulting to
+the algorithm, especially by participants in the low-load setting. To formally analyze the effect of
+the two interventions on participants’ choices to consult, follow, and default to the superior algo-
+rithm, we estimate logit regressions (described in Table C.3 in the Appendix). Up-front information
+changes the way participants rely on the algorithm by encouraging greater use from the start. In
+the low-load condition, up-front information significantly boosts participants’ rates of consulting
+(β3 = 1.144, p < 0.01), following (β3 = 0.975, p < 0.01), and defaulting to (β3 = 0.967, p < 0.01) the
+superior algorithm, almost to the level of their high-load counterparts. In the high-load condi-
+tion, up-front information leads participants to default significantly more to the superior algorithm
+                                                    Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+26
+
+(β3 + β5 = 0.585, p < 0.05). In fact, this intervention leapfrogs the dynamics of the early periods
+such that participants in the high-load treatment are immediately defaulting to the superior algo-
+rithm’s advice as if they were already in a later period (participants in the original high-load,
+superior-algorithm treatment defaulted to the algorithm’s advice for 30% of customers in Period 5,
+up from 21% of customers in Period 1, whereas participants in the high-load, up-front-information
+treatment defaulted to the algorithm’s advice for 38% of customers already by Period 1). On the
+other hand, only participants in the low-load condition respond to our mandated-experience inter-
+vention by significantly changing (increasing) their use of the superior algorithm. Participants in
+that treatment do default to (β2 = 0.623, p < 0.05) the superior algorithm more than participants
+in the original, no-intervention treatment, although the magnitude of the effect is smaller than the
+magnitude of the effect of up-front information. However, participants in the high-load, mandated-
+experience treatment do not respond to this intervention by changing their algorithm use behavior
+in a meaningful way (for example, for defaulting to the algorithm: β2 + β4 = −0.120, p = 0.663).
+
+5.4.1.    Interventions in Practice
+We find up-front information (and to a lesser degree, mandated experience) improves participants’
+recommendation ratings and throughput times, especially when system loads are low. Why then
+would companies ever not implement a version of the up-front information intervention, or ever
+introduce algorithms that they could not say with certainty are superior to workers? The answer is
+that in settings without counterfactual feedback, it is not always possible to know an algorithm is
+superior until enough workers have used it. In these settings, companies must first introduce or pilot
+an algorithm without knowing for certain its quality, to acquire the information necessary to confirm
+whether the algorithm is superior to humans without it. Only after this can the organization provide
+up-front performance information to new users about it. A situation at ReUp Education (ReUp), an
+academic-success-coaching company, exemplifies this challenge. In 2020, we interviewed managers
+and coaches there as we developed our experiment interface (see Section F of the Appendix for
+some details). Around this time, the company was developing a decision-support algorithm to help
+coaches serve students at scale. Our interviewees were optimistic about the algorithm’s potential.
+However, after our interviews, ReUp piloted the algorithm, and found that the algorithm did not
+produce the desired results because coaches tended not to use the algorithm, and when they did,
+the algorithm’s advice sometimes led to negative customer interactions (Ferreira et al. 2023).
+
+6.       Discussion
+We have shown algorithm quality and system load are mutually reinforcing for throughput time
+performance, so superior algorithms may not always improve worker speed and efficiency—even
+with explicit incentives. Here, we describe theoretical and practical implications of this conclusion.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                      27
+
+6.1.    Learning by Using
+As we say in Section 5.4.1, when customer counterfactuals are unobservable, companies and their
+workers cannot know an algorithm’s quality until workers have used the algorithm (and so a com-
+parison can be made between service decisions with versus without algorithmic support). Algorithm
+aversion can make this learning difficult, as people react negatively to seeing feedback about algo-
+rithms’ errors (Dietvorst et al. 2015). Yet, we find that participants follow the superior algorithm’s
+advice significantly more than the inferior algorithm’s—and default to it more under high loads
+(see Section 4.2)—although they are told nothing about its quality.
+  We believe this finding suggests participants can come to discern the quality of their assigned
+algorithm (superior to their own ability or inferior to it) by using it. As this quality is not described
+to participants at any stage of the experiment, except in the up-front information intervention,
+we conclude that participants’ discernment comes from their own learning about the algorithm
+from the immediate feedback they see after each service decision. We term this learning by using,
+which we derive from the pre-existing term: “learning by doing” (Delasay et al. 2019). “Learning
+by doing” describes how workers learn about a task by doing it over time in queueing systems.
+“Learning by using” describes how workers learn about an algorithm by using it over time in
+queueing systems. Participants in our experiment facing both high and low system loads exhibit
+learning by using, and it appears that it did not take much “using” for their learning to occur. In
+both load conditions, participants follow the superior and inferior algorithms’ advice at equal rates
+in the practice period, but by Period 1 they follow the superior algorithm’s advice significantly more
+(see Figure 6 and also Figure E.1 in the Appendix). We have considered other explanations for our
+findings, including the experimenter demand effect and fatigue/stress from extended time pressure.
+While it is possible that participants experience these, learning best explains our findings because
+absent learning, participants driven only by the experimenter demand effect or fatigue/stress who
+face the same load should largely be indifferent to the superior and inferior algorithms.
+  Learning by using has potential practical implications for managers piloting new algorithms of
+unknown quality. These managers can learn more about the algorithms’ quality by inducing more
+algorithm use during the pilot, and increasing system loads is one way to do this. However, by
+increasing system loads, managers risk exposing more customers to worse service driven by inferior
+algorithm advice. Fortunately, learning by using can protect customers (and companies) to some
+extent from this undesirable outcome—and although it might be expected that high loads would
+create pressure that would make learning difficult, we see learning by using occurs as much or
+possibly more when system loads are high.
+  Learning by using might protect customers from bad outcomes, but we find it is limited to a
+holistic view of the algorithm. It does not extend to the customer level. As we describe in Section
+                                                    Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+28
+
+4.5.1, participants treat their heterogeneous customers differently, spending more time on certain
+customers and using their algorithm more often to serve others, but this strategy is ineffective. This
+finding supports previous research which shows that even when people can identify algorithms that
+are on average good or on average bad, they often cannot identify specifically when an algorithm’s
+advice will be helpful; they follow it too much when the advice is poor and follow it too little
+when it is good (Balakrishnan et al. 2022). However, we also see that as participants facing high
+system loads move towards defaulting to the superior algorithm in later periods, they react less
+to customer’s sample ratings. In some sense, this may reflect a movement away from efforts to
+personalize the service, as workers themselves spend little or no time reviewing customer details
+before outsourcing the decision to the algorithm.
+
+6.2.     Efficiency Gains from Algorithms
+Defaulting to the superior algorithm appears to be a form of task reduction, as participants seem-
+ingly bypass the steps of reviewing the customer’s sample joke ratings and the algorithm’s advice
+and go directly to the step of selecting the algorithm’s advice. In traditional service settings, task
+reduction increases with system load (Delasay et al. 2019), and this could explain why high-load
+participants default to both algorithms more than low-load participants do. Still, even partici-
+pants in the low-load context have room for throughput time improvement; they could earn up to
+13% more in the low-load, superior-algorithm condition by serving every customer quickly enough
+to earn the maximum time payoff amount. Low-load participants do capitalize on this room for
+improvement in our extensions (e.g., their average throughput time decreases by 3.8 seconds with
+up-front information about the algorithm).
+     Results from our discrete choice model (see Section 4.2.1 above, and Section E in the Appendix)
+suggest that without intervention, participants are averse to consulting algorithms, and they are
+even more averse to defaulting to algorithms; as much as people value algorithms as a tool for
+service speed, they exhibit some resistance to using algorithms effectively to that end, which gets in
+the way of the efficiency gains from an algorithm. Participants in the high-load, superior-algorithm
+condition partly overcome this aversion through “learning by using”—updating their belief about
+the payoff benefit from defaulting to the algorithm. When participants do not automatically default
+to their algorithm’s advice, the presence of the algorithm may actually create added cognitive load;
+participants in the no-algorithm treatments have only one service decision to make (which joke
+to recommend to the current customer) but participants in the algorithm treatments have two
+(which joke to recommend and whether or not to use the algorithm’s advice). In short, algorithms’
+benefits for efficiency are not guaranteed, even when these benefits would be helpful. We see this
+from the effect of algorithm quality on participants’ throughput times. Only the superior algorithm
+improves high-load participants’ throughput times compared to the no-algorithm baseline.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                  29
+
+  Our findings offer managerial insights about how to implement algorithms for service scale.
+Managers ought not assume that workers will use algorithms for efficiency gains under any system
+load. If initial algorithm pilots reveal disappointing throughput time improvements, this does not
+necessarily mean that algorithms cannot help the company increase its scale. It may simply mean
+that system loads are too low to see results, or that the algorithm needs improvement. Likewise,
+managers are unlikely to benefit from introducing a mediocre algorithm for the sake of service
+efficiency and scale. This could bring about the worst of both worlds—poor service quality without
+faster service. We offer one caveat to the claim that higher system loads will improve efficiency
+gains: in our experiment, participants were no better than random at the task—therefore they did
+not evidence the speed-quality tradeoff present in many service decisions. In settings where workers’
+decision quality improves with decision time, increasing system loads may reduce workers’ efforts
+to provide valuable personalization. Alternatively, workers may prioritize quality, so the efficiency
+gains from higher system loads could be less.
+
+7.    Conclusion
+In this paper we investigate how workers in queueing systems engage with algorithmic decision-
+support to manage system loads. We have shown with an experiment that high system loads and
+superior algorithm quality both separately cause subjects to use the algorithm more for service
+decisions. However, these two effects cannot fully explain why better algorithms plus high system
+loads improve participants’ throughput times a lot, while better algorithms alone improve through-
+put times only a little. Another part of the explanation is that the interaction of high system loads
+and superior algorithm quality influences how participants use the algorithm; high loads plus supe-
+rior algorithms leads to fast algorithm use (defaulting to the algorithm). In an extension, we show
+that interventions for better system performance also induce defaulting behavior, especially when
+system loads are low. Our results suggest that participants learn about their algorithm’s quality
+as they use it, and this, with our other findings, has implications for practice including about how
+to pilot new algorithms and how to use algorithms effectively to scale up services.
+  We view our study as a first step to understanding the managerial and theoretical implications
+of worker-algorithm interactions within service queueing systems. There is much more to learn.
+One interesting extension would be to manipulate the rating and time payoffs directly, to shed
+more light on the question of which dimension (decision quality or efficiency) is the most important
+driver of algorithm use. Another would be to replace the joke-recommendation task with another
+that creates a speed-quality trade-off. Follow-up experiments varying system load over time are yet
+another way to extend our work; we see from our experiment that high loads induce workers to
+learn to default to the superior algorithm, but it remains to be seen if workers continue to default
+                                                         Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+30
+
+to this algorithm when system loads decrease, and we cannot know this from our results alone. If
+short-term exposure to high system loads does promote fast algorithm use, then companies might
+benefit from implementing algorithms while simultaneously increasing system loads. However, this
+may create a problem: if the algorithm’s advice is poor, then increasing system load also increases
+the number of customers exposed to worse service. How companies should weigh this risk against
+the possible benefits from learning presents another direction for future experiments and theory.
+
+References
+Allon, G, M Kremer. 2018. Behavioral foundations of queueing systems. The handbook of behavioral opera-
+     tions 9325 325–366.
+Avshalomov, Z, K VanVliet, S Horn. 2022. Data processing system and method for dynamic assessment,
+     classification, and delivery of adaptive personalized recommendations. U.S. Patent 11,256,873 B2.
+Balakrishnan, M, K Ferreira, J Tong. 2022. Improving human-algorithm collaboration: Causes and mitigation
+     of over- and under-adherence. Working Paper 1–30.
+Bastani, H, O Bastani, WP Sinchaisri. 2020. Learning best practices: Can machine learning improve human
+     decision-making? Working Paper 1–30.
+Batt, RJ, C Terwiesch. 2017. Early task initiation and other load-adaptive mechanisms in the emergency
+     department. Management Science 63(11) 3531–3551.
+Beer, R, A Qi, I Rı́os. 2022. Behavioral externalities of process automation. Available at SSRN 4295527 .
+Boyacı, T, C Canyakmaz, F de Véricourt. 2023. Human and machine: The impact of machine input on
+     decision making under cognitive limitations. Management Science .
+Buell, R. 2018. The parts of customer service that should never be automated. Harvard Business Review .
+Cao, X, D Zhang. 2020. The impact of forced intervention on ai adoption. Available at SSRN 3640862 .
+Caro, F, A Saez de Tejada Cuenca. 2022. Believing in analytics: Managers’ adherence to price recommen-
+     dations from a dss. Manufacturing & Service Operations Management, forthcoming .
+Castelo, N, MW Bos, DR Lehmann. 2019. Task-dependent algorithm aversion. Journal of Marketing Research
+     56(5) 809–825.
+Dai, T, M Abramoff. 2023. Incorporating artificial intelligence into healthcare workflows: Models and insights.
+     INFORMS TutORials in Operations Research .
+Delasay, M, A Ingolfsson, B Kolfal, K Schultz. 2019. Load effect on service times. European Journal of
+     Operational Research 279(3) 673–686.
+Dietvorst, B, J Simmons, C Massey. 2015. Algorithm aversion: People erroneously avoid algorithms after
+     seeing them err. Journal of Experimental Psychology: General 144(1) 114–126.
+Dietvorst, BJ, JP Simmons, C Massey. 2018. Overcoming algorithm aversion: People will use imperfect
+     algorithms if they can (even slightly) modify them. Management Science 64(3) 1155–1170.
+Do, HT, M Shunko, MT Lucas, DC Novak. 2018. Impact of behavioral factors on performance of multi-server
+     queueing systems. Production and Operations Management 27(8) 1553–1573.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                       31
+
+Duch, ML, MRP Grossmann, T Lauer. 2020. z-Tree unleashed : A novel client-integrating architecture for
+      conducting z-tree experiments over the internet. Journal of Behavioral and Experimental Finance 28
+      100400.
+Ferreira, K, CT Ryan, S Mehta. 2023. Reup education: Can ai help learners return to college? Harvard
+      Business School case 624-007 1–25.
+Filiz, I, JR Judek, M Lorenz, M Spiwoks. 2021. Reducing algorithm aversion through experience. Journal
+      of Behavioral and Experimental Finance 31 100524.
+Fischbacher, U. 2007. z-tree: Zurich toolbox for ready-made economic experiments. Exp Econ 10 171–178.
+Gans, N, N Liu, A Mandelbaum, H Shen, H Ye. 2010. Service times in call centers: Agent heterogeneity
+      and learning with some operational consequences. Borrowing strength: theory powering applications–A
+      Festschrift for Lawrence D. Brown, vol. 6. Institute of Mathematical Statistics, 99–124.
+Gillis, T, B McLaughlin, J Spiess. 2023. On the fairness of machine-assisted human decisions: Theory and
+      experimental evidence. arXiv preprint arXiv:2110.15310 .
+Goddard, K, A Roudsari, JC Wyatt. 2012. Automation bias: a systematic review of frequency, effect medi-
+      ators, and mitigators. Journal of the American Medical Informatics Association 19(1) 121–127.
+Greiner, B. 2004. The Online Recruitment System ORSEE 2.0 - A Guide for the Organization of Experiments
+      in Economics. Working Paper Series in Economics 10, University of Cologne, Department of Economics.
+Hathaway, BA, E Kagan, M Dada. 2022. The gatekeeper’s dilemma: “when should i transfer this customer?”.
+      Operations Research 0(0) null.
+Hoffman, M, L Kahn, D Li. 2018. Discretion in hiring. The Quarterly Journal of Economics 133(2) 765–800.
+Hopp, WJ, SMR Iravani, GY Yuen. 2007. Operations systems with discretionary task completion. Manage-
+      ment Science 53(1) 61–77.
+Huang, MH, RT Rust. 2018. Artificial intelligence in service. Journal of Service Research 21(2) 155–172.
+Ibanez, MR, JR Clark, RS Huckman, BR Staats. 2018. Discretionary task ordering: Queue management in
+      radiological services. Management Science 64(9) 4389–4407.
+Ibrahim, R, SH Kim, J Tong. 2021. Eliciting human judgment for prediction algorithms. Management
+      Science 67(4) 2314–2325.
+Jung, M, M Seiter. 2021. Towards a better understanding on mitigating algorithm aversion in forecasting:
+      an experimental study. Journal of Management Control 32(4) 495–516.
+Jussupow, E, I Benbasat, A Heinzl. 2020. Why are we averse towards algorithms? A comprehensive literature
+      review on algorithm aversion. Proceedings of the 28th European Conference on Information Systems
+      (ECIS). European Conference on Information Systems, 1–16.
+Kagan, E, M Dada, B Hathaway. 2022. Ai chatbots in customer service: Adoption hurdles and simple
+      remedies. Working Paper 1–44.
+Kawaguchi, K. 2021. When will workers follow an algorithm? A field experiment with a retail business.
+      Management Science 67(3) 1670–1695.
+KC, DS, C Terwiesch. 2009. Impact of workload on service time and patient safety: An econometric analysis
+      of hospital operations. Management Science 55(9) 1486–1498.
+                                                        Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+32
+
+KC, DS, C Terwiesch. 2012. An econometric analysis of patient flows in the cardiac intensive care unit.
+     Manufacturing & Service Operations Management 14(1) 50–65.
+Kesavan, S, T Kushwaha. 2020. Field experiment on the profit implications of merchants’ discretionary
+     power to override data-driven decision-making tools. Management Science 66(11) 5182–5190.
+Kremer, M, F de Véricourt. 2023. Mismanaging diagnostic accuracy under congestion. Operations Research
+     71(3) 895–916.
+Kwon, C, A Raman, J Tamayo. 2022. Human-computer interactions in demand forecasting and labor
+     scheduling decisions. Available at SSRN 4296344 .
+Lehmann, CA, CB Haubitz, A Fügener, UW Thonemann. 2022. The risk of algorithm transparency: How
+     algorithm complexity drives the effects on the use of advice. Production and Operations Management
+     31(9) 3419–3434.
+Li, J, S Leider, D Beil, I Duenyas. 2021. Running online experiments using web-conferencing software.
+     Journal of the Economic Science Association 7(2) 167–183.
+Lin, W, S-H Kim, J Tong. 2021. Does algorithm aversion exist in the field? an empirical analysis of algorithm
+     use determinants in diabetes self-management. An Empirical Analysis of Algorithm Use Determi-
+     nants in Diabetes Self-Management (July 23, 2021). USC Marshall School of Business Research Paper
+     Sponsored by iORB, No. Forthcoming .
+Liu, N, SR Finkelstein, ME Kruk, D Rosenthal. 2018. When waiting to see a doctor is less irritating: Under-
+     standing patient preferences and choice behavior in appointment scheduling. Management Science
+     64(5) 1975–1996.
+Pettey, C. 2016. Five keys to understanding algorithmic business. Gartner .
+Pisano, GP, RMJ Bohmer, AC Edmondson. 2001. Organizational differences in rates of learning: Evidence
+     from the adoption of minimally invasive cardiac surgery. Management Science 47(6) 752–768.
+Sarter, NB, B Schroeder. 2001. Supporting decision making and action selection under time pressure and
+     uncertainty: The case of in-flight icing. Human factors 43(4) 573–583.
+Schultz, KL, DC Juran, JW Boudreau, JO McClain, LJ Thomas. 1998. Modeling and worker motivation in
+     JIT production systems. Management Science 44(12-part-1) 1595–1607.
+Shunko, M, J Niederhoff, Y Rosokha. 2018. Humans are not machines: The behavioral impact of queueing
+     design on service time. Management Science 64(1) 453–473.
+Smith, A. 2018. Public attitudes toward computer algorithms. Pew Research Center, Washington, D.C. .
+Sun, J, DJ Zhang, H Hu, JA Van Mieghem. 2022. Predicting human discretion to adjust algorithmic
+     prescription: A large-scale field experiment in warehouse operations. Management Science 0(0) null.
+Tan, TF, S Netessine. 2014. When does the devil make work? An empirical study of the impact of workload
+     on worker productivity. Management Science 60(6) 1574–1593.
+Van Donselaar, KH, V Gaur, T Van Woensel, RACM Broekmeulen, JC Fransoo. 2010. Ordering behavior
+     in retail stores and implications for automated replenishment. Management Science 56(5) 766–784.
+Wickelgren, W. 1977. Speed-accuracy tradeoff and information processing dynamics. Acta Psychologica
+     41(1) 67–85.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                       33
+
+Yeomans, M, A Shah, S Mullainathan, J Kleinberg. 2019. Making sense of recommendations. Journal of
+      Behavioral Decision Making 32(4) 403–414.
+Önkal, D, P Goodwin, M Thomson, S Gönül, A Pollock. 2009. The relative influence of advice from human
+      experts and statistical methods on forecast adjustments. Journal of Behavioral Decision Making 22(4)
+      390–409.
+                                                     Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+34
+
+
+Appendices
+A.    Experiment Design Details
+In this section of the Appendix, we provide more details and context about our experiment design.
+
+
+
+
+                              (a) Before consulting the algorithm’s advice
+
+
+
+
+                               (b) After consulting the algorithm’s advice
+                       Figure A.1   Experimental Interface: Algorithm Treatment
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                           35
+
+  Figure A.1 shows the experimental interface participants see in the original algorithm treatments,
+before and after consulting the algorithm’s advice. We describe details of the interface in Section
+3.2.1 in the main body of the paper. Figure A.2 shows the experimental interface that participants
+in the mandated experience treatment see for the first three customers in each period, when they
+must follow the algorithm’s advice. We describe details of this interface in Section 5.2.
+
+
+
+
+         Figure A.2     Experimental Interface: Mandated Experience Intervention (first three customers)
+
+
+
+
+  Tables A.1 and A.2 show the outcome-(rating and throughput time, respectively)-to-payoff con-
+version we use to incentivize decisions in our experiment. We describe the design of our payoff
+scheme in detail in Section 3.2.3 in the main body of the paper.
+
+
+               Table A.1     Ratings Payoff
+              Ratingi      fquality (Ratingi )               Table A.2    Throughput Time Payoff
+                                                                         Ti        fwait (Ti )
+            -10.0 – 0.0          $0.00
+             0.1 – 3.0           $0.05
+                                                                  > 25 seconds       $0.00
+             3.1 – 5.0           $0.10
+                                                                10 – 25 seconds      $0.01
+             5.1 – 7.0           $0.15
+                                                                 0 – 10 seconds      $0.02
+             7.1 – 9.0           $0.20
+             9.1 – 10.0          $0.25
+                                                       Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+36
+
+     The customers that participants see over the course of the experiment are heterogeneous and rate
+the 12 jokes differently from one another. Table A.3 shows summary statistics about the features of
+the customers that participants can see from the four sample ratings, and the standard deviation
+in these measures for all customers. Because participants see more customers in the high-load
+treatments, the summary statistics are slightly different in the high-load treatments than the low-
+load treatments. Table A.4 shows a summary of the different ratings customers gave to different
+jokes. We discuss customer heterogeneity in more detail in Section 3.2.2 in the paper.
+
+                                                               Table A.4     Joke Summary Statistics
+
+ Table A.3     Customer Summary Statistics
+                                                                 Joke No. Mean Std. Dev.
+System Load                        High      Low
+                                                                 1.            1.506      4.597
+                                                                 2.            3.140      4.553
+Sample rating average         1.855   1.926
+                                                                 3.           -0.059      4.446
+                             (2.849) (2.682)
+                                                                 4.            2.751      4.704
+Sample rating range           7.905   8.069
+                                                                 5.            2.391      4.335
+                             (3.869) (4.044)
+                                                                 6.            1.998      4.478
+Maximum joke option rating 6.644      6.503
+                                                                 7.            2.205      4.408
+                             (2.258) (2.247)
+                                                                 8.            2.888      4.667
+Minimum joke option rating -4.514 -4.327
+                                                                 9.            2.504      3.969
+                             (3.257) (3.289)
+                                                                 10.          -0.504      4.600
+     Standard deviation in parentheses
+                                                                 11.          0.8327      4.749
+                                                                 12.           1.711      4.678
+
+
+     As we describe in Section 3.3.2 in the paper, we used an OLS design to create our algorithms.
+Although the design is relatively simple, our superior algorithm performs well against alternative
+designs, as Figure A.3 shows.
+
+
+
+
+                    Figure A.3   Alternative (Superior) Algorithm Performance Comparison
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                      37
+
+B.     Additional Quantitative Results
+In this section, we provide more and expanded results about our original treatments.
+  Participants’ major (STEM or not), sex (male or not), and algorithm attitudes (their average
+reported understanding of several algorithms, their average reported agreement with automating
+and augmenting several tasks with algorithms) are the participant controls we use in our regression
+analyses. Table B.1 shows summary statistics about these analyses.
+
+                                Table B.1     Participant Control Summary Statistics
+      Algorithm                                              No Algorithm     Superior     Inferior
+      System Load                                            High Low        High Low    High Low
+
+                                                       .66    .53    .50    .62    .65    .61
+      Fraction STEM majors
+                                                      (.48) (.50) (.50) (.49) (.48) (.49)
+                                                       .32    .16    .18    .33    .29    .22
+      Fraction male
+                                                      (.47) (.37) (.38) (.47) (.46) (.41)
+                                                      4.58   4.63   4.49   4.61   4.46   4.60
+      “Understand algorithm” average (scale of 1–7)
+                                                     (1.21) (1.08) (1.21) (1.20) (1.35) (1.30)
+                                                      1.61   1.57   1.48   1.44   1.57   1.61
+      “Agree with automating” average (scale of 1–3)
+                                                      (.49) (.62) (.56) (.55) (.51) (.54)
+                                                      2.38   2.21   2.30   2.25   2.24   2.25
+      “Agree with augmenting” average (scale of 1–3)
+                                                      (.49) (.62) (.56) (.55) (.58) (.57)
+                                  Standard deviation in parentheses
+
+
+
+  Figure B.1 shows the average per-customer payoff in each of the six treatments. We provide
+details about participants’ rating and throughput time performances underlying these payoffs in
+Section 4.1 of the paper. As expected, participants earn more with the superior algorithm and
+less with the inferior algorithm. Holding algorithm treatment fixed, participants earn more per
+customer under low loads, except in the superior-algorithm conditions.
+
+
+
+
+                             Figure B.1     Average Per-Customer Payoff by Treatment
+                                                         Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+38
+
+     Table B.2 is the complete version of Table 3 in the paper, including all participant and customer
+control results. As a reminder, this table shows results from logit regressions of the form:
+
+       P(Algo. usei,j = 1) = F (β0 + β1 HLj + β2 SAj + β3 HLj × SAj + β4 ITi,j + β5 Ci + β6 Pj + ϵi,j ).
+
+P(Algorithm usei,j = 1) denotes participant j’s probability of using the algorithm to serve customer
+i. HLj is an indicator variable denoting participant j’s system-load treatment assignment (1 if
+j is assigned the high system load and 0 if the low load). SAj is an indicator variable denoting
+participant j’s algorithm treatment assignment (1 if j is assigned the superior algorithm and 0 if the
+inferior). ITi,j equals the time between customer i − 1 and customer i’s arrivals to the system, minus
+the average inter-arrival time of customers in participant j’s system load treatment assignment.
+Ci represents customer controls: the average and range of customer i’s four sample joke ratings.
+Pj represents participant controls: attributes of participant i including gender and college major
+collected from the post-experiment questionnaire. Across the regressions, we use robust standard
+errors clustered at the participant level. We exclude the no-algorithm control treatment results
+from this regression because it is not possible for participants to use the algorithm’s advice there.
+     The regressions confirm that system load significantly affects algorithm use, for any definition
+of use. Participants are significantly, and substantially, more likely to use both algorithms under
+higher system loads. Participants also respond to the quality of their algorithm’s advice. However,
+their exact response to algorithm quality varies by system load. Customer controls and participants’
+major and gender are also predictive of algorithm use.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                        39
+
+                                   Table B.2     Algorithm Use Logit Regressions
+           VARIABLES                                         Consult (0/1) Follow (0/1) Default (0/1)
+
+           High system load treatment (0/1)                     0.622**      0.548**       0.805***
+                                                                (0.258)      (0.240)        (0.311)
+           Superior algorithm treatment (0/1)                   0.459**      0.501**         0.464
+                                                                (0.233)      (0.219)        (0.294)
+           Load × algorithm treatment interaction                -0.148       -0.053         0.108
+                                                                (0.336)      (0.316)        (0.396)
+           Inter-arrival time deviation                        -0.003**     -0.005***     -0.032***
+                                                                (0.001)      (0.001)        (0.003)
+           Customer controls
+           Rating average                                      -0.054***    -0.060***     -0.012***
+                                                                (0.005)      (0.006)       (0.004)
+           Rating range                                        -0.030***    -0.036***     -0.022***
+                                                                (0.003)      (0.003)       (0.003)
+           Participant controls
+           STEM major (0/1)                                     0.428**      0.392**        0.338
+                                                                (0.179)       (0.172)      (0.208)
+           Male (0/1)                                          0.490***      0.462***       0.339
+                                                                (0.186)       (0.177)      (0.208)
+           Understand algorithm                                  0.037          0.032       0.056
+                                                                (0.066)       (0.065)      (0.076)
+           Agree: automation                                     -0.093        -0.061       0.029
+                                                                (0.184)       (0.183)      (0.214)
+           Agree: augmentation                                    0.168         0.189       0.204
+                                                                (0.167)       (0.162)      (0.208)
+           Constant                                            -1.273**     -1.469***     -3.218***
+                                                                (0.537)       (0.536)      (0.632)
+
+           Odds ratios
+           High system load treatment (0/1)                      1.862        1.729         2.238
+           Superior algorithm treatment (0/1)                    1.582        1.650         1.590
+           Load × algorithm treatment interaction                .8623        .948          1.114
+
+           Observations                                45,894         45,894               45,894
+           Number of participants                       311            311                  311
+                          Robust standard errors clustered at the subject level
+                                    *** p<0.01, ** p<0.05, * p<0.1
+                                                           Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+40
+
+     Tables B.3 and B.4 contain summary statistics related to the queueing system, for each of the
+original treatments. Because B.4 shows some results about participants’ service times conditional
+on consulting the algorithm’s advice, these statistics are not applicable for the no-algorithm treat-
+ments. We discuss the queueing system in detail in Section 4.3 and Section 4.4 in the main body
+of the paper.
+     Table B.3 shows that the system is relatively stable and queue lengths to not explode even in the
+high-load conditions. Table B.4 reinforces that participants’ service times are particularly fast in
+the high-load, superior-algorithm condition when participants do consult their algorithm’s advice.
+
+
+
+             Table B.3      Queueing System Summary Statistics, Including Idle Time and Queue Length
+          Algorithm                            No Algorithm          Superior              Inferior
+          System Load                          High     Low       High     Low          High      Low
+
+          Idle time                           27.6%   41.8%   38.6%   46.2%   28.8%   42.2%
+                                             (17.4%) (15.9%) (19.6%) (19.3%) (19.8%) (16.6%)
+          Utilization                         72.4%   58.2%   61.4%   53.8%   71.2%   57.8%
+                                             (17.4%) (15.9%) (19.6%) (19.3%) (19.8%) (16.6%)
+
+          Queue length                     2.198    1.021     1.592    1.037 2.239  1.018
+                                          (1.997) (0.455) (1.524) (0.785) (1.9056) (0.512)
+          Queue length in middle minute 2.171       1.106     1.438    1.154 2.124  1.071
+                                          (2.822) (0.545) (1.841) (0.955) (2.711) (0.594)
+          Queue length in final minute     1.465    0.841     0.983    0.692 1.362  0.806
+                                          (0.865) (0.424) (0.638) (0.564) (0.877) (0.517)
+                                     Standard deviation in parentheses
+
+
+
+
+      Table B.4     Service Time Summary Statistics, Including Times Pre- and Post- Consulting the Algorithm
+      Algorithm                                          No Algorithm         Superior             Inferior
+      System Load                                        High    Low        High    Low         High      Low
+
+      Service time pre-consult (sec.) | Consult == 1     .       .          2.748     3.950     3.652     3.958
+                                                         .       .         (1.318)   (2.363)   (2.286)   (1.640)
+      Service time post-consult (sec.) | Consult == 1    .       .          1.695     2.406     2.343     2.596
+                                                         .       .         (0.992)   (2.608)   (1.643)   (1.874)
+      Service time (sec.) | Consult == 1                 .       .          4.443     6.353     5.995     6.554
+                                                         .       .         (1.962)   (4.666)   (2.817)   (3.217)
+      Service time (sec.) | Consult == 0               6.470   7.469        6.980     8.165     7.569     8.163
+                                                      (2.388) (2.160)      (2.521)   (2.844)   (2.979)   (2.300)
+
+      Service time (sec.)                                  6.470    7.469    5.288 7.020   6.275   7.413
+                                                          (2.388) (2.160) (2.062) (2.893) (2.354) (2.318)
+      cS , coefficient of variation for service times       47%     43%      56%   52%     67%     53%
+                                           Standard deviation in parentheses
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                   41
+
+  Table B.5 replicates a regression (“Consult==0”) presented in Table 4 in the main body of the
+text for all treatments, including the no-algorithm treatments. This regression is an OLS regression
+of the form:
+
+                TSi,j = β0 + β1 HLj + β2 SAj + β3 HLj × SAj + β4 ITi,j + β5 Ci + β6 Pj + ϵi,j .
+
+The variable names here follows the notation defined for Table B.2 above, except that our outcome
+of interest is participant j’s service time for customer i, TSi,j . The regression is conditioned on
+participant j’s choice not to consult the algorithm’s advice for customer i. A second regression
+in the table takes the same form, but conditioned on participant j’s choice not to follow the
+algorithm’s advice.
+  Replicating the “Consult==0” regression, and also a “Follow==0,” regression for all participants
+(including participants in the no-algorithm condition) gives similar results, with one new finding:
+conditional on not following the algorithm’s advice, participants’ service times are about 0.8 seconds
+faster in the no-algorithm treatment (p < 0.075) than either of the algorithm treatments.
+                                                Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+42
+
+     Table B.5   Service Time Linear Regressions, Including the No-Algorithm Treatment
+                                                    Consult==0 Follow==0
+           VARIABLES                                Service time Service time
+
+           High system load treatment (0/1)            -1.037**       -1.032**
+                                                        (0.440)        (0.440)
+           Inferior algorithm treatment (0/1)            0.641         0.840*
+                                                        (0.423)        (0.430)
+           Superior algorithm treatment (0/1)             0.598        0.810*
+                                                        (0.449)        (0.448)
+           Load × inferior algorithm interaction         -0.292         -0.213
+                                                        (0.612)        (0.618)
+           Load × superior algorithm interaction         -0.528         -0.619
+                                                        (0.617)       (0.6123)
+           Inter-arrival time deviation                0.013***       0.014***
+                                                        (0.003)        (0.002)
+           Customer controls
+           Rating average                                -0.000         -0.005
+                                                        (0.009)        (0.009)
+           Rating range                                0.033***       0.033***
+                                                        (0.006)        (0.005)
+           Participant controls
+           STEM major (0/1)                              -0.207         -0.205
+                                                        (0.259)        (0.258)
+           Male (0/1)                                    -0.335         -0.361
+                                                        (0.273)        (0.267)
+           Understand algorithm                          0.056          0.052
+                                                        (0.094)        (0.096)
+           Agree: automation                             -0.031         -0.051
+                                                        (0.239)        (0.247)
+           Agree: augmentation                           -0.259         -0.262
+                                                        (0.224)        (0.225)
+           Constant                                    7.681***       7.750***
+                                                        (0.757)        (0.769)
+
+           Observations                               37,949            40,008
+           R-squared                                  0.029             0.031
+                          Robust standard errors in parentheses
+                            *** p<0.01, ** p<0.05, * p<0.1
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                        43
+
+  Table B.6 below shows algorithm use logit regressions following the same form as the regression
+shown in Table B.2, with the addition of a new indicator variable, periodi,j , which equals 1 if
+participant j serves customer i in the second half (Periods 3–5) of the experiment. We interact this
+term with HLj , SAj , and HLj × SAj to learn how algorithm use over time varies by treatment.
+This gives us insight into the effect of time on participants’ algorithm use behavior, which we
+discuss in more detail in Section 4.5 of the paper. Similarly, Table B.7 shows results from an OLS
+regression of the same form with service times as the dependent variable.
+
+                      Table B.6     Algorithm Use Logit Regressions with Period Interactions
+                                                                                         Follow==1
+         VARIABLES                                           Follow (0/1) Default (0/1) Default (0/1)
+
+         β1 : High system load treatment (0/1)                 0.515**       0.879***      0.663**
+                                                               (0.254)        (0.322)      (0.301)
+         β2 : Superior algorithm treatment (0/1)               0.520**        0.568*         0.236
+                                                               (0.234)        (0.311)      (0.307)
+         β3 : Load × algorithm treatment interaction            -0.148         -0.224       -0.118
+                                                               (0.335)        (0.422)      (0.403)
+         β4 : Period (0/1)                                       0.105         0.265         0.302
+                                                               (0.121)        (0.213)      (0.212)
+         β5 : Load × period interaction                         0.0468         -0.131       -0.257
+                                                               (0.152)        (0.238)      (0.238)
+         β6 : Algorithm × period interaction                    -0.035         -0.174       -0.254
+                                                               (0.141)        (0.241)      (0.241)
+         β7 : Load × algorithm × period interaction           -0.005***     -0.031***     -0.037***
+                                                               (0.074)        (0.100)      (0.097)
+         Inter-arrival time deviation                         -0.005***     -0.031***     -0.037***
+                                                               (0.001)        (0.003)      (0.004)
+         Customer Controls                                         Y             Y             Y
+         Participant Controls                                      Y             Y             Y
+         Constant                                             -1.572***     -3.491***     -1.701***
+                                                               (0.561)        (0.667)      (0.533)
+
+         β5 + β7                                               0.204*        0.396**      0.437**
+                                                               (0.118)       (0.162)       (0.169)
+         β6 + β7                                                0.122        0.352**      0.439***
+                                                               (0.131)       (0.157)       (0.166)
+
+         Observations                                   45,894         45,894                  18,462
+         Number of participants                           311           311                     263
+                          Robust standard errors clustered at the subject level
+                                    *** p<0.01, ** p<0.05, * p<0.1
+
+
+  Table B.6 shows that the effect of time (as represented by periodi,j ) on participants’ defaulting
+behavior is significantly greater in the high-load, superior-algorithm treatment than in the low-
+load, superior-algorithm treatment (β5 + β7 = 0.396: p < 0.05) or the high-load, inferior-algorithm
+treatment (β6 + β7 = 0.352: p < 0.05). As Table B.7 shows, this means that participants in the
+high-load, superior-algorithm treatment serve customers even more quickly than participants in
+                                                         Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+44
+
+the low-load, inferior-algorithm treatment (β5 + β7 = −0.378: p = 0.086) and the high-load, inferior-
+algorithm treatment (β6 + β7 = −0.346: p = 0.096) do over time.
+
+                      Table B.7    Service Time OLS Regression with Period Interactions
+                        VARIABLES                                       Service time
+
+                        β1 : High system load treatment (0/1)             -1.178***
+                                                                            (0.425)
+                        β2 : Superior algorithm treatment (0/1)              -0.360
+                                                                            (0.440)
+                        β3 : Load × algorithm treatment interaction          -0.461
+                                                                            (0.564)
+                        β4 : Period (0/1)                                    -0.147
+                                                                            (0.183)
+                        β5 : Load × period interaction                       -0.174
+                                                                            (0.243)
+                        β6 : Algorithm × period interaction                  -0.142
+                                                                            (0.251)
+                        β7 : Load × algorithm × period interaction           -0.204
+                                                                            (0.327)
+                        Inter-arrival time deviation                      0.019***
+                                                                            (0.002)
+                        Customer Controls                                      Y
+                        Participant Controls                                   Y
+                        Constant                                           8.260***
+                                                                            (0.775)
+
+
+                        β5 + β 7                                        -0.378*
+                                                                        (0.219)
+                        β6 + β 7                                        -0.346*
+                                                                        (0.207)
+                        Observations                                     45,894
+                        Number of participants                            311
+                        R-squared                                        0.051
+                           Robust standard errors clustered at the subject level
+                                     *** p<0.01, ** p<0.05, * p<0.1
+
+
+     In Table B.8, we show a regression of relative superior algorithm performance on customer type.
+In particular, we measure the difference between customers’ ratings for the superior algorithm’s
+recommendation and their ratings for recommendations by participants in the no-algorithm treat-
+ments. We define customer types according to their sample rating average and range; high averages
+and ranges are defined as being above the median while low averages and ranges are those below
+the median value. This relates to our discussion of participants’ algorithm use strategy for hetero-
+geneous customers in Section 4.5.1 of the main text—the algorithm is not relatively better than
+participants for any customer type.
+     Finally, Table B.9 shows a version of the algorithm use regressions (e.g., see Table B.2 above)
+where period is interacted with the customer rating average control. This again gives information
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                          45
+
+about participants’ algorithm use behavior over time for heterogeneous customers: the effect of the
+customer rating × period interaction is positive and significant—0.213**—only in the regression
+of participants’ algorithm use for the high-load, superior-algorithm treatment.
+
+                                 Table B.8     Customer Control Linear Regressions
+                VARIABLES                                        Algorithm - participant rating
+
+                High rating average, high rating range (0/1)                   -0.536
+                                                                              (0.863)
+                High rating average, low rating range (0/1)                    -0.380
+                                                                              (0.643)
+                Low rating average, high rating range (0/1)                     0.111
+                                                                              (0.736)
+                Constant                                                     1.703***
+                                                                              (0.468)
+
+                Observations                                               12,576
+                R-squared                                                   0.002
+                                Standard errors clustered at the customer level
+                                       *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+             Table B.9     Algorithm Use Logit Regressions with Customer Rating-Period Interaction
+                                                   HL × SA      LL × SA      HL × IA      LL × IA
+      VARIABLES                                   Follow (0/1) Follow (0/1) Follow (0/1) Follow (0/1)
+
+      Customer rating average                      -0.079***     -0.078***       -0.035**    -0.086***
+                                                    (0.013)       (0.015)         (0.015)     (0.016)
+      Period (0/1)                                  0.213**         0.061         0.213**      0.105
+                                                    (0.101)       (0.071)         (0.088)     (0.106)
+      Customer rating × period interaction          0.034**        0.019         -0.034**      -0.010
+                                                    (0.014)       (0.015)         (0.017)     (0.018)
+      Customer rating range                        -0.035***     -0.040***      -0.037***    -0.043***
+                                                    (0.005)       (0.006)         (0.008)     (0.008)
+      Participant Controls                             Y              Y              Y           Y
+      Constant                                       -0.818        -0.504          -1.015      -0.500
+                                                    (0.846)       (0.917)         (1.199)     (0.788)
+
+      Observations                               17,098         10,866         10,860             7,070
+                             Robust standard errors clustered at the subject level
+                                       *** p<0.01, ** p<0.05, * p<0.1
+                                                              Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+46
+
+C.      Additional Quantitative Results: Intervention Extension
+In this section, we provide more and expanded results from our extension about interventions for
+system performance.
+     Tables C.1 and C.2 show OLS regressions of rating and throughput time, respectively, for each
+intervention compared to the corresponding original superior-algorithm treatment. Each interven-
+tion indicator equals 1 for participants exposed to either up-front information or mandated expe-
+rience (the intervention is indicated by the column heading: UI means up-front information while
+ME means mandated experience), and 0 otherwise. Customer controls and participant controls are
+the same as in previous regressions. We discuss the results from these regressions in Section 5.4 in
+the paper: in summary, both interventions yield some performance improvement compared to the
+original, no-algorithm results, except mandated experience under high load.
+
+     Table C.1      Recommendation Rating Regressions: Intervention versus Original Superior-Algorithm Results
+                                                    HL × UI LL × UI HL × ME LL × ME
+                     VARIABLES                       Rating  Rating  Rating  Rating
+
+                     Intervention indicator (0/1)   0.213*      0.323***      -0.099        0.275**
+                                                    (0.112)     (0.0988)     (0.103)        (0.116)
+                     Customer Controls                 Y            Y           Y              Y
+                     Participant Controls              Y            Y           Y              Y
+                     Constant                       0.745**     1.861***    0.987***       1.677***
+                                                    (0.317)      (0.353)     (0.292)        (0.282)
+
+                     Observations                 23,389     18,087     22,996      14,499
+                     Number of participants         131       154         132         128
+                     R-squared                     0.094     0.057       0.092       0.058
+                              Robust standard errors clustered at the subject level
+                                        *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+        Table C.2      Throughput Time Regressions: Intervention versus Original Superior-Algorithm Results
+                                              HL × UI      LL × UI     HL × ME      LL × ME
+          VARIABLES                         Thruput time Thruput time Thruput time Thruput time
+
+          Intervention indicator (0/1)          -1.074        -3.949***           0.127          -3.026**
+                                               (1.813)         (1.307)           (1.525)          (1.341)
+          Customer Controls                       Y               Y                 Y                Y
+          Participant Controls                    Y               Y                 Y                Y
+          Constant                            21.14***        17.81***          22.54***         19.80***
+                                               (4.431)         (4.036)           (3.993)          (4.946)
+
+          Observations                    23,389          18,087         22,996                   14,499
+          Number of participants            131            154             132                     128
+          R-squared                        0.048          0.027           0.044                   0.020
+                            Robust standard errors clustered at the subject level
+                                      *** p<0.01, ** p<0.05, * p<0.1
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                     47
+
+  To analyze the effects of the two interventions and system load on algorithm use more formally,
+we estimate logit regressions of the form:
+
+     P(Algo. usei,j = 1) = F (β0 + β1 HLj + β2 MEj + β3 UIj + β4 HLj × MEj + β5 HLj × UIj + ...).
+
+This regression follows the same form outlined in Equation 1 in our paper, our original “algo-
+rithm use” logistic regression, with two new variables in place of the algorithm quality treatment
+indicator—we measure the effect of interventions only on participants with the superior algorithm:
+MEj is an indicator variable denoting whether participant j is assigned to the mandated experi-
+ence intervention, and UIj is an indicator variable denoting whether participant j is assigned to
+the up-front information intervention. We exclude participants in the original no-algorithm and
+inferior-algorithm treatments from this regression. The results of this regression are as follows:
+
+                        Table C.3    Algorithm Use Logit Regressions: Intervention Extension
+             VARIABLES                                   Consult (0/1) Follow (0/1) Default (0/1)
+
+             β1 : High system load treatment (0/1)            0.493**     0.493**        0.902***
+                                                              (0.215)     (0.206)         (0.242)
+             β2 : Experience intervention (0/1)                 0.413       0.386         0.623**
+                                                              (0.259)     (0.253)         (0.301)
+             β3 : Information intervention (0/1)             1.144***    0.975***        0.967***
+                                                              (0.251)     (0.226)         (0.258)
+             β4 : Load × experience interaction                -0.267      -0.329         -0.743*
+                                                              (0.388)     (0.367)         (0.411)
+             β5 : Load × information interaction               -0.670      -0.535          -0.382
+                                                              (0.419)     (0.388)         (0.391)
+             Inter-arrival time deviation                    -0.005***   -0.006***      -0.027***
+                                                              (0.001)     (0.001)         (0.002)
+             Customer Controls                                    Y           Y              Y
+             Participant Controls                                 Y           Y              Y
+             Constant                                          -0.655      -0.645       -1.746***
+                                                              (0.504)     (0.471)         (0.497)
+
+             β1 + β 4                                           0.225      0.164          0.159
+                                                              (0.325)     (0.306)        (0.333)
+             β1 + β 5                                          -0.177      -0.042         0.520*
+                                                              (0.366)     (0.333)        (0.310)
+             β2 + β 4                                           0.146      0.057          -0.120
+                                                              (0.287)     (0.264)        (0.276)
+             β3 + β 5                                           0.474      0.440         0.585**
+                                                              (0.334)     (0.314)        (0.294)
+
+             Observations                                51,007         51,007            51,007
+                              Robust standard errors clustered at the subject level
+                                        *** p<0.01, ** p<0.05, * p<0.1
+                                                        Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+48
+
+     Table C.3 reveals that up-front information changes the way participants rely on the algorithm
+by encouraging greater use from the start. On the other hand, only participants in the low-load
+condition respond to our mandated-experience intervention by significantly changing (increasing)
+their use of the superior algorithm.
+     We repeat this analyses for a randomly-selected subset of 36 participants from the low-load,
+mandated-experience treatment, to ensure our results are not driven by the randomly larger number
+of subjects in that treatment (due to some randomness in the recruiting process). Table C.4 shows
+the results (and it confirms that the results are not driven by the subject count).
+
+        Table C.4   Algorithm Use Logit Regressions: 36 (Random) Subjects from the LL × ME Treatment
+             VARIABLES                               Consult (0/1) Follow (0/1) Default (0/1)
+
+             β1 : High system load treatment (0/1)      0.480**        0.482**          0.895***
+                                                        (0.215)        (0.206)           (0.243)
+             β2 : Experience intervention (0/1)        0.668***       0.663***           0.680**
+                                                        (0.240)        (0.232)           (0.283)
+             β3 : Information intervention (0/1)       1.216***       0.958***          0.931***
+                                                        (0.301)        (0.262)           (0.295)
+             β4 : Load × experience interaction          -0.368         -0.433           -0.726*
+                                                        (0.364)        (0.341)           (0.387)
+             β5 : Load × information interaction         -0.733         -0.511            -0.341
+                                                        (0.450)        (0.409)           (0.416)
+             Inter-arrival time deviation              -0.007***      -0.009***        -0.028***
+                                                        (0.001)        (0.001)           (0.002)
+             Customer Controls                             Y              Y                 Y
+             Participant Controls                          Y              Y                 Y
+             Constant                                    -0.516         -0.524         -1.642***
+                                                        (0.514)        (0.483)           (0.524)
+
+             Observations                            49,124         49,124              49,124
+             Number of participants                    331            331                331
+                          Robust standard errors clustered at the subject level
+                                    *** p<0.01, ** p<0.05, * p<0.1
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                         49
+
+D.       Balance Checks and Alternative Experimental Design Results
+To ensure that our results are not driven by the staggered data collection, we conduct balance
+tests.
+  In our original treatments, we collected data in two waves: first, we ran the no-algorithm and
+superior-algorithm treatments and then second, in response to reviewer comments, we ran the
+inferior-algorithm treatments. To confirm that our subject pool did not change in measurable
+ways over the two waves, we conduct balance checks for each of the participant control variables.
+Specifically, we regress each participant control on the inferior-algorithm treatment indicator (which
+we choose because it also serves as a “second wave” indicator). Table D.1 shows the results from
+these regressions.
+
+
+                           Table D.1      Participant Balance Check - Original Treatments
+         VARIABLES                   STEM        Male        Understand Agree: automate Agree: augment
+
+         Inferior algorithm (0/1)     0.096*    0.026           -0.085         0.090          -0.058
+                                      (0.053)  (0.047)         (0.137)        (0.055)        (0.061)
+         Constant                    0.568*** 0.245***        4.568***       1.502***       2.277***
+                                      (0.029)  (0.026)         (0.076)        (0.031)        (0.034)
+
+         Observations                   400       400          400             400            400
+         R-squared                     0.008     0.001        0.001           0.007          0.002
+                                            Standard errors in parentheses
+                                           *** p<0.01, ** p<0.05, * p<0.1
+
+
+
+  We do not see significant differences in most customer controls except the “STEM” indicator,
+which is only marginally significant (p = 0.073) and not large in magnitude. Note that participants
+in the inferior-algorithm treatments are slightly more likely to be STEM majors and participants
+majoring in STEM are more likely to use their algorithm’ advice; if anything, this means the effect
+of algorithm quality on algorithm use is likely to be even larger than what our results show.
+
+
+                              Table D.2      Participant Balance Check - Interventions
+         VARIABLES                     STEM       Male       Understand Agree: automate Agree: augment
+
+         SA, no intervention (0/1)       0.034   -0.021         0.029          -0.010         0.059
+                                        (0.053) (0.047)        (0.124)        (0.052)        (0.059)
+         Constant                      0.527*** 0.275         4.521***       1.472***       2.217***
+                                        (0.039) (0.034)        (0.090)        (0.038)        (0.043)
+
+         Observations                    356      356         356              356            356
+         R-squared                      0.001    0.001       0.000            0.000          0.003
+                                           Standard errors in parentheses
+                                          *** p<0.01, ** p<0.05, * p<0.1
+                                                         Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+50
+
+     We collected data about our interventions in one wave after our original superior-algorithm
+treatments. However, in our analyses (see Section 5.4 in the paper) we compare participant behavior
+in the high-load, superior-algorithm treatment from our original study to participant behavior in
+our intervention treatments (collected several months later). To confirm that our subject pool did
+not change in measurable ways over this time, we conduct balance checks for each of the participant
+control variables for all participants with the superior algorithm. Specifically, we regress each
+participant control on the superior-algorithm (SA), no intervention treatment indicator (which we
+choose because it also serves as a “first wave” indicator). Table D.2 shows the results from these
+regressions; we do not see significant differences for any customer control.
+     In addition to balance checks, we conducted other analyses about our experiment design. In
+developing the experiment we considered alternative design choices; the following results show that
+our results are generally robust to these choices. First, D.3 shows that our results are generally
+robust to our definition of “defaulting”—we find similar results to the ones we describe in Table B.2
+above for service-time cutoffs of two seconds and four seconds (versus three seconds, the threshold
+we use to define “defaulting” in our experiment). Second, Table D.4 shows that our results are
+consistent when there is no button hiding the algorithm’s advice. We tested a version of our
+experiment where the algorithm’s advice was automatically made visible to participants without
+any button click for the superior algorithm treatments. In these treatments, we see that the high
+load treatment induces defaulting, just as it does when the algorithm’s advice is hidden.
+
+      Table D.3   Algorithm Defaulting Behavior: Logit Regressions—Alternate Ts i Thresholds for Defaulting
+                    VARIABLES                                  < 2 seconds < 4 seconds
+
+                    High system load treatment (0/1)              1.047***       0.697**
+                                                                   (0.379)       (0.281)
+                    Superior algorithm treatment (0/1)              0.256        0.528**
+                                                                   (0.388)       (0.261)
+                    Load × algorithm treatment interaction          0.205         0.095
+                                                                   (0.474)       (0.359)
+                    Inter-arrival time deviation                 -0.091***      -0.018***
+                                                                   (0.010)       (0.002)
+                    Customer Controls                                 Y             Y
+                    Participant Controls                              Y             Y
+                    Constant                                     -4.626***      -2.599***
+                                                                   (0.692)       (0.598)
+
+                    Observations                               45,894        45,894
+                          Robust standard errors clustered at the subject level
+                                    *** p<0.01, ** p<0.05, * p<0.1
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                               51
+
+                    Table D.4     No-Button Algorithm Defaulting Behavior: Logit Regressions
+                                                             Superior algorithm
+                                VARIABLES                      Default (0/1)
+
+                                High Load (0/1)                    .625**
+                                                                    (.294)
+                                Customer Controls                     Y
+                                Participant Controls                  Y
+                                Constant                           -1.310*
+                                                                    (.723)
+                                Treatment (0/1) odds ratio          1.869
+
+                                Observations                      19,213
+                                Number of participants             109
+                                    Robust standard errors in parentheses
+                                       *** p<0.01, ** p<0.05, * p<0.1
+                                                        Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+52
+
+E.      Discrete Choice Model: Consulting and Defaulting to the
+        Algorithm
+
+
+As each customer arrives to receive a joke recommendation, participants in our experiment (in
+the superior- and inferior-algorithm treatments) are immediately faced with a choice: they can
+default to the algorithm straight away, or they can plan to consult the algorithm and deliberate—
+weighing the algorithm’s advice against their own planned recommendation, or they can ignore
+the algorithm outright. Participants are incentivized to make the choice that will give them the
+highest expected payoff (from their recommendation quality and speed) for each customer. Of
+course, participants’ real choice is more complicated; they can spend time deciding whether they
+will ignore the algorithm or not (and indeed, Table B.4 suggests participants do take time before
+consulting their algorithm)—and they can decide how much time to spend at this stage. However,
+by representing the set of choices as finite, we can use a discrete choice model learn something
+about how participants view the choice to consult and default to their algorithm under different
+system loads and with algorithms of different quality (e.g., see Liu et al. 2018).
+     We define participants’ initial three options as: 1) default to the algorithm, 2) consult the algo-
+rithm without defaulting to it, and 3) ignore the algorithm. We define the options as such because
+participants’ ultimate choices are observable and because we find that fast decisions (in particular,
+the choice to default to the algorithm) play an important role in participants’ throughput time
+performance in each treatment. We do not consider separately participants’ choices to follow or
+deviate from the algorithm after consulting it because it is difficult to know whether a participant’s
+choice to follow the algorithm is driven by their intention to follow the algorithm’ advice or if it is
+just a coincidence that the algorithm’s recommendation matched their own joke recommendation.
+     We estimate the expected utility of each option y as seen by participant j as:
+
+                               Ujy = β1 payjy + β2 algoy + β3 defaulty + ϵjy .
+
+In this equation, payjy is participant j’s expected total payoff for choosing option y—calculated as
+the average payoff from choosing option y based on experience with previous customers. algoy is an
+indicator that option y involves consulting the algorithm; algoy is 1 for the options to default and
+consult the algorithm, and 0 for the option to ignore the algorithm. defaulty is an indicator that y
+is the defaulting option (1 if so, 0 otherwise). We do not include treatment indicators directly in the
+model specification because we do not want treatment-specific coefficients. Instead, we incorporate
+the treatments via payjy . The expected payoff from each choice depends on whether the algorithm’
+advice is on average superior or inferior, and whether the system load is high or low.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                  53
+
+  We calculate payjy using past average rating and time payoff values for each choice, including
+values seen during the practice period (although we exclude this unincentivized period from our
+analysis). Because participants see separate feedback about their rating and time performance, we
+assume that they can keep track of these values separately. Therefore, we assume that participants
+can infer something about the value of defaulting to the algorithm even if they have only previously
+followed it after deliberation, because they have information about the rating payoff that resulted
+from matching the algorithm’s advice. To simplify the data generation process, we also assume
+that participants do not consider the downstream effect of making choice y to serve customer i on
+the time payoff for customer i + 1 (or customer i + 2, etc.). Further, we assume that participants’
+prior belief about the rating and time payoffs associated with each option are $0.00. We use these
+assumptions in creating our dataset for the model.
+  The choice to consult the algorithm with deliberation includes the possibility of following or
+defaulting to the algorithm, and so we calculate payjy for this option with a weighted average:
+we calculate for each participant the probability that they will follow the algorithm’s advice after
+consulting it (based on their past behavior), and multiply this probability by the expected payoff
+of following the algorithm after consulting it. We add this value to the product of the probability
+that the participant deviates from the algorithm’s advice and the expected payoff from deviation.
+  For our analysis, we fit a multinomial log-linear model using the package nnet and the function
+multinom in R. We present the results below in Table E.1. Unsurprisingly, the coefficient β1 is
+
+                                    Table E.1     Discrete Choice Model Results
+                                   VARIABLES                       Coefficient
+
+                                   β1 : payjy                    30.209***
+                                                                  (0.294)
+                                   β2 : algoy indicator (0/1)    -1.345***
+                                                                  (0.015)
+                                   β3 : defaulty indicator (0/1) -0.385***
+                                                                  (0.017)
+                                   Constant                      -3.581***
+                                                                  (0.028)
+
+                                   Number of choices                  45,894
+                                   Number of participants              311
+                                   AIC                               145,934.
+
+                                        Standard errors in parentheses
+                                       *** p<0.01, ** p<0.05, * p<0.1
+
+
+positive and significant. This means that all else being equal, the probability a participant chooses
+                                                     Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+54
+
+y goes up as the historical average earnings associated with y increases. The magnitude of this
+coefficient is large, but recall that participants’ earnings are small, on average less than $0.11. More
+notably, both β2 and β3 are negative and significant; the magnitude of these coefficients means
+that for participants, consulting the algorithm’s advice has a disutility equal to $0.045, (which
+is 43.6% = 0.045
+            .102
+                 of participants’ average per-customer payoff in the high-load, superior-algorithm
+treatment). Defaulting to the algorithm’s advice has a disutility equal to $0.057 (which is 56.1%
+= 0.057
+   .102
+        of participants’ average per-customer payoff in the high-load, superior-algorithm treatment).
+This suggests that participants are averse to consulting the algorithm’s advice, and even more
+averse to defaulting to the algorithm’s advice.
+     As a byproduct of creating the dataset for the discrete choice model, we have records of par-
+ticipants’ historical average earnings for each choice over time. We present a lowess smoothing of
+these records, as they evolve from the start of Period 1 to the end of Period 5 in each treatment,
+in Figure E.1 below. Note that the “Consult” line in each graph indicates the choice to consult the
+algorithm without defaulting to it.
+     In all the graphs, it appears that participants earn more from consulting the algorithm without
+defaulting to it than they do from defaulting to it, which would be surprising given our results that
+participants benefit from defaulting to the superior algorithm. In reality, this result is driven by
+the fact that many participants rarely consult the algorithm’s advice, and therefore do not update
+their prior belief about the expected payoff from following the algorithm’s advice. Participants
+who infrequently consult the algorithm’s advice will have a higher expected payoff from consulting
+the algorithm than defaulting to it because consulting the algorithm leaves open the possibility of
+deviation.
+     Figure E.1a, which shows the results for the high-load, superior-algorithm condition, indicates
+that participants learn from the practice period that they will not earn less from consulting or
+defaulting to the algorithm as compared to ignoring it. As time goes on, participants learn from
+feedback that consulting and defaulting to the algorithm’s advice are actually better than ignoring
+it. This learning combats participants’ bias against consulting and defaulting to the algorithm.
+Figure E.1b, which shows the results for the low-load, superior-algorithm condition, reveals that
+participants have a higher expected earning from ignoring the algorithm compared to the high-
+load, superior-algorithm condition, which makes it harder to see that following the algorithm’s
+advice is beneficial. Figures E.1c and E.1d show that participants see as early as the practice period
+that they will earn more from ignoring the algorithm’s advice, and the gap between each choice is
+relatively stable over time—which is unsurprising given our finding that participants do not change
+their rates of algorithm use after the practice period.
+Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+                                                                                                                                                                       55
+
+
+
+                                           High Load, Superior Algorithm                                                      Low Load, Superior Algorithm
+               .1
+
+
+
+
+                                                                                                   .1
+ .05 .06 .07 .08 .09
+
+
+
+
+                                                                                     .05 .06 .07 .08 .09
+ Average historical payoff ($)
+
+
+
+
+                                                                                     Average historical payoff ($)
+               .04
+
+
+
+
+                                                                                                   .04
+                                 0         50            100           150     200                                   0             50                     100         150
+                                                   Customer number                                                                      Customer number
+
+                                                 Default             Consult                                                        Default                 Consult
+                                                 No Algorithm                                                                       No Algorithm
+
+
+                                     (a) High Load, Superior Algorithm                                                   (b) Low Load, Superior Algorithm
+
+                                           High Load, Inferior Algorithm                                                       Low Load, Inferior Algorithm
+               .1
+
+
+
+
+                                                                                                   .1
+ .05 .06 .07 .08 .09
+
+
+
+
+                                                                                     .05 .06 .07 .08 .09
+ Average historical payoff ($)
+
+
+
+
+                                                                                     Average historical payoff ($)
+               .04
+
+
+
+
+                                                                                                   .04
+
+
+
+
+                                 0         50            100           150     200                                   0             50                     100         150
+                                                   Customer number                                                                      Customer number
+
+                                                 Default             Consult                                                        Default                 Consult
+                                                 No Algorithm                                                                       No Algorithm
+
+
+                            (c) High Load, Inferior Algorithm                         (d) Low Load, Inferior Algorithm
+                     Figure E.1    Lowess Smoothing: Historical Avg. Payoff for Each Choice Across Periods 1-5, by Treatment
+                                                     Snyder, Keppler, Leider: Algorithm Reliance, Fast and Slow
+56
+
+F.      ReUp Education Discussion
+
+
+ReUp Education (ReUp) is a success coaching service that helps students who have left college
+(called college stop-outs) to re-enroll and graduate with the help of one-on-one support from its
+coaches. Our relationship with ReUp began in 2020, during the idea-generation stage of this paper.
+At that time, ReUp had implemented an algorithm behind-the-scenes to help coaches manage their
+workloads, and was preparing to implement a second algorithm, the Personas algorithm (Avshalo-
+mov et al. 2022). The Personas algorithm was designed to help coaches make decisions about how
+to deliver personalized service to each customer, by classifying students (customers) into Personas
+and using these Personas to develop personalized support-plans which would include recommenda-
+tions for what to discuss with each student in each conversation. In theory, the Personas algorithm
+would be valuable to ReUp Education because it was designed to promote efficient, high-quality,
+personalized service. ReUp’s coaches could be assigned to hundreds or thousands of students, so
+scale and efficiency were particularly salient issues there.
+     In the summer of 2020 we conducted formal, semi-structured interviews with two managers
+and three coaches at the company to better understand their algorithm tools and day-to-day
+operations (ReUp Education was a mid-stage startup with approximately 30 coaches at the time
+of our interviews). At the time, managers expressed concerns that coaches were not relying on the
+company’s algorithms enough: “I would say, we’re still at a point where coaches are using [the
+algorithms] for varying amounts of time in their week,” said one. The coaches reinforced this. They
+often explained that they personally do not follow algorithms’ advice for all of their decisions—one
+coach disclosed to us that “I’m the person that deviates [from the algorithms] a little bit.” However,
+coaches were largely positive about the algorithms’ potential for coaches in general: “I think the
+Personas thing is super exciting. It’s kind of [new] for us to see how it will fully impact our work...
+But given what I think it’s going to do and given the preliminary engagement that I’ve had with
+it and how successful it’s been just even in the version that it’s in now, it’s really exciting to know
+that we could better engage with students,” said one.
+     After our interviews, ReUp conducted a more formal, internal test of the Personas algorithm.
+Unfortunately, despite initial excitement and optimism about the technology, ReUp found that the
+algorithm did not lead to any improvements in service outcomes (Ferreira et al. 2023).
+
