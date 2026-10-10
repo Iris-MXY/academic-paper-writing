@@ -1,5 +1,7 @@
 # Local tooling
 .tools/
+__pycache__/
+*.pyc
 
 # Original paper library
 *.pdf
@@ -13,4 +15,3 @@
 .DS_Store
 Thumbs.db
 *.tmp
-
